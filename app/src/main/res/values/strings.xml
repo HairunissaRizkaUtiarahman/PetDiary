@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">PetDiary</string>
+
+
+    //Review Page
+    <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
+    <string name="notification_icon_description">notification</string>
+    <string name="Browse_product_by_pet_types">Browse product by pet types</string>
+    <string name="most_reviews_products">Most Reviews Products</string>
+    <string name="scroll_horizontally_to_view_pet_options">Scroll horizontally to view pet options</string>
+    <string name="browse_product_by_pet_types">Browse product by pet types</string>
+    <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>
+
+    //Home Page
+    <string name="reviews">Reviews</string>
+    <string name="find_pet_shop_vet">Find Pet Shop &amp; Vet</string>
+    <string name="community">Community</string>
+    <string name="article">Article</string>
+    <string name="manage_pet">Manage Pet</string>
+    <string name="manage_pet_poster">Manage Pet Poster</string>
+
+    //Product Categories
+    <string name="product_categories">Product Categories</string>
+    <string name="back_to_review_landing_page">back_to_review_landing_page</string>
+    <string name="grooming">Grooming</string>
+    <string name="food">Food</string>
+    <string name="health">Health</string>
+    <string name="tools">Tools</string>
+    <string name="product">Products</string>
+
+</resources>
