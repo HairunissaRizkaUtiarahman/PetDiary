@@ -22,7 +22,7 @@ class ProductListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.acticity_review_page)
+        setContentView(R.layout.acticity_review_homepage)
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this)

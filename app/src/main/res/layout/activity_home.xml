@@ -69,18 +69,17 @@
             <!-- Pet Diary Feature -->
             <LinearLayout
                 android:id="@+id/Pet_Diary_Features"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                android:orientation="horizontal">
 
                 <!-- Review Page -->
                 <LinearLayout
                     android:id="@+id/button_review"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -88,7 +87,7 @@
                     <ImageView
                         android:id="@+id/review_icon"
                         android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_height="70dp"
                         android:padding="10dp"
                         android:src="@drawable/icon_reviews" />
 
@@ -107,9 +106,9 @@
 
                 <LinearLayout
                     android:id="@+id/button_find_petsho_clinic"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="7dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -117,14 +116,14 @@
                     <ImageView
                         android:id="@+id/Find_PetShop_and_vet_icon"
                         android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_height="70dp"
                         android:padding="8dp"
                         android:src="@drawable/icon_petshop_clinic" />
 
                     <TextView
                         android:id="@+id/go_to_petshopAndVet_page_text"
                         android:layout_width="match_parent"
-                        android:layout_height="51dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center"
@@ -137,9 +136,9 @@
 
                 <LinearLayout
                     android:id="@+id/button_community"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginRight="7dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -147,14 +146,14 @@
                     <ImageView
                         android:id="@+id/go_to_community_page_icon"
                         android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_height="70dp"
                         android:padding="10dp"
                         android:src="@drawable/icon_social_media" />
 
                     <TextView
                         android:id="@+id/go_to_community_page_text"
                         android:layout_width="match_parent"
-                        android:layout_height="51dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center"
@@ -169,7 +168,6 @@
                     android:id="@+id/button_article"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -177,14 +175,14 @@
                     <ImageView
                         android:id="@+id/go_to_article_page_icon"
                         android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:src="@drawable/icon_article" />
 
                     <TextView
                         android:id="@+id/go_to_article_page_text"
                         android:layout_width="match_parent"
-                        android:layout_height="51dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/roboto"
                         android:gravity="center"

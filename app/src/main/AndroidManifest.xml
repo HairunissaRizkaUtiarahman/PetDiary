@@ -18,13 +18,16 @@
         <activity
             android:name=".ui.activities.LoginActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProductListActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.activities.ProductListActivity"
+            android:name=".ui.activities.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
