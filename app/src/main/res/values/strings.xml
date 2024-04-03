@@ -13,7 +13,7 @@
 
     //Home Page
     <string name="reviews">Reviews</string>
-    <string name="find_pet_shop_vet">Find Pet Shop &amp; Vet</string>
+    <string name="find_pet_shop_vet">Shop &amp; Vet</string>
     <string name="community">Community</string>
     <string name="article">Article</string>
     <string name="manage_pet">Manage Pet</string>
@@ -27,5 +27,13 @@
     <string name="health">Health</string>
     <string name="tools">Tools</string>
     <string name="product">Products</string>
+    <string name="search">search product\n</string>
+    <string name="search_product">Search product</string>
+    <string name="sort">Sort</string>
+    <string name="back_to_product_page">back to product page</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="add_a_review">add a review</string>
+    <string name="see_more_reviews"><![CDATA[See more Reviews>>]]></string>
+    <string name="back_to_product_detail_page">back to product detail page\n</string>
 
 </resources>

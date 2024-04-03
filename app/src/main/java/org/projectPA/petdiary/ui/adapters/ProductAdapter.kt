@@ -27,7 +27,7 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(Pr
         private val productName: TextView = itemView.findViewById(R.id.product_name)
         private val productBrand: TextView = itemView.findViewById(R.id.product_brand)
         private val productImage: ImageView = itemView.findViewById(R.id.product_image1)
-        private val productReviewsCount: TextView = itemView.findViewById(R.id.reviews_count)
+        private val productReviewsCount: TextView = itemView.findViewById(R.id.reviews_average)
         private val rating: TextView = itemView.findViewById(R.id.rating)
         fun bind(product: Product) {
             productName.text = product.name

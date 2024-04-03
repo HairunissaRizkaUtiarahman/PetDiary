@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginBottom="5dp"
         android:visibility="visible"
         app:cardElevation="0dp">
 
@@ -19,13 +18,13 @@
             android:background="@drawable/background_product_card"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="5dp">
 
             <!-- Product Image -->
             <ImageView
                 android:id="@+id/product_image1"
                 android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_height="170dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/image_product_example" />
 
@@ -83,7 +82,7 @@
                         android:src="@drawable/icon_star_active" />
 
                     <TextView
-                        android:id="@+id/reviews_count"
+                        android:id="@+id/reviews_average"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="(100)"
