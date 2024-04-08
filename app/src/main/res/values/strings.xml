@@ -43,6 +43,7 @@
     <string name="back_to_product_detail_page">back to product detail page\n</string>
     <string name="back_to_detail_product_page" />
     <string name="back_to_detail_reviews_page" />
-
+    <string name="royal_canin">Royal Canin</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
