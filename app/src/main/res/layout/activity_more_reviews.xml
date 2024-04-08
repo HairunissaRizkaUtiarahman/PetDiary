@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -22,12 +21,12 @@
             app:titleTextColor="@color/black">
 
             <ImageView
-                android:id="@+id/back_to_product_categories_page"
+                android:id="@+id/back_to_product_detail_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginEnd="16dp"
-                android:contentDescription="@string/back_to_product_detail_page"
+                android:contentDescription="@string/back_to_detail_product_page"
                 android:src="@drawable/arrow_back" />
 
             <TextView
@@ -41,15 +40,17 @@
                 tools:layout_editor_absoluteY="15dp" />
 
         </androidx.appcompat.widget.Toolbar>
-
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_marginBottom="64dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toTopOf="@id/button_sort_reviews"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_detail_product_page">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,36 +80,35 @@
 
             </FrameLayout>
 
-            <FrameLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_review"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                tools:listitem="@layout/fragment_review" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_review"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/fragment_review" />
-
-                <Button
-                    android:id="@+id/button_sort_reviews"
-                    android:layout_width="match_parent"
-                    android:layout_height="54dp"
-                    android:layout_gravity="bottom|center"
-                    android:layout_margin="10dp"
-                    android:foregroundGravity="center_vertical|center_horizontal"
-                    android:text="@string/sort"
-                    android:textAlignment="gravity"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="8dp"
-                    app:icon="@drawable/ic_sort"
-                    app:iconGravity="textStart" />
-            </FrameLayout>
-
-
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="See more Reviews>>"
+                android:textColor="@color/orange_main"
+                android:textSize="16sp" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
+    <Button
+        android:id="@+id/button_sort_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="10dp"
+        android:text="@string/sort"
+        android:textSize="14sp"
+        app:cornerRadius="8dp"
+        app:icon="@drawable/ic_sort"
+        app:iconGravity="textStart"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
