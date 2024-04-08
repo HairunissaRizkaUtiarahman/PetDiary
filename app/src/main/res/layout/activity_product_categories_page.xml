@@ -46,7 +46,7 @@
         android:src="@drawable/icon_cat" />
 
     <TextView
-        android:id="@+id/pet_type_text"
+        android:id="@+id/pet_type_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -225,7 +225,7 @@
                 android:layout_gravity="bottom|center"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="bottom|center"
-                android:text="Others"
+                android:text="@string/others"
                 android:textColor="@color/white" />
         </FrameLayout>
 
