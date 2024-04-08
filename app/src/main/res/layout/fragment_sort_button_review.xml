@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clicked_sort_button"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_grey"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/background_sortby"
+        android:backgroundTint="#FFFFFF"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Sort_by_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Sort by"
+            android:textColor="@color/orange_main"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/Newest_Review_option_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Newest Review"
+            android:textAlignment="viewStart"
+            android:textColor="@color/green_main"
+            android:textSize="18sp"
+            tools:ignore="RtlCompat" />
+
+        <RadioButton
+            android:id="@+id/Oldest_Review_rating_option_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Oldest Review"
+            android:textColor="@color/green_main"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/Highest_Rating_option_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Highest Rating"
+            android:textColor="@color/green_main"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/Lowest_Rating_option_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Lowest Rating"
+            android:textColor="@color/green_main"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</FrameLayout>
