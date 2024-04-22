@@ -31,7 +31,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginTop="8dp"
             android:gravity="start"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textStyle="bold"/>
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginTop="4dp"
             android:gravity="start"
-            android:text="Please Sign In to continue"
+            android:text="@string/please_sign_in_to_continue"
             android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -58,7 +58,7 @@
                 android:id="@+id/email_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,14 +75,14 @@
                 android:id="@+id/password_TextInputEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/signIn_Btn"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:textColor="@color/black"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="Don’t have an account?">
+                android:text="@string/don_t_have_an_account">
 
             </TextView>
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="24dp"
-                android:text=" Sign Up"
+                android:text="@string/sign_up"
                 android:textStyle="bold"
                 android:textColor="@color/green_secondary">
 

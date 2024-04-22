@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/give_review_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/black">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_to_choose_product_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:background="@color/white"
+            android:contentDescription="@string/back_to_choose_product_button"
+            android:src="@drawable/arrow_back" />
+
+        <TextView
+            android:id="@+id/pet_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/give_review"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/productCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_icon_home"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/give_review_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_icon_home"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/product_picture_raview_detail_page"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:padding="5dp"
+                app:srcCompat="@drawable/contoh_product_image" />
+
+            <LinearLayout
+                android:id="@+id/product_information"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/brand_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="Whiskas"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Tuna for kitten"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/product_type_animal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="For cat" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/reviewCard"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_icon_home"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/productCard">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_icon_home"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/green_main">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/ic_number_one"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:alpha="@dimen/cardview_default_radius"
+                    android:src="@drawable/ic_number_1" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/usage_product_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/give_your_overall_rating_for_this_product"
+                android:textAlignment="center"
+                android:textColor="@color/orange_main"
+                android:textSize="20sp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:isIndicator="false"
+                android:max="5"
+                android:numStars="5"
+                android:progressTint="@color/green_main"
+                android:stepSize="1"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prev_button_to_usage_product"
+            android:layout_width="150dp"
+            android:layout_height="54dp"
+            android:layout_margin="15dp"
+            android:text="@string/prev"
+            android:textAlignment="gravity"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:cornerRadius="8dp"
+            app:iconGravity="textStart" />
+
+        <Button
+            android:id="@+id/next_button_to_recommend_product"
+            android:layout_width="150dp"
+            android:layout_height="54dp"
+            android:layout_margin="15dp"
+            android:text="@string/next"
+            android:textAlignment="gravity"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:iconGravity="textStart" />
+    </LinearLayout>
+
+
+</LinearLayout>

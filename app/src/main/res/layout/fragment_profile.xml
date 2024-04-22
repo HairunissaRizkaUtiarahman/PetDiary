@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileFragment"
+    tools:context=".ui.fragments.ProfileFragment"
     android:background="@drawable/background_profile">
 
     <LinearLayout
@@ -26,17 +26,19 @@
                 android:src="@drawable/icon_ball"/>
 
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Name"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:text="Name"/>
+                android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Email"/>
+                android:text="Email"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -61,10 +63,11 @@
                     android:layout_marginRight="10dp"/>
 
                 <TextView
+                    android:id="@+id/my_profile_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MY PROFILE"
-                    android:textStyle="bold"/>
+                    android:text="@string/my_profile"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -83,10 +86,11 @@
                     android:layout_marginRight="10dp"/>
 
                 <TextView
+                    android:id="@+id/setting_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SETTING"
-                    android:textStyle="bold"/>
+                    android:text="@string/setting"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -105,10 +109,11 @@
                     android:layout_marginRight="10dp"/>
 
                 <TextView
+                    android:id="@+id/logout_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LOGOUT"
-                    android:textStyle="bold"/>
+                    android:text="@string/logout"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

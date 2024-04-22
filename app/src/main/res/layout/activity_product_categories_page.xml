@@ -8,7 +8,7 @@
 
     <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_product_categories"
+        android:id="@+id/pet_category_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -17,7 +17,7 @@
         app:titleTextColor="@color/black">
 
         <ImageView
-            android:id="@+id/back_to_review_landing_page"
+            android:id="@+id/back_to_review_homepage_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -35,25 +35,31 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
-        android:id="@+id/pet_type_icon"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/background_pet_category"
-        android:padding="10dp"
-        android:src="@drawable/icon_cat" />
-
-    <TextView
-        android:id="@+id/pet_type_information"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/cat_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:text="cat"
-        android:textColor="@color/black" />
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/pet_type_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/background_pet_category"
+            android:padding="10dp"
+            android:src="@drawable/icon_cat" />
+
+        <TextView
+            android:id="@+id/pet_type_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/cat"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

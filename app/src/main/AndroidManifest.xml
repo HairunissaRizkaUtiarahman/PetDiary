@@ -13,8 +13,12 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.DashboardActivity"
+            android:name=".ui.activities.HomePage"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main" />
         <activity
             android:name=".ui.activities.SplashActivity"
             android:exported="true">
@@ -36,7 +40,19 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.activities.HomeActivity"
+            android:name=".ui.activities.MyPetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ReviewHomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.FindPetshopVetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.CommunityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ArticleActivity"
             android:exported="false" />
     </application>
 
