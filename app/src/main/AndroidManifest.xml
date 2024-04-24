@@ -36,8 +36,24 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.activities.HomeActivity"
+            android:name=".ui.activities.MyPetActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ReviewHomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.FindPetShopVetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.CommunityHomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ArticleHomePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ChoosePetCategoryActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

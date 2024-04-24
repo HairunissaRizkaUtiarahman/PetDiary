@@ -2,7 +2,98 @@
     <string name="app_name">PetDiary</string>
 
 
-    //Review Page
+    //activity_choose_pet_category
+    <string name="back_to_review_homepage_button">back_to_review_homepage_button</string>
+    <string name="pet_category">Pet Category</string>
+    <string name="choose_pet_category">Choose Pet Product Category</string>
+    <string name="fish">Fish</string>
+    <string name="hamster">Hamster</string>
+    <string name="rabbit">Rabbit</string>
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="bird">Bird</string>
+
+    //activity_choose_product
+    <string name="choose_product">Choose Product</string>
+    <string name="search_product">Search product…</string>
+    <string name="sort">Sort</string>
+
+    //activity_choose_product_category
+    <string name="choose_product_category">Choose Product Category</string>
+    <string name="back_to_choose_pet_category_page_button">back_to_choose_pet_category_page_button</string>
+    <string name="grooming">Grooming</string>
+    <string name="food">Food</string>
+    <string name="health">Health</string>
+    <string name="tools">Tools</string>
+    <string name="others">Others</string>
+
+    //activity_fill_product_information
+    <string name="back_to_choose_product_category_page_button">back_to_choose_product_category_page_button</string>
+    <string name="fill_product_information">Fill Product Information</string>
+    <string name="enter_brand_name">Enter Brand Name</string>
+    <string name="product_name">Product Name</string>
+    <string name="brand_name">Brand Name</string>
+    <string name="upload_photo">upload photo</string>
+    <string name="description">Description</string>
+    <string name="enter_product_name">Enter Product Name</string>
+    <string name="enter_product_description">Enter product description</string>
+    <string name="submit">submit</string>
+
+    //activity_give_rating_step_one
+    <string name="back_to_choose_product_button">back_to_choose_product_button</string>
+    <string name="give_review">Give a Review</string>
+    <string name="give_your_overall_rating_for_this_product">Give Your Overall Rating For This Product</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
+
+    //activity_login
+    <string name="login">LOGIN</string>
+    <string name="please_sign_in_to_continue">Please Sign In to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="sign_up">Sign Up</string>
+
+    //activity_main
+    <string name="add_button">add button</string>
+    <string name="fab">\u200B</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+
+    //activity_more_reviews
+    <string name="reviews">Reviews</string>
+
+    //activity_product_categories
+    <string name="back_to_review_landing_page">back_to_review_landing_page</string>
+    <string name="product_categories">Product Categories</string>
+
+    //activity_product_detail
+    <string name="reviewed_this">Reviewed This</string>
+    <string name="users_recommend_this">Users Recommend This</string>
+    <string name="product_description">Product Description</string>
+    <string name="overall_rating">Overall Rating</string>
+    <string name="back_to_products_page_button">back_to_products_page_button</string>
+    <string name="see_more_reviews"><![CDATA[See more Reviews>>]]></string>
+    <string name="back_to_product_page">back to product page</string>
+    <string name="product_detail">Product Detail</string>
+    <string name="add_a_review">Add a review</string>
+
+    //activity_product_page
+    <string name="back_to_product_categories_button">back_to_product_categories_button</string>
+    <string name="product">Products</string>
+
+    //activity_recommend_product_step_four
+    <string name="would_you_recommend_this_product">Would you recommend this product?</string>
+
+    //activity_register
+    <string name="register">REGISTER</string>
+    <string name="please_register_to_login">Please Register to login</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="already_have_an_account">Already have an account?</string>
+
+    //activity_review_homepage
     <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
     <string name="notification_icon_description">notification</string>
     <string name="Browse_product_by_pet_types">Browse product by pet types</string>
@@ -11,39 +102,62 @@
     <string name="browse_product_by_pet_types">Browse product by pet types</string>
     <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>
 
-    //Home Page
-    <string name="reviews">Reviews</string>
+    //activity_review_detail
+    <string name="review_detail">Review Detail</string>
+    <string name="back_to_product_detail_button">back_to_product_detail_button</string>
+    <string name="usage_period">Usage Period</string>
+    <string name="date">Date</string>
+
+    //activity_usage_product_step_two
+    <string name="how_long_have_you_used_it">How Long Have You Used It?</string>
+
+    //activity_usage_product_step_three
+    <string name="write_your_review_about_this_product">Write your review about \n this product</string>
+    <string name="write_you_review_here">write you review here…</string>
+
+    //fragment_add_button
+    <string name="add_a_post">Add a Post</string>
+    <string name="add_a_product">Add a Product</string>
+
+    //fragment_home
     <string name="find_pet_shop_vet">Shop &amp; Vet</string>
     <string name="community">Community</string>
     <string name="article">Article</string>
     <string name="manage_pet">Manage Pet</string>
     <string name="manage_pet_poster">Manage Pet Poster</string>
+    <string name="review_n">Review</string>
+    <string name="community_n">Community</string>
+    <string name="article_n">Article</string>
 
-    //Product Categories
-    <string name="product_categories">Product Categories</string>
-    <string name="back_to_review_landing_page">back_to_review_landing_page</string>
-    <string name="grooming">Grooming</string>
-    <string name="food">Food</string>
-    <string name="health">Health</string>
-    <string name="tools">Tools</string>
-    <string name="others">Others</string>
+    //fragment_profile
+    <string name="my_profile">MY PROFILE</string>
+    <string name="setting">SETTING</string>
+    <string name="logout">LOGOUT</string>
 
-    //Product Page
-    <string name="product">Products</string>
-    <string name="search">search product\n</string>
-    <string name="search_product">Search product</string>
-    <string name="sort">Sort</string>
+    //fragment_review
 
-    //Product Detail
-    <string name="back_to_product_page">back to product page</string>
-    <string name="product_detail">Product Detail</string>
-    <string name="add_a_review">add a review</string>
-    <string name="see_more_reviews"><![CDATA[See more Reviews>>]]></string>
+    //Fragment_sort_button_product
+    <string name="sort_by">Sort by</string>
+    <string name="popular">Popular</string>
+    <string name="highest_rating">Highest Rating</string>
+    <string name="newest">Newest</string>
+
+    //fragment_sort_button_review
+    <string name="newest_review">Newest Review</string>
+    <string name="oldest_review">Oldest Review</string>
+    <string name="lowest_rating">Lowest Rating</string>
+
+    //Menu
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
     <string name="back_to_product_detail_page">back to product detail page\n</string>
     <string name="back_to_detail_product_page" />
     <string name="back_to_detail_reviews_page" />
-    <string name="royal_canin">Royal Canin</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="back_to_choose_product_category">back_to_choose_product_category</string>
+    <string name="hide_bottom_view_on_scroll" />
+    <string name="title_activity_main">MainActivity</string>
+
 
 </resources>

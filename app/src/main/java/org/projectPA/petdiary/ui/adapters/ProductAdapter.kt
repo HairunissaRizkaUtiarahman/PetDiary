@@ -1,17 +1,26 @@
 package org.projectPA.petdiary.ui.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.model.Product
 
-class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(ProductDiffCallback()) {
+class ProductAdapter(private val context: Context, private val productList: List<Product>) :
+    RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val productImage: ImageView = itemView.findViewById(R.id.product_image)
+        val productName: TextView = itemView.findViewById(R.id.product_name)
+        val productBrand: TextView = itemView.findViewById(R.id.product_brand)
+        val ratingBar: RatingBar = itemView.findViewById(R.id.ratingBar)
+        val reviewsAverage: TextView = itemView.findViewById(R.id.reviews_average)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
@@ -19,31 +28,15 @@ class ProductAdapter : ListAdapter<Product, ProductAdapter.ProductViewHolder>(Pr
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val product = getItem(position)
-        holder.bind(product)
+        val product = productList[position]
+        holder.productImage.setImageResource(product.imageResId)
+        holder.productName.text = product.name
+        holder.productBrand.text = product.brand
+        holder.ratingBar.rating = product.rating
+        holder.reviewsAverage.text = "(${product.reviewCount})"
     }
 
-    inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val productName: TextView = itemView.findViewById(R.id.product_name)
-        private val productBrand: TextView = itemView.findViewById(R.id.product_brand)
-        private val productImage: ImageView = itemView.findViewById(R.id.product_image1)
-        private val productReviewsCount: TextView = itemView.findViewById(R.id.reviews_average)
-        private val rating: TextView = itemView.findViewById(R.id.rating)
-        fun bind(product: Product) {
-            productName.text = product.name
-            productBrand.text = product.brand
-            productImage.setImageResource(product.imageRes)
-            productReviewsCount.text = "(${product.reviewsCount})"
-        }
-    }
-
-    class ProductDiffCallback : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem.name == newItem.name // Ubah dengan kunci perbandingan yang sesuai
-        }
-
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem == newItem
-        }
+    override fun getItemCount(): Int {
+        return productList.size
     }
 }

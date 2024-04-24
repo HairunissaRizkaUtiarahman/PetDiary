@@ -1,5 +1,9 @@
 package org.projectPA.petdiary.model
 
-import android.media.Rating
-
-data class Product(val name: String, val brand: String, val imageRes: Int, val reviewsCount: Int, val rating: Int)
+data class Product(
+    val name: String,
+    val brand: String,
+    val imageResId: Int,
+    val rating: Float,
+    val reviewCount: Int
+)

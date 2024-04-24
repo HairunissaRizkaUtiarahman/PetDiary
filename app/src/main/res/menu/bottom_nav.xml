@@ -2,12 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item android:title="Home"
+    <item
+        android:title="@string/home"
         android:id="@+id/home"
-        android:icon="@drawable/icon_home"
+        android:icon="@drawable/ic_paw"
         />
-    <item android:title="Profile"
+
+    <item
+        android:id="@+id/fab"
+        android:title="@string/fab"
+        />
+
+    <item
+        android:title="@string/profile"
         android:id="@+id/profile"
-        android:icon="@drawable/icon_profile"
+        android:icon="@drawable/ic_profile"
         />
 </menu>

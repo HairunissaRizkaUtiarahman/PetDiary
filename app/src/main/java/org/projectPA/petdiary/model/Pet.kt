@@ -5,5 +5,6 @@ enum class Pet {
     DOG,
     HAMSTER,
     RABBIT,
-    FISH
+    FISH,
+    BIRD
 }

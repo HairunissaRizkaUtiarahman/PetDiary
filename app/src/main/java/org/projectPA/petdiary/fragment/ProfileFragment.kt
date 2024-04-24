@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui
+package org.projectPA.petdiary.fragment
 
 import android.content.Intent
 import android.os.Bundle

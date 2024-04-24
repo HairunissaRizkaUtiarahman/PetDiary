@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Toolbar -->
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/pet_category_toolbar"
         android:layout_width="match_parent"
@@ -16,27 +16,28 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/black">
 
-        <ImageView
-            android:id="@+id/back_to_review_homepage_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_to_choose_pet_category_page_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="start"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/back_to_review_landing_page"
+            android:background="@color/white"
+            android:contentDescription="@string/back_to_choose_pet_category_page_button"
             android:src="@drawable/arrow_back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/product_categories"
+            android:text="@string/choose_product_category"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        android:id="@+id/pet_type_choosen"
+        android:id="@+id/cat_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -63,7 +64,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
