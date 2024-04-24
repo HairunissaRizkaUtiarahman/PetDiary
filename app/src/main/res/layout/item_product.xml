@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/product_card1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:visibility="visible"
@@ -22,8 +23,8 @@
 
             <!-- Product Image -->
             <ImageView
-                android:id="@+id/product_image1"
-                android:layout_width="150dp"
+                android:id="@+id/product_image"
+                android:layout_width="130dp"
                 android:layout_height="170dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/image_product_example" />
@@ -32,7 +33,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="left"
+                android:gravity="start"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -46,40 +47,20 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/rating_star1"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/icon_star_active" />
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="@style/CustomRatingBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:isIndicator="true"
+                        android:max="5"
+                        android:maxHeight="18dp"
+                        android:minWidth="50dp"
+                        android:minHeight="50dp"
+                        android:mirrorForRtl="true"
+                        android:numStars="5" />
 
-                    <ImageView
-                        android:id="@+id/rating_star2"
-                        android:layout_width="25dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/icon_star_active" />
-
-                    <ImageView
-                        android:id="@+id/rating_star3"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/icon_star_active" />
-
-                    <ImageView
-                        android:id="@+id/rating_star4"
-                        android:layout_width="25dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/icon_star_active" />
-
-                    <ImageView
-                        android:id="@+id/rating5"
-                        android:layout_width="25dp"
-                        android:layout_height="35dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/icon_star_active" />
 
                     <TextView
                         android:id="@+id/reviews_average"
@@ -122,6 +103,4 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
 </LinearLayout>
