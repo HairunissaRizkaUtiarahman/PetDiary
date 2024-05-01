@@ -12,12 +12,12 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentHomeBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.ui.activities.*
-import org.projectPA.petdiary.ui.adapters.ProductAdapter
+//import org.projectPA.petdiary.ui.adapters.ProductAdapter
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: ProductAdapter
+//    private lateinit var adapter: ProductAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +31,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ProductAdapter(requireContext(), getProductList())
-        binding.recyclerViewHorizontal.apply {
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = this@HomeFragment.adapter
-        }
+//        adapter = ProductAdapter(requireContext(), getProductList())
+//        binding.recyclerViewHorizontal.apply {
+//            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//            adapter = this@HomeFragment.adapter
+//        }
 
         // Set listener for each button
         binding.managePetButton.setOnClickListener {
@@ -59,14 +59,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getProductList(): List<Product> {
-        // Dummy data for RecyclerView (you can replace this with your actual data)
-        return listOf(
-            Product("Product 1", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-            Product("Product 3", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-            Product("Product 4", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100)
-        )
-    }
+//    private fun getProductList(): List<Product> {
+//        // Dummy data for RecyclerView (you can replace this with your actual data)
+//        return listOf(
+//            Product("Product 1", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
+//            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
+//            Product("Product 3", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
+//            Product("Product 4", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
+//            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100)
+//        )
+//    }
 }

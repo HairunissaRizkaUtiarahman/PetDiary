@@ -51,8 +51,18 @@
             android:name=".ui.activities.ArticleHomePageActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.activities.ActivityChooseProductCategory"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ChoosePetCategoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.FillProductInformationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProductDetailActivity"
+            android:exported="false" />
+
 
     </application>
 
