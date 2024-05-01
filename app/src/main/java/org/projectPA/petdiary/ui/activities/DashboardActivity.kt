@@ -1,6 +1,8 @@
 package org.projectPA.petdiary.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDashboardBinding
+import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
 import org.projectPA.petdiary.fragment.HomeFragment
 import org.projectPA.petdiary.fragment.ProfileFragment
 
@@ -53,8 +56,26 @@ class DashboardActivity : AppCompatActivity() {
 
     // FragmentAddButton untuk menampilkan dialog fragment
     class FragmentAddButton : BottomSheetDialogFragment() {
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            return inflater.inflate(R.layout.fragment_add_button, container, false)
+
+        private var _binding: FragmentAddButtonBinding? = null
+        private val binding get() = _binding!!
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+            _binding = FragmentAddButtonBinding.inflate(inflater, container, false)
+            binding.addAProductButton.setOnClickListener {
+                Log.d("FragmentAddButton", "add_a_product_button clicked")
+                startActivity(Intent(activity, ChoosePetCategoryActivity::class.java))
+            }
+            return binding.root
+        }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            binding.addAProductButton.setOnClickListener {
+                Log.d("FragmentAddButton", "add_a_product_button clicked")
+                startActivity(Intent(activity, ChoosePetCategoryActivity::class.java))
+            }
         }
     }
 }
