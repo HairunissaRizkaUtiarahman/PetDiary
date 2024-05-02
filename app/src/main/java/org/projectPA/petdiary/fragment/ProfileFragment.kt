@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.ui.activities.LoginActivity
+import org.projectPA.petdiary.ui.activities.auth.LoginActivity
 
 class ProfileFragment : Fragment() {
     override fun onCreateView(

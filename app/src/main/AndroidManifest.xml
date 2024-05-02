@@ -25,10 +25,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.RegisterActivity"
+            android:name=".ui.activities.auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name=".ui.activities.auth.LoginActivity"
             android:exported="false" />
 
         <meta-data
