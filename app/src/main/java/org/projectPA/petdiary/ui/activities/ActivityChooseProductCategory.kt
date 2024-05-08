@@ -2,6 +2,8 @@ package org.projectPA.petdiary.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.LinearLayout
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityChooseProductCategoryBinding
@@ -9,6 +11,8 @@ import org.projectPA.petdiary.databinding.ActivityChooseProductCategoryBinding
 class ActivityChooseProductCategory : AppCompatActivity() {
 
     private lateinit var binding: ActivityChooseProductCategoryBinding
+    private val PET_TYPE_KEY = "pet_type"
+    private val CATEGORY_KEY = "category"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,31 +35,39 @@ class ActivityChooseProductCategory : AppCompatActivity() {
                 binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_dog_button, binding.petTypeChoosen, false))
             }
             "rabbit" -> {
-
                 binding.petTypeChoosen.removeAllViews()
                 binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_rabbit_button, binding.petTypeChoosen, false))
             }
             "hamster" -> {
-
                 binding.petTypeChoosen.removeAllViews()
                 binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_hamster_button, binding.petTypeChoosen, false))
             }
             "fish" -> {
-
                 binding.petTypeChoosen.removeAllViews()
                 binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_fish_button, binding.petTypeChoosen, false))
             }
             "bird" -> {
-
                 binding.petTypeChoosen.removeAllViews()
                 binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_bird_button, binding.petTypeChoosen, false))
             }
-
         }
 
         binding.buttonHealthCategory.setOnClickListener {
-            startActivity(Intent(this, FillProductInformationActivity::class.java))
+            val category = getCategoryName(binding.petTypeChoosen)
+            val intent = Intent(this, FillProductInformationActivity::class.java)
+            intent.putExtra(PET_TYPE_KEY, petType)
+            intent.putExtra(CATEGORY_KEY, category)
+            startActivity(intent)
         }
+    }
 
+    private fun getCategoryName(parentLayout: LinearLayout): String {
+        for (i in 0 until parentLayout.childCount) {
+            val childView = parentLayout.getChildAt(i)
+            if (childView is RadioButton && childView.isChecked) {
+                return childView.text.toString()
+            }
+        }
+        return ""
     }
 }
