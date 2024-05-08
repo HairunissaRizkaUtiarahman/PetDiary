@@ -43,34 +43,23 @@ class ProductDetailActivity : AppCompatActivity() {
         firestore.collection("products").document(productId)
             .get()
             .addOnSuccessListener { document ->
-                if (document != null) {
-                    val product = document.toObject(Product::class.java)
-                    product?.let {
-                        binding.productBrandText.text = it.brandName
-                        binding.productNameText.text = it.productName
-                        binding.forWhatPetType.text = it.petType
-                        binding.productCategory.text = it.category
-                        binding.productDescriptionText.text = it.description
-
-                        // Load product image
-                        loadProductImage(productId)
-                    }
-                } else {
-                    Log.d(TAG, "No such document")
+                val product = document.toObject(Product::class.java)
+                product?.let {
+                    binding.productBrandText.text = it.brandName
+                    binding.productNameText.text = it.productName
+                    binding.forWhatPetType.text = it.petType
+                    binding.productCategory.text = it.category
+                    binding.productDescriptionText.text = it.description
+                    loadProductImage(productId)
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
+            }.addOnFailureListener { exception ->
+                Log.e(TAG, "Failed to load product details: ${exception.message}")
             }
     }
 
     private fun loadProductImage(productId: String) {
         val storageRef = storage.reference
         val imagesRef = storageRef.child("images/$productId.jpg")
-
-        // Load image into ImageView using Glide or any other image loading library
-        // Example with Glide:
-        // Glide.with(this).load(imagesRef).into(binding.productPicture)
     }
 
     private fun setupRecyclerView() {
