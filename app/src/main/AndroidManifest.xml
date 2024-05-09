@@ -66,6 +66,9 @@
         <activity
             android:name=".ui.activities.ProductDetailActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProductPageActivity"
+            android:exported="false" />
 
 
     </application>

@@ -209,6 +209,7 @@
 
 
             <LinearLayout
+                android:id="@+id/list_top_five"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="left"
@@ -217,7 +218,7 @@
                 android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_horizontal"
+                    android:id="@+id/list_top_five_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:isScrollContainer="true"

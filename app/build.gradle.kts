@@ -5,6 +5,7 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "org.projectPA.petdiary"
     compileSdk = 34
@@ -63,8 +64,6 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.firebase:firebase-core:21.1.1")
-
-
-
-
+    implementation("com.github.bumptech.glide:glide:4.13.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

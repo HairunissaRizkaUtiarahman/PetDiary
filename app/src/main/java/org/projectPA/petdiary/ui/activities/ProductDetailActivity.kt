@@ -1,16 +1,20 @@
 package org.projectPA.petdiary.ui.activities
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
+import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.ui.adapters.ReviewAdapter
-import java.io.File
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -23,63 +27,80 @@ class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
+
+        binding.backButton.setOnClickListener {
+            val cameFromFillInfo = intent.getBooleanExtra("fromFillProductInfo", false)
+            if (cameFromFillInfo) {
+                val intent = Intent(this, ProductPageActivity::class.java)
+                startActivity(intent)
+            } else {
+                onBackPressed()
+            }
+        }
+
         setContentView(binding.root)
 
-        // Initialize Firestore and Storage
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
 
-        // Get product ID from intent
         productId = intent.getStringExtra("productId") ?: ""
 
-        // Display product details
         displayProductDetails(productId)
-
-        // Set up RecyclerView for reviews
         setupRecyclerView()
+        loadReviews() // Load reviews on activity start
     }
 
+    @SuppressLint("SetTextI18n")
     private fun displayProductDetails(productId: String) {
-        firestore.collection("products").document(productId)
-            .get()
+        firestore.collection("products").document(productId).get()
             .addOnSuccessListener { document ->
                 val product = document.toObject(Product::class.java)
                 product?.let {
+                    Log.d(TAG, "Category: ${it.category}")
                     binding.productBrandText.text = it.brandName
                     binding.productNameText.text = it.productName
                     binding.forWhatPetType.text = it.petType
                     binding.productCategory.text = it.category
                     binding.productDescriptionText.text = it.description
-                    loadProductImage(productId)
+                    binding.reviewAverage.text = it.averageRating.toString()
+                    binding.reviewersCount.text = formatReviewCount(it.reviewCount)
+                    binding.percentageOfUser.text = "${it.percentageOfUsers}%"
+                    loadProductImage(it.imageUrl ?: "")
                 }
-            }.addOnFailureListener { exception ->
-                Log.e(TAG, "Failed to load product details: ${exception.message}")
+            }.addOnFailureListener { e ->
+                Log.e(TAG, "Failed to load product details", e)
             }
     }
 
-    private fun loadProductImage(productId: String) {
-        val storageRef = storage.reference
-        val imagesRef = storageRef.child("images/$productId.jpg")
+    private fun formatReviewCount(count: Int) = if (count > 1000) "${count / 1000}k" else "$count"
+
+    private fun loadProductImage(imageUrl: String) {
+        Glide.with(this).load(imageUrl).into(binding.productPicture)
     }
 
     private fun setupRecyclerView() {
-        val recyclerView: RecyclerView = binding.listReview
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Initialize an empty adapter for reviews
+        binding.listReview.layoutManager = LinearLayoutManager(this)
         reviewAdapter = ReviewAdapter(emptyList())
-        recyclerView.adapter = reviewAdapter
+        binding.listReview.adapter = reviewAdapter
+    }
 
-        // Get reviews from Firestore and update the adapter
+    private fun loadReviews() {
         firestore.collection("reviews").whereEqualTo("productId", productId)
             .get()
             .addOnSuccessListener { querySnapshot ->
-                val reviews = querySnapshot.documents
+                val reviews = querySnapshot.documents.mapNotNull { it.toObject(Review::class.java) }
                 reviewAdapter.updateReviews(reviews)
+                updateReviewVisibility(reviews)
             }
             .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
+                Log.e(TAG, "Error getting documents: ", exception)
             }
+    }
+
+    private fun updateReviewVisibility(reviews: List<Review>) {
+        binding.ifThereIsNoReview.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
+        binding.listReview.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
+        binding.seeMoreReviewLink.visibility = if (reviews.size > 5) View.VISIBLE else View.GONE
     }
 
     companion object {

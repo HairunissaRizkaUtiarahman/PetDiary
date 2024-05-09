@@ -25,6 +25,7 @@ class ActivityChooseProductCategory : AppCompatActivity() {
 
         val petType = intent.getStringExtra("petType")
 
+
         when (petType) {
             "cat" -> {
                 binding.petTypeChoosen.removeAllViews()
@@ -53,12 +54,46 @@ class ActivityChooseProductCategory : AppCompatActivity() {
         }
 
         binding.buttonHealthCategory.setOnClickListener {
-            val category = getCategoryName(binding.petTypeChoosen)
-            val intent = Intent(this, FillProductInformationActivity::class.java)
-            intent.putExtra(PET_TYPE_KEY, petType)
-            intent.putExtra(CATEGORY_KEY, category)
+            startActivity(Intent(this, FillProductInformationActivity::class.java).apply {
+                putExtra(PET_TYPE_KEY, petType)
+                putExtra("category", "Health")
+            })
+        }
+
+        binding.buttonFoodCategory.setOnClickListener {
+            val category = "Food" // This is hardcoded for demonstration. It should dynamically match your UI logic.
+            val intent = Intent(this, FillProductInformationActivity::class.java).apply {
+                putExtra(PET_TYPE_KEY, petType)
+                putExtra(CATEGORY_KEY, category)
+            }
             startActivity(intent)
         }
+
+        binding.buttonToolsCategory.setOnClickListener {
+            val category = "Food" // This is hardcoded for demonstration. It should dynamically match your UI logic.
+            val intent = Intent(this, FillProductInformationActivity::class.java).apply {
+                putExtra(PET_TYPE_KEY, petType)
+                putExtra(CATEGORY_KEY, category)
+            }
+            startActivity(intent)
+        }
+        binding.buttonOthersCategory.setOnClickListener {
+            val category = "Food" // This is hardcoded for demonstration. It should dynamically match your UI logic.
+            val intent = Intent(this, FillProductInformationActivity::class.java).apply {
+                putExtra(PET_TYPE_KEY, petType)
+                putExtra(CATEGORY_KEY, category)
+            }
+            startActivity(intent)
+        }
+        binding.buttonGroomingCategory.setOnClickListener {
+            val category = "Food" // This is hardcoded for demonstration. It should dynamically match your UI logic.
+            val intent = Intent(this, FillProductInformationActivity::class.java).apply {
+                putExtra(PET_TYPE_KEY, petType)
+                putExtra(CATEGORY_KEY, category)
+            }
+            startActivity(intent)
+        }
+
     }
 
     private fun getCategoryName(parentLayout: LinearLayout): String {
