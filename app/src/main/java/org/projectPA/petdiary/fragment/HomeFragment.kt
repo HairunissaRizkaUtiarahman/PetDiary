@@ -37,7 +37,11 @@ class HomeFragment : Fragment() {
         binding.managePetButton.setOnClickListener {
             startActivity(Intent(activity, MyPetActivity::class.java))
         }
-        // Additional button listeners as needed
+
+        binding.reviewButton.setOnClickListener {
+            startActivity(Intent(activity, ReviewHomePageActivity::class.java))
+        }
+
     }
 
     private fun setupRecyclerView() {
@@ -47,8 +51,8 @@ class HomeFragment : Fragment() {
             }
             startActivity(intent)
         }
-        binding.listTopFiveProduct.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.listTopFiveProduct.adapter = productAdapter
+        binding.listMostReviewProduct.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.listMostReviewProduct.adapter = productAdapter
     }
 
     private fun loadDataFromFirestore() {

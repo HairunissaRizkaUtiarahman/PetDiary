@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -27,17 +26,6 @@ class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
-
-        binding.backButton.setOnClickListener {
-            val cameFromFillInfo = intent.getBooleanExtra("fromFillProductInfo", false)
-            if (cameFromFillInfo) {
-                val intent = Intent(this, ProductPageActivity::class.java)
-                startActivity(intent)
-            } else {
-                onBackPressed()
-            }
-        }
-
         setContentView(binding.root)
 
         firestore = FirebaseFirestore.getInstance()
@@ -45,9 +33,11 @@ class ProductDetailActivity : AppCompatActivity() {
 
         productId = intent.getStringExtra("productId") ?: ""
 
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
         displayProductDetails(productId)
         setupRecyclerView()
-        loadReviews() // Load reviews on activity start
     }
 
     @SuppressLint("SetTextI18n")
@@ -66,6 +56,12 @@ class ProductDetailActivity : AppCompatActivity() {
                     binding.reviewersCount.text = formatReviewCount(it.reviewCount)
                     binding.percentageOfUser.text = "${it.percentageOfUsers}%"
                     loadProductImage(it.imageUrl ?: "")
+
+                    if (it.reviewCount > 0) {
+                        loadReviewsFromFirestore()
+                    } else {
+                        updateReviewVisibility(emptyList())
+                    }
                 }
             }.addOnFailureListener { e ->
                 Log.e(TAG, "Failed to load product details", e)
@@ -84,16 +80,17 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.listReview.adapter = reviewAdapter
     }
 
-    private fun loadReviews() {
-        firestore.collection("reviews").whereEqualTo("productId", productId)
+    private fun loadReviewsFromFirestore() {
+        firestore.collection("reviews")
+            .whereEqualTo("productId", productId)
             .get()
-            .addOnSuccessListener { querySnapshot ->
-                val reviews = querySnapshot.documents.mapNotNull { it.toObject(Review::class.java) }
-                reviewAdapter.updateReviews(reviews)
+            .addOnSuccessListener { documents ->
+                val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
+                reviewAdapter.updateData(reviews)
                 updateReviewVisibility(reviews)
             }
-            .addOnFailureListener { exception ->
-                Log.e(TAG, "Error getting documents: ", exception)
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error loading reviews", e)
             }
     }
 

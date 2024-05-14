@@ -44,6 +44,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto"
                 android:text="15 april 2024" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
         </LinearLayout>
 
     </LinearLayout>

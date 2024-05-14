@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -66,4 +65,5 @@ dependencies {
     implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation("com.github.bumptech.glide:glide:4.13.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
 }

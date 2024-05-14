@@ -1,48 +1,44 @@
 package org.projectPA.petdiary.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import de.hdodenhof.circleimageview.CircleImageView
-import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ItemReviewBinding
 import org.projectPA.petdiary.model.Review
 
-class ReviewAdapter(private var reviews: List<Review>) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
+class ReviewAdapter(
+    private var reviews: List<Review>
+) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
-    class ReviewViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val userPhoto: CircleImageView = view.findViewById(R.id.user_photo_profile)
-        val username: TextView = view.findViewById(R.id.username)
-        val reviewDate: TextView = view.findViewById(R.id.review_date)
-        val reviewRating: RatingBar = view.findViewById(R.id.ratingBar4)
-        val reviewText: TextView = view.findViewById(R.id.deskripsi_review)
+    class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(review: Review) {
+            with(binding) {
+                username.text = review.userName
+                reviewDate.text = review.reviewDate.toString()
+                deskripsiReview.text = review.reviewText
+                ratingBar4.rating = review.rating
+
+                Glide.with(userPhotoProfile.context)
+                    .load(review.userPhotoUrl)
+                    .into(userPhotoProfile)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_review, parent, false)
-        return ReviewViewHolder(view)
+        val binding = ItemReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ReviewViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val review = reviews[position]
-        holder.username.text = review.reviewerName
-        holder.reviewDate.text = review.date
-        holder.reviewRating.rating = review.rating.toFloat()
-        holder.reviewText.text = review.text
-
-        // If you have a URL for the user's photo, load it with Glide
-        Glide.with(holder.userPhoto.context)
-            .load(review.userImageUrl)
-            .placeholder(R.drawable.ic_bird)  // Assuming you have a default icon
-            .into(holder.userPhoto)
+        holder.bind(review)
     }
 
     override fun getItemCount() = reviews.size
 
-    fun updateReviews(newReviews: List<Review>) {
+    fun updateData(newReviews: List<Review>) {
         reviews = newReviews
         notifyDataSetChanged()
     }

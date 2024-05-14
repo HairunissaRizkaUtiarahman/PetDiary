@@ -18,9 +18,12 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.activities.DashboardActivity"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="DiscouragedApi" />
         <activity
             android:name=".ui.activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +33,11 @@
         </activity>
         <activity
             android:name=".ui.activities.RegisterActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
 
         <meta-data
@@ -41,34 +46,70 @@
 
         <activity
             android:name=".ui.activities.MyPetActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ReviewHomePageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.FindPetShopVetActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.CommunityHomePageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ArticleHomePageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ActivityChooseProductCategory"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ChoosePetCategoryActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.FillProductInformationActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ProductDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ProductPageActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProductCategoriesPageActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ChooseProductActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.GiveRatingActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.UsageProductActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.RecommendProductActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.WriteReviewActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+
+
 
 
     </application>

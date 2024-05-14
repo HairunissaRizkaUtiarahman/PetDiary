@@ -218,9 +218,10 @@
                 android:orientation="horizontal">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_top_five_product"
+                    android:id="@+id/list_most_review_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
                     android:isScrollContainer="true"
                     android:nestedScrollingEnabled="true"
                     android:orientation="horizontal"

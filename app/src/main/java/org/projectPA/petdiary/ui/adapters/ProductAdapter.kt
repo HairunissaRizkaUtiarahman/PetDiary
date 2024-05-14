@@ -1,13 +1,11 @@
 package org.projectPA.petdiary.ui.adapters
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.databinding.ItemProductBinding
 import org.projectPA.petdiary.model.Product
-import org.projectPA.petdiary.ui.activities.ProductDetailActivity
 
 class ProductAdapter(
     private var products: List<Product>,
@@ -45,8 +43,8 @@ class ProductAdapter(
 
     override fun getItemCount() = products.size
 
-    fun updateData(newProducts: List<Product>) {
-        products = newProducts
+    fun updateData(newProducts: List<Any>) {
+        products = newProducts as List<Product>
         notifyDataSetChanged()
     }
 }

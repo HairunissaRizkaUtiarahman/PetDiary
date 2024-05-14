@@ -1,37 +1,75 @@
 package org.projectPA.petdiary.ui.activities
 
+import android.content.Intent
 import android.os.Bundle
+import android.service.controls.ControlsProviderService.TAG
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
 import org.projectPA.petdiary.fragment.HomeFragment
 import org.projectPA.petdiary.fragment.ProfileFragment
 import org.projectPA.petdiary.model.Product
-//import org.projectPA.petdiary.ui.adapters.ProductAdapter
+import org.projectPA.petdiary.ui.adapters.ProductAdapter
+
 
 class ReviewHomePageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityReviewHomepageBinding
-//    private lateinit var adapter: ProductAdapter
+    private lateinit var productAdapter: ProductAdapter
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityReviewHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupRecyclerView()
+        loadDataFromFirestore()
 
-//        adapter = ProductAdapter(this, getProductList())
-//        binding.recyclerViewHorizontal.apply {
-//            layoutManager = LinearLayoutManager(this@ReviewHomePageActivity, LinearLayoutManager.HORIZONTAL, false)
-//            this.adapter = this@ReviewHomePageActivity.adapter
-//        }
+        binding.catButton.setOnClickListener {
+            val petType = "cat"
+            val intent = Intent(this, ProductCategoriesPageActivity::class.java)
+            intent.putExtra("petType", petType)
+            startActivity(intent)
+        }
 
+        binding.dogButton.setOnClickListener {
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "dog")
+            })
+        }
+
+        binding.rabbitButton.setOnClickListener {
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "rabbit")
+            })
+        }
+
+        binding.hamsterButton.setOnClickListener {
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "hamster")
+            })
+        }
+
+        binding.fishButton.setOnClickListener {
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "fish")
+            })
+        }
+        binding.birdButton.setOnClickListener {
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "bird")
+            })
+        }
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
@@ -41,10 +79,9 @@ class ReviewHomePageActivity : AppCompatActivity() {
             true
         }
 
-
         binding.addButton.setOnClickListener {
             // Show the add button fragment with animation
-            val fragment = FragmentAddButton()
+            val fragment = AddButtonFragment()
             fragment.show(supportFragmentManager, fragment.tag)
         }
     }
@@ -55,20 +92,33 @@ class ReviewHomePageActivity : AppCompatActivity() {
             .commit()
     }
 
-    class FragmentAddButton : BottomSheetDialogFragment() {
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            return inflater.inflate(R.layout.fragment_add_button, container, false)
+
+    private fun setupRecyclerView() {
+        productAdapter = ProductAdapter(emptyList()) { productId ->
+            val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                putExtra("productId", productId)
+            }
+            startActivity(intent)
         }
+        binding.listMostReviewProduct.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        binding.listMostReviewProduct.adapter = productAdapter
     }
 
-//    private fun getProductList(): List<Product> {
-//        // Dummy data for RecyclerView (you can replace this with your actual data)
-//        return listOf(
-//            Product("Product 1", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-//            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-//            Product("Product 3", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-//            Product("Product 4", "Whiskas", R.drawable.image_product_example, 3.0f, 100),
-//            Product("Product 2", "Whiskas", R.drawable.image_product_example, 3.0f, 100)
-//        )
-//    }
+    private fun loadDataFromFirestore() {
+        firestore = FirebaseFirestore.getInstance()
+        firestore.collection("products")
+            .get()
+            .addOnSuccessListener { documents ->
+                val products = documents.mapNotNull { it.toObject(Product::class.java) }
+                productAdapter.updateData(products)
+            }
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Error loading products: ", e)
+            }
+    }
+
+
+
+
 }
+

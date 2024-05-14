@@ -202,7 +202,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    app:srcCompat="@drawable/ic_thumbs_up" />
+                    app:srcCompat="@drawable/ic_thumbs_up_active" />
 
                 <TextView
                     android:id="@+id/percentage_of_user"
@@ -318,10 +318,11 @@
 
                 <ImageView
                     android:id="@+id/imageView5"
-                    android:layout_width="200dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
+                    android:visibility="visible"
                     app:srcCompat="@drawable/ic_no_review__2_" />
 
                 <TextView
@@ -332,7 +333,7 @@
                     android:text="Be the first to review this product"
                     android:textAlignment="center"
                     android:textColor="@color/black_grey"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
             <TextView
@@ -352,7 +353,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:itemCount="4"
-                tools:listitem="@layout/fragment_review">
+                tools:listitem="@layout/item_review">
 
             </androidx.recyclerview.widget.RecyclerView>
 

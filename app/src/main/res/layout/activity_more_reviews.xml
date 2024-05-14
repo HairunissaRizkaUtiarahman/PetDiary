@@ -84,7 +84,7 @@
                 android:id="@+id/list_review"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/fragment_review" />
+                tools:listitem="@layout/item_review" />
 
             <TextView
                 android:id="@+id/textView2"
