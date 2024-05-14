@@ -47,15 +47,11 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("com.google.firebase:firebase-auth:22.3.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
-    implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
-    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation("androidx.activity:activity:1.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -65,7 +61,26 @@ dependencies {
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.firebase:firebase-core:21.1.1")
 
+    // Firebase
+    implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
+    implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
+    implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
 
+    //Live Data
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+
+    //View Model
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    //Fetch Image
+    implementation("com.github.bumptech.glide:glide:4.13.0")
+
+    //Circle Image View
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //Swipe Refresh Layout
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 
 }
