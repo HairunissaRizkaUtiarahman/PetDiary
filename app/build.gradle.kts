@@ -65,5 +65,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation("com.github.bumptech.glide:glide:4.13.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
 }
