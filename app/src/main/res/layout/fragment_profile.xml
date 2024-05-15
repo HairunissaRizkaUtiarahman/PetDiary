@@ -20,97 +20,60 @@
             android:layout_marginTop="75dp"
             android:layout_marginBottom="100dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage_IV"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/icon_ball"/>
+                android:src="@drawable/image_profile"/>
 
             <TextView
+                android:id="@+id/name_Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                android:text="Name"/>
+                android:text="Name"
+                android:layout_marginTop="5dp"/>
 
             <TextView
+                android:id="@+id/bio_Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Email"/>
+                android:text="Bio"/>
 
         </LinearLayout>
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <Button
                 android:id="@+id/myProfile_Btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:text="@string/my_profile"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_profile"
-                    android:layout_marginRight="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MY PROFILE"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
                 android:id="@+id/setting_Btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="16dp">
+                android:text="@string/setting"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_setting"
-                    android:layout_marginRight="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SETTING"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <Button
                 android:id="@+id/logout_Btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="16dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_logout"
-                    android:layout_marginRight="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="LOGOUT"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
+                android:text="@string/logout"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
         </LinearLayout>
 

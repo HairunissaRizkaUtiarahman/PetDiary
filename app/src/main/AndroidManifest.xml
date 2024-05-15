@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,13 +20,16 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.MyProfileEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.MyProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.DashboardActivity"
-            android:screenOrientation="portrait"
-            android:exported="false"
-            tools:ignore="DiscouragedApi" />
+            android:exported="false" />
         <activity
             android:name=".view.activities.SplashActivity"
-            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,11 +39,9 @@
         </activity>
         <activity
             android:name=".view.activities.RegisterActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.LoginActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
 
         <meta-data
@@ -46,69 +50,31 @@
 
         <activity
             android:name=".view.activities.MyPetActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.ReviewHomePageActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.FindPetShopVetActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.CommunityHomePageActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.ArticleHomePageActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.ActivityChooseProductCategory"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.ChoosePetCategoryActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.FillProductInformationActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".view.activities.ProductDetailActivity"
-            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".view.activities.ProductPageActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.ProductCategoriesPageActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.ChooseProductActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.GiveRatingActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.UsageProductActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.RecommendProductActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
-            android:name=".view.activities.WriteReviewActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-
     </application>
 
 </manifest>
