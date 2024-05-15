@@ -24,6 +24,7 @@ class ProfileFragment : Fragment() {
     private lateinit var profileImage_IV : ImageView
 
     private var db = FirebaseFirestore.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

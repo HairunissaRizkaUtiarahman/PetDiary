@@ -1,9 +1,17 @@
 package org.projectPA.petdiary.model
 
+import java.util.Date
+
 data class Review(
-    val id: Int,
-    val productId: Int,
-    val user: String,
-    val review: String,
-    val rating: Int
+    var id: String = "",
+    var productId: String = "",
+    var userId: String? = null,
+    var userName: String? = null,
+    var userPhotoUrl: String? = null,
+    var rating: Float = 0.0f,
+    var usagePeriod: String = "",
+    var reviewText: String = "",
+    var recommend: Boolean = false,
+    var reviewDate: Date,
+    var timestamp: Long = 0L
 )

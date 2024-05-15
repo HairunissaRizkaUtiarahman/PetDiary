@@ -160,5 +160,13 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="back_button">back_button</string>
 
+    <string-array name="usage_options">
+        <item>I am using this product for the first time</item>
+        <item>1 week - 1 month</item>
+        <item>2 - 6 months</item>
+        <item>More than one year</item>
+        <item>Less than a week</item>
+    </string-array>
+
 
 </resources>

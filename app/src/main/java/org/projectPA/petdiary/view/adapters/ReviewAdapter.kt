@@ -1,51 +1,45 @@
 package org.projectPA.petdiary.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.DocumentSnapshot
-import org.projectPA.petdiary.R
+import com.bumptech.glide.Glide
+import org.projectPA.petdiary.databinding.ItemReviewBinding
+import org.projectPA.petdiary.model.Review
 
-class ReviewAdapter(private var reviews: List<DocumentSnapshot>) :
-    RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
+class ReviewAdapter(
+    private var reviews: List<Review>
+) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
-    inner class ReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val userNameTextView: TextView = itemView.findViewById(R.id.username)
-        val ratingBar: RatingBar = itemView.findViewById(R.id.ratingBar4)
-        val descriptionTextView: TextView = itemView.findViewById(R.id.deskripsi_review)
+    class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(review: Review) {
+            with(binding) {
+                username.text = review.userName
+                reviewDate.text = review.reviewDate.toString()
+                deskripsiReview.text = review.reviewText
+                ratingBar4.rating = review.rating
+
+                Glide.with(userPhotoProfile.context)
+                    .load(review.userPhotoUrl)
+                    .into(userPhotoProfile)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_review, parent, false)
-        return ReviewViewHolder(view)
+        val binding = ItemReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ReviewViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val review = reviews[position]
-
-        // Set user name
-        holder.userNameTextView.text = review.getString("userName")
-
-        // Set rating
-        val rating = review.getDouble("rating")
-        rating?.let {
-            holder.ratingBar.rating = it.toFloat()
-        }
-
-        // Set review description
-        holder.descriptionTextView.text = review.getString("description")
+        holder.bind(review)
     }
 
-    override fun getItemCount(): Int {
-        return reviews.size
-    }
+    override fun getItemCount() = reviews.size
 
-    fun updateReviews(reviews: List<DocumentSnapshot>) {
-        this.reviews = reviews
+    fun updateData(newReviews: List<Review>) {
+        reviews = newReviews
         notifyDataSetChanged()
     }
 }

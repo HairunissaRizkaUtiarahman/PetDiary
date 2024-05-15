@@ -59,7 +59,10 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.google.firebase:firebase-core:21.1.1")
-
+    implementation("com.github.bumptech.glide:glide:4.13.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 
     implementation("com.google.firebase:firebase-firestore-ktx:24.11.1")
     implementation("com.google.firebase:firebase-storage-ktx:20.3.0")
@@ -72,13 +75,6 @@ dependencies {
 
     implementation("com.github.bumptech.glide:glide:4.13.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-
-
-
-
-
-
-
 
 
 

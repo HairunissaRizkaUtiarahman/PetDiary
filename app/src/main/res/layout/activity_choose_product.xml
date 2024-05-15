@@ -1,9 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foregroundGravity="bottom"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,59 +15,37 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="@color/black">
 
-        <ImageView
-            android:id="@+id/back_to_product_categories_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/back_to_review_homepage_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="start"
             android:layout_marginEnd="16dp"
-            android:contentDescription="@string/back_to_review_landing_page"
+            android:background="@color/white"
+            android:contentDescription="@string/back_to_review_homepage_button"
             android:src="@drawable/arrow_back" />
 
         <TextView
+            android:id="@+id/choose_product_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/product"
+            android:text="@string/choose_product"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Search box container -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_product"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@drawable/background_icon_home">
-
-        <!-- Search text input -->
-        <EditText
-            android:id="@+id/search_product_box"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toStartOf="@id/button_search"
-            android:background="@android:color/transparent"
-            android:hint="@string/search_product"
-            android:maxLines="1"
-            android:textColor="@color/black_grey"
-            android:textColorHint="@color/black_grey" />
-
-        <!-- Search icon -->
-        <ImageView
-            android:id="@id/button_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/backgorund_icon_search"
-            android:foregroundGravity="center"
-            android:padding="8dp"
-            android:src="@drawable/ic_search" />
-    </RelativeLayout>
+        android:background="@drawable/background_icon_home"
+        android:elevation="0dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/search_product"
+        app:queryBackground="@null" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -87,18 +65,16 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_product"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="15dp"
                     android:orientation="vertical"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    tools:listitem="@layout/item_product">
+                    tools:listitem="@layout/item_product" />
 
-                </androidx.recyclerview.widget.RecyclerView>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/button_sort_reviews"
+            android:id="@+id/prev_button_to_usage_product"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_gravity="bottom|center"

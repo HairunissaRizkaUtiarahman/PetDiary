@@ -1,22 +1,25 @@
 package org.projectPA.petdiary.view.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.bumptech.glide.Glide
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
+import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
+import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
 class ProductDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityProductDetailBinding
     private lateinit var productId: String
-    private lateinit var firestore: FirebaseFirestore
-    private lateinit var storage: FirebaseStorage
+    private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var reviewAdapter: ReviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,61 +27,62 @@ class ProductDetailActivity : AppCompatActivity() {
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize Firestore and Storage
-        firestore = FirebaseFirestore.getInstance()
-        storage = FirebaseStorage.getInstance()
-
-        // Get product ID from intent
         productId = intent.getStringExtra("productId") ?: ""
 
-        // Display product details
-        displayProductDetails(productId)
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
 
-        // Set up RecyclerView for reviews
         setupRecyclerView()
+        observeViewModel()
+
+        viewModel.fetchProductDetails(productId)
     }
 
-    private fun displayProductDetails(productId: String) {
-        firestore.collection("products").document(productId)
-            .get()
-            .addOnSuccessListener { document ->
-                val product = document.toObject(Product::class.java)
-                product?.let {
-                    binding.productBrandText.text = it.brandName
-                    binding.productNameText.text = it.productName
-                    binding.forWhatPetType.text = it.petType
-                    binding.productCategory.text = it.category
-                    binding.productDescriptionText.text = it.description
-                    loadProductImage(productId)
-                }
-            }.addOnFailureListener { exception ->
-                Log.e(TAG, "Failed to load product details: ${exception.message}")
-            }
+    private fun observeViewModel() {
+        viewModel.product.observe(this, Observer { product ->
+            product?.let { displayProductDetails(it) }
+        })
+
+        viewModel.reviews.observe(this, Observer { reviews ->
+            reviewAdapter.updateData(reviews)
+            updateReviewVisibility(reviews)
+        })
+
+        viewModel.errorMessage.observe(this, Observer { message ->
+            Log.e(TAG, message)
+        })
     }
 
-    private fun loadProductImage(productId: String) {
-        val storageRef = storage.reference
-        val imagesRef = storageRef.child("images/$productId.jpg")
+    @SuppressLint("SetTextI18n")
+    private fun displayProductDetails(product: Product) {
+        binding.productBrandText.text = product.brandName
+        binding.productNameText.text = product.productName
+        binding.forWhatPetType.text = product.petType
+        binding.productCategory.text = product.category
+        binding.productDescriptionText.text = product.description
+        binding.reviewAverage.text = product.averageRating.toString()
+        binding.reviewersCount.text = formatReviewCount(product.reviewCount)
+        binding.percentageOfUser.text = "${product.percentageOfUsers}%"
+        loadProductImage(product.imageUrl ?: "")
+    }
+
+    private fun formatReviewCount(count: Int) = if (count > 1000) "${count / 1000}k" else "$count"
+
+    private fun loadProductImage(imageUrl: String) {
+        Glide.with(this).load(imageUrl).into(binding.productPicture)
     }
 
     private fun setupRecyclerView() {
-        val recyclerView: RecyclerView = binding.listReview
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        // Initialize an empty adapter for reviews
+        binding.listReview.layoutManager = LinearLayoutManager(this)
         reviewAdapter = ReviewAdapter(emptyList())
-        recyclerView.adapter = reviewAdapter
+        binding.listReview.adapter = reviewAdapter
+    }
 
-        // Get reviews from Firestore and update the adapter
-        firestore.collection("reviews").whereEqualTo("productId", productId)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                val reviews = querySnapshot.documents
-                reviewAdapter.updateReviews(reviews)
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
+    private fun updateReviewVisibility(reviews: List<Review>) {
+        binding.ifThereIsNoReview.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
+        binding.listReview.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
+        binding.seeMoreReviewLink.visibility = if (reviews.size > 5) View.VISIBLE else View.GONE
     }
 
     companion object {

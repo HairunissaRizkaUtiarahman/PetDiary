@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment
+package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
-import org.projectPA.petdiary.view.activities.ChoosePetCategoryActivity
 
-class AddButtonFragment : BottomSheetDialogFragment() {
+
+class AddButtonFragment: BottomSheetDialogFragment() {
 
     private var _binding: FragmentAddButtonBinding? = null
     private val binding get() = _binding!!
@@ -31,5 +31,15 @@ class AddButtonFragment : BottomSheetDialogFragment() {
             Log.d("FragmentAddButton", "add_a_product_button clicked")
             startActivity(Intent(activity, ChoosePetCategoryActivity::class.java))
         }
+
+        binding.addAReviewButton.setOnClickListener {
+            Log.d("FragmentAddButton", "add_a_product_button clicked")
+            startActivity(Intent(activity, ChooseProductActivity::class.java))
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

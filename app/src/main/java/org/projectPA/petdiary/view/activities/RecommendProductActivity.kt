@@ -1,0 +1,80 @@
+package org.projectPA.petdiary.view.activities
+
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ActivityRecommendProductStepFourBinding
+import org.projectPA.petdiary.viewmodel.RecommendProductViewModel
+
+class RecommendProductActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRecommendProductStepFourBinding
+    private val viewModel: RecommendProductViewModel by viewModels()
+    private var productId: String? = null
+    private var rating: Double = 0.0
+    private var usagePeriod: String? = null
+    private var reviewText: String? = null
+    private var recommend: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityRecommendProductStepFourBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        productId = intent.getStringExtra("productId")
+        rating = intent.getDoubleExtra("rating", 0.0)
+        usagePeriod = intent.getStringExtra("usagePeriod")
+        reviewText = intent.getStringExtra("reviewText")
+
+        binding.backToChooseProductButton.setOnClickListener {
+            onBackPressed()
+        }
+
+        binding.icThumbsUpInactive.setOnClickListener {
+            recommend = true
+            binding.icThumbsUpInactive.setImageResource(R.drawable.ic_thumbs_up_active)
+            binding.icThumbsDownInactive.setImageResource(R.drawable.ic_thumbs_down_inactive)
+        }
+
+        binding.icThumbsDownInactive.setOnClickListener {
+            recommend = false
+            binding.icThumbsDownInactive.setImageResource(R.drawable.ic_thumbs_down_active)
+            binding.icThumbsUpInactive.setImageResource(R.drawable.ic_thumbs_up_inactive)
+        }
+
+        binding.nextButtonToRecommendProduct.setOnClickListener {
+            submitReview()
+        }
+
+        observeViewModel()
+    }
+
+    @SuppressLint("LongLogTag")
+    private fun submitReview() {
+        productId?.let { id ->
+            viewModel.submitReview(id, rating, usagePeriod ?: "", reviewText ?: "", recommend)
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.reviewSubmitted.observe(this, Observer { submitted ->
+            if (submitted) {
+                Toast.makeText(this, "Review submitted successfully", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                    putExtra("productId", productId)
+                }
+                startActivity(intent)
+                finish()
+            }
+        })
+
+        viewModel.errorMessage.observe(this, Observer { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
+    }
+}
