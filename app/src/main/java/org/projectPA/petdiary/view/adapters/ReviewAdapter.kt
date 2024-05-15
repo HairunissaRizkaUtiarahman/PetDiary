@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ItemReviewBinding
 import org.projectPA.petdiary.model.Review
 
@@ -19,9 +20,13 @@ class ReviewAdapter(
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
 
-                Glide.with(userPhotoProfile.context)
-                    .load(review.userPhotoUrl)
-                    .into(userPhotoProfile)
+                if (review.userPhotoUrl == "default") {
+                    userPhotoProfile.setImageResource(R.drawable.ic_users)
+                } else {
+                    Glide.with(userPhotoProfile.context)
+                        .load(review.userPhotoUrl)
+                        .into(userPhotoProfile)
+                }
             }
         }
     }
@@ -43,3 +48,4 @@ class ReviewAdapter(
         notifyDataSetChanged()
     }
 }
+

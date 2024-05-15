@@ -3,13 +3,18 @@ package org.projectPA.petdiary.view.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityRecommendProductStepFourBinding
+import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.viewmodel.RecommendProductViewModel
+import java.util.Date
 
 class RecommendProductActivity : AppCompatActivity() {
 
@@ -48,19 +53,58 @@ class RecommendProductActivity : AppCompatActivity() {
         }
 
         binding.nextButtonToRecommendProduct.setOnClickListener {
-            submitReview()
+            fetchAndSubmitReview()
         }
 
         observeViewModel()
     }
 
-    @SuppressLint("LongLogTag")
-    private fun submitReview() {
-        productId?.let { id ->
-            viewModel.submitReview(id, rating, usagePeriod ?: "", reviewText ?: "", recommend)
+    private fun fetchAndSubmitReview() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        currentUser?.let {
+            val userId = it.uid
+            val userNameFromAuth = it.displayName ?: "Anonymous"
+            val userPhotoUrl = it.photoUrl?.toString() ?: ""
+
+            FirebaseFirestore.getInstance().collection("user").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val userNameFromProfile = document.getString("name") ?: userNameFromAuth
+                        val userPhotoUrlFromProfile = document.getString("imageUrl") ?: userPhotoUrl
+                        submitReview(userId, userNameFromProfile, userPhotoUrlFromProfile)
+                    } else {
+                        submitReview(userId, userNameFromAuth, userPhotoUrl)
+                    }
+                }
+                .addOnFailureListener {
+                    submitReview(userId, userNameFromAuth, userPhotoUrl)
+                }
         }
     }
 
+
+    @SuppressLint("LongLogTag")
+    private fun submitReview(userId: String, userName: String, userPhotoUrl: String) {
+        Log.d("RecommendProductActivity", "Submitting Review: userId=$userId, userName=$userName, userPhotoUrl=$userPhotoUrl")
+        val review = Review(
+            id = FirebaseFirestore.getInstance().collection("reviews").document().id,
+            productId = productId!!,
+            userId = userId,
+            userName = userName,
+            userPhotoUrl = userPhotoUrl.ifEmpty { "default" },
+            rating = rating.toFloat(),
+            usagePeriod = usagePeriod!!,
+            reviewText = reviewText!!,
+            recommend = recommend,
+            reviewDate = Date(),
+            timestamp = System.currentTimeMillis()
+        )
+
+        viewModel.submitReview(review)
+    }
+
+
+    @SuppressLint("LongLogTag")
     private fun observeViewModel() {
         viewModel.reviewSubmitted.observe(this, Observer { submitted ->
             if (submitted) {
@@ -68,13 +112,11 @@ class RecommendProductActivity : AppCompatActivity() {
                 val intent = Intent(this, ProductDetailActivity::class.java).apply {
                     putExtra("productId", productId)
                 }
+                Log.d("RecommendProductActivity", "Starting ProductDetailActivity with productId: $productId")
                 startActivity(intent)
                 finish()
             }
         })
-
-        viewModel.errorMessage.observe(this, Observer { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        })
     }
+
 }
