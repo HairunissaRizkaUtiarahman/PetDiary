@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.net.Uri
 import android.os.Bundle
@@ -9,8 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase

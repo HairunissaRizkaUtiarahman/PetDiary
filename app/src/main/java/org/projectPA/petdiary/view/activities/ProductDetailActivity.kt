@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
-import org.projectPA.petdiary.ui.adapters.ReviewAdapter
-import java.io.File
+import org.projectPA.petdiary.view.adapters.ReviewAdapter
 
 class ProductDetailActivity : AppCompatActivity() {
 

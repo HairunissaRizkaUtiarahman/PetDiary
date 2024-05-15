@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.adapters
+package org.projectPA.petdiary.view.adapters
 
 import android.view.LayoutInflater
 import android.view.View

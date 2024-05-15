@@ -20,16 +20,16 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.MyProfileEditActivity"
+            android:name=".view.activities.MyProfileEditActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MyProfileActivity"
+            android:name=".view.activities.MyProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.DashboardActivity"
+            android:name=".view.activities.DashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.SplashActivity"
+            android:name=".view.activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,10 +38,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.auth.RegisterActivity"
+            android:name=".view.activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.auth.LoginActivity"
+            android:name=".view.activities.LoginActivity"
             android:exported="false" />
 
         <meta-data
@@ -49,31 +49,31 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.activities.MyPetActivity"
+            android:name=".view.activities.MyPetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ReviewHomePageActivity"
+            android:name=".view.activities.ReviewHomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.FindPetShopVetActivity"
+            android:name=".view.activities.FindPetShopVetActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.CommunityHomePageActivity"
+            android:name=".view.activities.CommunityHomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ArticleHomePageActivity"
+            android:name=".view.activities.ArticleHomePageActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ActivityChooseProductCategory"
+            android:name=".view.activities.ActivityChooseProductCategory"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ChoosePetCategoryActivity"
+            android:name=".view.activities.ChoosePetCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.FillProductInformationActivity"
+            android:name=".view.activities.FillProductInformationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.ProductDetailActivity"
+            android:name=".view.activities.ProductDetailActivity"
             android:exported="false" />
     </application>
 

@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.fragment
+package org.projectPA.petdiary.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,10 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
-import org.projectPA.petdiary.ui.activities.ChoosePetCategoryActivity
+import org.projectPA.petdiary.view.activities.ChoosePetCategoryActivity
 
 class AddButtonFragment : BottomSheetDialogFragment() {
 

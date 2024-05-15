@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,8 +13,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDashboardBinding
 import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
-import org.projectPA.petdiary.fragment.HomeFragment
-import org.projectPA.petdiary.fragment.ProfileFragment
+import org.projectPA.petdiary.view.fragment.HomeFragment
+import org.projectPA.petdiary.view.fragment.ProfileFragment
 
 class DashboardActivity : AppCompatActivity() {
 

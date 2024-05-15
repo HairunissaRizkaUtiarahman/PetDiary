@@ -1,13 +1,13 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import org.projectPA.petdiary.R
 
-class CommunityHomePageActivity : AppCompatActivity() {
+class MyPetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_community_homepage)
+        setContentView(R.layout.activity_mypet)
 
     }
 }

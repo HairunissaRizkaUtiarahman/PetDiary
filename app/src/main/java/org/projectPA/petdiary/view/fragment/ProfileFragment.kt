@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.fragment
+package org.projectPA.petdiary.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,15 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.ui.activities.MyProfileActivity
-import org.projectPA.petdiary.ui.activities.auth.LoginActivity
+import org.projectPA.petdiary.view.activities.MyProfileActivity
+import org.projectPA.petdiary.view.activities.LoginActivity
 
 class ProfileFragment : Fragment() {
     private lateinit var name_Tv: TextView

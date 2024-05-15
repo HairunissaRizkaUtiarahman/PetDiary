@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.fragment
+package org.projectPA.petdiary.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentHomeBinding
-import org.projectPA.petdiary.model.Product
-import org.projectPA.petdiary.ui.activities.*
+import org.projectPA.petdiary.view.activities.ArticleHomePageActivity
+import org.projectPA.petdiary.view.activities.CommunityHomePageActivity
+import org.projectPA.petdiary.view.activities.FindPetShopVetActivity
+import org.projectPA.petdiary.view.activities.MyPetActivity
+import org.projectPA.petdiary.view.activities.ReviewHomePageActivity
+
 //import org.projectPA.petdiary.ui.adapters.ProductAdapter
 
 class HomeFragment : Fragment() {

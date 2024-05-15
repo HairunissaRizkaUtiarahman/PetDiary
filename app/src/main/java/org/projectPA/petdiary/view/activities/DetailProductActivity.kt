@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

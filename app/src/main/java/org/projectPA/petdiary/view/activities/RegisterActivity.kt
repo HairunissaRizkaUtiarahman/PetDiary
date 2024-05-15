@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities.auth
+package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.ui.activities.DashboardActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var nameEditText: TextInputEditText

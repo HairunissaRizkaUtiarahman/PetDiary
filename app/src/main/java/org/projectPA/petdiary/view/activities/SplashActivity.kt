@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.ui.activities.auth.LoginActivity
 
 class SplashActivity : AppCompatActivity() {
 

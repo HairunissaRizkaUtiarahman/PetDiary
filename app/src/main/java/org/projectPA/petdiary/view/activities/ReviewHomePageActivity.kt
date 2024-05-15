@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.ui.activities
+package org.projectPA.petdiary.view.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
-import org.projectPA.petdiary.fragment.HomeFragment
-import org.projectPA.petdiary.fragment.ProfileFragment
-import org.projectPA.petdiary.model.Product
+import org.projectPA.petdiary.view.fragment.HomeFragment
+import org.projectPA.petdiary.view.fragment.ProfileFragment
+
 //import org.projectPA.petdiary.ui.adapters.ProductAdapter
 
 class ReviewHomePageActivity : AppCompatActivity() {
