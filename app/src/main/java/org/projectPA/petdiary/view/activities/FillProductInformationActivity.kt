@@ -9,6 +9,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityFillProductInformationBinding
 import org.projectPA.petdiary.viewmodel.FillProductInformationViewModel
 
@@ -36,6 +39,10 @@ class FillProductInformationActivity : AppCompatActivity() {
         binding.uploadPhotoButton.setOnClickListener {
             chooseImage()
         }
+
+        setupHintVisibility(binding.formInputBrandName, binding.brandNameLayout)
+        setupHintVisibility(binding.formInputProductName, binding.productNameLayout)
+        setupHintVisibility(binding.formInputDescription, binding.descriptionLayout)
 
         // Add text changed listeners to validate inputs on the fly
         binding.formInputBrandName.addTextChangedListener { text ->
@@ -73,6 +80,21 @@ class FillProductInformationActivity : AppCompatActivity() {
         viewModel.uploadStatus.observe(this, Observer { status ->
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun setupHintVisibility(editText: TextInputEditText, textInputLayout: TextInputLayout) {
+        editText.addTextChangedListener { text ->
+            if (text.isNullOrEmpty()) {
+                textInputLayout.hint = null
+            } else {
+                textInputLayout.hint = when (editText.id) {
+                    R.id.formInputBrandName -> "Brand Name"
+                    R.id.formInputProductName -> "Product Name"
+                    R.id.formInputDescription -> "Description"
+                    else -> null
+                }
+            }
+        }
     }
 
     private fun chooseImage() {

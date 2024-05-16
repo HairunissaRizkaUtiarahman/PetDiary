@@ -13,6 +13,6 @@ data class Product(
     var averageRating: Double = 0.0,
     var reviewCount: Int = 0,
     var percentageOfUsers: Int = 0,
-    var reviews: Map<String, Any>? = null
+
 )
 

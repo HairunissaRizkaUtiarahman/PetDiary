@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -39,14 +40,15 @@ class ProductDetailActivity : AppCompatActivity() {
         Log.d("ProductDetailActivity", "Product ID: $productId")
 
         binding.backButton.setOnClickListener {
-            onBackPressed()
+            val intent = Intent(this, ReviewHomePageActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         setupRecyclerView()
         observeViewModel()
 
         viewModel.fetchProductDetails(productId)
-//        viewModel.fetchReviews(productId)
     }
 
     private fun observeViewModel() {
@@ -54,6 +56,7 @@ class ProductDetailActivity : AppCompatActivity() {
             if (product != null) {
                 Log.d("ProductDetailActivity", "Product details loaded successfully")
                 displayProductDetails(product)
+                viewModel.fetchReviews(productId) // Fetch reviews only after product details are loaded
             } else {
                 Log.e("ProductDetailActivity", "Product details are null")
                 Toast.makeText(this, "Failed to load product details", Toast.LENGTH_SHORT).show()
@@ -80,10 +83,11 @@ class ProductDetailActivity : AppCompatActivity() {
             binding.forWhatPetType.text = product.petType
             binding.productCategory.text = product.category
             binding.productDescriptionText.text = product.description
-            binding.reviewAverage.text = product.averageRating.toString()
+            binding.reviewAverage.text = String.format("%.1f", product.averageRating)
             binding.reviewersCount.text = formatReviewCount(product.reviewCount)
             binding.percentageOfUser.text = "${product.percentageOfUsers}%"
             loadProductImage(product.imageUrl ?: "")
+            binding.ratingBarProduct.rating = product.averageRating.toFloat() // Set rating bar
         } catch (e: Exception) {
             Log.e("ProductDetailActivity", "Error displaying product details", e)
             Toast.makeText(this, "Failed to display product details", Toast.LENGTH_SHORT).show()

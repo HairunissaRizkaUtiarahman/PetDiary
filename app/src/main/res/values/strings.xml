@@ -69,7 +69,7 @@
     <string name="product_categories">Product Categories</string>
 
     //activity_product_detail
-    <string name="reviewed_this">Reviewed This</string>
+    <string name="reviewed_this">People Reviewed This Product</string>
     <string name="users_recommend_this">Users Recommend This</string>
     <string name="product_description">Product Description</string>
     <string name="overall_rating">Overall Rating</string>
@@ -161,7 +161,7 @@
     <string name="back_button">back_button</string>
 
     <string-array name="usage_options">
-        <item>I am using this product for the first time</item>
+        <item>My pet using this product for the first time</item>
         <item>1 week - 1 month</item>
         <item>2 - 6 months</item>
         <item>More than one year</item>

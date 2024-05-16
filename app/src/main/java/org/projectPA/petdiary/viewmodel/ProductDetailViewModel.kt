@@ -46,19 +46,43 @@ class ProductDetailViewModel : ViewModel() {
             .whereEqualTo("productId", productId)
             .get()
             .addOnSuccessListener { documents ->
-                val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
-                reviews.forEach { review ->
-                    if (review.userPhotoUrl.isNullOrEmpty()) {
-                        review.userPhotoUrl = "default"
+                try {
+                    val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
+                    reviews.forEach { review ->
+                        if (review.userPhotoUrl.isNullOrEmpty()) {
+                            review.userPhotoUrl = "default"
+                        }
                     }
+                    Log.d("ProductDetailViewModel", "Reviews fetched successfully: ${reviews.size}")
+                    _reviews.value = reviews
+                    updateProductWithReviewData(reviews)
+                } catch (e: Exception) {
+                    val errorMsg = "Failed to parse reviews: ${e.message}"
+                    Log.e("ProductDetailViewModel", errorMsg)
+                    _errorMessage.value = errorMsg
                 }
-                Log.d("ProductDetailViewModel", "Reviews fetched successfully: ${reviews.size}")
-                _reviews.value = reviews
             }
             .addOnFailureListener { e ->
                 val errorMsg = "Failed to load reviews: ${e.message}"
                 Log.e("ProductDetailViewModel", errorMsg)
                 _errorMessage.value = errorMsg
             }
+    }
+
+    private fun updateProductWithReviewData(reviews: List<Review>) {
+        val product = _product.value ?: return
+
+        val totalReviews = reviews.size
+        val totalRating = reviews.fold(0.0f) { sum, review -> sum + review.rating }
+        val averageRating = if (totalReviews > 0) totalRating / totalReviews else 0.0f
+
+        val recommendCount = reviews.count { it.recommend }
+        val percentageOfUsers = if (totalReviews > 0) (recommendCount * 100) / totalReviews else 0
+
+        product.averageRating = averageRating.toDouble()
+        product.reviewCount = totalReviews
+        product.percentageOfUsers = percentageOfUsers
+
+        _product.value = product
     }
 }

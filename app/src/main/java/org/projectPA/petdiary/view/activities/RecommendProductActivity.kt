@@ -97,7 +97,6 @@ class RecommendProductActivity : AppCompatActivity() {
             reviewText = reviewText!!,
             recommend = recommend,
             reviewDate = Date(),
-            timestamp = System.currentTimeMillis()
         )
 
         viewModel.submitReview(review)

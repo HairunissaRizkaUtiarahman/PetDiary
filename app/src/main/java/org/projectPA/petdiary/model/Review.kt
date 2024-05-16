@@ -12,6 +12,5 @@ data class Review(
     var usagePeriod: String = "",
     var reviewText: String = "",
     var recommend: Boolean = false,
-    var reviewDate: Date,
-    var timestamp: Long = 0L
+    var reviewDate: Date = Date(),
 )

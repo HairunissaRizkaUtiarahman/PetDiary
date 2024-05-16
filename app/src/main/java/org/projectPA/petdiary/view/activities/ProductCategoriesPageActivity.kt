@@ -59,6 +59,23 @@ class ProductCategoriesPageActivity: AppCompatActivity() {
             viewModel.setCategory("Health")
             navigateToProductPage()
         }
+
+        binding.buttonFoodCategory.setOnClickListener {
+            viewModel.setCategory("Food")
+            navigateToProductPage()
+        }
+        binding.buttonGroomingCategory.setOnClickListener {
+            viewModel.setCategory("Grooming")
+            navigateToProductPage()
+        }
+        binding.buttonToolsCategory.setOnClickListener {
+            viewModel.setCategory("Tools")
+            navigateToProductPage()
+        }
+        binding.buttonOthersCategory.setOnClickListener {
+            viewModel.setCategory("Others")
+            navigateToProductPage()
+        }
     }
 
     private fun navigateToProductPage() {

@@ -57,14 +57,15 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_input"
+        android:id="@+id/brandNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <!-- Brand Name Input -->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_brand_name"
+            android:id="@+id/formInputBrandName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -91,12 +92,14 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_product_name"
+            android:id="@+id/formInputProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -122,13 +125,14 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_input_description_layout"
+        android:id="@+id/descriptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_description"
+            android:id="@+id/formInputDescription"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"

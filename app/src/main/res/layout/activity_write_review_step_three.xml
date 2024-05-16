@@ -142,9 +142,11 @@
                 android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reviewTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:boxBackgroundMode="none">
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/reviewEditText"
