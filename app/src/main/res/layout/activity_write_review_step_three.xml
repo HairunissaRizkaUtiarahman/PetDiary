@@ -134,12 +134,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/write_your_review_about_this_product"
                 android:textAlignment="center"
                 android:textColor="@color/orange_main"
                 android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Min 10 words"
+                android:textColor="@color/black_grey" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/reviewTextInputLayout"

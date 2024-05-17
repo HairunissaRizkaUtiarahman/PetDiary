@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -49,7 +50,8 @@ class FillProductInformationActivity : AppCompatActivity() {
             viewModel.validateInputs(text.toString().trim(), binding.formInputProductName.text.toString().trim(), binding.formInputDescription.text.toString().trim())
         }
         binding.formInputProductName.addTextChangedListener { text ->
-            viewModel.validateInputs(binding.formInputBrandName.text.toString().trim(), text.toString().trim(), binding.formInputDescription.text.toString().trim())
+            val productName = text.toString().trim()
+            viewModel.checkProductNameExists(productName)
         }
         binding.formInputDescription.addTextChangedListener { text ->
             viewModel.validateInputs(binding.formInputBrandName.text.toString().trim(), binding.formInputProductName.text.toString().trim(), text.toString().trim())
@@ -79,6 +81,10 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         viewModel.uploadStatus.observe(this, Observer { status ->
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.productNameError.observe(this, Observer { error ->
+            binding.warningProductNameAlreadyExist.visibility = if (error == true) View.VISIBLE else View.GONE
         })
     }
 

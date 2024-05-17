@@ -60,7 +60,9 @@ class HomeFragment : Fragment() {
             .get()
             .addOnSuccessListener { documents ->
                 val productList = documents.mapNotNull { it.toObject(Product::class.java) }
-                productAdapter.updateData(productList) // Update adapter with fetched products
+                // Sort products by reviewCount in descending order and take top 5
+                val topProducts = productList.sortedByDescending { it.reviewCount }.take(5)
+                productAdapter.updateData(topProducts) // Update adapter with top products
             }
             .addOnFailureListener { exception ->
                 Log.e("HomeFragment", "Error getting documents: ", exception)

@@ -3,7 +3,6 @@ package org.projectPA.petdiary.viewmodel
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,6 +23,9 @@ class FillProductInformationViewModel : ViewModel() {
     private val _uploadStatus = MutableLiveData<String>()
     val uploadStatus: LiveData<String> get() = _uploadStatus
 
+    private val _productNameError = MutableLiveData<Boolean>()
+    val productNameError: LiveData<Boolean> get() = _productNameError
+
     fun setImageUri(uri: Uri) {
         _imageUri.value = uri
         validateInputs("", "", "")
@@ -33,11 +35,30 @@ class FillProductInformationViewModel : ViewModel() {
         _isFormValid.value = brandName.length <= 30 &&
                 productName.length in 5..30 &&
                 description.length >= 50 &&
-                _imageUri.value != null
+                _imageUri.value != null &&
+                _productNameError.value == false
+    }
+
+    fun checkProductNameExists(productName: String) {
+        FirebaseFirestore.getInstance().collection("products")
+            .whereEqualTo("productNameLower", productName.lowercase())
+            .get()
+            .addOnSuccessListener { documents ->
+                _productNameError.value = !documents.isEmpty
+                validateInputs("", productName, "")
+            }
+            .addOnFailureListener {
+                _productNameError.value = false
+            }
     }
 
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
-        uploadPhotoToStorage(activity, brandName, productName, description, petType, category)
+        checkProductNameExists(productName)
+        if (_productNameError.value == false) {
+            uploadPhotoToStorage(activity, brandName, productName, description, petType, category)
+        } else {
+            _uploadStatus.value = "Product Name Already Exist"
+        }
     }
 
     private fun uploadPhotoToStorage(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
@@ -50,10 +71,10 @@ class FillProductInformationViewModel : ViewModel() {
                 .addOnSuccessListener {
                     imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
                         saveProductToFirebase(activity, brandName, productName, description, downloadUri.toString(), petType, category)
-                    }.addOnFailureListener { e ->
+                    }.addOnFailureListener {
                         _uploadStatus.value = "Failed to get download URL"
                     }
-                }.addOnFailureListener { e ->
+                }.addOnFailureListener {
                     _uploadStatus.value = "Failed to upload image"
                 }
         }
@@ -62,27 +83,24 @@ class FillProductInformationViewModel : ViewModel() {
     private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, description: String, imageUrl: String, petType: String, category: String) {
         val productId = FirebaseFirestore.getInstance().collection("products").document().id
 
-        val product = Product(productId, petType, category, brandName, productName, description, imageUrl, averageRating = 0.0, reviewCount = 0, percentageOfUsers = 0)
+        val product = Product(
+            productId, petType, category, brandName, productName, productName.lowercase(), description,
+            imageUrl, averageRating = 0.0, reviewCount = 0, percentageOfUsers = 0
+        )
 
         FirebaseFirestore.getInstance().collection("products").document(productId)
             .set(product)
             .addOnSuccessListener {
+                _uploadStatus.value = "Product added successfully"
                 // Start ProductDetailActivity with product details
                 val intent = Intent(activity, ProductDetailActivity::class.java).apply {
                     putExtra("productId", productId)
-                    putExtra("brandName", brandName)
-                    putExtra("productName", productName)
-                    putExtra("description", description)
-                    putExtra("imageUrl", imageUrl)
-                    putExtra("petType", petType)
-                    putExtra("category", category)
-                    putExtra("fromFillProductInfo", true)
                 }
                 activity.startActivity(intent)
-                _uploadStatus.value = "Product added successfully"
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener {
                 _uploadStatus.value = "Failed to add product"
             }
     }
+
 }

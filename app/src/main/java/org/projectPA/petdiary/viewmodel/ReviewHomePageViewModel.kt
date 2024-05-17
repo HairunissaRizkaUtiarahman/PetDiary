@@ -17,7 +17,9 @@ class ReviewHomePageViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { documents ->
                 val productList = documents.mapNotNull { it.toObject(Product::class.java) }
-                _products.value = productList
+                // Sort products by reviewCount in descending order and take top 5
+                val topProducts = productList.sortedByDescending { it.reviewCount }.take(5)
+                _products.value = topProducts
             }
             .addOnFailureListener { exception ->
                 // Handle failure (log or update LiveData with error state)
