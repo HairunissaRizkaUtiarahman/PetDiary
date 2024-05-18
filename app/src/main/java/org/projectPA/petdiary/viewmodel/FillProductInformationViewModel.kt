@@ -95,6 +95,7 @@ class FillProductInformationViewModel : ViewModel() {
                 // Start ProductDetailActivity with product details
                 val intent = Intent(activity, ProductDetailActivity::class.java).apply {
                     putExtra("productId", productId)
+                    putExtra("sourceActivity", "FillProductInformationActivity")
                 }
                 activity.startActivity(intent)
             }

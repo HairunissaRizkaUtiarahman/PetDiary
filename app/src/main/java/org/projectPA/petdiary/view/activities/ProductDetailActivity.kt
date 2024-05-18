@@ -22,6 +22,8 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var productId: String
     private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var reviewAdapter: ReviewAdapter
+    private var sourceActivity: String? = null
+    private lateinit var product: Product
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         productId = intent.getStringExtra("productId") ?: ""
+        sourceActivity = intent.getStringExtra("sourceActivity")
 
         if (productId.isEmpty()) {
             Log.e("ProductDetailActivity", "Product ID is missing!")
@@ -43,8 +46,18 @@ class ProductDetailActivity : AppCompatActivity() {
         viewModel.fetchProductDetails(productId)
 
         binding.reviewButton.setOnClickListener {
-            val intent = Intent(this, ChooseProductActivity::class.java)
-            startActivity(intent)
+            if (::product.isInitialized) {
+                val intent = Intent(this, GiveRatingActivity::class.java).apply {
+                    putExtra("productId", productId)
+                    putExtra("brandName", product.brandName)
+                    putExtra("productName", product.productName)
+                    putExtra("petType", product.petType)
+                    putExtra("imageUrl", product.imageUrl)
+                }
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.seeMoreReviewLink.setOnClickListener {
@@ -54,11 +67,28 @@ class ProductDetailActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        binding.backButton.setOnClickListener {
+            handleBackButton()
+        }
+    }
+
+    private fun handleBackButton() {
+        when (sourceActivity) {
+            "RecommendProductActivity", "FillProductInformationActivity" -> {
+                val intent = Intent(this, ReviewHomePageActivity::class.java)
+                startActivity(intent)
+            }
+            else -> {
+                onBackPressed()
+            }
+        }
     }
 
     private fun observeViewModel() {
         viewModel.product.observe(this, Observer { product ->
             if (product != null) {
+                this.product = product
                 displayProductDetails(product)
                 viewModel.fetchReviews(productId) // Fetch reviews only after product details are loaded
             } else {
@@ -92,8 +122,8 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        binding.listReview.layoutManager = LinearLayoutManager(this)
         reviewAdapter = ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
+        binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }
 

@@ -29,6 +29,7 @@ class ReviewAdapter(
                 reviewDate.text = dateFormat.format(review.reviewDate)
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
+               // ratingBar4.isIndicator = true
                 usageProduct.text = review.usagePeriod
 
                 if (review.userPhotoUrl == "default") {
@@ -39,20 +40,10 @@ class ReviewAdapter(
                         .into(userPhotoProfile)
                 }
 
-                // Truncate description if it exceeds 5 lines
-                deskripsiReview.post {
-                    if (deskripsiReview.lineCount > 5) {
-                        val lastVisibleCharIndex = deskripsiReview.layout.getLineVisibleEnd(4)
-                        val truncatedText = deskripsiReview.text.substring(0, lastVisibleCharIndex - 3) + "..."
-                        deskripsiReview.text = truncatedText
-                    }
-                }
-
                 root.setOnClickListener {
                     val intent = Intent(context, DetailReviewActivity::class.java).apply {
                         putExtra("productId", productId)
-                        putExtra("productName", productName)
-                        putExtra("review", review)
+                        putExtra("reviewId", review.id)
                     }
                     context.startActivity(intent)
                 }

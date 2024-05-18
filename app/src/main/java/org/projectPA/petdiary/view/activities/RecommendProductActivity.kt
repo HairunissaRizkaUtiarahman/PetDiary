@@ -110,6 +110,7 @@ class RecommendProductActivity : AppCompatActivity() {
                 Toast.makeText(this, "Review submitted successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ProductDetailActivity::class.java).apply {
                     putExtra("productId", productId)
+                    putExtra("sourceActivity", "RecommendProductActivity")
                 }
                 Log.d("RecommendProductActivity", "Starting ProductDetailActivity with productId: $productId")
                 startActivity(intent)
