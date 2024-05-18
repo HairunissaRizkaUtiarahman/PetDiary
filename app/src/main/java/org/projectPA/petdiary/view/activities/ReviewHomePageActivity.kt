@@ -38,31 +38,31 @@ class ReviewHomePageActivity : AppCompatActivity() {
 
         binding.dogButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "dog")
+                putExtra("petType", "Dog")
             })
         }
 
         binding.rabbitButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "rabbit")
+                putExtra("petType", "Rabbit")
             })
         }
 
         binding.hamsterButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "hamster")
+                putExtra("petType", "Hamster")
             })
         }
 
         binding.fishButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "fish")
+                putExtra("petType", "Fish")
             })
         }
 
         binding.birdButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "bird")
+                putExtra("petType", "Bird")
             })
         }
 

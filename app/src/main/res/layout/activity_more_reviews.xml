@@ -35,22 +35,17 @@
                 android:fontFamily="@font/roboto_medium"
                 android:text="Reviews"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:layout_editor_absoluteX="56dp"
-                tools:layout_editor_absoluteY="15dp" />
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="64dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@id/button_sort_reviews"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_detail_product_page">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,17 +81,7 @@
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_review" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:gravity="center"
-                android:text="See more Reviews>>"
-                android:textColor="@color/orange_main"
-                android:textSize="16sp" />
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 
     <Button

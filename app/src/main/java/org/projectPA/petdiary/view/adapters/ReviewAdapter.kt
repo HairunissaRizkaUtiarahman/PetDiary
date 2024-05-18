@@ -1,5 +1,7 @@
 package org.projectPA.petdiary.view.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,15 +9,19 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ItemReviewBinding
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.view.activities.DetailReviewActivity
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class ReviewAdapter(
-    private var reviews: List<Review>
+    private var reviews: List<Review>,
+    private val context: Context,
+    private val productId: String,
+    private val productName: String
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(review: Review) {
+        fun bind(review: Review, context: Context, productId: String, productName: String) {
             val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
 
             with(binding) {
@@ -32,6 +38,24 @@ class ReviewAdapter(
                         .load(review.userPhotoUrl)
                         .into(userPhotoProfile)
                 }
+
+                // Truncate description if it exceeds 5 lines
+                deskripsiReview.post {
+                    if (deskripsiReview.lineCount > 5) {
+                        val lastVisibleCharIndex = deskripsiReview.layout.getLineVisibleEnd(4)
+                        val truncatedText = deskripsiReview.text.substring(0, lastVisibleCharIndex - 3) + "..."
+                        deskripsiReview.text = truncatedText
+                    }
+                }
+
+                root.setOnClickListener {
+                    val intent = Intent(context, DetailReviewActivity::class.java).apply {
+                        putExtra("productId", productId)
+                        putExtra("productName", productName)
+                        putExtra("review", review)
+                    }
+                    context.startActivity(intent)
+                }
             }
         }
     }
@@ -43,7 +67,7 @@ class ReviewAdapter(
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         val review = reviews[position]
-        holder.bind(review)
+        holder.bind(review, context, productId, productName)
     }
 
     override fun getItemCount() = reviews.size

@@ -271,7 +271,7 @@
                 android:background="@drawable/background_line" />
 
             <Button
-                android:id="@+id/prev_button_to_usage_product"
+                android:id="@+id/review_button"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="bottom|center"
@@ -346,7 +346,8 @@
                 android:gravity="right"
                 android:text="@string/see_more_reviews"
                 android:textColor="@color/orange_main"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_review"

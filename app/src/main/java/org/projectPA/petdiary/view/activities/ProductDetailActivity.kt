@@ -3,13 +3,13 @@ package org.projectPA.petdiary.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import android.view.View
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
@@ -41,6 +41,19 @@ class ProductDetailActivity : AppCompatActivity() {
         observeViewModel()
 
         viewModel.fetchProductDetails(productId)
+
+        binding.reviewButton.setOnClickListener {
+            val intent = Intent(this, ChooseProductActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.seeMoreReviewLink.setOnClickListener {
+            val intent = Intent(this, MoreReviewsActivity::class.java).apply {
+                putExtra("productId", productId)
+                putExtra("productName", binding.productNameText.text.toString())
+            }
+            startActivity(intent)
+        }
     }
 
     private fun observeViewModel() {
@@ -55,7 +68,8 @@ class ProductDetailActivity : AppCompatActivity() {
         })
 
         viewModel.reviews.observe(this, Observer { reviews ->
-            reviewAdapter.updateData(reviews)
+            val limitedReviews = if (reviews.size > 5) reviews.take(5) else reviews
+            reviewAdapter.updateData(limitedReviews)
             updateReviewVisibility(reviews)
         })
 
@@ -79,7 +93,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.listReview.layoutManager = LinearLayoutManager(this)
-        reviewAdapter = ReviewAdapter(emptyList())
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
         binding.listReview.adapter = reviewAdapter
     }
 
