@@ -21,10 +21,6 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
-            android:name=".view.activities.MyProfileEditActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
             android:name=".view.activities.MyProfileActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
