@@ -161,7 +161,7 @@
     <string name="back_button">back_button</string>
 
     <string-array name="usage_options">
-        <item>My pet using this product for the first time</item>
+        <item>Using this product for the first time</item>
         <item>1 week - 1 month</item>
         <item>2 - 6 months</item>
         <item>More than one year</item>

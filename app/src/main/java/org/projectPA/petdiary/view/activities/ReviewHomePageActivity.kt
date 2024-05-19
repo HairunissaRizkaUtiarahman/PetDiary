@@ -30,10 +30,9 @@ class ReviewHomePageActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.catButton.setOnClickListener {
-            val petType = "cat"
-            val intent = Intent(this, ProductCategoriesPageActivity::class.java)
-            intent.putExtra("petType", petType)
-            startActivity(intent)
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "Cat")
+            })
         }
 
         binding.dogButton.setOnClickListener {

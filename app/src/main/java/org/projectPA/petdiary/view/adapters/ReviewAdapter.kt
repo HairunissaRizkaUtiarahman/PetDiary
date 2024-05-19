@@ -17,7 +17,8 @@ class ReviewAdapter(
     private var reviews: List<Review>,
     private val context: Context,
     private val productId: String,
-    private val productName: String
+    private val productName: String,
+    function: () -> Unit
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -29,7 +30,6 @@ class ReviewAdapter(
                 reviewDate.text = dateFormat.format(review.reviewDate)
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
-               // ratingBar4.isIndicator = true
                 usageProduct.text = review.usagePeriod
 
                 if (review.userPhotoUrl == "default") {
@@ -40,6 +40,7 @@ class ReviewAdapter(
                         .into(userPhotoProfile)
                 }
 
+                // Make the entire root view clickable
                 root.setOnClickListener {
                     val intent = Intent(context, DetailReviewActivity::class.java).apply {
                         putExtra("productId", productId)

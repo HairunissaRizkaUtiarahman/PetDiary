@@ -33,7 +33,7 @@ class FillProductInformationViewModel : ViewModel() {
 
     fun validateInputs(brandName: String, productName: String, description: String) {
         _isFormValid.value = brandName.length <= 30 &&
-                productName.length in 5..30 &&
+                productName.length in 4..30 &&
                 description.length >= 50 &&
                 _imageUri.value != null &&
                 _productNameError.value == false
@@ -45,11 +45,43 @@ class FillProductInformationViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { documents ->
                 _productNameError.value = !documents.isEmpty
-                validateInputs("", productName, "")
+                validateInputsAfterCheck()
             }
             .addOnFailureListener {
                 _productNameError.value = false
+                validateInputsAfterCheck()
             }
+    }
+
+    private fun validateInputsAfterCheck() {
+        val brandName = _brandName.value ?: ""
+        val productName = _productName.value ?: ""
+        val description = _description.value ?: ""
+        validateInputs(brandName, productName, description)
+    }
+
+    private val _brandName = MutableLiveData<String>()
+    val brandName: LiveData<String> get() = _brandName
+
+    private val _productName = MutableLiveData<String>()
+    val productName: LiveData<String> get() = _productName
+
+    private val _description = MutableLiveData<String>()
+    val description: LiveData<String> get() = _description
+
+    fun updateBrandName(brandName: String) {
+        _brandName.value = brandName
+        validateInputsAfterCheck()
+    }
+
+    fun updateProductName(productName: String) {
+        _productName.value = productName
+        checkProductNameExists(productName)
+    }
+
+    fun updateDescription(description: String) {
+        _description.value = description
+        validateInputsAfterCheck()
     }
 
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
@@ -103,5 +135,4 @@ class FillProductInformationViewModel : ViewModel() {
                 _uploadStatus.value = "Failed to add product"
             }
     }
-
 }

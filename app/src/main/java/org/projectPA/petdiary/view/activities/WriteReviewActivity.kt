@@ -47,9 +47,14 @@ class WriteReviewActivity : AppCompatActivity() {
             viewModel.submitReview()
         }
 
+        binding.prevButtonToUsageProduct.setOnClickListener {
+            onBackPressed()
+        }
+
         setupTextWatcher(binding.reviewEditText, binding.reviewTextInputLayout)
         observeViewModel()
     }
+
 
     private fun displayProductDetails(brandName: String?, productName: String?, petType: String?, imageUrl: String?) {
         binding.brandName.text = brandName

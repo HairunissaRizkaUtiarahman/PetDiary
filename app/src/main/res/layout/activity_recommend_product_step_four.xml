@@ -71,10 +71,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_bold"
+                    android:maxLines="1"
                     android:text="Whiskas"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/product_name"
@@ -82,6 +84,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:fontFamily="@font/roboto_medium"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="Tuna for kitten"
                     android:textColor="@color/black" />
 
@@ -174,7 +178,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/prev_button_to_usage_product"
+            android:id="@+id/prev_button_to_write_review"
             android:layout_width="150dp"
             android:layout_height="54dp"
             android:layout_margin="15dp"

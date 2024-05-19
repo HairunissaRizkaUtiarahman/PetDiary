@@ -36,6 +36,8 @@ class GiveRatingActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+
+
         binding.nextButtonToUsageProduct.setOnClickListener {
             viewModel.setRating(binding.ratingBar.rating.toDouble())
             viewModel.navigateToUsageProductActivity(this)

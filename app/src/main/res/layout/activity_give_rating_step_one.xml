@@ -69,16 +69,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_black"
+                    android:maxLines="1"
                     android:text="Whiskas"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Tuna for kitten"
                     android:textColor="@color/black" />

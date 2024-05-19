@@ -28,27 +28,27 @@ class ProductCategoriesPageActivity: AppCompatActivity() {
 
         viewModel.petType.observe(this, Observer { petType ->
             when (petType) {
-                "cat" -> {
+                "Cat" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_cat_button, binding.petTypeChoosen, false))
                 }
-                "dog" -> {
+                "Dog" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_dog_button, binding.petTypeChoosen, false))
                 }
-                "rabbit" -> {
+                "Rabbit" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_rabbit_button, binding.petTypeChoosen, false))
                 }
-                "hamster" -> {
+                "Hamster" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_hamster_button, binding.petTypeChoosen, false))
                 }
-                "fish" -> {
+                "Fish" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_fish_button, binding.petTypeChoosen, false))
                 }
-                "bird" -> {
+                "Bird" -> {
                     binding.petTypeChoosen.removeAllViews()
                     binding.petTypeChoosen.addView(layoutInflater.inflate(R.layout.choose_bird_button, binding.petTypeChoosen, false))
                 }

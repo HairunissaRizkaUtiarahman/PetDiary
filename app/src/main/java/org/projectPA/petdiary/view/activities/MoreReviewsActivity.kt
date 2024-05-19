@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.projectPA.petdiary.databinding.ActivityMoreReviewsBinding
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
-import org.projectPA.petdiary.viewmodel.MoreReviewsViewModel
+import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
 class MoreReviewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoreReviewsBinding
-    private val viewModel: MoreReviewsViewModel by viewModels()
+    private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var reviewAdapter: ReviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +33,7 @@ class MoreReviewsActivity : AppCompatActivity() {
         setupRecyclerView(productId, productName)
         observeViewModel()
 
-        viewModel.fetchAllReviews(productId)
+        viewModel.fetchReviews(productId)
 
         binding.backToProductDetailPage.setOnClickListener {
             finish()
@@ -41,7 +41,9 @@ class MoreReviewsActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(productId: String, productName: String) {
-        reviewAdapter = ReviewAdapter(emptyList(), this, productId, productName)
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId, productName) {
+            viewModel.fetchReviews(productId)
+        }
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }

@@ -122,7 +122,14 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        reviewAdapter = ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
+        reviewAdapter = ReviewAdapter(
+            emptyList(),
+            this,
+            productId,
+            binding.productNameText.text.toString()
+        ) {
+            viewModel.fetchReviews(productId)
+        }
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }

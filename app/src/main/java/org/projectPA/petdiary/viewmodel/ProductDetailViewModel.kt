@@ -7,6 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import android.util.Log
+import com.google.firebase.firestore.FieldValue
 
 class ProductDetailViewModel : ViewModel() {
 
