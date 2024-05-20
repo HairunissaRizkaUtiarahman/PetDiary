@@ -100,5 +100,9 @@ class MyPetEditFragment : Fragment() {
                 .placeholder(R.drawable.image_blank)
                 .into(petImageIV)
         }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

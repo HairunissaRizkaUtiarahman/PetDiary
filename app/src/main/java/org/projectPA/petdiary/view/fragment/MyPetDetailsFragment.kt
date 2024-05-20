@@ -38,6 +38,9 @@ class MyPetDetailsFragment : Fragment() {
         }
         fetchData()
 
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onResume() {

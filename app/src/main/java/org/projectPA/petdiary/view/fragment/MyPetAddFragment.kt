@@ -76,5 +76,9 @@ class MyPetAddFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }
