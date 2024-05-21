@@ -11,6 +11,8 @@ import com.google.firebase.firestore.FieldValue
 
 class ProductDetailViewModel : ViewModel() {
 
+    private val firestore = FirebaseFirestore.getInstance()
+
     private val _product = MutableLiveData<Product?>()
     val product: LiveData<Product?> get() = _product
 
@@ -21,69 +23,46 @@ class ProductDetailViewModel : ViewModel() {
     val errorMessage: LiveData<String> get() = _errorMessage
 
     fun fetchProductDetails(productId: String) {
-        Log.d("ProductDetailViewModel", "Fetching product details for ID: $productId")
-        FirebaseFirestore.getInstance().collection("products").document(productId).get()
+        firestore.collection("products").document(productId).get()
             .addOnSuccessListener { document ->
                 val product = document.toObject(Product::class.java)
                 if (product != null) {
-                    Log.d("ProductDetailViewModel", "Product details fetched successfully")
                     _product.value = product
+                    observeReviews(productId)
                 } else {
-                    val errorMsg = "Failed to load product details: Product is null"
-                    Log.e("ProductDetailViewModel", errorMsg)
-                    _errorMessage.value = errorMsg
+                    _errorMessage.value = "Failed to load product details: Product is null"
                 }
             }
             .addOnFailureListener { e ->
-                val errorMsg = "Failed to load product details: ${e.message}"
-                Log.e("ProductDetailViewModel", errorMsg)
-                _errorMessage.value = errorMsg
+                _errorMessage.value = "Failed to load product details: ${e.message}"
             }
     }
 
-    fun fetchReviews(productId: String) {
-        Log.d("ProductDetailViewModel", "Fetching reviews for product ID: $productId")
-        FirebaseFirestore.getInstance().collection("reviews")
+    private fun observeReviews(productId: String) {
+        firestore.collection("reviews")
             .whereEqualTo("productId", productId)
-            .get()
-            .addOnSuccessListener { documents ->
-                try {
-                    val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
-                    reviews.forEach { review ->
-                        if (review.userPhotoUrl.isNullOrEmpty()) {
-                            review.userPhotoUrl = "default"
-                        }
-                    }
-                    Log.d("ProductDetailViewModel", "Reviews fetched successfully: ${reviews.size}")
-                    _reviews.value = reviews
-                    updateProductWithReviewData(reviews)
-                } catch (e: Exception) {
-                    val errorMsg = "Failed to parse reviews: ${e.message}"
-                    Log.e("ProductDetailViewModel", errorMsg)
-                    _errorMessage.value = errorMsg
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    _errorMessage.value = "Listen failed: ${e.message}"
+                    return@addSnapshotListener
                 }
-            }
-            .addOnFailureListener { e ->
-                val errorMsg = "Failed to load reviews: ${e.message}"
-                Log.e("ProductDetailViewModel", errorMsg)
-                _errorMessage.value = errorMsg
+
+                if (snapshots != null) {
+                    val reviews = snapshots.toObjects(Review::class.java)
+                    _reviews.value = reviews
+                    updateProductReviewCount(productId, reviews.size)
+                }
             }
     }
 
-    private fun updateProductWithReviewData(reviews: List<Review>) {
-        val product = _product.value ?: return
-
-        val totalReviews = reviews.size
-        val totalRating = reviews.fold(0.0f) { sum, review -> sum + review.rating }
-        val averageRating = if (totalReviews > 0) totalRating / totalReviews else 0.0f
-
-        val recommendCount = reviews.count { it.recommend }
-        val percentageOfUsers = if (totalReviews > 0) (recommendCount * 100) / totalReviews else 0
-
-        product.averageRating = averageRating.toDouble()
-        product.reviewCount = totalReviews
-        product.percentageOfUsers = percentageOfUsers
-
-        _product.value = product
+    private fun updateProductReviewCount(productId: String, reviewCount: Int) {
+        firestore.collection("products").document(productId)
+            .update("reviewCount", reviewCount)
+            .addOnSuccessListener {
+                // Successfully updated review count
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.value = "Failed to update review count: ${e.message}"
+            }
     }
 }

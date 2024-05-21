@@ -8,12 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.projectPA.petdiary.databinding.ActivityMoreReviewsBinding
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
-import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
+import org.projectPA.petdiary.view.fragments.SortButtonReviewFragment
+import org.projectPA.petdiary.viewmodel.MoreReviewsViewModel
 
 class MoreReviewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoreReviewsBinding
-    private val viewModel: ProductDetailViewModel by viewModels()
+    private val viewModel: MoreReviewsViewModel by viewModels()
     private lateinit var reviewAdapter: ReviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,17 +34,22 @@ class MoreReviewsActivity : AppCompatActivity() {
         setupRecyclerView(productId, productName)
         observeViewModel()
 
-        viewModel.fetchReviews(productId)
+        viewModel.fetchAllReviews(productId)
 
         binding.backToProductDetailPage.setOnClickListener {
             finish()
         }
+
+        binding.buttonSortReviews.setOnClickListener {
+            val sortButtonFragment = SortButtonReviewFragment { sortOption ->
+                viewModel.sortReviews(sortOption)
+            }
+            sortButtonFragment.show(supportFragmentManager, sortButtonFragment.tag)
+        }
     }
 
     private fun setupRecyclerView(productId: String, productName: String) {
-        reviewAdapter = ReviewAdapter(emptyList(), this, productId, productName) {
-            viewModel.fetchReviews(productId)
-        }
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId, productName)
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }

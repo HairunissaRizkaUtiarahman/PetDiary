@@ -35,14 +35,14 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageView
         android:id="@+id/upload_photo_button"
-        android:layout_width="250dp"
+        android:layout_width="250sp"
         android:layout_height="250dp"
         android:layout_gravity="center"
-        android:layout_margin="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/background_ic_camera"
-        android:contentDescription="@string/upload_photo"
         app:srcCompat="@drawable/ic_camera" />
 
     <TextView

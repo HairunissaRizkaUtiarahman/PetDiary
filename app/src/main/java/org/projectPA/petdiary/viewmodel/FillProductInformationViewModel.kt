@@ -1,8 +1,10 @@
 package org.projectPA.petdiary.viewmodel
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +35,7 @@ class FillProductInformationViewModel : ViewModel() {
 
     fun validateInputs(brandName: String, productName: String, description: String) {
         _isFormValid.value = brandName.length <= 30 &&
-                productName.length in 4..30 &&
+                productName.length in 5..30 &&
                 description.length >= 50 &&
                 _imageUri.value != null &&
                 _productNameError.value == false
@@ -45,44 +47,13 @@ class FillProductInformationViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { documents ->
                 _productNameError.value = !documents.isEmpty
-                validateInputsAfterCheck()
+                validateInputs("", productName, "")
             }
             .addOnFailureListener {
                 _productNameError.value = false
-                validateInputsAfterCheck()
             }
     }
 
-    private fun validateInputsAfterCheck() {
-        val brandName = _brandName.value ?: ""
-        val productName = _productName.value ?: ""
-        val description = _description.value ?: ""
-        validateInputs(brandName, productName, description)
-    }
-
-    private val _brandName = MutableLiveData<String>()
-    val brandName: LiveData<String> get() = _brandName
-
-    private val _productName = MutableLiveData<String>()
-    val productName: LiveData<String> get() = _productName
-
-    private val _description = MutableLiveData<String>()
-    val description: LiveData<String> get() = _description
-
-    fun updateBrandName(brandName: String) {
-        _brandName.value = brandName
-        validateInputsAfterCheck()
-    }
-
-    fun updateProductName(productName: String) {
-        _productName.value = productName
-        checkProductNameExists(productName)
-    }
-
-    fun updateDescription(description: String) {
-        _description.value = description
-        validateInputsAfterCheck()
-    }
 
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         checkProductNameExists(productName)
@@ -92,6 +63,7 @@ class FillProductInformationViewModel : ViewModel() {
             _uploadStatus.value = "Product Name Already Exist"
         }
     }
+
 
     private fun uploadPhotoToStorage(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         val storageRef = FirebaseStorage.getInstance().reference
@@ -103,36 +75,43 @@ class FillProductInformationViewModel : ViewModel() {
                 .addOnSuccessListener {
                     imageRef.downloadUrl.addOnSuccessListener { downloadUri ->
                         saveProductToFirebase(activity, brandName, productName, description, downloadUri.toString(), petType, category)
-                    }.addOnFailureListener {
-                        _uploadStatus.value = "Failed to get download URL"
+                    }.addOnFailureListener { e ->
+                        _uploadStatus.value = "Failed to get download URL: ${e.message}"
                     }
-                }.addOnFailureListener {
-                    _uploadStatus.value = "Failed to upload image"
+                }.addOnFailureListener { e ->
+                    _uploadStatus.value = "Failed to upload image: ${e.message}"
                 }
         }
     }
 
+    @SuppressLint("LongLogTag")
     private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, description: String, imageUrl: String, petType: String, category: String) {
         val productId = FirebaseFirestore.getInstance().collection("products").document().id
 
         val product = Product(
-            productId, petType, category, brandName, productName, productName.lowercase(), description,
+            productId, petType, category, brandName, productName, description,
             imageUrl, averageRating = 0.0, reviewCount = 0, percentageOfUsers = 0
         )
 
         FirebaseFirestore.getInstance().collection("products").document(productId)
             .set(product)
             .addOnSuccessListener {
+                Log.d(TAG, "Product added successfully: $product")
                 _uploadStatus.value = "Product added successfully"
                 // Start ProductDetailActivity with product details
                 val intent = Intent(activity, ProductDetailActivity::class.java).apply {
                     putExtra("productId", productId)
-                    putExtra("sourceActivity", "FillProductInformationActivity")
                 }
                 activity.startActivity(intent)
             }
-            .addOnFailureListener {
-                _uploadStatus.value = "Failed to add product"
+            .addOnFailureListener { e ->
+                Log.e(TAG, "Failed to add product: ${e.message}")
+                _uploadStatus.value = "Failed to add product: ${e.message}"
             }
+    }
+
+
+    companion object {
+        private const val TAG = "FillProductInformationViewModel"
     }
 }

@@ -58,7 +58,7 @@ class DetailReviewActivity : AppCompatActivity() {
                 binding.deskripsiReview.text = it.reviewText
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod
-                binding.recomendedOrNotText.text = if (it.rating >= 4) "Recommended" else "Not Recommended"
+                binding.recomendedOrNotText.text = if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"
                 if (it.userPhotoUrl == "default") {
                     binding.userPhotoProfile.setImageResource(R.drawable.ic_users)
                 } else {

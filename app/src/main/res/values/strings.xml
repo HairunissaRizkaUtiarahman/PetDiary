@@ -97,7 +97,7 @@
     <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
     <string name="notification_icon_description">notification</string>
     <string name="Browse_product_by_pet_types">Browse product by pet types</string>
-    <string name="most_reviews_products">Most Reviews Products</string>
+    <string name="most_reviews_products">5 Most Reviews Products</string>
     <string name="scroll_horizontally_to_view_pet_options">Scroll horizontally to view pet options</string>
     <string name="browse_product_by_pet_types">Browse product by pet types</string>
     <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>

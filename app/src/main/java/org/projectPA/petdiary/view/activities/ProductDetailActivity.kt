@@ -17,7 +17,6 @@ import org.projectPA.petdiary.view.adapters.ReviewAdapter
 import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
 class ProductDetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityProductDetailBinding
     private lateinit var productId: String
     private val viewModel: ProductDetailViewModel by viewModels()
@@ -34,7 +33,6 @@ class ProductDetailActivity : AppCompatActivity() {
         sourceActivity = intent.getStringExtra("sourceActivity")
 
         if (productId.isEmpty()) {
-            Log.e("ProductDetailActivity", "Product ID is missing!")
             Toast.makeText(this, "Product ID is missing!", Toast.LENGTH_SHORT).show()
             finish()
             return
@@ -90,7 +88,6 @@ class ProductDetailActivity : AppCompatActivity() {
             if (product != null) {
                 this.product = product
                 displayProductDetails(product)
-                viewModel.fetchReviews(productId) // Fetch reviews only after product details are loaded
             } else {
                 Toast.makeText(this, "Failed to load product details", Toast.LENGTH_SHORT).show()
                 finish()
@@ -122,14 +119,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        reviewAdapter = ReviewAdapter(
-            emptyList(),
-            this,
-            productId,
-            binding.productNameText.text.toString()
-        ) {
-            viewModel.fetchReviews(productId)
-        }
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }

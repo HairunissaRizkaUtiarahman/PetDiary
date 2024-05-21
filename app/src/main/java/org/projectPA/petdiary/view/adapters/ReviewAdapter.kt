@@ -17,8 +17,7 @@ class ReviewAdapter(
     private var reviews: List<Review>,
     private val context: Context,
     private val productId: String,
-    private val productName: String,
-    function: () -> Unit
+    private val productName: String
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {

@@ -34,40 +34,16 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!-- Search box container -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_product"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@drawable/background_icon_home">
-
-        <!-- Search text input -->
-        <EditText
-            android:id="@+id/search_product_box"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toStartOf="@id/button_search"
-            android:background="@android:color/transparent"
-            android:hint="@string/search_product"
-            android:maxLines="1"
-            android:textColor="@color/black_grey"
-            android:textColorHint="@color/black_grey" />
-
-        <!-- Search icon -->
-        <ImageView
-            android:id="@id/button_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/backgorund_icon_search"
-            android:foregroundGravity="center"
-            android:padding="8dp"
-            android:src="@drawable/ic_search" />
-    </RelativeLayout>
+        android:background="@drawable/background_icon_home"
+        android:elevation="0dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="@string/search_product"
+        app:queryBackground="@null" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -98,7 +74,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/button_sort_reviews"
+            android:id="@+id/button_sort_products"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_gravity="bottom|center"

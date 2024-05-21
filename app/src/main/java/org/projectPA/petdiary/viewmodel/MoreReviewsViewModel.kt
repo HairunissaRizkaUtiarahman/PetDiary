@@ -14,6 +14,8 @@ class MoreReviewsViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
+    private var allReviews: List<Review> = emptyList()
+
     fun fetchAllReviews(productId: String) {
         FirebaseFirestore.getInstance().collection("reviews")
             .whereEqualTo("productId", productId)
@@ -26,6 +28,7 @@ class MoreReviewsViewModel : ViewModel() {
                             review.userPhotoUrl = "default"
                         }
                     }
+                    allReviews = reviews
                     _reviews.value = reviews
                 } catch (e: Exception) {
                     _errorMessage.value = "Failed to parse reviews: ${e.message}"
@@ -34,5 +37,16 @@ class MoreReviewsViewModel : ViewModel() {
             .addOnFailureListener { e ->
                 _errorMessage.value = "Failed to load reviews: ${e.message}"
             }
+    }
+
+    fun sortReviews(sortOption: String) {
+        val sortedReviews = when (sortOption) {
+            "newest" -> allReviews.sortedByDescending { it.reviewDate }
+            "oldest" -> allReviews.sortedBy { it.reviewDate }
+            "highest_rating" -> allReviews.sortedByDescending { it.rating }
+            "lowest_rating" -> allReviews.sortedBy { it.rating }
+            else -> allReviews
+        }
+        _reviews.value = sortedReviews
     }
 }

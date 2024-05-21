@@ -24,6 +24,7 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // Observe the selectedFragment LiveData from the ViewModel
         viewModel.selectedFragment.observe(this, Observer { fragment ->
             replaceFragment(fragment)
