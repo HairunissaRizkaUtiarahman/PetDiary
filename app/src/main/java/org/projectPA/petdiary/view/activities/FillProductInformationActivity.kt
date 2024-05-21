@@ -1,11 +1,14 @@
 package org.projectPA.petdiary.view.activities
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -23,6 +26,31 @@ class FillProductInformationActivity : AppCompatActivity() {
     private val PET_TYPE_KEY = "pet_type"
     private val CATEGORY_KEY = "category"
 
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+        if (success) {
+            viewModel.imageUri.value?.let { uri ->
+                binding.productImage.setImageURI(uri)
+                viewModel.validateInputs(
+                    binding.formInputBrandName.text.toString().trim(),
+                    binding.formInputProductName.text.toString().trim(),
+                    binding.formInputDescription.text.toString().trim()
+                )
+            }
+        }
+    }
+
+    private val pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            viewModel.setImageUri(it)
+            binding.productImage.setImageURI(it)
+            viewModel.validateInputs(
+                binding.formInputBrandName.text.toString().trim(),
+                binding.formInputProductName.text.toString().trim(),
+                binding.formInputDescription.text.toString().trim()
+            )
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFillProductInformationBinding.inflate(layoutInflater)
@@ -38,7 +66,17 @@ class FillProductInformationActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.uploadPhotoButton.setOnClickListener {
-            chooseImage()
+            val options = arrayOf("Take Picture", "Choose from Gallery", "Upload File")
+            val builder = android.app.AlertDialog.Builder(this)
+            builder.setTitle("Select Image")
+                .setItems(options) { _, which ->
+                    when (which) {
+                        0 -> takePicture()
+                        1 -> pickPhoto()
+                        2 -> pickFile()
+                    }
+                }
+            builder.show()
         }
 
         setupHintVisibility(binding.formInputBrandName, binding.brandNameLayout)
@@ -72,7 +110,7 @@ class FillProductInformationActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.imageUri.observe(this, Observer { uri ->
-            binding.uploadPhotoButton.setImageURI(uri)
+            binding.productImage.setImageURI(uri)
         })
 
         viewModel.isFormValid.observe(this, Observer { isValid ->
@@ -85,6 +123,17 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         viewModel.productNameError.observe(this, Observer { error ->
             binding.warningProductNameAlreadyExist.visibility = if (error == true) View.VISIBLE else View.GONE
+        })
+
+        viewModel.navigateToProductDetail.observe(this, Observer { productId ->
+            productId?.let {
+                val intent = Intent(this, ProductDetailActivity::class.java).apply {
+                    putExtra("productId", it)
+                    putExtra("fromFillProductInfo", true)
+                }
+                startActivity(intent)
+                finish()
+            }
         })
     }
 
@@ -103,24 +152,20 @@ class FillProductInformationActivity : AppCompatActivity() {
         }
     }
 
-    private fun chooseImage() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    private fun takePicture() {
+        val uri = viewModel.createImageUri(this)
+        uri?.let {
+            viewModel.setImageUri(it)
+            takePictureLauncher.launch(it)
+        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.data != null) {
-            viewModel.setImageUri(data.data!!)
-            viewModel.validateInputs(
-                binding.formInputBrandName.text.toString().trim(),
-                binding.formInputProductName.text.toString().trim(),
-                binding.formInputDescription.text.toString().trim()
-            )
-        } else {
-            Toast.makeText(this, "Image pick cancelled or failed", Toast.LENGTH_SHORT).show()
-        }
+    private fun pickPhoto() {
+        pickPhotoLauncher.launch("image/*")
+    }
+
+    private fun pickFile() {
+        pickPhotoLauncher.launch("*/*")
     }
 
     companion object {

@@ -20,6 +20,7 @@ class ProductPageViewModel : ViewModel() {
     private var filteredProducts: List<Product> = emptyList()
     private var currentQuery: String? = null
 
+
     fun loadProductsFromFirestore(petType: String, category: String) {
         Log.d(TAG, "Loading products for petType: $petType, category: $category")
         firestore.collection("products")

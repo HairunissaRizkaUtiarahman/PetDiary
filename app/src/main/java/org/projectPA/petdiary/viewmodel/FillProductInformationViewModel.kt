@@ -1,17 +1,18 @@
 package org.projectPA.petdiary.viewmodel
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Intent
+import android.content.Context
 import android.net.Uri
-import android.util.Log
+import android.os.Environment
+import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import org.projectPA.petdiary.model.Product
-import org.projectPA.petdiary.view.activities.ProductDetailActivity
+import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
 class FillProductInformationViewModel : ViewModel() {
@@ -27,6 +28,9 @@ class FillProductInformationViewModel : ViewModel() {
 
     private val _productNameError = MutableLiveData<Boolean>()
     val productNameError: LiveData<Boolean> get() = _productNameError
+
+    private val _navigateToProductDetail = MutableLiveData<String?>()
+    val navigateToProductDetail: LiveData<String?> get() = _navigateToProductDetail
 
     fun setImageUri(uri: Uri) {
         _imageUri.value = uri
@@ -54,16 +58,21 @@ class FillProductInformationViewModel : ViewModel() {
             }
     }
 
-
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
-        checkProductNameExists(productName)
-        if (_productNameError.value == false) {
-            uploadPhotoToStorage(activity, brandName, productName, description, petType, category)
-        } else {
-            _uploadStatus.value = "Product Name Already Exist"
-        }
+        FirebaseFirestore.getInstance().collection("products")
+            .whereEqualTo("productNameLower", productName.lowercase())
+            .get()
+            .addOnSuccessListener { documents ->
+                if (documents.isEmpty) {
+                    uploadPhotoToStorage(activity, brandName, productName, description, petType, category)
+                } else {
+                    _uploadStatus.value = "Product Name Already Exist"
+                }
+            }
+            .addOnFailureListener {
+                _uploadStatus.value = "Failed to check product name"
+            }
     }
-
 
     private fun uploadPhotoToStorage(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         val storageRef = FirebaseStorage.getInstance().reference
@@ -84,32 +93,42 @@ class FillProductInformationViewModel : ViewModel() {
         }
     }
 
-    @SuppressLint("LongLogTag")
     private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, description: String, imageUrl: String, petType: String, category: String) {
         val productId = FirebaseFirestore.getInstance().collection("products").document().id
 
         val product = Product(
-            productId, petType, category, brandName, productName, description,
-            imageUrl, averageRating = 0.0, reviewCount = 0, percentageOfUsers = 0
+            id = productId,
+            petType = petType,
+            category = category,
+            brandName = brandName,
+            productName = productName,
+            description = description,
+            imageUrl = imageUrl,
+            averageRating = 0.0,
+            reviewCount = 0,
+            percentageOfUsers = 0,
+            createdAt = Date(),
+            productNameLower = productName.lowercase(),
+            brandNameLower = brandName.lowercase()
         )
 
         FirebaseFirestore.getInstance().collection("products").document(productId)
             .set(product)
             .addOnSuccessListener {
-                Log.d(TAG, "Product added successfully: $product")
                 _uploadStatus.value = "Product added successfully"
-                // Start ProductDetailActivity with product details
-                val intent = Intent(activity, ProductDetailActivity::class.java).apply {
-                    putExtra("productId", productId)
-                }
-                activity.startActivity(intent)
+                _navigateToProductDetail.value = productId
             }
             .addOnFailureListener { e ->
-                Log.e(TAG, "Failed to add product: ${e.message}")
                 _uploadStatus.value = "Failed to add product: ${e.message}"
             }
     }
 
+    fun createImageUri(context: Context): Uri? {
+        val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val imageFile = File.createTempFile("JPEG_${timestamp}_", ".jpg", storageDir)
+        return FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", imageFile)
+    }
 
     companion object {
         private const val TAG = "FillProductInformationViewModel"
