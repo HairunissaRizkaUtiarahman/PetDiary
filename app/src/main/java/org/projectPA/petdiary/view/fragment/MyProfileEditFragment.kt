@@ -91,5 +91,9 @@ class MyProfileEditFragment : Fragment() {
                     .into(binding.profileIV)
             }
         }
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

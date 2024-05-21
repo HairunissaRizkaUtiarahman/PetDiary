@@ -6,9 +6,9 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.MyPetActivity"
     app:defaultNavHost="true"
     app:navGraph="@navigation/my_pet_nav"
+    tools:context=".view.activities.MyPetActivity"
     tools:viewBindingIgnore="true">
 
 </androidx.fragment.app.FragmentContainerView>

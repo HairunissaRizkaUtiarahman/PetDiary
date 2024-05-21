@@ -92,6 +92,7 @@
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="already_have_an_account">Already have an account?</string>
+    <string name="bio">Bio</string>
 
     //activity_review_homepage
     <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
@@ -129,11 +130,6 @@
     <string name="community_n">Community</string>
     <string name="article_n">Article</string>
 
-    //fragment_profile
-    <string name="my_profile">MY PROFILE</string>
-    <string name="setting">SETTING</string>
-    <string name="logout">LOGOUT</string>
-
     //fragment_review
 
     //Fragment_sort_button_product
@@ -167,13 +163,40 @@
         <item>More than one year</item>
         <item>Less than a week</item>
     </string-array>
+
+    // Fragment My Pet
+    <string name="add">ADD</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="age">Age</string>
+    <string name="details">Details</string>
+    <string name="select_image">Select Image</string>
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
+
+    // Title Toolbar
+    <string name="my_pet">My Pet</string>
+    <string name="my_pet_details">Details My Pet</string>
+    <string name="my_pet_add">Add My Pet</string>
+    <string name="my_pet_edit">Edit My Pet</string>
+
+    <string name="my_pet_name">Pet Name</string>
+    <string name="my_pet_type">Type or Species</string>
+    <string name="my_pet_desc">Description</string>
+    <string name="my_pet_edit_btn">EDIT PET PROFILE</string>
+
+
+    // Fragment Profile
+    <string name="my_profile">MY PROFILE</string>
+    <string name="setting">SETTING</string>
+    <string name="logout">LOGOUT</string>
+
+    // Fragment My Profile
+    <string name="save">Save</string>
+
+    <string name="my_profile_edit">Edit My Profile</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
-    <string name="add_my_pet">ADD MY Pet</string>
-
-
-
 
 </resources>
