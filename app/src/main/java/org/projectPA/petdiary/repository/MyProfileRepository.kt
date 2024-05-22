@@ -37,7 +37,9 @@ class MyProfileRepository(
                 userMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-            db.collection("user").document(userId).update(userMap.toMap()).await()
+            val dbmyprofile = db.collection("user").document(userId).update(userMap.toMap()).await()
+
+            Log.e(LOG_TAG, dbmyprofile.toString())
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to update post data", e)
         } catch (e: StorageException) {
