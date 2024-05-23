@@ -24,27 +24,27 @@ class ChoosePetCategoryActivity : AppCompatActivity() {
         }
 
         binding.chooseCatButton.setOnClickListener {
-            viewModel.selectPetType("cat")
+            viewModel.selectPetType("Cat")
         }
 
         binding.chooseDogButton.setOnClickListener {
-            viewModel.selectPetType("dog")
+            viewModel.selectPetType("Dog")
         }
 
         binding.chooseRabbitButton.setOnClickListener {
-            viewModel.selectPetType("rabbit")
+            viewModel.selectPetType("Rabbit")
         }
 
         binding.chooseHamsterButton.setOnClickListener {
-            viewModel.selectPetType("hamster")
+            viewModel.selectPetType("Hamster")
         }
 
         binding.chooseFishButton.setOnClickListener {
-            viewModel.selectPetType("fish")
+            viewModel.selectPetType("Fish")
         }
 
         binding.chooseBirdButton.setOnClickListener {
-            viewModel.selectPetType("bird")
+            viewModel.selectPetType("Bird")
         }
 
         viewModel.selectedPetType.observe(this, Observer { petType ->

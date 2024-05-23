@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -244,7 +244,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_weight="5"
                     android:fontFamily="@font/roboto"
                     android:text="@string/product_description"
                     android:textColor="@color/black"
@@ -257,7 +256,6 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    android:layout_weight="5"
                     android:text="TextView" />
 
             </LinearLayout>
@@ -271,7 +269,7 @@
                 android:background="@drawable/background_line" />
 
             <Button
-                android:id="@+id/prev_button_to_usage_product"
+                android:id="@+id/review_button"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="bottom|center"
@@ -346,13 +344,14 @@
                 android:gravity="right"
                 android:text="@string/see_more_reviews"
                 android:textColor="@color/orange_main"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="gone" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:itemCount="4"
+                tools:itemCount="5"
                 tools:listitem="@layout/item_review">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -362,4 +361,4 @@
     </androidx.core.widget.NestedScrollView>
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

@@ -74,7 +74,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <Button
-            android:id="@+id/prev_button_to_usage_product"
+            android:id="@+id/sort_button_product"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_gravity="bottom|center"

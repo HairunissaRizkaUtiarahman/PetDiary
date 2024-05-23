@@ -4,26 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/user_photo_profile"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_margin="15dp"
-            android:alpha="@dimen/cardview_default_radius"
-            android:src="@drawable/poster_home_page" />
+            android:id="@+id/userPhotoProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="2dp"
+            android:padding="20dp"
+            android:src="@drawable/ic_number_4"
+            android:visibility="visible"
+            app:civ_border_color="@color/green_main"
+            app:civ_border_width="2dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -46,54 +50,60 @@
                 android:text="15 april 2024" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/usage_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView" />
         </LinearLayout>
-
     </LinearLayout>
-
-    <RatingBar
-        android:id="@+id/ratingBar4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:max="5" />
 
     <LinearLayout
         android:id="@+id/click_for_more_information_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/deskripsi_review"
+        <RatingBar
+            android:id="@+id/ratingBar4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_weight="1"
-            android:fontFamily="@font/roboto"
-            android:maxLines="5"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit...." />
+            android:layout_gravity="start"
+            android:isIndicator="true"
+            android:max="5" />
 
         <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/see_review_detail_arrow"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center_vertical|end"
+            android:layout_marginStart="80dp"
             android:rotation="180"
-            tools:srcCompat="@drawable/arrow_back" />
+            android:src="@drawable/arrow_back" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/deskripsi_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/roboto"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit...."
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/line3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/background_line" />
-
 
 </LinearLayout>

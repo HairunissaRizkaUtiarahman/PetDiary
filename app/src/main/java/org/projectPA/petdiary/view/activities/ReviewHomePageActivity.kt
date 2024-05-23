@@ -29,39 +29,38 @@ class ReviewHomePageActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.catButton.setOnClickListener {
-            val petType = "cat"
-            val intent = Intent(this, ProductCategoriesPageActivity::class.java)
-            intent.putExtra("petType", petType)
-            startActivity(intent)
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "Cat")
+            })
         }
 
         binding.dogButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "dog")
+                putExtra("petType", "Dog")
             })
         }
 
         binding.rabbitButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "rabbit")
+                putExtra("petType", "Rabbit")
             })
         }
 
         binding.hamsterButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "hamster")
+                putExtra("petType", "Hamster")
             })
         }
 
         binding.fishButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "fish")
+                putExtra("petType", "Fish")
             })
         }
 
         binding.birdButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "bird")
+                putExtra("petType", "Bird")
             })
         }
 
@@ -77,9 +76,6 @@ class ReviewHomePageActivity : AppCompatActivity() {
             val fragment = AddButtonFragment()
             fragment.show(supportFragmentManager, fragment.tag)
         }
-
-        // Load products when activity is created
-        viewModel.loadProducts()
     }
 
     private fun replaceFragment(fragment: Fragment) {

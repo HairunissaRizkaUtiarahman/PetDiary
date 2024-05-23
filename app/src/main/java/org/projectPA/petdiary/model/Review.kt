@@ -1,17 +1,18 @@
 package org.projectPA.petdiary.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import java.util.Date
 
 data class Review(
-    var id: String = "",
-    var productId: String = "",
-    var userId: String? = null,
-    var userName: String? = null,
-    var userPhotoUrl: String? = null,
-    var rating: Float = 0.0f,
-    var usagePeriod: String = "",
-    var reviewText: String = "",
-    var recommend: Boolean = false,
-    var reviewDate: Date,
-    var timestamp: Long = 0L
+    val id: String = "",
+    val productId: String = "",
+    val userId: String = "",
+    val userName: String = "",
+    var userPhotoUrl: String = "default",
+    val rating: Float = 0f,
+    val usagePeriod: String = "",
+    val reviewText: String = "",
+    val recommend: Boolean = false,
+    val reviewDate: Date = Date()
 )

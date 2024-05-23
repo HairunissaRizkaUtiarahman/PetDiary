@@ -1,6 +1,5 @@
 package org.projectPA.petdiary.viewmodel
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +16,10 @@ class ChooseProductViewModel : ViewModel() {
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
 
+    private var allProducts: List<Product> = emptyList()
+    private var filteredProducts: List<Product> = emptyList()
+    private var currentQuery: String? = null
+
     init {
         loadProducts()
     }
@@ -26,6 +29,7 @@ class ChooseProductViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { documents ->
                 val productList = documents.mapNotNull { it.toObject(Product::class.java) }
+                allProducts = productList
                 _products.value = productList
             }
             .addOnFailureListener { e ->
@@ -34,32 +38,33 @@ class ChooseProductViewModel : ViewModel() {
     }
 
     fun searchProducts(query: String) {
-        val productsRef = firestore.collection("products")
+        currentQuery = query.lowercase()
+        val queryParts = currentQuery!!.split(" ")
 
-        val queryProduct = productsRef
-            .whereGreaterThanOrEqualTo("productName", query)
-            .whereLessThanOrEqualTo("productName", query + "\uf8ff")
-
-        val queryBrand = productsRef
-            .whereGreaterThanOrEqualTo("brandName", query)
-            .whereLessThanOrEqualTo("brandName", query + "\uf8ff")
-
-        val combinedProducts = mutableSetOf<Product>()
-
-        queryProduct.get().addOnSuccessListener { documents ->
-            val productsByName = documents.mapNotNull { it.toObject(Product::class.java) }
-            combinedProducts.addAll(productsByName)
-
-            queryBrand.get().addOnSuccessListener { documents ->
-                val productsByBrand = documents.mapNotNull { it.toObject(Product::class.java) }
-                combinedProducts.addAll(productsByBrand)
-
-                _products.value = combinedProducts.toList()
-            }.addOnFailureListener { e ->
-                _error.value = "Error searching products by brand: ${e.message}"
+        filteredProducts = allProducts.filter { product ->
+            queryParts.all { part ->
+                product.productName.lowercase().contains(part) || product.brandName.lowercase().contains(part)
             }
-        }.addOnFailureListener { e ->
-            _error.value = "Error searching products by name: ${e.message}"
         }
+        _products.value = filteredProducts
+    }
+
+    fun clearSearch() {
+        currentQuery = null
+        filteredProducts = emptyList()
+        _products.value = allProducts
+    }
+
+    fun sortProducts(sortOption: String) {
+        val listToSort = if (currentQuery != null && filteredProducts.isNotEmpty()) filteredProducts else allProducts
+        val sortedProducts = when (sortOption) {
+            "popular" -> listToSort.sortedByDescending { it.reviewCount }
+            "highest_rating" -> listToSort.sortedByDescending { it.averageRating }
+            "newest" -> listToSort.sortedByDescending { it.createdAt }
+            else -> listToSort
+        }
+
+
+        _products.value = sortedProducts
     }
 }

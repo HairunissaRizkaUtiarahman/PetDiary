@@ -21,14 +21,22 @@ class GiveRatingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val productId = intent.getStringExtra("productId")
+        val brandName = intent.getStringExtra("brandName")
+        val productName = intent.getStringExtra("productName")
+        val petType = intent.getStringExtra("petType")
+        val imageUrl = intent.getStringExtra("imageUrl")
 
-        productId?.let {
-            viewModel.loadProductDetails(it)
+        if (productId != null) {
+            viewModel.loadProductDetails(productId)
         }
+
+        displayProductDetails(brandName, productName, petType, imageUrl)
 
         binding.backToChooseProductButton.setOnClickListener {
             onBackPressed()
         }
+
+
 
         binding.nextButtonToUsageProduct.setOnClickListener {
             viewModel.setRating(binding.ratingBar.rating.toDouble())
@@ -54,5 +62,15 @@ class GiveRatingActivity : AppCompatActivity() {
         binding.productTypeAnimal.text = "For ${product.petType}"
 
         Glide.with(this).load(product.imageUrl).into(binding.productPictureRaviewDetailPage)
+    }
+
+    private fun displayProductDetails(brandName: String?, productName: String?, petType: String?, imageUrl: String?) {
+        binding.brandName.text = brandName
+        binding.productName.text = productName
+        binding.productTypeAnimal.text = "For $petType"
+
+        if (!imageUrl.isNullOrEmpty()) {
+            Glide.with(this).load(imageUrl).into(binding.productPictureRaviewDetailPage)
+        }
     }
 }

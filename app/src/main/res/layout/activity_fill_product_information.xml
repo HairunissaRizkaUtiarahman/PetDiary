@@ -35,15 +35,25 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/upload_photo_button"
+    <ImageView
+        android:id="@+id/product_image"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
-        android:layout_margin="25dp"
-        android:background="@drawable/background_ic_camera"
-        android:contentDescription="@string/upload_photo"
-        app:srcCompat="@drawable/ic_camera" />
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/image_blank" />
+
+    <TextView
+        android:id="@+id/upload_photo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="Upload Image"
+        android:textColor="@color/orange_main"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/brand_name_text"
@@ -57,14 +67,15 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_input"
+        android:id="@+id/brandNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <!-- Brand Name Input -->
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_brand_name"
+            android:id="@+id/formInputBrandName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -91,22 +102,38 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/productNameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_product_name"
+            android:id="@+id/formInputProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:inputType="text"
-            android:maxLength="30"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/background_icon_home"
             android:gravity="top"
             android:hint="@string/enter_product_name"
+            android:inputType="text"
+            android:maxLength="30"
             android:nestedScrollingEnabled="true"
             android:textAlignment="gravity" />
+
+        <TextView
+            android:id="@+id/warning_product_name_already_exist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Product name already exist!"
+            android:textColor="@color/orange_main"
+            android:visibility="gone" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,13 +149,14 @@
         android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/form_input_description_layout"
+        android:id="@+id/descriptionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:boxBackgroundMode="none">
+        app:boxBackgroundMode="none"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/form_input_description"
+            android:id="@+id/formInputDescription"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="top"
