@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
-import org.projectPA.petdiary.databinding.FragmentDashboardHomeBinding
+import org.projectPA.petdiary.databinding.FragmentHomeBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.activities.MyPetActivity
 import org.projectPA.petdiary.view.activities.ProductDetailActivity
@@ -18,14 +18,14 @@ import org.projectPA.petdiary.view.adapters.ProductAdapter
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentDashboardHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var productAdapter: ProductAdapter
     private lateinit var firestore: FirebaseFirestore
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentDashboardHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
