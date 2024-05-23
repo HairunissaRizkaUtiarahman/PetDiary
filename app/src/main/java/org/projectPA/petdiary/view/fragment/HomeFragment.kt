@@ -16,7 +16,7 @@ import org.projectPA.petdiary.view.activities.ProductDetailActivity
 import org.projectPA.petdiary.view.activities.ReviewHomePageActivity
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 
-class DashboardHomeFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     private var _binding: FragmentDashboardHomeBinding? = null
     private val binding get() = _binding!!

@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDashboardBinding
-import org.projectPA.petdiary.view.fragment.DashboardHomeFragment
-import org.projectPA.petdiary.view.fragment.DashboardProfileFragment
+import org.projectPA.petdiary.view.fragment.HomeFragment
+import org.projectPA.petdiary.view.fragment.ProfileFragment
 import org.projectPA.petdiary.viewmodel.DashboardViewModel
 
 class DashboardActivity : AppCompatActivity() {
@@ -30,13 +30,13 @@ class DashboardActivity : AppCompatActivity() {
         })
 
         // Initialize the default fragment when the activity is created
-        viewModel.selectFragment(DashboardHomeFragment())
+        viewModel.selectFragment(HomeFragment())
 
         // Set listener for bottom navigation view
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> viewModel.selectFragment(DashboardHomeFragment())
-                R.id.profile -> viewModel.selectFragment(DashboardProfileFragment())
+                R.id.home -> viewModel.selectFragment(HomeFragment())
+                R.id.profile -> viewModel.selectFragment(ProfileFragment())
             }
             true // Return true to indicate that the item selection is handled
         }

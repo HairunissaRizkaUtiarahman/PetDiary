@@ -15,7 +15,7 @@ import org.projectPA.petdiary.view.activities.LoginActivity
 import org.projectPA.petdiary.view.activities.MyProfileActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
-class DashboardProfileFragment : Fragment() {
+class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentDashboardProfileBinding
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
 
