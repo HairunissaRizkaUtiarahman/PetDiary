@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_profile_nav"
+    app:startDestination="@id/myProfileFragment">
+
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" >
+        <action
+            android:id="@+id/action_myProfileFragment_to_myProfileEditFragment"
+            app:destination="@id/myProfileEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProfileEditFragment"
+        android:name="org.projectPA.petdiary.view.fragment.MyProfileEditFragment"
+        android:label="fragment_my_profile_edit"
+        tools:layout="@layout/fragment_my_profile_edit" />
+</navigation>

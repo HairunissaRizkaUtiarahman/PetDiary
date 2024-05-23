@@ -3,43 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.ProfileFragment"
-    android:background="@drawable/background_profile">
+    android:background="@drawable/background_profile"
+    tools:context=".view.fragment.DashboardProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
             android:layout_marginTop="75dp"
-            android:layout_marginBottom="100dp">
+            android:layout_marginBottom="100dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage_IV"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:src="@drawable/image_profile"/>
+                android:src="@drawable/image_profile" />
 
             <TextView
                 android:id="@+id/name_Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_marginTop="5dp"
                 android:text="Name"
-                android:layout_marginTop="5dp"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/bio_Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bio"/>
+                android:text="Bio" />
 
         </LinearLayout>
 
@@ -50,30 +49,33 @@
 
             <Button
                 android:id="@+id/myProfile_Btn"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
                 android:text="@string/my_profile"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/setting_Btn"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
                 android:text="@string/setting"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/logout_Btn"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="25dp"
                 android:text="@string/logout"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 

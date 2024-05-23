@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.MyProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage_IV"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/image_profile" />
+
+        <TextView
+            android:id="@+id/name_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Name"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bio_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio" />
+
+        <Button
+            android:id="@+id/editMyProfile_Btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="10dp"
+            android:text="EDIT PROFILE"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_dark" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/myProfileTL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabGravity="fill"
+            app:tabMode="fixed" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/myProfileVP"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</FrameLayout>
