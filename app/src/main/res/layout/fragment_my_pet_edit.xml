@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Edit My Pet"
+                android:text="@string/my_pet_edit"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -58,9 +58,10 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Image"
+                android:text="@string/select_image"
                 android:textStyle="bold" />
         </LinearLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/petName_TIL"
@@ -73,7 +74,7 @@
                 android:id="@+id/petNameTIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Pet Name"
+                android:hint="@string/my_pet_name"
                 android:inputType="textPersonName" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +90,7 @@
                 android:id="@+id/petType_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type or Species"
+                android:hint="@string/my_pet_type"
                 android:inputType="textPersonName" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
-            android:text="Gender"
+            android:text="@string/gender"
             android:textStyle="bold" />
 
         <RadioGroup
@@ -114,14 +115,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Male" />
+                android:text="@string/male" />
 
             <RadioButton
                 android:id="@+id/female_RB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Female" />
+                android:text="@string/female" />
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -135,7 +136,7 @@
                 android:id="@+id/petAge_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Age"
+                android:hint="@string/age"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>

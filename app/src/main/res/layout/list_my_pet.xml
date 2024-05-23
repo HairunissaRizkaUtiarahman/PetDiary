@@ -32,7 +32,7 @@
                 android:id="@+id/petName_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/my_pet_name"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -40,14 +40,14 @@
                 android:id="@+id/petType_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type or Species"
+                android:text="@string/my_pet_type"
                 android:textColor="@color/black_grey" />
 
             <Button
                 android:id="@+id/petDetail_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Details"
+                android:text="@string/my_pet_details"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
