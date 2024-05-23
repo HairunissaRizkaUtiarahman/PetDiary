@@ -41,7 +41,6 @@ class HomeFragment : Fragment() {
         binding.reviewButton.setOnClickListener {
             startActivity(Intent(activity, ReviewHomePageActivity::class.java))
         }
-
     }
 
     private fun setupRecyclerView() {
@@ -56,11 +55,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadDataFromFirestore() {
+        // Clear local cache before fetching data
+        firestore.clearPersistence().addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d("HomeFragment", "Local cache cleared")
+                fetchProductsFromFirestore()
+            } else {
+                Log.e("HomeFragment", "Failed to clear local cache", it.exception)
+                fetchProductsFromFirestore() // Fetch anyway if cache clear fails
+            }
+        }
+    }
+
+    private fun fetchProductsFromFirestore() {
         firestore.collection("products")
             .get()
             .addOnSuccessListener { documents ->
-                val productList = documents.mapNotNull { it.toObject(Product::class.java) }
-                productAdapter.updateData(productList) // Update adapter with fetched products
+                val productList = documents.mapNotNull { document ->
+                    val product = document.toObject(Product::class.java)
+                    Log.d("HomeFragment", "Fetched product: ${product.id} - ${product.productName}")
+                    product
+                }
+                productAdapter.updateData(productList)
+                Log.d("HomeFragment", "Total products fetched: ${productList.size}")
             }
             .addOnFailureListener { exception ->
                 Log.e("HomeFragment", "Error getting documents: ", exception)

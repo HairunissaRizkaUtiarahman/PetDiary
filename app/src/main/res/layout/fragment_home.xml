@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".view.fragment.HomeFragment">
 
@@ -88,7 +88,7 @@
 
                     <ImageView
                         android:id="@+id/review_icon"
-                        android:layout_width="60dp"
+                        android:layout_width="50dp"
                         android:layout_height="45dp"
                         app:srcCompat="@drawable/icon_reviews" />
 
@@ -235,7 +235,7 @@
             <LinearLayout
                 android:id="@+id/justtoscrolll"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="120dp"
                 android:orientation="horizontal">
 
             </LinearLayout>
