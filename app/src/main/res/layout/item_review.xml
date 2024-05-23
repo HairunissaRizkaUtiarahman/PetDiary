@@ -22,7 +22,7 @@
             android:padding="20dp"
             android:src="@drawable/ic_number_4"
             android:visibility="visible"
-            app:civ_border_color="@color/green_main"
+            app:civ_border_color="@color/white"
             app:civ_border_width="2dp" />
 
         <LinearLayout

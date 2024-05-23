@@ -43,6 +43,11 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        loadDataFromFirestore()
+    }
+
     private fun setupRecyclerView() {
         productAdapter = ProductAdapter(emptyList()) { productId ->
             val intent = Intent(context, ProductDetailActivity::class.java).apply {
@@ -69,6 +74,8 @@ class HomeFragment : Fragment() {
 
     private fun fetchProductsFromFirestore() {
         firestore.collection("products")
+            .orderBy("reviewCount", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .limit(5)
             .get()
             .addOnSuccessListener { documents ->
                 val productList = documents.mapNotNull { document ->
