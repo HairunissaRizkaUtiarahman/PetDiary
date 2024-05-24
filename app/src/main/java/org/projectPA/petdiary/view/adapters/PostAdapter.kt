@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.adapters
+package com.example.testproject.ui.socialmedia.post
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -62,10 +62,12 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
 
             unlikeBtn.setOnClickListener {
                 onLike(post)
+                notifyItemChanged(adapterPosition)
             }
 
             likeBtn.setOnClickListener {
                 onLike(post)
+                notifyItemChanged(adapterPosition)
             }
         }
     }
