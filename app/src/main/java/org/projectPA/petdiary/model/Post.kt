@@ -11,5 +11,8 @@ data class Post(
     val imageUrl: String? = "",
     val timestamp: Timestamp? = Timestamp.now(),
     val isDeleted: Boolean? = false,
-    @get:Exclude val user: User? = User()
+    @get:Exclude val user: User? = User(),
+    val like: Like? = Like(),
+    val likeCount: Int? = 0,
+    val commentCount: Int? = 0
 ) : Serializable

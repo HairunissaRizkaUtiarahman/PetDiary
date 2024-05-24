@@ -196,6 +196,10 @@
 
     <string name="my_profile_edit">Edit My Profile</string>
 
+    // Community
+    <string name="like_count">%1$d Like</string>
+    <string name="comment_count">%1$d Comment</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

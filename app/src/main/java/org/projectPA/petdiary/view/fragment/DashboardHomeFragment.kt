@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.databinding.FragmentDashboardHomeBinding
 import org.projectPA.petdiary.model.Product
+import org.projectPA.petdiary.view.activities.CommunityHomePageActivity
 import org.projectPA.petdiary.view.activities.MyPetActivity
 import org.projectPA.petdiary.view.activities.ProductDetailActivity
 import org.projectPA.petdiary.view.activities.ReviewHomePageActivity
@@ -42,6 +43,10 @@ class DashboardHomeFragment : Fragment() {
 
         binding.reviewButton.setOnClickListener {
             startActivity(Intent(activity, ReviewHomePageActivity::class.java))
+        }
+
+        binding.communityButton.setOnClickListener {
+            startActivity(Intent(activity, CommunityHomePageActivity::class.java))
         }
 
     }

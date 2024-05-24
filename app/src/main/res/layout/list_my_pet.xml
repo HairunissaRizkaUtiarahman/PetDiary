@@ -47,7 +47,7 @@
                 android:id="@+id/petDetail_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/my_pet_details"
+                android:text="@string/details"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
