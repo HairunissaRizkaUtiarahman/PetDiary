@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentDashboardHomeBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.activities.CommunityHomePageActivity
@@ -16,14 +19,16 @@ import org.projectPA.petdiary.view.activities.MyPetActivity
 import org.projectPA.petdiary.view.activities.ProductDetailActivity
 import org.projectPA.petdiary.view.activities.ReviewHomePageActivity
 import org.projectPA.petdiary.view.adapters.ProductAdapter
+import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class DashboardHomeFragment : Fragment() {
-
     private var _binding: FragmentDashboardHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var productAdapter: ProductAdapter
     private lateinit var firestore: FirebaseFirestore
+
+    private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDashboardHomeBinding.inflate(inflater, container, false)
@@ -48,7 +53,7 @@ class DashboardHomeFragment : Fragment() {
         binding.communityButton.setOnClickListener {
             startActivity(Intent(activity, CommunityHomePageActivity::class.java))
         }
-
+        fetchData()
     }
 
     private fun setupRecyclerView() {
@@ -77,5 +82,15 @@ class DashboardHomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun fetchData() {
+        viewModel.loadData()
+
+        viewModel.myProfile.observe(viewLifecycleOwner) { user ->
+            user?.let {
+                binding.toolbarReview.title = String.format(getString(R.string.home_name_user), user.name)
+            }
+        }
     }
 }

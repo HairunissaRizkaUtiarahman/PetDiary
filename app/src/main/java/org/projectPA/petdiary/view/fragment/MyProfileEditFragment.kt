@@ -2,6 +2,7 @@ package org.projectPA.petdiary.view.fragment
 
 import android.net.Uri
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,10 @@ class MyProfileEditFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         var uri: Uri? = null
 
         val petImage = registerForActivityResult(
@@ -50,7 +55,7 @@ class MyProfileEditFragment : Fragment() {
                 val address = addressTIET.text.toString().trim()
                 val bio = bioTIET.text.toString().trim()
 
-                if (name != "" && address != "" && bio != "") {
+                if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
                     Toast.makeText(
                         requireContext(),
                         "Success Update My Profile",
@@ -59,11 +64,25 @@ class MyProfileEditFragment : Fragment() {
 
                     viewModel.updateData(name, address, bio, uri)
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Failed to Update My Profile",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    when {
+                        name.isEmpty() -> Toast.makeText(
+                            requireContext(),
+                            "Name cannot be empty",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        address.isEmpty() -> Toast.makeText(
+                            requireContext(),
+                            "Address cannot be empty",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        bio.isEmpty() -> Toast.makeText(
+                            requireContext(),
+                            "Bio cannot be empty",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
@@ -92,8 +111,14 @@ class MyProfileEditFragment : Fragment() {
             }
         }
 
-        binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        val inputFilterName = InputFilter.LengthFilter(100)
+        val inputFilterEmail = InputFilter.LengthFilter(100)
+        val inputFilterAddress = InputFilter.LengthFilter(150)
+        val inputFilterBio = InputFilter.LengthFilter(100)
+
+        binding.nameTIET.filters = arrayOf(inputFilterName)
+        binding.emailTIET.filters = arrayOf(inputFilterEmail)
+        binding.addressTIET.filters = arrayOf(inputFilterAddress)
+        binding.bioTIET.filters = arrayOf(inputFilterBio)
     }
 }

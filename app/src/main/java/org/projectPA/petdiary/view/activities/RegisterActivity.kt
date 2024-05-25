@@ -11,12 +11,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
-    private lateinit var nameEditText: TextInputEditText
-    private lateinit var addressEditText: TextInputEditText
-    private lateinit var emailEditText: TextInputEditText
-    private lateinit var passwordEditText: TextInputEditText
+    private lateinit var binding: ActivityRegisterBinding
+
+    private lateinit var name: TextInputEditText
+    private lateinit var address: TextInputEditText
+    private lateinit var email: TextInputEditText
+    private lateinit var password: TextInputEditText
 
     private lateinit var signUpButton: Button
     private lateinit var signInTextView: TextView
@@ -30,19 +33,19 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        nameEditText = findViewById(R.id.name_TextInputEditText)
-        addressEditText = findViewById(R.id.address_TextInputEditText)
-        emailEditText = findViewById(R.id.email_TextInputEditText)
-        passwordEditText = findViewById(R.id.password_TextInputEditText)
+        name = findViewById(R.id.name_TIET)
+        address = findViewById(R.id.address_TIET)
+        email = findViewById(R.id.email_TIET)
+        password = findViewById(R.id.password_TIET)
 
         signUpButton = findViewById(R.id.signUp_Btn)
         signInTextView = findViewById(R.id.signIn_TextView)
 
         signUpButton.setOnClickListener {
-            val name = nameEditText.text.toString().trim()
-            val address = addressEditText.text.toString().trim()
-            val email = emailEditText.text.toString().trim()
-            val password = passwordEditText.text.toString().trim()
+            val name = name.text.toString().trim()
+            val address = address.text.toString().trim()
+            val email = email.text.toString().trim()
+            val password = password.text.toString().trim()
 
             if (validateInput(name, address, email, password)) {
                 createUserWithEmailAndPassword(email, password, name, address)
@@ -117,9 +120,9 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun clearFields() {
-        nameEditText.text?.clear()
-        addressEditText.text?.clear()
-        emailEditText.text?.clear()
-        passwordEditText.text?.clear()
+        name.text?.clear()
+        address.text?.clear()
+        email.text?.clear()
+        password.text?.clear()
     }
 }

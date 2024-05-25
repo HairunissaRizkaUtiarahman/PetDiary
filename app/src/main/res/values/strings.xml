@@ -200,6 +200,11 @@
     <string name="like_count">%1$d Like</string>
     <string name="comment_count">%1$d Comment</string>
 
+
+    <string name="home_name_user">Hi! %1$s</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
