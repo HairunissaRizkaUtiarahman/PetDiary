@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentDashboardProfileBinding
-import org.projectPA.petdiary.view.activities.LoginActivity
+import org.projectPA.petdiary.view.activities.SigninActivity
 import org.projectPA.petdiary.view.activities.MyProfileActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
@@ -36,7 +36,7 @@ class DashboardProfileFragment : Fragment() {
 
         binding.logoutBtn.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            val intent = Intent(requireContext(), LoginActivity::class.java)
+            val intent = Intent(requireContext(), SigninActivity::class.java)
             startActivity(intent)
         }
         fetchData()

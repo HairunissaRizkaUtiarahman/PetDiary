@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_orange"
-    tools:context=".view.activities.LoginActivity">
+    tools:context=".view.activities.SigninActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,38 +16,36 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/gambar"
+            android:id="@+id/logo_petDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/logo" />
 
         <TextView
-            android:id="@+id/login_TextView"
+            android:id="@+id/login_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="LOGIN"
+            android:text="SIGN IN"
             android:textColor="@color/black"
             android:textSize="32dp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/loginSec_TextView"
+            android:id="@+id/loginSec_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="Please Sign In to continue"
+            android:text="Please login to continue"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_TextInputLayout"
+            android:id="@+id/email_TIL"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +57,7 @@
             app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/email_TextInputEditText"
+                android:id="@+id/email_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
@@ -68,7 +66,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/password_TextInputLayout"
+            android:id="@+id/password_TIL"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,13 +77,23 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password_TextInputEditText"
+                android:id="@+id/password_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/forgotPass_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="5dp"
+            android:gravity="end"
+            android:text="Forgot Password?" />
 
         <Button
             android:id="@+id/signIn_Btn"
@@ -108,19 +116,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Don’t have an account?"
-                android:textColor="@color/black">
-
-            </TextView>
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/signUp_TextView"
+                android:id="@+id/signUp_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" Sign Up"
                 android:textColor="@color/green_secondary"
-                android:textStyle="bold">
-
-            </TextView>
+                android:textStyle="bold" />
 
         </LinearLayout>
 

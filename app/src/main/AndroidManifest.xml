@@ -19,6 +19,10 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.ResetPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PetDiary" />
+        <activity
             android:name=".view.activities.AddPostCommunityActivity"
             android:exported="false" />
         <activity
@@ -40,11 +44,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.RegisterActivity"
+            android:name=".view.activities.SignupActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.LoginActivity"
+            android:name=".view.activities.SigninActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 
