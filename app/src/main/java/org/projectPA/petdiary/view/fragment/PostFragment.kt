@@ -54,5 +54,9 @@ class PostFragment : Fragment() {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)
             startActivity(intent)
         }
+
+        binding.searchBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_communityFragment_to_userSearchFragment)
+        }
     }
 }

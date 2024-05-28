@@ -23,13 +23,13 @@
             app:titleTextColor="@color/black">
 
             <ImageView
-                android:id="@+id/back_to_review_homepage_button"
+                android:id="@+id/search_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/notification_icon_description"
-                android:src="@drawable/icon_notification" />
+                android:src="@drawable/icon_search" />
 
         </androidx.appcompat.widget.Toolbar>
 

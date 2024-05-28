@@ -13,10 +13,41 @@
         <action
             android:id="@+id/action_communityFragment_to_communityCommentFragment"
             app:destination="@id/communityCommentFragment" />
+        <action
+            android:id="@+id/action_communityFragment_to_userSearchFragment"
+            app:destination="@id/userSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/communityCommentFragment"
         android:name="org.projectPA.petdiary.view.fragment.CommentPostFragment"
         android:label="fragment_community_comment"
         tools:layout="@layout/fragment_post_comment" />
+    <fragment
+        android:id="@+id/userSearchFragment"
+        android:name="org.projectPA.petdiary.view.fragment.UserSearchFragment"
+        android:label="fragment_user_search"
+        tools:layout="@layout/fragment_user_search" >
+        <action
+            android:id="@+id/action_userSearchFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.UserProfileFragment"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfileFragment_to_commentPostUserProfileFragment"
+            app:destination="@id/commentPostUserProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postUserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.PostUserProfileFragment"
+        android:label="fragment_post_user_profile"
+        tools:layout="@layout/fragment_post_user_profile" />
+    <fragment
+        android:id="@+id/commentPostUserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.CommentPostUserProfileFragment"
+        android:label="fragment_comment_post_user_profile"
+        tools:layout="@layout/fragment_comment_post_user_profile" />
 </navigation>
