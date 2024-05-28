@@ -1,9 +1,7 @@
 package org.projectPA.petdiary.view.activities
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.text.InputFilter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -36,22 +34,14 @@ class AddPostCommunityActivity : AppCompatActivity() {
             postImage.launch("image/*")
         }
 
-        val inputFilter = InputFilter.LengthFilter(250)
-        binding.descTextInputEditText.filters = arrayOf(inputFilter)
-
         binding.postBtn.setOnClickListener {
             val desc = binding.descTextInputEditText.text.toString().trim()
 
-            if (desc.isEmpty()) {
-                Toast.makeText(this, "Comment cannot be empty", Toast.LENGTH_SHORT).show()
-            } else if (desc.length > 250) {
-                Toast.makeText(this, "Comment cannot exceed 500 characters", Toast.LENGTH_SHORT).show()
-            } else {
+            if (desc != "") {
                 viewModel.uploadData(desc, uri)
-                Toast.makeText(this, "Success send comment", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
                 binding.descTextInputEditText.text?.clear()
             }
-
         }
 
         viewModel.isLoading.observe(this) {
@@ -59,10 +49,12 @@ class AddPostCommunityActivity : AppCompatActivity() {
                 binding.postBtn.text = "UPLOADING..."
             } else {
                 binding.postBtn.text = "POST"
-                val intent = Intent(this, CommunityHomePageActivity::class.java)
-                startActivity(intent)
                 finish()
             }
+        }
+
+        binding.backBtn.setOnClickListener {
+            finish()
         }
     }
 }

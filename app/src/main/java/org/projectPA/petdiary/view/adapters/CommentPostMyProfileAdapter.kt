@@ -11,7 +11,9 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListPostCommentBinding
 import org.projectPA.petdiary.relativeTime
 
-class CommentPostAdapter() : ListAdapter<CommentPost, CommentPostAdapter.ViewHolder>(Companion) {
+class CommentPostMyProfileAdapter() :
+    ListAdapter<CommentPost, CommentPostMyProfileAdapter.ViewHolder>(Companion) {
+
     companion object : DiffUtil.ItemCallback<CommentPost>() {
         override fun areContentsTheSame(oldItem: CommentPost, newItem: CommentPost): Boolean {
             return oldItem == newItem

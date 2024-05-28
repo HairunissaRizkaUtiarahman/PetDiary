@@ -17,8 +17,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
-import org.projectPA.petdiary.model.Post
 import org.projectPA.petdiary.model.Like
+import org.projectPA.petdiary.model.Post
 
 private const val LOG_TAG = "CommunityRepository"
 
@@ -27,8 +27,8 @@ class PostRepository(
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
-    //Add Post
-    suspend fun addPosts(desc: String, uri: Uri?) {
+    // Query Add Post
+    suspend fun addPost(desc: String, uri: Uri?) {
         try {
             val userId = auth.currentUser!!.uid
             val postMap = hashMapOf(
@@ -55,26 +55,11 @@ class PostRepository(
         }
     }
 
-    // Add Comment to Post
-    suspend fun addCommentPosts(comment: String, postId: String) {
-        try {
-            val userId = auth.currentUser!!.uid
-            val postCommentMap = mapOf(
-                "comment" to comment,
-                "userId" to userId,
-                "timestamp" to Timestamp.now()
-            )
-            db.collection("post").document(postId).update("commentCount", FieldValue.increment(1))
-                .await()
-            db.collection("post").document(postId).collection("comment").add(postCommentMap).await()
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get post data", e)
-        }
-    }
-
-    // Query Get many Post
-    suspend fun getPosts(currentUserID: String): Flow<List<Post>> {
+    // Query Get Posts
+    suspend fun getPosts(): Flow<List<Post>> {
         return try {
+            val currentUserID = auth.currentUser!!.uid
+
             db.collection("post").whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
@@ -90,8 +75,7 @@ class PostRepository(
                             .document("${currentUserID}_${it.id}").get().await()
                             .toObject(Like::class.java)
 
-                        it.toObject(Post::class.java)
-                            .copy(id = it.id, user = user, like = like)
+                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
@@ -127,6 +111,94 @@ class PostRepository(
         }
     }
 
+    // Query Delete Post
+    suspend fun deletePost(postId: String) {
+        try {
+            val petMap = mapOf(
+                "isDeleted" to true
+            )
+            db.collection("post").document(postId).update(petMap).await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to delete post", e)
+        }
+    }
+
+    // Query Get Posts (My Profile)
+    suspend fun getMyPosts(): Flow<List<Post>> {
+        return try {
+            val currentUserID = auth.currentUser!!.uid
+
+            val userId = auth.currentUser!!.uid
+            db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        val like = db
+                            .collection("like")
+                            .document("${currentUserID}_${it.id}").get().await()
+                            .toObject(Like::class.java)
+
+                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get post data", e)
+            emptyFlow()
+        }
+    }
+
+    // Query Get Posts (User Profile)
+    suspend fun getPostsUserProfile(userId: String): Flow<List<Post>> {
+        return try {
+            val currentUserID = auth.currentUser!!.uid
+
+            db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        val like = db
+                            .collection("like")
+                            .document("${currentUserID}_${it.id}").get().await()
+                            .toObject(Like::class.java)
+
+                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get post data", e)
+            emptyFlow()
+        }
+    }
+
+    // Query Add Comment to Post
+    suspend fun addCommentPost(comment: String, postId: String) {
+        try {
+            val userId = auth.currentUser!!.uid
+            val postCommentMap = mapOf(
+                "comment" to comment,
+                "userId" to userId,
+                "timestamp" to Timestamp.now()
+            )
+            db.collection("post").document(postId).update("commentCount", FieldValue.increment(1))
+                .await()
+            db.collection("post").document(postId).collection("comment").add(postCommentMap).await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get post data", e)
+        }
+    }
+
     // Query Get Comment from Post
     suspend fun getCommentPost(postId: String): Flow<List<CommentPost>> {
         return try {
@@ -149,7 +221,7 @@ class PostRepository(
         }
     }
 
-    // Query Like
+    // Query Set Like
     suspend fun setLike(currentUserID: String, postId: String) {
         try {
             val docId = "${currentUserID}_${postId}"

@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/communityCommentFragment"
-        android:name="org.projectPA.petdiary.view.fragment.PostCommentFragment"
+        android:name="org.projectPA.petdiary.view.fragment.CommentPostFragment"
         android:label="fragment_community_comment"
         tools:layout="@layout/fragment_post_comment" />
 </navigation>

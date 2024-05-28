@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_secondary"
-    tools:context=".view.fragment.CommentPostFragment">
+    android:fitsSystemWindows="true"
+    tools:context=".view.fragment.CommentPostMyProfileFragmentFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

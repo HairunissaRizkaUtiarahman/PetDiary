@@ -1,12 +1,11 @@
 package org.projectPA.petdiary.view.fragment
 
 import android.os.Bundle
-import android.text.InputFilter
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -18,7 +17,7 @@ import org.projectPA.petdiary.view.adapters.CommentPostAdapter
 import org.projectPA.petdiary.viewmodel.CommentPostViewModel
 import org.projectPA.petdiary.viewmodel.PostViewModel
 
-class PostCommentFragment : Fragment() {
+class CommentPostFragment : Fragment() {
     private lateinit var binding: FragmentPostCommentBinding
     private lateinit var commentPostAdapter: CommentPostAdapter
 
@@ -51,7 +50,8 @@ class PostCommentFragment : Fragment() {
                 }
 
                 likeCountTV.text = requireContext().getString(R.string.like_count, it.likeCount)
-                commentCountTV.text = requireContext().getString(R.string.comment_count, it.commentCount)
+                commentCountTV.text =
+                    requireContext().getString(R.string.comment_count, it.commentCount)
             }
             if (it.like != null) {
                 binding.likeBtn.visibility = View.VISIBLE
@@ -88,17 +88,10 @@ class PostCommentFragment : Fragment() {
 
         commentPostViewModel.loadData(postViewModel.post.value?.id ?: "")
 
-        val inputFilter = InputFilter.LengthFilter(500)
-        binding.commentTextInputEditText.filters = arrayOf(inputFilter)
-
         binding.sendBtn.setOnClickListener {
             val comment = binding.commentTextInputEditText.text.toString().trim()
 
-            if (comment.isEmpty()) {
-                Toast.makeText(requireContext(), "Comment cannot be empty", Toast.LENGTH_SHORT).show()
-            } else if (comment.length > 500) {
-                Toast.makeText(requireContext(), "Comment cannot exceed 500 characters", Toast.LENGTH_SHORT).show()
-            } else {
+            if (comment != "") {
                 commentPostViewModel.uploadData(comment, postViewModel.post.value?.id ?: "")
                 Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
                 binding.commentTextInputEditText.text?.clear()

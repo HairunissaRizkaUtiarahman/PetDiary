@@ -1,4 +1,4 @@
-package com.example.testproject.ui.socialmedia.post
+package org.projectPA.petdiary.view.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -13,8 +13,12 @@ import org.projectPA.petdiary.databinding.ListPostBinding
 import org.projectPA.petdiary.model.Post
 import org.projectPA.petdiary.relativeTime
 
-class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit) :
-    ListAdapter<Post, PostAdapter.ViewHolder>(Companion) {
+class PostMyProfileAdapter(
+    val onClick: (Post, View) -> Unit,
+    val onLike: (Post) -> Unit,
+    val onDelete: (Post) -> Unit
+) :
+    ListAdapter<Post, PostMyProfileAdapter.ViewHolder>(Companion) {
     private lateinit var context: Context
 
     companion object : DiffUtil.ItemCallback<Post>() {
@@ -36,13 +40,19 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
             timePostTV.text = post.timestamp?.relativeTime() ?: ""
 
             Glide.with(profileImageIV.context).load(post.user?.imageUrl)
-                .placeholder(R.drawable.image_profile).into(profileImageIV)
+                .placeholder(R.drawable.image_blank).into(profileImageIV)
 
             if (post.imageUrl != "" && post.imageUrl != null) {
                 postImageIV.visibility = View.VISIBLE
                 Glide.with(postImageIV.context).load(post.imageUrl)
                     .placeholder(R.drawable.image_blank).into(postImageIV)
             }
+
+            likeCountTV.text = context.getString(R.string.like_count, post.likeCount)
+
+            commentCountTV.text = context.getString(R.string.comment_count, post.commentCount)
+
+            deleteBtn.visibility = View.VISIBLE
 
             if (post.like != null) {
                 likeBtn.visibility = View.VISIBLE
@@ -52,13 +62,9 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
                 likeBtn.visibility = View.GONE
             }
 
-            commentBtn.setOnClickListener {
+            binding.commentBtn.setOnClickListener {
                 onClick(post, it)
             }
-
-            likeCountTV.text = context.getString(R.string.like_count, post.likeCount)
-
-            commentCountTV.text = context.getString(R.string.comment_count, post.commentCount)
 
             unlikeBtn.setOnClickListener {
                 onLike(post)
@@ -67,13 +73,16 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
             likeBtn.setOnClickListener {
                 onLike(post)
             }
+
+            deleteBtn.setOnClickListener {
+                onDelete(post)
+            }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        val inlater = LayoutInflater.from(parent.context)
         context = parent.context
-        val binding = ListPostBinding.inflate(inflater, parent, false)
+        val binding = ListPostBinding.inflate(inlater, parent, false)
         return ViewHolder(binding)
     }
 
