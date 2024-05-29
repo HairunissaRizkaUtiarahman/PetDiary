@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -70,19 +71,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_bold"
+                    android:maxLines="1"
                     android:text="Whiskas"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_medium"
+                    android:maxLines="1"
                     android:text="Tuna for kitten"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/product_type_animal"
@@ -90,7 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:fontFamily="@font/roboto"
-                    android:text="For cat" />
+                    android:text="For cat"
+                    android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -146,6 +153,8 @@
                 android:layout_height="48dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:backgroundTintMode="src_in"
+                android:hapticFeedbackEnabled="false"
                 android:visibility="visible" />
 
         </LinearLayout>
@@ -159,7 +168,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/prev_button_to_usage_product"
+            android:id="@+id/prev_button_to_give_rating"
             android:layout_width="150dp"
             android:layout_height="54dp"
             android:layout_margin="15dp"

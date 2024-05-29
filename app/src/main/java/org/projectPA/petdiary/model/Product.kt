@@ -1,6 +1,6 @@
 package org.projectPA.petdiary.model
 
-import android.widget.RatingBar
+import java.util.Date
 
 data class Product(
     var id: String = "",
@@ -13,6 +13,7 @@ data class Product(
     var averageRating: Double = 0.0,
     var reviewCount: Int = 0,
     var percentageOfUsers: Int = 0,
-    var reviews: Map<String, Any>? = null
+    var createdAt: Date = Date(),
+    var productNameLower: String = productName.lowercase(),
+    var brandNameLower: String = brandName.lowercase()
 )
-

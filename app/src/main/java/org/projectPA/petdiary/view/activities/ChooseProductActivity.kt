@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.appcompat.widget.SearchView
 import org.projectPA.petdiary.databinding.ActivityChooseProductBinding
-import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.adapters.ProductAdapter
+import org.projectPA.petdiary.view.fragments.SortButtonProductFragment
 import org.projectPA.petdiary.viewmodel.ChooseProductViewModel
 
 class ChooseProductActivity : AppCompatActivity() {
@@ -34,6 +34,7 @@ class ChooseProductActivity : AppCompatActivity() {
             Log.e("ChooseProductActivity", errorMessage)
         })
 
+        // Search functionality
         binding.searchProduct.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null && query.isNotEmpty()) {
@@ -44,7 +45,7 @@ class ChooseProductActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrEmpty()) {
-                    viewModel.loadProducts()
+                    viewModel.clearSearch()
                 } else {
                     viewModel.searchProducts(newText)
                 }
@@ -54,6 +55,14 @@ class ChooseProductActivity : AppCompatActivity() {
 
         binding.backToReviewHomepageButton.setOnClickListener {
             onBackPressed()
+        }
+
+        // Show sort options when button is clicked
+        binding.sortButtonProduct.setOnClickListener {
+            val sortButtonFragment = SortButtonProductFragment { sortOption ->
+                viewModel.sortProducts(sortOption)
+            }
+            sortButtonFragment.show(supportFragmentManager, sortButtonFragment.tag)
         }
     }
 

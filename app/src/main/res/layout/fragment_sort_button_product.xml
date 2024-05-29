@@ -4,7 +4,7 @@
     android:id="@+id/clicked_sort_button"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black_grey"
+    android:background="#3B888383"
     android:gravity="bottom"
     android:orientation="vertical">
 

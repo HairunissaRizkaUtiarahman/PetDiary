@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:textAlignment="textStart">
 
     <androidx.appcompat.widget.Toolbar
@@ -71,19 +72,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_bold"
+                    android:maxLines="1"
                     android:text="Whiskas"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_medium"
+                    android:maxLines="1"
                     android:text="Tuna for kitten"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/product_type_animal"
@@ -134,17 +140,28 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/write_your_review_about_this_product"
                 android:textAlignment="center"
                 android:textColor="@color/orange_main"
                 android:textSize="20sp" />
 
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Min 10 words"
+                android:textColor="@color/black_grey" />
+
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reviewTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:boxBackgroundMode="none">
+                app:boxBackgroundMode="none"
+                app:hintEnabled="false">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/reviewEditText"

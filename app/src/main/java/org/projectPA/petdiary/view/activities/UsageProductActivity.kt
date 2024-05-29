@@ -44,6 +44,10 @@ class UsageProductActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        binding.prevButtonToGiveRating.setOnClickListener {
+            onBackPressed()
+        }
+
         binding.nextButtonToRecommendProduct.setOnClickListener {
             usagePeriod = binding.usageDropdown.selectedItem.toString()
             if (usagePeriod.isNullOrBlank()) {
@@ -76,8 +80,6 @@ class UsageProductActivity : AppCompatActivity() {
             }
         })
 
-//        viewModel.usagePeriod.observe(this, Observer { usagePeriod ->
-//            // Handle usage period change if needed
-//        })
+
     }
 }

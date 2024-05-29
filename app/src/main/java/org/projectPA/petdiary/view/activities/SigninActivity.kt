@@ -30,6 +30,7 @@ class SigninActivity : AppCompatActivity() {
         }
 
         binding.signUpTV.setOnClickListener {
+          
             startActivity(Intent(this, SignupActivity::class.java))
         }
     }

@@ -2,11 +2,16 @@ package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityWriteReviewStepThreeBinding
 import org.projectPA.petdiary.viewmodel.WriteReviewViewModel
 
@@ -42,8 +47,14 @@ class WriteReviewActivity : AppCompatActivity() {
             viewModel.submitReview()
         }
 
+        binding.prevButtonToUsageProduct.setOnClickListener {
+            onBackPressed()
+        }
+
+        setupTextWatcher(binding.reviewEditText, binding.reviewTextInputLayout)
         observeViewModel()
     }
+
 
     private fun displayProductDetails(brandName: String?, productName: String?, petType: String?, imageUrl: String?) {
         binding.brandName.text = brandName
@@ -53,6 +64,26 @@ class WriteReviewActivity : AppCompatActivity() {
         if (!imageUrl.isNullOrEmpty()) {
             Glide.with(this).load(imageUrl).into(binding.productPictureRaviewDetailPage)
         }
+    }
+
+    private fun setupTextWatcher(editText: TextInputEditText, textInputLayout: TextInputLayout) {
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val text = s.toString()
+                if (text.isEmpty()) {
+                    textInputLayout.hint = getString(R.string.write_you_review_here)
+                } else {
+                    textInputLayout.hint = null
+                }
+                // Optional: additional validation
+                val words = text.trim().split("\\s+".toRegex())
+                binding.nextButtonToRecommendProduct.isEnabled = words.size >= 10
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
 
     private fun observeViewModel() {

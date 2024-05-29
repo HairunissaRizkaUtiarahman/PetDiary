@@ -43,11 +43,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.RegisterActivity"
+            android:name=".view.activities.SignupActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".view.activities.LoginActivity"
+            android:name=".view.activities.SigninActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
 

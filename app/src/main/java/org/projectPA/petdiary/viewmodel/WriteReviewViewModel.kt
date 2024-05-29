@@ -20,8 +20,10 @@ class WriteReviewViewModel : ViewModel() {
     }
 
     fun submitReview() {
-        if (_reviewText.value.isNullOrBlank()) {
-            _errorMessage.value = "Please write a review"
+        val text = _reviewText.value ?: ""
+        val words = text.trim().split("\\s+".toRegex())
+        if (words.size < 10) {
+            _errorMessage.value = "Please write a review with at least 10 words"
         } else {
             _navigateToRecommend.value = true
         }

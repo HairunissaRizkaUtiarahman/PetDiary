@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -69,16 +70,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:fontFamily="@font/roboto_bold"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/roboto_black"
+                    android:maxLines="1"
                     android:text="Whiskas"
                     android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:fontFamily="@font/roboto_medium"
                     android:text="Tuna for kitten"
                     android:textColor="@color/black" />

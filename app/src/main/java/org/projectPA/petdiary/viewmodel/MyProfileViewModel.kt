@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.testproject.dataclass.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
+import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.repository.MyProfileRepository
 
 class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) : ViewModel() {

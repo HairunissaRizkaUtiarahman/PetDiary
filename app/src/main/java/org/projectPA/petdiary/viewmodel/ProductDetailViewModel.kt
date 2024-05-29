@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import android.util.Log
+import com.google.firebase.firestore.FieldValue
 
 class ProductDetailViewModel : ViewModel() {
 
     private val firestore = FirebaseFirestore.getInstance()
 
-    private val _product = MutableLiveData<Product>()
-    val product: LiveData<Product> get() = _product
+    private val _product = MutableLiveData<Product?>()
+    val product: LiveData<Product?> get() = _product
 
     private val _reviews = MutableLiveData<List<Review>>()
     val reviews: LiveData<List<Review>> get() = _reviews
@@ -26,13 +28,9 @@ class ProductDetailViewModel : ViewModel() {
                 val product = document.toObject(Product::class.java)
                 if (product != null) {
                     _product.value = product
-                    if (product.reviewCount > 0) {
-                        fetchReviews(productId)
-                    } else {
-                        _reviews.value = emptyList()
-                    }
+                    observeReviews(productId)
                 } else {
-                    _errorMessage.value = "Failed to load product details"
+                    _errorMessage.value = "Failed to load product details: Product is null"
                 }
             }
             .addOnFailureListener { e ->
@@ -40,16 +38,31 @@ class ProductDetailViewModel : ViewModel() {
             }
     }
 
-    private fun fetchReviews(productId: String) {
+    private fun observeReviews(productId: String) {
         firestore.collection("reviews")
             .whereEqualTo("productId", productId)
-            .get()
-            .addOnSuccessListener { documents ->
-                val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
-                _reviews.value = reviews
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    _errorMessage.value = "Listen failed: ${e.message}"
+                    return@addSnapshotListener
+                }
+
+                if (snapshots != null) {
+                    val reviews = snapshots.toObjects(Review::class.java)
+                    _reviews.value = reviews
+                    updateProductReviewCount(productId, reviews.size)
+                }
+            }
+    }
+
+    private fun updateProductReviewCount(productId: String, reviewCount: Int) {
+        firestore.collection("products").document(productId)
+            .update("reviewCount", reviewCount)
+            .addOnSuccessListener {
+                // Successfully updated review count
             }
             .addOnFailureListener { e ->
-                _errorMessage.value = "Error loading reviews: ${e.message}"
+                _errorMessage.value = "Failed to update review count: ${e.message}"
             }
     }
 }

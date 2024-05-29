@@ -1,58 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:nestedScrollingEnabled="false"
-        android:scrollbarAlwaysDrawVerticalTrack="false" />
+        android:layout_height="match_parent">
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:backgroundTint="@color/orange_secondary"
-        android:isScrollContainer="false"
-        app:fabCradleMargin="10dp"
-        app:fabCradleRoundedCornerRadius="50dp"
-        app:fabCradleVerticalOffset="10dp">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigationView"
+        <FrameLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:animationCache="true"
-            android:background="@android:color/transparent"
-            android:fadeScrollbars="false"
-            android:hapticFeedbackEnabled="false"
+            android:nestedScrollingEnabled="false"
+            android:scrollbarAlwaysDrawVerticalTrack="false">
+
+        </FrameLayout>
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/orange_secondary"
+            android:isScrollContainer="false"
+            app:fabCradleMargin="10dp"
+            app:fabCradleRoundedCornerRadius="50dp"
+            app:fabCradleVerticalOffset="10dp">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="0dp"
+                android:background="@android:color/transparent"
+                android:paddingBottom="0dp"
+                android:visibility="visible"
+                app:elevation="0dp"
+                app:itemIconTint="@color/black"
+                app:itemTextAppearanceActiveBoldEnabled="true"
+                app:itemTextColor="#000000"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_nav" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_main"
+            android:contentDescription="@string/add_button"
+            android:src="@drawable/ic_add"
             android:visibility="visible"
-            app:elevation="0dp"
-            app:itemIconTint="@color/black"
-            app:itemTextAppearanceActiveBoldEnabled="true"
-            app:itemTextColor="#000000"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav" />
+            app:layout_anchor="@id/bottomAppBar"
+            app:layout_anchorGravity="center"
+            app:maxImageSize="40dp"
+            app:tint="@color/black" />
 
-    </com.google.android.material.bottomappbar.BottomAppBar>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/green_main"
-        android:contentDescription="@string/add_button"
-        android:src="@drawable/ic_add"
-        app:layout_anchor="@id/bottomAppBar"
-        app:layout_anchorGravity="center"
-        app:maxImageSize="40dp"
-        app:tint="@color/black" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
