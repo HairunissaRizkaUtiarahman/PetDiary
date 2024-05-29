@@ -25,7 +25,7 @@
                 android:background="@android:color/white"
                 android:elevation="8dp"
                 android:minHeight="?attr/actionBarSize"
-                app:title="Hi Budi"
+                app:title="@string/home_name_user"
                 app:titleTextColor="@color/black">
 
                 <ImageView

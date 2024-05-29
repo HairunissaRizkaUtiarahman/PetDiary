@@ -195,7 +195,7 @@
     <string name="save">Save</string>
 
     <string name="my_profile_edit">Edit My Profile</string>
-
+    <string name="home_name_user">Hi! %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
