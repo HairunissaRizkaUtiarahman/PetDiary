@@ -13,30 +13,23 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/pet_category_toolbar"
+            android:id="@+id/toolbar_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:elevation="8dp"
             android:minHeight="?attr/actionBarSize"
+            app:title="My Profile"
             app:titleTextColor="@color/black">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
-                android:background="@color/white"
-                android:src="@drawable/arrow_back" />
-
-            <TextView
+            <ImageView
+                android:id="@+id/back_to_review_homepage_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="My Profile"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/notification_icon_description"
+                android:src="@drawable/icon_notification" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -66,6 +59,7 @@
                 android:id="@+id/bio_Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Bio" />
 
             <Button

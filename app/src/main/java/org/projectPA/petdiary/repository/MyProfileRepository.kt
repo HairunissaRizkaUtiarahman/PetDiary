@@ -20,6 +20,31 @@ class MyProfileRepository(
     private val storageRef: FirebaseStorage
 ) {
 
+    suspend fun addProfile(name: String, address: String, bio: String, uri: Uri?) {
+        try {
+            val userId = auth.currentUser!!.uid
+            val userMap = mutableMapOf(
+                "userId" to userId,
+                "name" to name,
+                "address" to address,
+                "bio" to bio
+            )
+
+            val imageStorageRef = storageRef.getReference("images").child("pictureProfile")
+                .child(System.currentTimeMillis().toString())
+
+            uri?.let {
+                userMap["imageUrl"] =
+                    imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
+            }
+            db.collection("user").document(userId).update(userMap.toMap()).await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to update post data", e)
+        } catch (e: StorageException) {
+            Log.e(LOG_TAG, "Fail to update post data", e)
+        }
+    }
+
     suspend fun updateMyProfile(name: String, address: String, bio: String, uri: Uri?) {
         try {
             val userId = auth.currentUser!!.uid
@@ -37,9 +62,7 @@ class MyProfileRepository(
                 userMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-            val dbmyprofile = db.collection("user").document(userId).update(userMap.toMap()).await()
-
-            Log.e(LOG_TAG, dbmyprofile.toString())
+            db.collection("user").document(userId).update(userMap.toMap()).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to update post data", e)
         } catch (e: StorageException) {

@@ -13,10 +13,23 @@
         <action
             android:id="@+id/action_myProfileFragment_to_myProfileEditFragment"
             app:destination="@id/myProfileEditFragment" />
+        <action
+            android:id="@+id/action_myProfileFragment_to_commentPostMyFragmentFragment"
+            app:destination="@id/commentPostMyFragmentFragment" />
     </fragment>
     <fragment
         android:id="@+id/myProfileEditFragment"
         android:name="org.projectPA.petdiary.view.fragment.MyProfileEditFragment"
         android:label="fragment_my_profile_edit"
         tools:layout="@layout/fragment_my_profile_edit" />
+    <fragment
+        android:id="@+id/postMyProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.PostMyProfileFragment"
+        android:label="fragment_post_my_profile"
+        tools:layout="@layout/fragment_post_my_profile" />
+    <fragment
+        android:id="@+id/commentPostMyFragmentFragment"
+        android:name="org.projectPA.petdiary.view.fragment.CommentPostMyProfileFragmentFragment"
+        android:label="fragment_comment_post_my_fragment"
+        tools:layout="@layout/fragment_comment_post_my_profile_fragment" />
 </navigation>

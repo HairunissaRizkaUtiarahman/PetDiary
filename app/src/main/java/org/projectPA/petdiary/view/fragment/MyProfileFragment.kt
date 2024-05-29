@@ -55,9 +55,5 @@ class MyProfileFragment : Fragment() {
                 else -> null
             }
         }.attach()
-
-        binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
     }
 }

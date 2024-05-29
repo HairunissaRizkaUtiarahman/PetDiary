@@ -36,6 +36,10 @@ class AddButtonFragment: BottomSheetDialogFragment() {
             Log.d("FragmentAddButton", "add_a_product_button clicked")
             startActivity(Intent(activity, ChooseProductActivity::class.java))
         }
+
+        binding.addAPostButton.setOnClickListener {
+            startActivity(Intent(activity, AddPostCommunityActivity::class.java))
+        }
     }
 
     override fun onDestroyView() {

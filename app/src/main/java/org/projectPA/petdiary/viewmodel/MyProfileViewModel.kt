@@ -47,6 +47,5 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
         _isLoading.postValue(true)
         myProfileRepository.updateMyProfile(name, address, bio, uri)
         _isLoading.postValue(false)
-
     }
 }
