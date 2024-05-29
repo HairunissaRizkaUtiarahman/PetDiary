@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.testproject.dataclass.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.projectPA.petdiary.PetDiaryApplication
+import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.repository.UserRepository
 
 class UserSearchViewModel(private val userRepository: UserRepository) : ViewModel() {

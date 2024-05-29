@@ -3,7 +3,6 @@ package org.projectPA.petdiary.repository
 import android.net.Uri
 import android.util.Log
 import com.example.testproject.dataclass.CommentPost
-import com.example.testproject.dataclass.User
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -19,6 +18,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Like
 import org.projectPA.petdiary.model.Post
+import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "CommunityRepository"
 

@@ -1,12 +1,12 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
-import com.example.testproject.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
+import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "UsersRepository"
 

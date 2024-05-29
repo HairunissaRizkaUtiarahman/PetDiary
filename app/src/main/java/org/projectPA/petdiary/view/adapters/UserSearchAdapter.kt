@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.testproject.dataclass.User
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListUserBinding
+import org.projectPA.petdiary.model.User
 
 class UserSearchAdapter(val onClick: (User, View) -> Unit) :
     ListAdapter<User, UserSearchAdapter.ViewHolder>(Companion) {
