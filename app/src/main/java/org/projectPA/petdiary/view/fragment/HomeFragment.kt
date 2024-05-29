@@ -9,10 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.databinding.FragmentDashboardHomeBinding
+import org.projectPA.petdiary.databinding.FragmentHomeBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.activities.CommunityHomePageActivity
 import org.projectPA.petdiary.view.activities.MyPetActivity
@@ -21,8 +20,8 @@ import org.projectPA.petdiary.view.activities.ReviewHomePageActivity
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
-class DashboardHomeFragment : Fragment() {
-    private var _binding: FragmentDashboardHomeBinding? = null
+class HomeFragment : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var productAdapter: ProductAdapter
@@ -31,7 +30,7 @@ class DashboardHomeFragment : Fragment() {
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = FragmentDashboardHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 

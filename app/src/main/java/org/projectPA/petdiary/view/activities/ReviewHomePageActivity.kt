@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
-import org.projectPA.petdiary.view.fragment.DashboardHomeFragment
-import org.projectPA.petdiary.view.fragment.DashboardProfileFragment
+import org.projectPA.petdiary.view.fragment.HomeFragment
+import org.projectPA.petdiary.view.fragment.ProfileFragment
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.viewmodel.ReviewHomePageViewModel
 
@@ -67,8 +67,8 @@ class ReviewHomePageActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
-                R.id.home -> replaceFragment(DashboardHomeFragment())
-                R.id.profile -> replaceFragment(DashboardProfileFragment())
+                R.id.home -> replaceFragment(HomeFragment())
+                R.id.profile -> replaceFragment(ProfileFragment())
             }
             true
         }
