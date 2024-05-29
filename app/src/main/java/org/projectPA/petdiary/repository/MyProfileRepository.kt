@@ -2,7 +2,6 @@ package org.projectPA.petdiary.repository
 
 import android.net.Uri
 import android.util.Log
-import com.example.testproject.dataclass.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "MyPetRepository"
 class MyProfileRepository(

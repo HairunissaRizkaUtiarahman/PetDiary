@@ -10,13 +10,13 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.databinding.FragmentDashboardProfileBinding
+import org.projectPA.petdiary.databinding.FragmentProfileBinding
 import org.projectPA.petdiary.view.activities.LoginActivity
 import org.projectPA.petdiary.view.activities.MyProfileActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentDashboardProfileBinding
+    private lateinit var binding: FragmentProfileBinding
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentDashboardProfileBinding.inflate(layoutInflater, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

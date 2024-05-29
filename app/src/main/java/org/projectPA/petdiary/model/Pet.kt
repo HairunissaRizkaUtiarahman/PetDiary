@@ -1,6 +1,4 @@
 package org.projectPA.petdiary.model
-
-import com.example.testproject.dataclass.User
 import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 
