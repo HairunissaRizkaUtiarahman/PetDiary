@@ -3,8 +3,8 @@ package org.projectPA.petdiary.view.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import org.projectPA.petdiary.view.fragment.PostUserProfileFragment
-import org.projectPA.petdiary.view.fragment.ReviewUserProfileFragment
+import org.projectPA.petdiary.view.fragment.community.user.PostUserProfileFragment
+import org.projectPA.petdiary.view.fragment.community.user.ReviewUserProfileFragment
 
 class UserProfileTLAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun getItemCount(): Int {

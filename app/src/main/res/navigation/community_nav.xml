@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/communityFragment"
-        android:name="org.projectPA.petdiary.view.fragment.PostFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.post.PostFragment"
         android:label="fragment_community"
         tools:layout="@layout/fragment_post" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/communityCommentFragment"
-        android:name="org.projectPA.petdiary.view.fragment.CommentPostFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.post.CommentPostFragment"
         android:label="fragment_community_comment"
         tools:layout="@layout/fragment_post_comment" />
     <fragment
         android:id="@+id/userSearchFragment"
-        android:name="org.projectPA.petdiary.view.fragment.UserSearchFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.user.UserSearchFragment"
         android:label="fragment_user_search"
         tools:layout="@layout/fragment_user_search" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="org.projectPA.petdiary.view.fragment.UserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.user.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" >
         <action
@@ -42,12 +42,12 @@
     </fragment>
     <fragment
         android:id="@+id/postUserProfileFragment"
-        android:name="org.projectPA.petdiary.view.fragment.PostUserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.user.PostUserProfileFragment"
         android:label="fragment_post_user_profile"
         tools:layout="@layout/fragment_post_user_profile" />
     <fragment
         android:id="@+id/commentPostUserProfileFragment"
-        android:name="org.projectPA.petdiary.view.fragment.CommentPostUserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.user.CommentPostUserProfileFragment"
         android:label="fragment_comment_post_user_profile"
         tools:layout="@layout/fragment_comment_post_user_profile" />
 </navigation>

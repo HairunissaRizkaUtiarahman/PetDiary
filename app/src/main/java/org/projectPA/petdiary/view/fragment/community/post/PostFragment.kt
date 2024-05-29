@@ -1,8 +1,7 @@
-package org.projectPA.petdiary.view.fragment
+package org.projectPA.petdiary.view.fragment.community.post
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,6 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostBinding
 import org.projectPA.petdiary.view.activities.AddPostCommunityActivity
 import org.projectPA.petdiary.viewmodel.PostViewModel
-
-private const val LOG_TAG = "PostFragment"
 
 class PostFragment : Fragment() {
     private lateinit var binding: FragmentPostBinding
@@ -39,13 +36,11 @@ class PostFragment : Fragment() {
 
         }, onLike = { post ->
             viewModel.setLike(post.id ?: "")
-            Log.d(LOG_TAG, "Wishlist: ${post.desc} - ${post.like}")
         })
 
         binding.postRV.adapter = adapter
 
         viewModel.posts.observe(viewLifecycleOwner) {
-            Log.d(LOG_TAG, "Post: $it")
             adapter.submitList(it)
         }
         viewModel.loadData()

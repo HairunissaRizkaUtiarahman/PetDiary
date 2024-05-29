@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment
+package org.projectPA.petdiary.view.fragment.community.user
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
