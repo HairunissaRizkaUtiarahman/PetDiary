@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.viewmodel
 
 import android.app.Activity
 import android.content.Context

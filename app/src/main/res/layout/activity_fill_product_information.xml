@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:textAlignment="textStart">
 
     <androidx.appcompat.widget.Toolbar
@@ -40,7 +41,9 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/image_blank" />
 

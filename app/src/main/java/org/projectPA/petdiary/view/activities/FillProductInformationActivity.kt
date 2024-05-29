@@ -1,12 +1,10 @@
 package org.projectPA.petdiary.view.activities
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +18,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityFillProductInformationBinding
+import org.projectPA.petdiary.viewmodel.FillProductInformationViewModel
 
 class FillProductInformationActivity : AppCompatActivity() {
 
