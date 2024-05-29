@@ -16,7 +16,7 @@ import org.projectPA.petdiary.viewmodel.ReviewHomePageViewModel
 
 class ReviewHomePageActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityReviewHomepageBinding
+    private lateinit var binding: org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
     private lateinit var productAdapter: ProductAdapter
     private val viewModel: ReviewHomePageViewModel by viewModels()
 
@@ -29,57 +29,45 @@ class ReviewHomePageActivity : AppCompatActivity() {
         observeViewModel()
 
         binding.catButton.setOnClickListener {
-            val petType = "cat"
-            val intent = Intent(this, ProductCategoriesPageActivity::class.java)
-            intent.putExtra("petType", petType)
-            startActivity(intent)
+            startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
+                putExtra("petType", "Cat")
+            })
         }
 
         binding.dogButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "dog")
+                putExtra("petType", "Dog")
             })
         }
 
         binding.rabbitButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "rabbit")
+                putExtra("petType", "Rabbit")
             })
         }
 
         binding.hamsterButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "hamster")
+                putExtra("petType", "Hamster")
             })
         }
 
         binding.fishButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "fish")
+                putExtra("petType", "Fish")
             })
         }
 
         binding.birdButton.setOnClickListener {
             startActivity(Intent(this, ProductCategoriesPageActivity::class.java).apply {
-                putExtra("petType", "bird")
+                putExtra("petType", "Bird")
             })
         }
 
-        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.home -> replaceFragment(HomeFragment())
-                R.id.profile -> replaceFragment(ProfileFragment())
-            }
-            true
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
-
-        binding.addButton.setOnClickListener {
-            val fragment = AddButtonFragment()
-            fragment.show(supportFragmentManager, fragment.tag)
-        }
-
-        // Load products when activity is created
-        viewModel.loadProducts()
     }
 
     private fun replaceFragment(fragment: Fragment) {
