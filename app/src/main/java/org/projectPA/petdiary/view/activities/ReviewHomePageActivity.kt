@@ -16,7 +16,7 @@ import org.projectPA.petdiary.viewmodel.ReviewHomePageViewModel
 
 class ReviewHomePageActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityReviewHomepageBinding
+    private lateinit var binding: org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
     private lateinit var productAdapter: ProductAdapter
     private val viewModel: ReviewHomePageViewModel by viewModels()
 
@@ -64,17 +64,9 @@ class ReviewHomePageActivity : AppCompatActivity() {
             })
         }
 
-        binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when(menuItem.itemId){
-                R.id.home -> replaceFragment(HomeFragment())
-                R.id.profile -> replaceFragment(ProfileFragment())
-            }
-            true
-        }
-
-        binding.addButton.setOnClickListener {
-            val fragment = AddButtonFragment()
-            fragment.show(supportFragmentManager, fragment.tag)
+        binding.backButton.setOnClickListener {
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
     }
 

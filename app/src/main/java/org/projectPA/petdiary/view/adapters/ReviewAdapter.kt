@@ -32,7 +32,7 @@ class ReviewAdapter(
                 usageProduct.text = review.usagePeriod
 
                 if (review.userPhotoUrl == "default") {
-                    userPhotoProfile.setImageResource(R.drawable.ic_users)
+                    userPhotoProfile.setImageResource(R.drawable.ic_profile)
                 } else {
                     Glide.with(userPhotoProfile.context)
                         .load(review.userPhotoUrl)

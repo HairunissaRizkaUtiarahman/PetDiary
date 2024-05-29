@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     android:textAlignment="textStart">
 
     <androidx.appcompat.widget.Toolbar
@@ -40,7 +41,9 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center"
+        android:layout_marginStart="55dp"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/image_blank" />
 
@@ -79,11 +82,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:inputType="text"
-            android:maxLength="30"
             android:background="@drawable/background_icon_home"
             android:gravity="top"
             android:hint="@string/enter_brand_name"
+            android:inputType="text"
+            android:maxLength="30"
             android:nestedScrollingEnabled="true"
             android:textAlignment="gravity" />
 
@@ -163,11 +166,11 @@
             android:layout_margin="15dp"
             android:background="@drawable/background_icon_home"
             android:gravity="top"
-            android:minEms="10"
-            android:maxEms="30"
-            android:minLines="3"
             android:hint="@string/enter_product_description"
             android:inputType="textMultiLine|textCapSentences"
+            android:maxEms="30"
+            android:minEms="10"
+            android:minLines="3"
             android:nestedScrollingEnabled="true"
             android:textAlignment="gravity" />
 
@@ -179,9 +182,9 @@
         android:layout_height="54dp"
         android:layout_gravity="bottom|center"
         android:layout_margin="10dp"
+        android:enabled="false"
         android:foregroundGravity="center_vertical|center_horizontal"
         android:text="@string/submit"
-        android:enabled="false"
         android:textAlignment="gravity"
         android:textSize="14sp"
         android:textStyle="bold"

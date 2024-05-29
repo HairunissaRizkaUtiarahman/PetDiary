@@ -7,10 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.databinding.ActivityDashboardBinding
 import org.projectPA.petdiary.view.fragment.HomeFragment
 import org.projectPA.petdiary.view.fragment.ProfileFragment
 import org.projectPA.petdiary.viewmodel.DashboardViewModel
+import org.projectPA.petdiary.databinding.ActivityDashboardBinding
 
 class DashboardActivity : AppCompatActivity() {
 

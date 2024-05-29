@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:background="@color/white"
             android:scaleType="fitXY"
             android:src="@drawable/image_product_example" />
 

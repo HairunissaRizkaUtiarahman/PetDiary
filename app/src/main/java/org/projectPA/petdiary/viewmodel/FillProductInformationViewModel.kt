@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
+import android.util.Log
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,41 +33,66 @@ class FillProductInformationViewModel : ViewModel() {
     private val _navigateToProductDetail = MutableLiveData<String?>()
     val navigateToProductDetail: LiveData<String?> get() = _navigateToProductDetail
 
+    private val _brandName = MutableLiveData<String>()
+    private val _productName = MutableLiveData<String>()
+    private val _description = MutableLiveData<String>()
+
     fun setImageUri(uri: Uri) {
         _imageUri.value = uri
-        validateInputs("", "", "")
+        validateInputs(
+            _brandName.value ?: "",
+            _productName.value ?: "",
+            _description.value ?: ""
+        )
     }
 
     fun validateInputs(brandName: String, productName: String, description: String) {
-        _isFormValid.value = brandName.length <= 30 &&
-                productName.length in 5..30 &&
-                description.length >= 50 &&
+        _brandName.value = brandName
+        _productName.value = productName
+        _description.value = description
+
+        val isValid = brandName.isNotEmpty() && brandName.length <= 30 &&
+                productName.isNotEmpty() && productName.length in 5..30 &&
+                description.isNotEmpty() && description.length >= 50 &&
                 _imageUri.value != null &&
                 _productNameError.value == false
+        _isFormValid.value = isValid
     }
 
-    fun checkProductNameExists(productName: String) {
+    fun checkProductNameExists(brandName: String, productName: String) {
         FirebaseFirestore.getInstance().collection("products")
             .whereEqualTo("productNameLower", productName.lowercase())
+            .whereEqualTo("brandNameLower", brandName.lowercase())
             .get()
             .addOnSuccessListener { documents ->
                 _productNameError.value = !documents.isEmpty
-                validateInputs("", productName, "")
+                validateInputs(
+                    brandName,
+                    productName,
+                    _description.value ?: ""
+                )
             }
             .addOnFailureListener {
                 _productNameError.value = false
+                validateInputs(
+                    brandName,
+                    productName,
+                    _description.value ?: ""
+                )
             }
     }
 
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
+        val formattedProductName = capitalizeWords(productName)
         FirebaseFirestore.getInstance().collection("products")
-            .whereEqualTo("productNameLower", productName.lowercase())
+            .whereEqualTo("productNameLower", formattedProductName.lowercase())
+            .whereEqualTo("brandNameLower", brandName.lowercase())
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
-                    uploadPhotoToStorage(activity, brandName, productName, description, petType, category)
+                    uploadPhotoToStorage(activity, brandName, formattedProductName, description, petType, category)
                 } else {
-                    _uploadStatus.value = "Product Name Already Exist"
+                    _uploadStatus.value = "Product with the same name and brand already exists"
                 }
             }
             .addOnFailureListener {
@@ -123,14 +149,17 @@ class FillProductInformationViewModel : ViewModel() {
             }
     }
 
+    private fun capitalizeWords(input: String): String {
+        return input.split(" ").joinToString(" ") { word ->
+            word.lowercase().replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+        }
+    }
+
     fun createImageUri(context: Context): Uri? {
         val timestamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        val imageFile = File.createTempFile("JPEG_${timestamp}_", ".jpg", storageDir)
+        val imageFile = File(storageDir, "JPEG_${timestamp}_.jpg")
+        Log.d("FileProvider", "File path: ${imageFile.absolutePath}")
         return FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", imageFile)
-    }
-
-    companion object {
-        private const val TAG = "FillProductInformationViewModel"
     }
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
 
@@ -205,36 +206,75 @@
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/button_others_category"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/background_pet_categories"
-            android:padding="20dp"
-            tools:ignore="ExtraText">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/grooming_others_icon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:padding="10dp"
-                android:src="@drawable/icon_others" />
-
-            <TextView
-                android:id="@+id/others_text"
+            <FrameLayout
+                android:id="@+id/button_others_category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="bottom|center"
-                android:text="@string/others"
-                android:textColor="@color/white" />
-        </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/background_pet_categories"
+                android:padding="20dp"
+                tools:ignore="ExtraText">
+
+                <ImageView
+                    android:id="@+id/others_category_icon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_others" />
+
+                <TextView
+                    android:id="@+id/others_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="bottom|center"
+                    android:text="@string/others"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/button_hide_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/background_pet_categories"
+                android:padding="20dp"
+                android:visibility="invisible"
+                tools:ignore="ExtraText">
+
+                <ImageView
+                    android:id="@+id/hide_icon"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:padding="10dp"
+                    android:src="@drawable/icon_grooming" />
+
+                <TextView
+                    android:id="@+id/hide_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="bottom|center"
+                    android:text="@string/grooming"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+
+        </LinearLayout>
 
 
     </LinearLayout>

@@ -1,16 +1,17 @@
 package org.projectPA.petdiary.view.activities
 
-import android.app.Activity
-import android.content.ContentValues
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputEditText
@@ -25,30 +26,31 @@ class FillProductInformationActivity : AppCompatActivity() {
     private val viewModel: FillProductInformationViewModel by viewModels()
     private val PET_TYPE_KEY = "pet_type"
     private val CATEGORY_KEY = "category"
+    private val CAMERA_PERMISSION_REQUEST_CODE = 1001
 
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
         if (success) {
             viewModel.imageUri.value?.let { uri ->
                 binding.productImage.setImageURI(uri)
-                viewModel.validateInputs(
-                    binding.formInputBrandName.text.toString().trim(),
-                    binding.formInputProductName.text.toString().trim(),
-                    binding.formInputDescription.text.toString().trim()
-                )
             }
         }
+        viewModel.validateInputs(
+            binding.formInputBrandName.text.toString().trim(),
+            binding.formInputProductName.text.toString().trim(),
+            binding.formInputDescription.text.toString().trim()
+        )
     }
 
     private val pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             viewModel.setImageUri(it)
             binding.productImage.setImageURI(it)
-            viewModel.validateInputs(
-                binding.formInputBrandName.text.toString().trim(),
-                binding.formInputProductName.text.toString().trim(),
-                binding.formInputDescription.text.toString().trim()
-            )
         }
+        viewModel.validateInputs(
+            binding.formInputBrandName.text.toString().trim(),
+            binding.formInputProductName.text.toString().trim(),
+            binding.formInputDescription.text.toString().trim()
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,14 +68,13 @@ class FillProductInformationActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.uploadPhotoButton.setOnClickListener {
-            val options = arrayOf("Take Picture", "Choose from Gallery", "Upload File")
+            val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Select Image")
                 .setItems(options) { _, which ->
                     when (which) {
-                        0 -> takePicture()
+                        0 -> checkAndRequestCameraPermission()
                         1 -> pickPhoto()
-                        2 -> pickFile()
                     }
                 }
             builder.show()
@@ -85,14 +86,34 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         // Add text changed listeners to validate inputs on the fly
         binding.formInputBrandName.addTextChangedListener { text ->
-            viewModel.validateInputs(text.toString().trim(), binding.formInputProductName.text.toString().trim(), binding.formInputDescription.text.toString().trim())
+            viewModel.validateInputs(
+                text.toString().trim(),
+                binding.formInputProductName.text.toString().trim(),
+                binding.formInputDescription.text.toString().trim()
+            )
+            viewModel.checkProductNameExists(
+                text.toString().trim(),
+                binding.formInputProductName.text.toString().trim()
+            )
         }
         binding.formInputProductName.addTextChangedListener { text ->
             val productName = text.toString().trim()
-            viewModel.checkProductNameExists(productName)
+            viewModel.checkProductNameExists(
+                binding.formInputBrandName.text.toString().trim(),
+                productName
+            )
+            viewModel.validateInputs(
+                binding.formInputBrandName.text.toString().trim(),
+                productName,
+                binding.formInputDescription.text.toString().trim()
+            )
         }
         binding.formInputDescription.addTextChangedListener { text ->
-            viewModel.validateInputs(binding.formInputBrandName.text.toString().trim(), binding.formInputProductName.text.toString().trim(), text.toString().trim())
+            viewModel.validateInputs(
+                binding.formInputBrandName.text.toString().trim(),
+                binding.formInputProductName.text.toString().trim(),
+                text.toString().trim()
+            )
         }
 
         binding.submitButton.setOnClickListener {
@@ -123,6 +144,11 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         viewModel.productNameError.observe(this, Observer { error ->
             binding.warningProductNameAlreadyExist.visibility = if (error == true) View.VISIBLE else View.GONE
+            viewModel.validateInputs(
+                binding.formInputBrandName.text.toString().trim(),
+                binding.formInputProductName.text.toString().trim(),
+                binding.formInputDescription.text.toString().trim()
+            )
         })
 
         viewModel.navigateToProductDetail.observe(this, Observer { productId ->
@@ -164,12 +190,27 @@ class FillProductInformationActivity : AppCompatActivity() {
         pickPhotoLauncher.launch("image/*")
     }
 
-    private fun pickFile() {
-        pickPhotoLauncher.launch("*/*")
-    }
-
     companion object {
         private const val TAG = "FillProductInformationActivity"
         private const val PICK_IMAGE_REQUEST = 1
+    }
+
+    private fun checkAndRequestCameraPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
+        } else {
+            takePicture()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                takePicture()
+            } else {
+                Toast.makeText(this, "Camera permission is required to take pictures", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
