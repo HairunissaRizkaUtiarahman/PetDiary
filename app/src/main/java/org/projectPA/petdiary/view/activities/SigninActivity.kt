@@ -10,7 +10,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 
-class LoginActivity : AppCompatActivity() {
+class SigninActivity : AppCompatActivity() {
     private lateinit var signInButton: Button
     private lateinit var signUpTextView: TextView
     private lateinit var emailEditText: TextInputEditText
@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_signin)
 
         auth = FirebaseAuth.getInstance()
 
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
         signUpTextView = findViewById(R.id.signUp_TextView)
         signUpTextView.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 

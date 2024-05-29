@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
 
-class RegisterActivity : AppCompatActivity() {
+class SignupActivity : AppCompatActivity() {
     private lateinit var nameEditText: TextInputEditText
     private lateinit var addressEditText: TextInputEditText
     private lateinit var emailEditText: TextInputEditText
@@ -26,7 +26,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_signup)
 
         auth = FirebaseAuth.getInstance()
 
@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         signInTextView.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, SigninActivity::class.java))
         }
     }
 
