@@ -119,6 +119,14 @@
             android:name=".view.activities.WriteReviewActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
+        <activity
+            android:name=".view.activities.MoreReviewsActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.DetailReviewActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
