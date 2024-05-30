@@ -51,9 +51,9 @@ class FillProductInformationViewModel : ViewModel() {
         _productName.value = productName
         _description.value = description
 
-        val isValid = brandName.isNotEmpty() && brandName.length <= 30 &&
-                productName.isNotEmpty() && productName.length in 5..30 &&
-                description.isNotEmpty() && description.length >= 50 &&
+        val isValid = brandName.isNotEmpty() && brandName.length <= 50 &&
+                productName.isNotEmpty() && productName.length  >=4 &&
+                description.isNotEmpty() && description.length >= 30 &&
                 _imageUri.value != null &&
                 _productNameError.value == false
         _isFormValid.value = isValid

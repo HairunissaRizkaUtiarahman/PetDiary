@@ -67,4 +67,21 @@ class ChooseProductViewModel : ViewModel() {
 
         _products.value = sortedProducts
     }
+
+    fun checkIfUserReviewed(productId: String, userId: String): LiveData<Boolean> {
+        val userReviewedLiveData = MutableLiveData<Boolean>()
+
+        firestore.collection("reviews")
+            .whereEqualTo("productId", productId)
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                userReviewedLiveData.value = !documents.isEmpty
+            }
+            .addOnFailureListener { e ->
+                userReviewedLiveData.value = false
+            }
+
+        return userReviewedLiveData
+    }
 }

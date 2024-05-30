@@ -11,6 +11,7 @@ import org.projectPA.petdiary.view.fragment.HomeFragment
 import org.projectPA.petdiary.view.fragment.ProfileFragment
 import org.projectPA.petdiary.viewmodel.DashboardViewModel
 import org.projectPA.petdiary.databinding.ActivityDashboardBinding
+import org.projectPA.petdiary.view.fragment.AddButtonFragment
 
 class DashboardActivity : AppCompatActivity() {
 

@@ -9,7 +9,7 @@ data class Review(
     val productId: String = "",
     val userId: String = "",
     val userName: String = "",
-    var userPhotoUrl: String = "default",
+    var userPhotoUrl: String? = "default", // Make this field nullable
     val rating: Float = 0f,
     val usagePeriod: String = "",
     val reviewText: String = "",

@@ -1,13 +1,20 @@
 package org.projectPA.petdiary.view.activities
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityChooseProductBinding
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.view.fragments.SortButtonProductFragment
@@ -18,6 +25,7 @@ class ChooseProductActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChooseProductBinding
     private lateinit var productAdapter: ProductAdapter
     private val viewModel: ChooseProductViewModel by viewModels()
+    private var currentUserId: String = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,12 +76,41 @@ class ChooseProductActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         productAdapter = ProductAdapter(emptyList()) { productId ->
-            val intent = Intent(this, GiveRatingActivity::class.java).apply {
-                putExtra("productId", productId)
-            }
-            startActivity(intent)
+            checkIfUserReviewed(productId, currentUserId)
         }
         binding.listProduct.layoutManager = GridLayoutManager(this, 2)
         binding.listProduct.adapter = productAdapter
+    }
+
+    private fun checkIfUserReviewed(productId: String, userId: String) {
+        viewModel.checkIfUserReviewed(productId, userId).observe(this, Observer { hasReviewed ->
+            if (hasReviewed) {
+                showAlreadyReviewedPopup()
+            } else {
+                val intent = Intent(this, GiveRatingActivity::class.java).apply {
+                    putExtra("productId", productId)
+                }
+                startActivity(intent)
+            }
+        })
+    }
+
+    private fun showAlreadyReviewedPopup() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.pop_up_message_already_reviewed, null)
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(dialogView)
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val closeButton: Button = dialogView.findViewById(R.id.close_button)
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

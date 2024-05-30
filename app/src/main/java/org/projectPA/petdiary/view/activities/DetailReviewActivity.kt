@@ -59,11 +59,12 @@ class DetailReviewActivity : AppCompatActivity() {
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod
                 binding.recomendedOrNotText.text = if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"
-                if (it.userPhotoUrl == "default") {
-                    binding.userPhotoProfile.setImageResource(R.drawable.ic_users)
-                } else {
-                    Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
-                }
+                Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
+//                if (it.userPhotoUrl == "default") {
+//                    binding.userPhotoProfile.setImageResource(R.drawable.ic_profile)
+//                } else {
+//                    Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
+//                }
             }
         })
 

@@ -1,4 +1,5 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.view.fragment
+
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
-
+import org.projectPA.petdiary.view.activities.AddPostCommunityActivity
+import org.projectPA.petdiary.view.activities.ChoosePetCategoryActivity
+import org.projectPA.petdiary.view.activities.ChooseProductActivity
 
 class AddButtonFragment: BottomSheetDialogFragment() {
 
@@ -33,7 +36,7 @@ class AddButtonFragment: BottomSheetDialogFragment() {
         }
 
         binding.addAReviewButton.setOnClickListener {
-            Log.d("FragmentAddButton", "add_a_product_button clicked")
+            Log.d("FragmentAddButton", "add_a_review_button clicked")
             startActivity(Intent(activity, ChooseProductActivity::class.java))
         }
 
