@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.view.fragment.myprofile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentMyProfileBinding
+import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.adapters.MyProfileAdapter
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
@@ -54,5 +56,11 @@ class MyProfileFragment : Fragment() {
                 else -> null
             }
         }.attach()
+
+        binding.backBtn.setOnClickListener {
+            val intent = Intent(requireContext(), DashboardActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() // Optionally, finish the current activity
+        }
     }
 }

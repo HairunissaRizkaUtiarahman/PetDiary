@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -46,37 +47,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="start"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/myProfile_Btn"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
                 android:text="@string/my_profile"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:icon="@drawable/icon_user"
+                app:iconTint="@color/black" />
 
             <Button
                 android:id="@+id/setting_Btn"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
                 android:text="@string/setting"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:icon="@drawable/icon_setting"
+                app:iconTint="@color/black" />
 
             <Button
                 android:id="@+id/logout_Btn"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="25dp"
                 android:text="@string/logout"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:icon="@drawable/icon_logout"
+                app:iconTint="@color/black" />
 
         </LinearLayout>
 

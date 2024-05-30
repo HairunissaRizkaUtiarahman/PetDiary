@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.view.fragment.mypet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentMyPetBinding
+import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.adapters.MyPetAdapter
 import org.projectPA.petdiary.viewmodel.MyPetViewModel
 
@@ -54,5 +56,10 @@ class MyPetFragment : Fragment() {
 
         viewModel.loadData()
 
+        binding.backBtn.setOnClickListener {
+            val intent = Intent(requireContext(), DashboardActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() // Optionally, finish the current activity
+        }
     }
 }

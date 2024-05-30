@@ -13,23 +13,29 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:elevation="8dp"
             android:minHeight="?attr/actionBarSize"
-            app:title="My Profile"
             app:titleTextColor="@color/black">
 
-            <ImageView
-                android:id="@+id/back_to_review_homepage_button"
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/back_Btn"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:src="@drawable/arrow_back" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/notification_icon_description"
-                android:src="@drawable/icon_notification" />
+                android:fontFamily="@font/roboto_medium"
+                android:text="My Profile"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
