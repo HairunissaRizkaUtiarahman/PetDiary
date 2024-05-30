@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment
+package org.projectPA.petdiary.view.fragment.community.post
 
 import android.os.Bundle
 import android.view.LayoutInflater

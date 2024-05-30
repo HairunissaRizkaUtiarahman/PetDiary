@@ -68,6 +68,10 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
+            android:name=".view.activities.AddPostCommunityActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.CommunityHomePageActivity"
             android:screenOrientation="portrait"
             android:exported="false" />

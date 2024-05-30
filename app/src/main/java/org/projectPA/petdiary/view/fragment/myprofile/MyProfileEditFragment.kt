@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment
+package org.projectPA.petdiary.view.fragment.myprofile
 
 import android.net.Uri
 import android.os.Bundle

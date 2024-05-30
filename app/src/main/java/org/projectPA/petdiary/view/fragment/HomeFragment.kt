@@ -43,6 +43,10 @@ class HomeFragment : Fragment() {
             startActivity(Intent(activity, MyPetActivity::class.java))
         }
 
+        binding.communityButton.setOnClickListener {
+            startActivity(Intent(activity, CommunityHomePageActivity::class.java))
+        }
+
         binding.reviewButton.setOnClickListener {
             startActivity(Intent(activity, ReviewHomePageActivity::class.java))
         }

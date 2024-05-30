@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/myPetFragment"
-        android:name="org.projectPA.petdiary.view.fragment.MyPetFragment"
+        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetFragment"
         android:label="fragment_my_pet"
         tools:layout="@layout/fragment_my_pet" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/myPetAddFragment"
-        android:name="org.projectPA.petdiary.view.fragment.MyPetAddFragment"
+        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetAddFragment"
         android:label="fragment_my_pet_add"
         tools:layout="@layout/fragment_my_pet_add" />
     <fragment
         android:id="@+id/myPetDetailsFragment"
-        android:name="org.projectPA.petdiary.view.fragment.MyPetDetailsFragment"
+        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetDetailsFragment"
         android:label="fragment_my_pet_details"
         tools:layout="@layout/fragment_my_pet_details" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/myPetEditFragment"
-        android:name="org.projectPA.petdiary.view.fragment.MyPetEditFragment"
+        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetEditFragment"
         android:label="fragment_my_pet_edit"
         tools:layout="@layout/fragment_my_pet_edit" />
 </navigation>
