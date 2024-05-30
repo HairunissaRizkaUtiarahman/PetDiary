@@ -17,7 +17,7 @@ import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Pet
 
 private const val LOG_TAG = "MyPetRepository"
-class MyPetRepository(
+class PetRepository(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage

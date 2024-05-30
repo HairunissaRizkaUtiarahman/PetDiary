@@ -6,15 +6,15 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import org.projectPA.petdiary.repository.PostRepository
-import org.projectPA.petdiary.repository.MyPetRepository
+import org.projectPA.petdiary.repository.PetRepository
 import org.projectPA.petdiary.repository.MyProfileRepository
 import org.projectPA.petdiary.repository.UserRepository
 
 class PetDiaryApplication : Application() {
     val myProfileRepository: MyProfileRepository
         get() = MyProfileRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
-    val myPetRepository: MyPetRepository
-        get() = MyPetRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
+    val petRepository: PetRepository
+        get() = PetRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val postRepository: PostRepository
         get() = PostRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val userRepository: UserRepository

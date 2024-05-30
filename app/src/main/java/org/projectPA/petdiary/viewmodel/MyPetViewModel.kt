@@ -14,9 +14,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.Pet
-import org.projectPA.petdiary.repository.MyPetRepository
+import org.projectPA.petdiary.repository.PetRepository
 
-class MyPetViewModel(private val myPetRepository: MyPetRepository) : ViewModel() {
+class MyPetViewModel(private val petRepository: PetRepository) : ViewModel() {
     private val _pet = MutableLiveData<List<Pet>>()
     val pets: LiveData<List<Pet>>
         get() = _pet
@@ -29,7 +29,7 @@ class MyPetViewModel(private val myPetRepository: MyPetRepository) : ViewModel()
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val myPetRepository =
-                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as PetDiaryApplication).myPetRepository
+                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as PetDiaryApplication).petRepository
                 MyPetViewModel(myPetRepository)
             }
         }
@@ -44,7 +44,7 @@ class MyPetViewModel(private val myPetRepository: MyPetRepository) : ViewModel()
         uri: Uri?
     ) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        myPetRepository.addPets(name, type, gender, age, desc, uri)
+        petRepository.addPets(name, type, gender, age, desc, uri)
         _isLoading.postValue(false)
 
     }
@@ -59,14 +59,14 @@ class MyPetViewModel(private val myPetRepository: MyPetRepository) : ViewModel()
         uri: Uri?
     ) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        myPetRepository.updatePets(myPetId, name, type, gender, age, desc, uri)
+        petRepository.updatePets(myPetId, name, type, gender, age, desc, uri)
         _isLoading.postValue(false)
 
     }
 
     fun loadData() = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            myPetRepository.getPets().collect {
+            petRepository.getPets().collect {
                 _pet.value = it
                 Log.d("MyPetViewModel", it.toString())
             }
@@ -76,7 +76,7 @@ class MyPetViewModel(private val myPetRepository: MyPetRepository) : ViewModel()
 
     fun deleteData(myPetId: String) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        myPetRepository.deletePets(myPetId)
+        petRepository.deletePets(myPetId)
         _isLoading.postValue(false)
     }
 

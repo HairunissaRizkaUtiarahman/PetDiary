@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.repository.PostRepository
 
-class CommentPostMyProfileViewModel(private val postRepository: PostRepository) : ViewModel() {
+class CommentPostUserProfileViewModel(private val postRepository: PostRepository) : ViewModel() {
     private val _CommentsPost = MutableLiveData<List<CommentPost>>()
 
     val commentsPost: LiveData<List<CommentPost>>
@@ -27,14 +27,14 @@ class CommentPostMyProfileViewModel(private val postRepository: PostRepository) 
             initializer {
                 val postsRepository =
                     (this[APPLICATION_KEY] as PetDiaryApplication).postRepository
-                CommentPostMyProfileViewModel(postsRepository)
+                CommentPostUserProfileViewModel(postsRepository)
             }
         }
     }
 
     fun loadData(postId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            Log.d("CommentPostMyProfile", postId.toString())
+            Log.d("CommentPostUserProfile", postId.toString())
             postRepository.getCommentPost(postId).collect {
                 _CommentsPost.value = it
             }

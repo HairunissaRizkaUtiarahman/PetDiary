@@ -14,6 +14,7 @@ class UserRepository(
     private val db: FirebaseFirestore
 ) {
 
+    // Query Get Users
     suspend fun getUsers(): List<User> {
         return try {
             db.collection("user")
@@ -28,7 +29,7 @@ class UserRepository(
         }
     }
 
-
+    // Query Get User
     suspend fun getUser(userId: String): User? {
         return try {
             val user = db.collection("user")
@@ -44,16 +45,19 @@ class UserRepository(
         }
     }
 
+    // Query Search User
     suspend fun searchUser(query: String): List<User> {
         return try {
             val userRef = db.collection("user")
-            val queryUserName = userRef.whereGreaterThanOrEqualTo("name", query.uppercase())
+            val queryUserName = userRef
+                .whereGreaterThanOrEqualTo("name", query.uppercase())
                 .whereLessThanOrEqualTo("name", query.lowercase() + "\uf8ff")
-            queryUserName.get().await().let {
-                it.toObjects(User::class.java)
+            val querySnapshot = queryUserName.get().await()
+            querySnapshot.documents.mapNotNull {
+                it.toObject(User::class.java)?.copy(id = it.id)
             }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to set like", e)
+            Log.e(LOG_TAG, "Failed to search user", e)
             emptyList()
         }
     }

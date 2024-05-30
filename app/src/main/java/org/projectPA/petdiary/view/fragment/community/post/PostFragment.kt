@@ -29,20 +29,31 @@ class PostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         adapter = PostAdapter(onClick = { post, _ ->
             viewModel.setPost(post)
-
             findNavController().navigate(R.id.action_communityFragment_to_communityCommentFragment)
-
         }, onLike = { post ->
             viewModel.setLike(post.id ?: "")
         })
 
         binding.postRV.adapter = adapter
 
-        viewModel.posts.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        // Observe posts LiveData
+        viewModel.posts.observe(viewLifecycleOwner) { posts ->
+            adapter.submitList(posts)
+            if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
+                // If no posts or all posts are deleted, show noPost_TV and hide postRV
+                binding.noPostTV.visibility = View.VISIBLE
+                binding.postRV.visibility = View.GONE
+            } else {
+                // If there are posts and some are not deleted, show postRV and hide noPost_TV
+                binding.noPostTV.visibility = View.GONE
+                binding.postRV.visibility = View.VISIBLE
+            }
         }
+
         viewModel.loadData()
 
         binding.addPostBtn.setOnClickListener {

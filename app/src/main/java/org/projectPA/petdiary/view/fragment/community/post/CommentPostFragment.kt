@@ -80,11 +80,19 @@ class CommentPostFragment : Fragment() {
 
         commentPostAdapter = CommentPostAdapter()
 
-        binding.commentRV.adapter = commentPostAdapter
+        binding.commentsRV.adapter = commentPostAdapter
 
-        commentPostViewModel.commentsPost.observe(viewLifecycleOwner) {
-            commentPostAdapter.submitList(it)
+        commentPostViewModel.commentsPost.observe(viewLifecycleOwner) { comments ->
+            commentPostAdapter.submitList(comments)
+            if (comments.isEmpty()) {
+                binding.noCommentTV.visibility = View.VISIBLE
+                binding.commentsRV.visibility = View.GONE
+            } else {
+                binding.noCommentTV.visibility = View.GONE
+                binding.commentsRV.visibility = View.VISIBLE
+            }
         }
+
 
         commentPostViewModel.loadData(postViewModel.post.value?.id ?: "")
 

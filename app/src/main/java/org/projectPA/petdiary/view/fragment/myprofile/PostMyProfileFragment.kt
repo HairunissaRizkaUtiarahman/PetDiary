@@ -1,11 +1,11 @@
 package org.projectPA.petdiary.view.fragment.myprofile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import org.projectPA.petdiary.R
@@ -51,8 +51,18 @@ class PostMyProfileFragment : Fragment() {
 
         binding.myPostRV.adapter = adapter
 
-        viewModel.myPosts.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        // Observe posts LiveData
+        viewModel.myPosts.observe(viewLifecycleOwner) { posts ->
+            adapter.submitList(posts)
+            if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
+                // If no posts or all posts are deleted, show noPost_TV and hide postRV
+                binding.noPostTV.visibility = View.VISIBLE
+                binding.myPostRV.visibility = View.GONE
+            } else {
+                // If there are posts and some are not deleted, show postRV and hide noPost_TV
+                binding.noPostTV.visibility = View.GONE
+                binding.myPostRV.visibility = View.VISIBLE
+            }
         }
 
         viewModel.loadData()

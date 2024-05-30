@@ -38,8 +38,18 @@ class MyPetFragment : Fragment() {
 
         binding.myPetRV.adapter = adapter
 
-        viewModel.pets.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+        // Observe pets LiveData
+        viewModel.pets.observe(viewLifecycleOwner) { pets ->
+            adapter.submitList(pets)
+            if (pets.isEmpty() || pets.all { it.isDeleted == true }) {
+                // If no pets or all pets are deleted, show noPet_TV and hide myPetRV
+                binding.noPetTV.visibility = View.VISIBLE
+                binding.myPetRV.visibility = View.GONE
+            } else {
+                // If there are pets and some are not deleted, show myPetRV and hide noPetTV
+                binding.noPetTV.visibility = View.GONE
+                binding.myPetRV.visibility = View.VISIBLE
+            }
         }
 
         viewModel.loadData()

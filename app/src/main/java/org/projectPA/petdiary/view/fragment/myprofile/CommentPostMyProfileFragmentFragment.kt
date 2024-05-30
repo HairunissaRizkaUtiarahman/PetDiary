@@ -82,10 +82,17 @@ class CommentPostMyProfileFragmentFragment : Fragment() {
 
         commentPostMyProfileAdapter = CommentPostMyProfileAdapter()
 
-        binding.commentRV.adapter = commentPostMyProfileAdapter
+        binding.commentsRV.adapter = commentPostMyProfileAdapter
 
-        commentPostMyProfileViewModel.commentsPost.observe(viewLifecycleOwner) {
-            commentPostMyProfileAdapter.submitList(it)
+        commentPostMyProfileViewModel.commentsPost.observe(viewLifecycleOwner) { comments ->
+            commentPostMyProfileAdapter.submitList(comments)
+            if (comments.isEmpty()) {
+                binding.noCommentTV.visibility = View.VISIBLE
+                binding.commentsRV.visibility = View.GONE
+            } else {
+                binding.noCommentTV.visibility = View.GONE
+                binding.commentsRV.visibility = View.VISIBLE
+            }
         }
 
         commentPostMyProfileViewModel.loadData(postMyProfileViewModel.myPost.value?.id ?: "")

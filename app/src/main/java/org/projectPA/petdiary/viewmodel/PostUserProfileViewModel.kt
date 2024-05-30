@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment.community.user
+package org.projectPA.petdiary.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

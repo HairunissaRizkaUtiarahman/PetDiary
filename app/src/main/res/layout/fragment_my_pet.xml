@@ -36,8 +36,18 @@
             android:id="@+id/myPet_RV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/list_my_pet" />
+
+        <TextView
+            android:id="@+id/noPet_TV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:text="No Pets Yet"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
     </LinearLayout>
 
