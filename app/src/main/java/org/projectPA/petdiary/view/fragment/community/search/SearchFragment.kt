@@ -23,22 +23,18 @@ class SearchFragment : Fragment() {
 
     private val userViewModel: UserViewModel by navGraphViewModels(R.id.community_nav) { UserViewModel.Factory }
     private val postViewModel: PostViewModel by navGraphViewModels(R.id.community_nav) { PostViewModel.Factory }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentUserSearchBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        // Load User
         userAdapter = UserAdapter(onClick = { user, _ ->
             userViewModel.setUser(user)
-            Log.d("UserSearchFragment", user.toString())
-            Log.d("UserSearchFragment", userViewModel.user.value.toString())
-
             findNavController().navigate(R.id.action_userSearchFragment_to_userProfileFragment)
         })
 
@@ -46,21 +42,12 @@ class SearchFragment : Fragment() {
 
         userViewModel.users.observe(viewLifecycleOwner) { users ->
             userAdapter.submitList(users)
-            if (users.isEmpty()) {
-                binding.noUserTV.visibility = View.VISIBLE
-                binding.userRV.visibility = View.GONE
-            } else {
-                binding.noUserTV.visibility = View.GONE
-                binding.userRV.visibility = View.VISIBLE
-            }
+            binding.noUserTV.visibility = if (users.isEmpty()) View.VISIBLE else View.GONE
+            binding.userRV.visibility = if (users.isEmpty()) View.GONE else View.VISIBLE
         }
 
-        userViewModel.loadData()
-
-        // Load Post
         postAdapter = PostAdapter(onClick = { post, _ ->
             postViewModel.setPost(post)
-
             findNavController().navigate(R.id.action_userSearchFragment_to_communityCommentFragment)
         }, onLike = { post ->
             postViewModel.setLike(post.id ?: "")
@@ -70,34 +57,31 @@ class SearchFragment : Fragment() {
 
         postViewModel.posts.observe(viewLifecycleOwner) { posts ->
             postAdapter.submitList(posts)
-            if (posts.isEmpty()) {
-                binding.noPostTV.visibility = View.VISIBLE
-                binding.postRV.visibility = View.GONE
-            } else {
-                binding.noPostTV.visibility = View.GONE
-                binding.postRV.visibility = View.VISIBLE
-            }
+            binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
+            binding.postRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 
-        postViewModel.loadData()
+        userViewModel.loadRandomUsers()
+        postViewModel.loadRandomPosts()
 
-        // Search User & Post
         binding.searchUserPostSV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null && query.isNotEmpty()) {
-                    userViewModel.searchUser(query)
-                    postViewModel.searchPost(query)
+                query?.let {
+                    userViewModel.searchUser(it)
+                    postViewModel.searchPost(it)
                 }
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrEmpty()) {
-                    userViewModel.loadData()
-                    postViewModel.loadData()
-                } else {
-                    userViewModel.searchUser(newText)
-                    postViewModel.searchPost(newText)
+                newText?.let {
+                    if (it.isEmpty()) {
+                        userViewModel.loadRandomUsers()
+                        postViewModel.loadRandomPosts()
+                    } else {
+                        userViewModel.searchUser(it)
+                        postViewModel.searchPost(it)
+                    }
                 }
                 return true
             }

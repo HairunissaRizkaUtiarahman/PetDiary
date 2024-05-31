@@ -34,8 +34,8 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-    fun loadData() = viewModelScope.launch(Dispatchers.IO) {
-        userRepository.getUsers()?.let {
+    fun loadRandomUsers() = viewModelScope.launch(Dispatchers.IO) {
+        userRepository.getRandomUsers()?.let {
             _users.postValue(it)
         }
     }
@@ -51,7 +51,7 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     fun searchUser(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        userRepository.searchUser(query)?.let {
+        userRepository.searchUser(query.lowercase())?.let {
             _users.postValue(it)
         }
     }
