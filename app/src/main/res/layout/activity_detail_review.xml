@@ -113,9 +113,9 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userPhotoProfile"
+                android:id="@+id/user_photo_profile"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="103dp"
                 android:layout_gravity="center"
                 android:layout_margin="2dp"
                 android:padding="20dp"
