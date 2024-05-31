@@ -67,4 +67,13 @@ class ReviewAdapter(
         reviews = newReviews
         notifyDataSetChanged()
     }
+
+    fun updateUserImage(userId: String, imageUrl: String?) {
+        for (review in reviews) {
+            if (review.userId == userId) {
+                review.userPhotoUrl = imageUrl ?: "default"
+            }
+        }
+        notifyDataSetChanged()
+    }
 }

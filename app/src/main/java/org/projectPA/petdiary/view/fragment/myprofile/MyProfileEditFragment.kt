@@ -21,10 +21,7 @@ class MyProfileEditFragment : Fragment() {
 
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentMyProfileEditBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -36,9 +33,7 @@ class MyProfileEditFragment : Fragment() {
 
         var uri: Uri? = null
 
-        val petImage = registerForActivityResult(
-            ActivityResultContracts.GetContent()
-        ) {
+        val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
             binding.profileIV.setImageURI(it)
             if (it != null) {
                 uri = it
@@ -46,52 +41,29 @@ class MyProfileEditFragment : Fragment() {
         }
 
         binding.pickBtn.setOnClickListener {
-            petImage.launch("image/*")
+            pickImageLauncher.launch("image/*")
         }
 
         binding.saveBtn.setOnClickListener {
-            with(binding) {
-                val name = nameTIET.text.toString().trim()
-                val address = addressTIET.text.toString().trim()
-                val bio = bioTIET.text.toString().trim()
+            val name = binding.nameTIET.text.toString().trim()
+            val address = binding.addressTIET.text.toString().trim()
+            val bio = binding.bioTIET.text.toString().trim()
 
-                if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Success Update My Profile",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    viewModel.updateData(name, address, bio, uri)
-                } else {
-                    when {
-                        name.isEmpty() -> Toast.makeText(
-                            requireContext(),
-                            "Name cannot be empty",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        address.isEmpty() -> Toast.makeText(
-                            requireContext(),
-                            "Address cannot be empty",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        bio.isEmpty() -> Toast.makeText(
-                            requireContext(),
-                            "Bio cannot be empty",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
+                viewModel.updateData(name, address, bio, uri)
+                Toast.makeText(requireContext(), "Success Update My Profile", Toast.LENGTH_SHORT).show()
+            } else {
+                when {
+                    name.isEmpty() -> Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
+                    address.isEmpty() -> Toast.makeText(requireContext(), "Address cannot be empty", Toast.LENGTH_SHORT).show()
+                    bio.isEmpty() -> Toast.makeText(requireContext(), "Bio cannot be empty", Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.saveBtn.text = "UPDATING..."
-            } else {
-                binding.saveBtn.text = "SAVE"
+            binding.saveBtn.text = if (it) "UPDATING..." else "SAVE"
+            if (!it) {
                 findNavController().popBackStack()
             }
         }

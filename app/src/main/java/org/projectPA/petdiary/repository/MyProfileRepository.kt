@@ -13,41 +13,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.User
 
-private const val LOG_TAG = "MyPetRepository"
+private const val LOG_TAG = "MyProfileRepository"
+
 class MyProfileRepository(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
 
-    suspend fun addProfile(name: String, address: String, bio: String, uri: Uri?) {
-        try {
-            val userId = auth.currentUser!!.uid
-            val userMap = mutableMapOf(
-                "userId" to userId,
-                "name" to name,
-                "address" to address,
-                "bio" to bio
-            )
-
-            val imageStorageRef = storageRef.getReference("images").child("pictureProfile")
-                .child(System.currentTimeMillis().toString())
-
-            uri?.let {
-                userMap["imageUrl"] =
-                    imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
-            }
-            db.collection("user").document(userId).update(userMap.toMap()).await()
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to update post data", e)
-        } catch (e: StorageException) {
-            Log.e(LOG_TAG, "Fail to update post data", e)
-        }
-    }
-
     suspend fun updateMyProfile(name: String, address: String, bio: String, uri: Uri?) {
         try {
-            val userId = auth.currentUser!!.uid
+            val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
             val userMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -55,30 +31,52 @@ class MyProfileRepository(
                 "bio" to bio
             )
 
-            val imageStorageRef = storageRef.getReference("images").child("pictureProfile")
-                .child(System.currentTimeMillis().toString())
-
             uri?.let {
-                userMap["imageUrl"] =
-                    imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
+                val imageStorageRef = storageRef.getReference("images").child("pictureProfile")
+                    .child(System.currentTimeMillis().toString())
+                userMap["imageUrl"] = imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
+
+            // Update user profile
             db.collection("user").document(userId).update(userMap.toMap()).await()
+
+            // Update user data in review documents
+            updateReviewUserData(userId, name, userMap["imageUrl"])
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to update post data", e)
+            Log.e(LOG_TAG, "Failed to update profile data", e)
         } catch (e: StorageException) {
-            Log.e(LOG_TAG, "Fail to update post data", e)
+            Log.e(LOG_TAG, "Failed to update profile data", e)
         }
     }
 
-    suspend fun getMyProfile(): Flow<User?> {
+    private suspend fun updateReviewUserData(userId: String, userName: String, userPhotoUrl: String?) {
+        try {
+            val reviews = db.collection("reviews").whereEqualTo("userId", userId).get().await()
+            val batch = db.batch()
+            for (review in reviews) {
+                val reviewRef = review.reference
+                val updateMap = mutableMapOf<String, Any>(
+                    "userName" to userName
+                )
+                if (userPhotoUrl != null) {
+                    updateMap["userPhotoUrl"] = userPhotoUrl
+                }
+                batch.update(reviewRef, updateMap)
+            }
+            batch.commit().await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Failed to update review data", e)
+        }
+    }
+
+    fun getMyProfile(): Flow<User?> {
         return flow {
-            val userId =
-                auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
+            val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
             val snapshot = db.collection("user").document(userId).get().await()
             val user = snapshot.toObject(User::class.java)?.copy(id = userId)
             emit(user)
         }.catch { e ->
-            Log.e(LOG_TAG, "Fail to get user data", e)
+            Log.e(LOG_TAG, "Failed to get user data", e)
             emit(null)
         }
     }

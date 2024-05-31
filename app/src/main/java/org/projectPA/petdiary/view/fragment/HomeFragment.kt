@@ -50,6 +50,9 @@ class HomeFragment : Fragment() {
         binding.reviewButton.setOnClickListener {
             startActivity(Intent(activity, ReviewHomePageActivity::class.java))
         }
+        binding.articleButton.setOnClickListener {
+            startActivity(Intent(activity, HomepageArticleActivity::class.java))
+        }
         fetchData()
     }
 

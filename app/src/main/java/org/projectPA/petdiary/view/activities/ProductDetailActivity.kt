@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
@@ -23,6 +24,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var reviewAdapter: ReviewAdapter
     private var sourceActivity: String? = null
     private lateinit var product: Product
+    private var currentUserId: String = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,17 +44,22 @@ class ProductDetailActivity : AppCompatActivity() {
         observeViewModel()
 
         viewModel.fetchProductDetails(productId)
+        viewModel.fetchReviews(productId) // Fetch reviews after fetching product details
 
         binding.reviewButton.setOnClickListener {
             if (::product.isInitialized) {
-                val intent = Intent(this, GiveRatingActivity::class.java).apply {
-                    putExtra("productId", productId)
-                    putExtra("brandName", product.brandName)
-                    putExtra("productName", product.productName)
-                    putExtra("petType", product.petType)
-                    putExtra("imageUrl", product.imageUrl)
+                if (binding.reviewButton.isEnabled) {
+                    val intent = Intent(this, GiveRatingActivity::class.java).apply {
+                        putExtra("productId", productId)
+                        putExtra("brandName", product.brandName)
+                        putExtra("productName", product.productName)
+                        putExtra("petType", product.petType)
+                        putExtra("imageUrl", product.imageUrl)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "You already reviewed this product", Toast.LENGTH_SHORT).show()
                 }
-                startActivity(intent)
             } else {
                 Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT).show()
             }
@@ -103,6 +110,14 @@ class ProductDetailActivity : AppCompatActivity() {
         viewModel.errorMessage.observe(this, Observer { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         })
+
+        viewModel.checkIfUserReviewed(productId, currentUserId)
+
+        viewModel.hasReviewed.observe(this, Observer { hasReviewed ->
+            binding.reviewButton.isEnabled = !hasReviewed
+            Log.d("ProductDetailActivity", "Review button enabled: ${!hasReviewed}")
+        })
+
     }
 
     private fun displayProductDetails(product: Product) {

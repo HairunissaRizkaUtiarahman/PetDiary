@@ -76,10 +76,6 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".view.activities.ArticleHomePageActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <activity
             android:name=".view.activities.ActivityChooseProductCategory"
             android:screenOrientation="portrait"
             android:exported="false" />
@@ -129,6 +125,18 @@
             android:exported="false" />
         <activity
             android:name=".view.activities.DetailReviewActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.ArticleActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.SearchArticleActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".view.activities.HomepageArticleActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
 
