@@ -1,10 +1,8 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.User
 
@@ -14,7 +12,6 @@ class UserRepository(
     private val db: FirebaseFirestore
 ) {
 
-    // Query Get Users
     suspend fun getUsers(): List<User> {
         return try {
             db.collection("user")
@@ -29,7 +26,21 @@ class UserRepository(
         }
     }
 
-    // Query Get User
+    suspend fun getRandomUsers(): List<User> {
+        return try {
+            db.collection("user")
+                .limit(10)
+                .get().await().let { querySnapshot ->
+                    querySnapshot.documents.mapNotNull {
+                        it.toObject(User::class.java)?.copy(id = it.id)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get random users", e)
+            emptyList()
+        }
+    }
+
     suspend fun getUser(userId: String): User? {
         return try {
             val user = db.collection("user")
@@ -45,17 +56,16 @@ class UserRepository(
         }
     }
 
-    // Query Search User
     suspend fun searchUser(query: String): List<User> {
         return try {
-            val userRef = db.collection("user")
-            val queryUserName = userRef
-                .whereGreaterThanOrEqualTo("name", query.uppercase())
-                .whereLessThanOrEqualTo("name", query.lowercase() + "\uf8ff")
-            val querySnapshot = queryUserName.get().await()
-            querySnapshot.documents.mapNotNull {
-                it.toObject(User::class.java)?.copy(id = it.id)
-            }
+            db.collection("user")
+                .get().await().let { querySnapshot ->
+                    querySnapshot.documents.mapNotNull {
+                        it.toObject(User::class.java)?.copy(id = it.id)
+                    }.filter {
+                        it.name?.contains(query, ignoreCase = true) == true
+                    }
+                }
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Failed to search user", e)
             emptyList()

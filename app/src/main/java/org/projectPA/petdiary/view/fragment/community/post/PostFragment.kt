@@ -55,7 +55,7 @@ class PostFragment : Fragment() {
             }
         }
 
-        viewModel.loadData()
+        viewModel.loadRandomPosts()  // Call loadRandomPosts() instead of loadData()
 
         binding.addPostBtn.setOnClickListener {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)

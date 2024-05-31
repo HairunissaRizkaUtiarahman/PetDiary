@@ -27,7 +27,6 @@ class PostRepository(
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
-    // Query Add Post
     suspend fun addPost(desc: String, uri: Uri?) {
         try {
             val userId = auth.currentUser!!.uid
@@ -80,6 +79,36 @@ class PostRepository(
                 }
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to get post data", e)
+            emptyFlow()
+        }
+    }
+
+    // Query Get Random Posts
+    suspend fun getRandomPosts(): Flow<List<Post>> {
+        return try {
+            val currentUserID = auth.currentUser!!.uid
+
+            db.collection("post").whereEqualTo("isDeleted", false)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(10)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        val like = db
+                            .collection("like")
+                            .document("${currentUserID}_${it.id}").get().await()
+                            .toObject(Like::class.java)
+
+                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get random posts data", e)
             emptyFlow()
         }
     }
@@ -242,14 +271,14 @@ class PostRepository(
     // Query Search Post
     suspend fun searchPost(query: String): List<Post> {
         return try {
-            val postRef = db.collection("post")
-            val queryDescPost = postRef
-                .whereGreaterThanOrEqualTo("desc", query.uppercase())
-                .whereLessThanOrEqualTo("desc", query.lowercase() + "\uf8ff")
-            val querySnapshot = queryDescPost.get().await()
-            querySnapshot.documents.mapNotNull {
-                it.toObject(Post::class.java)?.copy(id = it.id)
-            }
+            db.collection("post")
+                .get().await().let { querySnapshot ->
+                    querySnapshot.documents.mapNotNull {
+                        it.toObject(Post::class.java)?.copy(id = it.id)
+                    }.filter {
+                        it.desc?.contains(query, ignoreCase = true) == true
+                    }
+                }
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Failed to search post", e)
             emptyList()

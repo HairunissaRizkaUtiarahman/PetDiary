@@ -47,9 +47,9 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         _isLoading.postValue(false)
     }
 
-    fun loadData() = viewModelScope.launch {
+    fun loadRandomPosts() = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            postRepository.getPosts().collect {
+            postRepository.getRandomPosts().collect {
                 _posts.value = it
             }
         }
@@ -71,9 +71,8 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     fun searchPost(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        postRepository.searchPost(query)?.let {
+        postRepository.searchPost(query.lowercase())?.let {
             _posts.postValue(it)
         }
     }
-
 }
