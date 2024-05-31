@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment.community.user
+package org.projectPA.petdiary.view.fragment.community.search.user
 
 import android.os.Bundle
 import android.util.Log
@@ -13,13 +13,13 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentUserProfileBinding
 import org.projectPA.petdiary.view.adapters.UserProfileTLAdapter
-import org.projectPA.petdiary.viewmodel.UserSearchViewModel
+import org.projectPA.petdiary.viewmodel.UserViewModel
 
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
     private lateinit var userProfileTLAdapter: UserProfileTLAdapter
 
-    private val viewModel: UserSearchViewModel by navGraphViewModels(R.id.community_nav)
+    private val viewModel: UserViewModel by navGraphViewModels(R.id.community_nav)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

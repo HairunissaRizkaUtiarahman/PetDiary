@@ -69,4 +69,11 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         postRepository.setLike(userId, postId)
     }
+
+    fun searchPost(query: String) = viewModelScope.launch(Dispatchers.IO) {
+        postRepository.searchPost(query)?.let {
+            _posts.postValue(it)
+        }
+    }
+
 }

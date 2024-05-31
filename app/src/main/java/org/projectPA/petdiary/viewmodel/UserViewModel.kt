@@ -14,7 +14,7 @@ import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.repository.UserRepository
 
-class UserSearchViewModel(private val userRepository: UserRepository) : ViewModel() {
+class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val _users = MutableLiveData<List<User>>()
     private val _user = MutableLiveData<User>()
 
@@ -29,7 +29,7 @@ class UserSearchViewModel(private val userRepository: UserRepository) : ViewMode
             initializer {
                 val usersRepository =
                     (this[APPLICATION_KEY] as PetDiaryApplication).userRepository
-                UserSearchViewModel(usersRepository)
+                UserViewModel(usersRepository)
             }
         }
     }

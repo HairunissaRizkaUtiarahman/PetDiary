@@ -9,8 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityReviewHomepageBinding
-import org.projectPA.petdiary.view.fragment.HomeFragment
-import org.projectPA.petdiary.view.fragment.ProfileFragment
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.viewmodel.ReviewHomePageViewModel
 

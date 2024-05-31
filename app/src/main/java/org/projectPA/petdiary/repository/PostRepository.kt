@@ -238,4 +238,21 @@ class PostRepository(
             Log.e(LOG_TAG, "Fail to set like", e)
         }
     }
+
+    // Query Search Post
+    suspend fun searchPost(query: String): List<Post> {
+        return try {
+            val postRef = db.collection("post")
+            val queryDescPost = postRef
+                .whereGreaterThanOrEqualTo("desc", query.uppercase())
+                .whereLessThanOrEqualTo("desc", query.lowercase() + "\uf8ff")
+            val querySnapshot = queryDescPost.get().await()
+            querySnapshot.documents.mapNotNull {
+                it.toObject(Post::class.java)?.copy(id = it.id)
+            }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Failed to search post", e)
+            emptyList()
+        }
+    }
 }

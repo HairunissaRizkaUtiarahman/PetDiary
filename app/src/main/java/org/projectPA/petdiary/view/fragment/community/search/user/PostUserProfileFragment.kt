@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment.community.user
+package org.projectPA.petdiary.view.fragment.community.search.user
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostUserProfileBinding
 import org.projectPA.petdiary.view.adapters.PostUserProfileAdapter
 import org.projectPA.petdiary.viewmodel.PostUserProfileViewModel
-import org.projectPA.petdiary.viewmodel.UserSearchViewModel
+import org.projectPA.petdiary.viewmodel.UserViewModel
 
 
 class PostUserProfileFragment : Fragment() {
@@ -19,7 +19,7 @@ class PostUserProfileFragment : Fragment() {
     private lateinit var adapter: PostUserProfileAdapter
 
     private val postUserProfileViewModel: PostUserProfileViewModel by navGraphViewModels(R.id.community_nav) { PostUserProfileViewModel.Factory }
-    private val userSearchViewModel: UserSearchViewModel by navGraphViewModels(R.id.community_nav)
+    private val userViewModel: UserViewModel by navGraphViewModels(R.id.community_nav)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +54,6 @@ class PostUserProfileFragment : Fragment() {
             }
         }
 
-        postUserProfileViewModel.loadData(userSearchViewModel.user.value?.id ?: "")
+        postUserProfileViewModel.loadData(userViewModel.user.value?.id ?: "")
     }
 }

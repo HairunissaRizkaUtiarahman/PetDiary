@@ -12,8 +12,8 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListUserBinding
 import org.projectPA.petdiary.model.User
 
-class UserSearchAdapter(val onClick: (User, View) -> Unit) :
-    ListAdapter<User, UserSearchAdapter.ViewHolder>(Companion) {
+class UserAdapter(val onClick: (User, View) -> Unit) :
+    ListAdapter<User, UserAdapter.ViewHolder>(Companion) {
     private lateinit var context: Context
 
     companion object : DiffUtil.ItemCallback<User>() {
