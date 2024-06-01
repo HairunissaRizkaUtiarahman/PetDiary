@@ -13,6 +13,7 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentProfileBinding
 import org.projectPA.petdiary.view.activities.SigninActivity
 import org.projectPA.petdiary.view.activities.MyProfileActivity
+import org.projectPA.petdiary.view.activities.SettingActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class ProfileFragment : Fragment() {
@@ -31,6 +32,11 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.myProfileBtn.setOnClickListener {
             val intent = Intent(activity, MyProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.settingBtn.setOnClickListener {
+            val intent = Intent(activity, SettingActivity::class.java)
             startActivity(intent)
         }
 
