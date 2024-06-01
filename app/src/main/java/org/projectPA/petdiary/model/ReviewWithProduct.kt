@@ -1,6 +1,6 @@
 package org.projectPA.petdiary.model
 
 data class ReviewWithProduct(
-    val review: Review,
-    val product: Product
+    val review: Review = Review(),
+    val product: Product = Product()
 )

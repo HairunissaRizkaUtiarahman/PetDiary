@@ -49,7 +49,12 @@ class SearchArticleActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+                if (newText.isNullOrEmpty()) {
+                    viewModel.fetchRandomArticles()
+                } else {
+                    viewModel.searchArticles(newText)
+                }
+                return true
             }
         })
 

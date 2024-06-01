@@ -4,9 +4,12 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.tasks.await
+import org.projectPA.petdiary.model.Product
+import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.model.ReviewWithProduct
 import org.projectPA.petdiary.model.User
 
-private const val LOG_TAG = "UsersRepository"
+private const val LOG_TAG = "UserRepository"
 
 class UserRepository(
     private val db: FirebaseFirestore
@@ -71,4 +74,43 @@ class UserRepository(
             emptyList()
         }
     }
+
+    // Add this function to fetch user reviews
+    suspend fun getUserReviews(userId: String): List<ReviewWithProduct> {
+        return try {
+            Log.d(LOG_TAG, "Fetching reviews for user ID: $userId")
+            val reviewDocuments = db.collection("reviews")
+                .whereEqualTo("userId", userId)
+                .get().await().documents
+
+            Log.d(LOG_TAG, "Review documents: ${reviewDocuments.size}")
+
+            val reviewsWithProducts = reviewDocuments.mapNotNull { reviewDoc ->
+                val review = reviewDoc.toObject(Review::class.java)
+                Log.d(LOG_TAG, "Fetched review: $review")
+                if (review != null) {
+                    val productDoc = db.collection("products").document(review.productId).get().await()
+                    val product = productDoc.toObject(Product::class.java)
+                    Log.d(LOG_TAG, "Fetched product: $product")
+                    if (product != null) {
+                        ReviewWithProduct(review, product)
+                    } else {
+                        Log.d(LOG_TAG, "Product not found for productId: ${review.productId}")
+                        null
+                    }
+                } else {
+                    Log.d(LOG_TAG, "Review not found for reviewId: ${reviewDoc.id}")
+                    null
+                }
+            }
+
+            Log.d(LOG_TAG, "Fetched reviews with products: ${reviewsWithProducts.size}")
+            reviewsWithProducts
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Failed to get user reviews", e)
+            emptyList()
+        }
+    }
 }
+
+

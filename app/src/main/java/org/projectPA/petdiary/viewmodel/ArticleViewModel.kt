@@ -56,13 +56,14 @@ class ArticleViewModel : ViewModel() {
         }
     }
 
-    fun fetchRelatedArticles(category: String) {
+    fun fetchRelatedArticles(category: String, currentArticleId: String) {
         viewModelScope.launch {
             val relatedArticles = try {
                 db.collection("articles")
                     .whereEqualTo("category", category)
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
+                            .filter { it.id != currentArticleId } // Filter out the current article
                     }
             } catch (e: Exception) {
                 emptyList()
@@ -75,10 +76,24 @@ class ArticleViewModel : ViewModel() {
         viewModelScope.launch {
             val articles = try {
                 db.collection("articles")
-                    .whereEqualTo("tittle", query)
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
+                            .filter { it.tittle.contains(query, ignoreCase = true) } // Case-insensitive search
                     }
+            } catch (e: Exception) {
+                emptyList()
+            }
+            _articles.postValue(articles)
+        }
+    }
+
+    fun fetchRandomArticles() {
+        viewModelScope.launch {
+            val articles = try {
+                db.collection("articles")
+                    .get().await().let { querySnapshot ->
+                        querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
+                    }.shuffled().take(10) // Randomly shuffle and take 10 articles
             } catch (e: Exception) {
                 emptyList()
             }

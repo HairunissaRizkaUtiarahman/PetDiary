@@ -61,7 +61,7 @@ class ArticleActivity : AppCompatActivity() {
         viewModel.articleDetails.observe(this) { article ->
             article?.let {
                 displayArticleDetails(it)
-                viewModel.fetchRelatedArticles(it.category)
+                viewModel.fetchRelatedArticles(it.category, articleId)
             }
         }
     }
@@ -82,7 +82,6 @@ class ArticleActivity : AppCompatActivity() {
             articleCategory.text = article.category
             articleDate.text = dateFormatter.format(article.date)
             articleBody.text = article.body
-
 
             linkSumberArticle.text = article.sourceUrl
             linkSumberArticle.setOnClickListener {
