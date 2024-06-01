@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_dark"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.community.search.user.PetUserProfileFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pet_RV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_pet"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/noPet_TV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="No Pet Here"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+</FrameLayout>

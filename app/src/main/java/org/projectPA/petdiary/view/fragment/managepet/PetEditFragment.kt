@@ -1,29 +1,32 @@
-package org.projectPA.petdiary.view.fragment.mypet
+package org.projectPA.petdiary.view.fragment.managepet
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.databinding.FragmentMyPetAddBinding
-import org.projectPA.petdiary.viewmodel.MyPetViewModel
+import org.projectPA.petdiary.databinding.FragmentPetEditBinding
+import org.projectPA.petdiary.viewmodel.PetViewModel
 
-class MyPetAddFragment : Fragment() {
-    private lateinit var binding: FragmentMyPetAddBinding
-    private val viewModel: MyPetViewModel by navGraphViewModels(R.id.my_pet_nav)
+
+class PetEditFragment : Fragment() {
+    private lateinit var binding: FragmentPetEditBinding
+
+    private val viewModel: PetViewModel by navGraphViewModels(R.id.pet_nav)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMyPetAddBinding.inflate(layoutInflater, container, false)
+        binding = FragmentPetEditBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -43,7 +46,7 @@ class MyPetAddFragment : Fragment() {
             petImage.launch("image/*")
         }
 
-        binding.addBtn.setOnClickListener {
+        binding.saveBtn.setOnClickListener {
             val radioGroupCheck = binding.petGenderRG.checkedRadioButtonId
             val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
 
@@ -54,26 +57,47 @@ class MyPetAddFragment : Fragment() {
             val desc = binding.petDescTIET.text.toString().trim()
 
             if (name != "" && type != "" && gender != "" && age != "" && desc != "") {
-                Toast.makeText(requireContext(), "Success Add My Pet", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Success Update My Pet", Toast.LENGTH_SHORT).show()
                 checkRadioBtn.isChecked = false
 
-                viewModel.uploadData(name, type, gender, age.toInt(), desc, uri)
+                val myPetId = viewModel.pet.value?.id ?: ""
+
+                viewModel.updateData(myPetId, name, type, gender, age.toInt(), desc, uri)
 
                 binding.petNameTIET.text?.clear()
                 binding.petTypeTIET.text?.clear()
                 binding.petAgeTIET.text?.clear()
                 binding.petDescTIET.text?.clear()
             } else {
-                Toast.makeText(requireContext(), "Failed to Add My Pet", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to Update My Pet", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {
-                binding.addBtn.text = "ADDING..."
+                binding.saveBtn.text = "UPDATING..."
             } else {
-                binding.addBtn.text = "ADD"
+                binding.saveBtn.text = "SAVE"
                 findNavController().popBackStack()
+            }
+        }
+
+        viewModel.pet.observe(viewLifecycleOwner) {
+            with(binding) {
+                if (it.gender == "Male") {
+                    maleRB.isChecked = true
+                } else if (it.gender == "Female") {
+                    femaleRB.isChecked = true
+                }
+
+                petNameTIET.setText(it.name)
+                petTypeTIET.setText(it.type)
+                petAgeTIET.setText(it.age.toString())
+                petDescTIET.setText(it.desc)
+
+                Glide.with(petImageIV.context).load(it.imageUrl).placeholder(R.drawable.image_blank)
+                    .into(petImageIV)
             }
         }
 

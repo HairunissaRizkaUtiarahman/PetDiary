@@ -16,12 +16,17 @@ import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.Pet
 import org.projectPA.petdiary.repository.PetRepository
 
-class MyPetViewModel(private val petRepository: PetRepository) : ViewModel() {
-    private val _pet = MutableLiveData<List<Pet>>()
-    val pets: LiveData<List<Pet>>
-        get() = _pet
-    var pet: Pet = Pet()
+class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
+    private val _pets = MutableLiveData<List<Pet>>()
+    private val _pet = MutableLiveData<Pet>()
     private val _isLoading = MutableLiveData<Boolean>()
+
+    val pets: LiveData<List<Pet>>
+        get() = _pets
+
+    val pet: LiveData<Pet>
+        get() = _pet
+
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
@@ -30,7 +35,7 @@ class MyPetViewModel(private val petRepository: PetRepository) : ViewModel() {
             initializer {
                 val myPetRepository =
                     (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as PetDiaryApplication).petRepository
-                MyPetViewModel(myPetRepository)
+                PetViewModel(myPetRepository)
             }
         }
     }
@@ -44,9 +49,8 @@ class MyPetViewModel(private val petRepository: PetRepository) : ViewModel() {
         uri: Uri?
     ) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        petRepository.addPets(name, type, gender, age, desc, uri)
+        petRepository.addPet(name, type, gender, age, desc, uri)
         _isLoading.postValue(false)
-
     }
 
     fun updateData(
@@ -59,25 +63,29 @@ class MyPetViewModel(private val petRepository: PetRepository) : ViewModel() {
         uri: Uri?
     ) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        petRepository.updatePets(myPetId, name, type, gender, age, desc, uri)
+        petRepository.updatePet(myPetId, name, type, gender, age, desc, uri)
         _isLoading.postValue(false)
-
     }
 
-    fun loadData() = viewModelScope.launch {
-        withContext(Dispatchers.Main) {
-            petRepository.getPets().collect {
-                _pet.value = it
-                Log.d("MyPetViewModel", it.toString())
-            }
-
+    fun loadData() = viewModelScope.launch(Dispatchers.IO) {
+        petRepository.getPets().collect { pets ->
+            _pets.postValue(pets)
         }
+    }
+
+    fun getPet(userId: String) = viewModelScope.launch(Dispatchers.IO) {
+        petRepository.getPet(userId)?.let {
+            _pet.postValue(it)
+        }
+    }
+
+    fun setPet(pet: Pet) {
+        _pet.value = pet
     }
 
     fun deleteData(myPetId: String) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        petRepository.deletePets(myPetId)
+        petRepository.deletePet(myPetId)
         _isLoading.postValue(false)
     }
-
 }

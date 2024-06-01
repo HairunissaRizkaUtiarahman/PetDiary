@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:id="@+id/profile_CV"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
@@ -44,12 +45,13 @@
                     android:textColor="@color/black_grey"
                     android:text="Bio"/>
 
-                <Button
-                    android:id="@+id/viewProfile_Btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="VIEW PROFILE"
-                    android:textStyle="bold"/>
+
+<!--                <Button-->
+<!--                    android:id="@+id/viewProfile_Btn"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="VIEW PROFILE"-->
+<!--                    android:textStyle="bold"/>-->
 
             </LinearLayout>
 

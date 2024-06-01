@@ -2,14 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_pet_nav"
+    android:id="@+id/pet_nav"
     app:startDestination="@id/myPetFragment">
 
     <fragment
         android:id="@+id/myPetFragment"
-        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetFragment"
+        android:name="org.projectPA.petdiary.view.fragment.managepet.PetFragment"
         android:label="fragment_my_pet"
-        tools:layout="@layout/fragment_my_pet" >
+        tools:layout="@layout/fragment_pet" >
         <action
             android:id="@+id/action_myPetFragment_to_myPetAddFragment"
             app:destination="@id/myPetAddFragment" />
@@ -19,21 +19,21 @@
     </fragment>
     <fragment
         android:id="@+id/myPetAddFragment"
-        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetAddFragment"
+        android:name="org.projectPA.petdiary.view.fragment.managepet.PetAddFragment"
         android:label="fragment_my_pet_add"
-        tools:layout="@layout/fragment_my_pet_add" />
+        tools:layout="@layout/fragment_pet_add" />
     <fragment
         android:id="@+id/myPetDetailsFragment"
-        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetDetailsFragment"
+        android:name="org.projectPA.petdiary.view.fragment.managepet.PetDetailsFragment"
         android:label="fragment_my_pet_details"
-        tools:layout="@layout/fragment_my_pet_details" >
+        tools:layout="@layout/fragment_pet_details" >
         <action
             android:id="@+id/action_myPetDetailsFragment_to_myPetEditFragment"
             app:destination="@id/myPetEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/myPetEditFragment"
-        android:name="org.projectPA.petdiary.view.fragment.mypet.MyPetEditFragment"
+        android:name="org.projectPA.petdiary.view.fragment.managepet.PetEditFragment"
         android:label="fragment_my_pet_edit"
-        tools:layout="@layout/fragment_my_pet_edit" />
+        tools:layout="@layout/fragment_pet_edit" />
 </navigation>

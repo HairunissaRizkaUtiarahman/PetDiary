@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.mypet.MyPetFragment">
+    android:background="@color/grey_dark"
+    tools:context=".view.fragment.managepet.PetFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,12 +40,12 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myPet_RV"
+            android:id="@+id/pet_RV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/list_my_pet" />
+            tools:listitem="@layout/list_pet" />
 
         <TextView
             android:id="@+id/noPet_TV"

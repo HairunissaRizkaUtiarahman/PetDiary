@@ -57,6 +57,7 @@ class UserProfileFragment : Fragment() {
             tab.text = when (position) {
                 0 -> "POST"
                 1 -> "REVIEW"
+                2 -> "PET"
                 else -> null
             }
         }.attach()

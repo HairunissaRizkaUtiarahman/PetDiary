@@ -13,12 +13,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentMyProfileBinding
 import org.projectPA.petdiary.view.activities.DashboardActivity
-import org.projectPA.petdiary.view.adapters.MyProfileAdapter
+import org.projectPA.petdiary.view.adapters.MyProfileTLAdapter
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class MyProfileFragment : Fragment() {
     private lateinit var binding: FragmentMyProfileBinding
-    private lateinit var adapter: MyProfileAdapter
+    private lateinit var adapter: MyProfileTLAdapter
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +46,14 @@ class MyProfileFragment : Fragment() {
             }
         }
 
-        adapter = MyProfileAdapter(requireActivity())
+        adapter = MyProfileTLAdapter(requireActivity())
         binding.myProfileVP.adapter = adapter
 
         TabLayoutMediator(binding.myProfileTL, binding.myProfileVP) { tab, position ->
             tab.text = when (position) {
                 0 -> "POST"
                 1 -> "REVIEW"
+                2 -> "PET"
                 else -> null
             }
         }.attach()

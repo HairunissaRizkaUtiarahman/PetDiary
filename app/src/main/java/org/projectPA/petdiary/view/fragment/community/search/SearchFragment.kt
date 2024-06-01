@@ -64,6 +64,7 @@ class SearchFragment : Fragment() {
         userViewModel.loadRandomUsers()
         postViewModel.loadRandomPosts()
 
+
         binding.searchUserPostSV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
@@ -86,5 +87,9 @@ class SearchFragment : Fragment() {
                 return true
             }
         })
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

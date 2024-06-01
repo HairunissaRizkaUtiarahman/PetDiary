@@ -36,7 +36,7 @@ class UserAdapter(val onClick: (User, View) -> Unit) :
             Glide.with(profileImageIV.context).load(user.imageUrl)
                 .placeholder(R.drawable.image_profile).into(profileImageIV)
 
-            viewProfileBtn.setOnClickListener {
+            profileCV.setOnClickListener {
                 onClick(user, it)
             }
         }
