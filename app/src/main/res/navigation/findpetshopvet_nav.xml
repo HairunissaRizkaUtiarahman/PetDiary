@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/findpetshopvet_nav"
+    app:startDestination="@id/findPetShopVetFragment">
+
+    <fragment
+        android:id="@+id/findPetShopVetFragment"
+        android:name="org.projectPA.petdiary.view.fragment.findpetshopvet.FindPetShopVetFragment"
+        android:label="fragment_find_pet_shop_vet"
+        tools:layout="@layout/fragment_find_pet_shop_vet" >
+        <action
+            android:id="@+id/action_findPetShopVetFragment_to_findPetshopFragment"
+            app:destination="@id/findPetshopFragment" />
+        <action
+            android:id="@+id/action_findPetShopVetFragment_to_findVetFragment"
+            app:destination="@id/findVetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPetshopFragment"
+        android:name="org.projectPA.petdiary.view.fragment.findpetshopvet.FindPetshopFragment"
+        android:label="fragment_find_petshop"
+        tools:layout="@layout/fragment_find_petshop" />
+    <fragment
+        android:id="@+id/findVetFragment"
+        android:name="org.projectPA.petdiary.view.fragment.findpetshopvet.FindVetFragment"
+        android:label="fragment_find_vet"
+        tools:layout="@layout/fragment_find_vet" />
+</navigation>

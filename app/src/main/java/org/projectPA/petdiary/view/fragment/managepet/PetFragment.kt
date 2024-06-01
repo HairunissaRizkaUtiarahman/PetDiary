@@ -54,9 +54,7 @@ class PetFragment : Fragment() {
         }
 
         binding.backBtn.setOnClickListener {
-            val intent = Intent(requireContext(), DashboardActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish() // Optionally, finish the current activity
+            requireActivity().finish()
         }
     }
 }

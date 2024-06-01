@@ -77,7 +77,7 @@
     <string name="see_more_reviews"><![CDATA[See more Reviews>>]]></string>
     <string name="back_to_product_page">back to product page</string>
     <string name="product_detail">Product Detail</string>
-    <string name="add_a_review">Add a review</string>
+    <string name="add_a_review">Add a Review</string>
 
     //activity_product_page
     <string name="back_to_product_categories_button">back_to_product_categories_button</string>
