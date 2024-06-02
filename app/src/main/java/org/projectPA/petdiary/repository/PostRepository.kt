@@ -156,7 +156,6 @@ class PostRepository(
     suspend fun getMyPosts(): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
-
             val userId = auth.currentUser!!.uid
             db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
@@ -186,7 +185,6 @@ class PostRepository(
     suspend fun getPostsUserProfile(userId: String): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
-
             db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->

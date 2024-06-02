@@ -27,7 +27,7 @@ class ProductAdapter(
                     .into(productImage)
 
                 root.setOnClickListener {
-                    onProductClicked(product.id)
+                    onProductClicked(product.id ?: "")
                 }
             }
         }

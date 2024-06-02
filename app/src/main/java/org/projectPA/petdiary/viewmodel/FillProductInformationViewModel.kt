@@ -9,6 +9,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import org.projectPA.petdiary.model.Product
@@ -133,7 +134,7 @@ class FillProductInformationViewModel : ViewModel() {
             averageRating = 0.0,
             reviewCount = 0,
             percentageOfUsers = 0,
-            createdAt = Date(),
+            createdAt = Timestamp.now(),
             productNameLower = productName.lowercase(),
             brandNameLower = brandName.lowercase()
         )

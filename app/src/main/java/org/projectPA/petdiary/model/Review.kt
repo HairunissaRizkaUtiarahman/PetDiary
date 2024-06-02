@@ -1,11 +1,12 @@
 package org.projectPA.petdiary.model
 
-import android.os.Parcel
-import android.os.Parcelable
-import java.util.Date
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Exclude
+import java.io.Serializable
+
 
 data class Review(
-    val id: String = "",
+    val id: String? = "",
     val productId: String = "",
     val userId: String = "",
     val userName: String = "",
@@ -14,5 +15,6 @@ data class Review(
     val usagePeriod: String = "",
     val reviewText: String = "",
     val recommend: Boolean = false,
-    val reviewDate: Date = Date()
-)
+    val reviewDate: Timestamp? = Timestamp.now(),
+    @get:Exclude val product: Product? = Product()
+) : Serializable

@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
         loadDataFromFirestore()
 
         binding.managePetButton.setOnClickListener {
-            startActivity(Intent(activity, MyPetActivity::class.java))
+            startActivity(Intent(activity, PetActivity::class.java))
         }
 
         binding.findPetshopClinicButton.setOnClickListener {

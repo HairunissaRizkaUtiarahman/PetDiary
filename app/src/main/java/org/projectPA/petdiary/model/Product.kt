@@ -1,9 +1,11 @@
 package org.projectPA.petdiary.model
 
+import com.google.firebase.Timestamp
+import java.io.Serializable
 import java.util.Date
 
 data class Product(
-    var id: String = "",
+    val id: String? = "",
     var petType: String = "",
     var category: String = "",
     var brandName: String = "",
@@ -13,7 +15,7 @@ data class Product(
     var averageRating: Double = 0.0,
     var reviewCount: Int = 0,
     var percentageOfUsers: Int = 0,
-    var createdAt: Date = Date(),
+    var createdAt: Timestamp? = Timestamp.now(),
     var productNameLower: String = productName.lowercase(),
     var brandNameLower: String = brandName.lowercase()
-)
+) : Serializable

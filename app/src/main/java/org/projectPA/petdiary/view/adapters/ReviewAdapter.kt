@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ItemReviewBinding
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.activities.DetailReviewActivity
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -22,11 +23,11 @@ class ReviewAdapter(
 
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review, context: Context, productId: String, productName: String) {
-            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+//            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
 
             with(binding) {
                 username.text = review.userName
-                reviewDate.text = dateFormat.format(review.reviewDate)
+                reviewDate.text = review.reviewDate?.relativeTime() ?: ""
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
                 usageProduct.text = review.usagePeriod

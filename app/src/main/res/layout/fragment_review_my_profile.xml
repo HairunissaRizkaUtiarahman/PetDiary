@@ -3,23 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/grey_dark"
     tools:context=".view.fragment.myprofile.ReviewMyProfileFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myReview_RV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        tools:listitem="@layout/list_review"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+<!--    <TextView-->
+<!--        android:id="@+id/noPet_TV"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:visibility="gone"-->
+<!--        android:text="No Pet Yet"-->
+<!--        android:textStyle="bold"-->
+<!--        android:gravity="center"/>-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/my_review_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:listitem="@layout/item_my_review" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 </FrameLayout>

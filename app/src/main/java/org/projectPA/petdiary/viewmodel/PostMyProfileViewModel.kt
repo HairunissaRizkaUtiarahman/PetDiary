@@ -18,14 +18,13 @@ import org.projectPA.petdiary.repository.PostRepository
 class PostMyProfileViewModel(private val postRepository: PostRepository) : ViewModel() {
     private val _myPosts = MutableLiveData<List<Post>>()
     private val _myPost = MutableLiveData<Post>()
+    private val _isLoading = MutableLiveData<Boolean>()
 
     val myPosts: LiveData<List<Post>>
         get() = _myPosts
 
     val myPost: LiveData<Post>
         get() = _myPost
-
-    private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 

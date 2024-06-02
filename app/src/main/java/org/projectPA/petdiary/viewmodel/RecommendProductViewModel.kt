@@ -16,7 +16,7 @@ class RecommendProductViewModel : ViewModel() {
     val errorMessage: LiveData<String> get() = _errorMessage
 
     fun submitReview(review: Review) {
-        FirebaseFirestore.getInstance().collection("reviews").document(review.id)
+        FirebaseFirestore.getInstance().collection("reviews").document(review.id ?: "")
             .set(review)
             .addOnSuccessListener {
                 updateProductWithReview(review.productId)

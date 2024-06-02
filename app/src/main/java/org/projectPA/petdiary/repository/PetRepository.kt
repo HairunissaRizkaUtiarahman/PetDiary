@@ -62,7 +62,7 @@ class PetRepository(
         }
     }
 
-    //Query Get Pets
+    // Query Get Pets
     suspend fun getPets(): Flow<List<Pet>> {
         return try {
             val userId = auth.currentUser!!.uid
@@ -80,7 +80,7 @@ class PetRepository(
         }
     }
 
-    //Query Get Pet
+    // Query Get Pet
     suspend fun getPet(userId: String): Pet? {
         return try {
             val pet = db.collection("pet")
@@ -111,7 +111,7 @@ class PetRepository(
         }
     }
 
-    //Query Update data Pet
+    // Query Update data Pet
     suspend fun updatePet(
         PetId: String,
         name: String,
@@ -150,7 +150,7 @@ class PetRepository(
         }
     }
 
-    //Query Delete Pet
+    // Query Delete Pet
     suspend fun deletePet(PetId: String) {
         try {
             val petMap = mapOf(

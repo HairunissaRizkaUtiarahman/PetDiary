@@ -8,6 +8,7 @@ import com.google.firebase.storage.ktx.storage
 import org.projectPA.petdiary.repository.PostRepository
 import org.projectPA.petdiary.repository.PetRepository
 import org.projectPA.petdiary.repository.MyProfileRepository
+import org.projectPA.petdiary.repository.ReviewRepository
 import org.projectPA.petdiary.repository.UserRepository
 
 class PetDiaryApplication : Application() {
@@ -17,6 +18,8 @@ class PetDiaryApplication : Application() {
         get() = PetRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val postRepository: PostRepository
         get() = PostRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
+    val reviewRepository: ReviewRepository
+        get() = ReviewRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val userRepository: UserRepository
         get() = UserRepository(Firebase.firestore)
 }

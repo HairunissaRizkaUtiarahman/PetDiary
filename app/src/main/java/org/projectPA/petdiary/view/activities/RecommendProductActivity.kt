@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
@@ -123,7 +124,7 @@ class RecommendProductActivity : AppCompatActivity() {
             usagePeriod = usagePeriod!!,
             reviewText = reviewText!!,
             recommend = recommend!!, // Recommend should not be null here
-            reviewDate = Date(),
+            reviewDate = Timestamp.now(),
         )
 
         viewModel.submitReview(review)

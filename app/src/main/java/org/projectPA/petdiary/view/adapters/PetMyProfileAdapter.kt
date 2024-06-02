@@ -12,7 +12,7 @@ import org.projectPA.petdiary.databinding.ListPetBinding
 import org.projectPA.petdiary.model.Pet
 
 class PetMyProfileAdapter(val onClick: (Pet, View) -> Unit) :
-    ListAdapter<Pet, PetMyProfileAdapter.ViewHolder>(PetAdapter) {
+    ListAdapter<Pet, PetMyProfileAdapter.ViewHolder>(Companion) {
 
     companion object : DiffUtil.ItemCallback<Pet>() {
         override fun areContentsTheSame(oldItem: Pet, newItem: Pet): Boolean {
