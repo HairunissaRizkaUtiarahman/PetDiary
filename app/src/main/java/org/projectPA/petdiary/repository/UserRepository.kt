@@ -1,6 +1,7 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.tasks.await
@@ -12,8 +13,9 @@ import org.projectPA.petdiary.model.User
 private const val LOG_TAG = "UserRepository"
 
 class UserRepository(
-    private val db: FirebaseFirestore
-) {
+    private val db: FirebaseFirestore,
+    private val auth: FirebaseAuth
+    ) {
 
     suspend fun getUsers(): List<User> {
         return try {
@@ -31,7 +33,9 @@ class UserRepository(
 
     suspend fun getRandomUsers(): List<User> {
         return try {
+            val userId = auth.currentUser!!.uid
             db.collection("user")
+                .whereNotEqualTo("userId", userId) // Mengecualikan pengguna yang sedang login
                 .limit(10)
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
@@ -43,6 +47,7 @@ class UserRepository(
             emptyList()
         }
     }
+
 
     suspend fun getUser(userId: String): User? {
         return try {
