@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentReviewMyProfileBinding
@@ -30,12 +31,22 @@ class ReviewMyProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = ReviewMyProfileAdapter(onClick = { review, _ ->
             viewModel.setReview(review)
+
+            findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment)
+
         })
 
         binding.myReviewRV.adapter = adapter
 
         viewModel.myReviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
+            if (reviews.isEmpty()) {
+                binding.noReviewTV.visibility = View.VISIBLE
+                binding.myReviewRV.visibility = View.GONE
+            } else {
+                binding.noReviewTV.visibility = View.GONE
+                binding.myReviewRV.visibility = View.VISIBLE
+            }
         }
 
         viewModel.loadData()

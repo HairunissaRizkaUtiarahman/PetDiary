@@ -16,5 +16,6 @@ data class Review(
     val reviewText: String = "",
     val recommend: Boolean = false,
     val reviewDate: Timestamp? = Timestamp.now(),
-    @get:Exclude val product: Product? = Product()
+    @get:Exclude val product: Product? = Product(),
+    @get:Exclude val user: User? = User()
 ) : Serializable

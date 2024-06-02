@@ -35,9 +35,14 @@ class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
             productNameTV.text = review.product?.productName
             reviewDateTV.text = review.reviewDate?.relativeTime() ?: ""
             deskripsiReviewTV.text = review.reviewText
+            ratingBar4.rating = review.rating
 
             Glide.with(productImageIV.context).load(review.product?.imageUrl)
                 .placeholder(R.drawable.image_blank).into(productImageIV)
+
+            seeDetailBtn.setOnClickListener {
+                onClick(review, it)
+            }
         }
     }
 

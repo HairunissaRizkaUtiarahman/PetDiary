@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "ReviewRepository"
 
@@ -35,7 +36,14 @@ class ReviewRepository(
                                 .document(productId).get().await()
                                 .toObject(Product::class.java)?.copy(id = productId)
 
-                        it.toObject(Review::class.java).copy(id = it.id, product = product)
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        it.toObject(Review::class.java)
+                            .copy(id = it.id, user = user, product = product)
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
@@ -53,7 +61,14 @@ class ReviewRepository(
                     val product = db.collection("products").document(productId).get().await()
                         .toObject(Product::class.java)?.copy(id = productId)
 
-                    it.toObject(Review::class.java)?.copy(id = it.id, product = product)
+                    val userId = it.get("userId") as String? ?: ""
+                    val user = db
+                        .collection("user")
+                        .document(userId).get().await()
+                        .toObject(User::class.java)?.copy(id = userId)
+
+                    it.toObject(Review::class.java)
+                        ?.copy(id = it.id, user = user, product = product)
                 }
             review
         } catch (e: FirebaseFirestoreException) {
@@ -76,7 +91,14 @@ class ReviewRepository(
                                 .document(productId).get().await()
                                 .toObject(Product::class.java)?.copy(id = productId)
 
-                        it.toObject(Review::class.java).copy(id = it.id, product = product)
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        it.toObject(Review::class.java)
+                            .copy(id = it.id, user = user, product = product)
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
@@ -97,7 +119,14 @@ class ReviewRepository(
                             .document(productId).get().await()
                             .toObject(Product::class.java)?.copy(id = productId)
 
-                        it.toObject(Review::class.java).copy(id = it.id, product = product)
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        it.toObject(Review::class.java)
+                            .copy(id = it.id, user = user, product = product)
                     }
                 }
         } catch (e: FirebaseFirestoreException) {

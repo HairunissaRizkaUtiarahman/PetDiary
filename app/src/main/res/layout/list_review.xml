@@ -82,7 +82,7 @@
                 android:max="5" />
 
             <ImageView
-                android:id="@+id/see_review_detail_arrow"
+                android:id="@+id/seeDetail_Btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="right|center_vertical|end"
