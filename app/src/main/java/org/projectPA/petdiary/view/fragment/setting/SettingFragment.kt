@@ -22,6 +22,10 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        binding.editProfileBtn.setOnClickListener {
+            it.findNavController().navigate(R.id.action_settingFragment_to_editProfileSettingFragment)
+        }
+
         binding.changePasswordBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_settingFragment_to_changePasswordSettingFragment)
         }

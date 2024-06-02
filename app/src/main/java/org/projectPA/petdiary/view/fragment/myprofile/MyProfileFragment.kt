@@ -29,10 +29,6 @@ class MyProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.editMyProfileBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_myProfileFragment_to_myProfileEditFragment)
-        }
-
         viewModel.loadData()
 
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
