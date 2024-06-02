@@ -15,15 +15,15 @@ import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.repository.ReviewRepository
 
-class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) : ViewModel() {
-    private val _myReviews = MutableLiveData<List<Review>>()
-    private val _myReview = MutableLiveData<Review>()
+class ReviewUserProfileViewModel(private val reviewRepository: ReviewRepository) : ViewModel() {
+    private val _reviews = MutableLiveData<List<Review>>()
+    private val _review = MutableLiveData<Review>()
     private val _isLoading = MutableLiveData<Boolean>()
 
-    val myReviews: LiveData<List<Review>>
-        get() = _myReviews
-    val myReview: LiveData<Review>
-        get() = _myReview
+    val reviews: LiveData<List<Review>>
+        get() = _reviews
+    val review: LiveData<Review>
+        get() = _review
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
@@ -32,26 +32,20 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
             initializer {
                 val reviewRepository =
                     (this[APPLICATION_KEY] as PetDiaryApplication).reviewRepository
-                ReviewMyProfileViewModel(reviewRepository)
+                ReviewUserProfileViewModel(reviewRepository)
             }
         }
     }
 
-    fun loadData() = viewModelScope.launch {
+    fun loadData(userId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            reviewRepository.getReviewsMyProfile().collect {
-                _myReviews.value = it
+            reviewRepository.getReviewUserProfile(userId).collect {
+                _reviews.value = it
             }
         }
     }
 
     fun setReview(review: Review) {
-        _myReview.value = review
-    }
-
-    fun getReview(reviewId: String) = viewModelScope.launch(Dispatchers.IO) {
-        reviewRepository.getReview(reviewId)?.let {
-            _myReview.postValue(it)
-        }
+        _review.value = review
     }
 }

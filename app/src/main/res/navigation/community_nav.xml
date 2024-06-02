@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_userProfileFragment_to_detailPetUserProfileFragment"
             app:destination="@id/detailPetUserProfileFragment" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_detailReviewUserProfileFragment"
+            app:destination="@id/detailReviewUserProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/postUserProfileFragment"
@@ -61,4 +64,9 @@
         android:name="org.projectPA.petdiary.view.fragment.community.search.user.DetailPetUserProfileFragment"
         android:label="fragment_detail_pet_user_profile"
         tools:layout="@layout/fragment_detail_pet_user_profile" />
+    <fragment
+        android:id="@+id/detailReviewUserProfileFragment"
+        android:name="org.projectPA.petdiary.view.fragment.community.search.user.DetailReviewUserProfileFragment"
+        android:label="fragment_detail_review_user_profile"
+        tools:layout="@layout/fragment_detail_review_user_profile" />
 </navigation>

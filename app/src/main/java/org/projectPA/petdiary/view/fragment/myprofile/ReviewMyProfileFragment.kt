@@ -13,7 +13,6 @@ import org.projectPA.petdiary.view.adapters.ReviewMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.ReviewMyProfileViewModel
 
 class ReviewMyProfileFragment : Fragment() {
-
     private lateinit var binding: FragmentReviewMyProfileBinding
     private lateinit var adapter: ReviewMyProfileAdapter
 
