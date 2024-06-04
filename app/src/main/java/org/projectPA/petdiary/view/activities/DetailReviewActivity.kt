@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -28,6 +29,7 @@ class DetailReviewActivity : AppCompatActivity() {
         if (productId.isNotEmpty() && reviewId.isNotEmpty()) {
             viewModel.fetchProductDetails(productId)
             viewModel.fetchReviewDetails(reviewId)
+            viewModel.fetchCommentsCount(reviewId)
         } else {
             Toast.makeText(this, "Invalid product or review ID", Toast.LENGTH_SHORT).show()
             finish()
@@ -36,6 +38,20 @@ class DetailReviewActivity : AppCompatActivity() {
 
         binding.backToProductDetailButton.setOnClickListener {
             finish()
+        }
+
+        binding.addCommentButton.setOnClickListener {
+            val intent = Intent(this, ReviewCommentActivity::class.java).apply {
+                putExtra("reviewId", reviewId)
+            }
+            startActivity(intent)
+        }
+
+        binding.seeCommentButton.setOnClickListener {
+            val intent = Intent(this, ReviewCommentActivity::class.java).apply {
+                putExtra("reviewId", reviewId)
+            }
+            startActivity(intent)
         }
 
         observeViewModel()
@@ -54,22 +70,17 @@ class DetailReviewActivity : AppCompatActivity() {
         viewModel.review.observe(this, Observer { review ->
             review?.let {
                 binding.username.text = it.userName
-                it.reviewDate?.let { date ->
-                    try {
-                        val formattedDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date.toDate())
-                        binding.reviewDate.text = formattedDate
-                    } catch (e: Exception) {
-                        binding.reviewDate.text = "Unknown date"
-                    }
-                } ?: run {
-                    binding.reviewDate.text = "Unknown date"
-                }
+                binding.reviewDate.text = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it.reviewDate?.toDate())
                 binding.deskripsiReview.text = it.reviewText
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod
-                binding.recomendedOrNotText.text = if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"
+                binding.recomendedOrNotText.text = if (it.recommend) "I Recommend This Product" else "Not Recommended"
                 Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
             }
+        })
+
+        viewModel.commentsCount.observe(this, Observer { count ->
+            binding.jumlahComment.text = count.toString()
         })
 
         viewModel.errorMessage.observe(this, Observer { message ->

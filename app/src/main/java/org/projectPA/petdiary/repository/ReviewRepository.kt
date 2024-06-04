@@ -23,35 +23,6 @@ class ReviewRepository(
     private val storageRef: FirebaseStorage
 ) {
 
-    // Query Get Reviews
-    suspend fun getReviews(): Flow<List<Review>> {
-        return try {
-            db.collection("reviews")
-                .orderBy("reviewDate", Query.Direction.DESCENDING)
-                .snapshots().map { snapshot ->
-                    snapshot.map {
-                        val productId = it.data["productId"] as String? ?: ""
-                        val product =
-                            db.collection("products")
-                                .document(productId).get().await()
-                                .toObject(Product::class.java)?.copy(id = productId)
-
-                        val userId = it.data["userId"] as String? ?: ""
-                        val user = db
-                            .collection("user")
-                            .document(userId).get()
-                            .await().toObject(User::class.java)?.copy(id = userId)
-
-                        it.toObject(Review::class.java)
-                            .copy(id = it.id, user = user, product = product)
-                    }
-                }
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get review data", e)
-            emptyFlow()
-        }
-    }
-
     // Query Get Review
     suspend fun getReview(reviewId: String): Review? {
         return try {
