@@ -4,7 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -69,6 +74,67 @@ class ProductDetailViewModel : ViewModel() {
                 _hasReviewed.value = false
                 Log.e("ProductDetailViewModel", "Error checking if user reviewed: ${e.message}")
             }
+    }
+
+    fun fetchDataInParallel(productId: String, userId: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val productDeferred = async { fetchProductDetailsAsync(productId) }
+            val reviewsDeferred = async { fetchReviewsAsync(productId) }
+            val userReviewDeferred = async { checkIfUserReviewedAsync(productId, userId) }
+
+            try {
+                productDeferred.await()
+                reviewsDeferred.await()
+                userReviewDeferred.await()
+            } catch (e: Exception) {
+                _errorMessage.postValue(e.message)
+            }
+        }
+    }
+
+    private suspend fun fetchProductDetailsAsync(productId: String) {
+        firestore.collection("products").document(productId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    _product.postValue(document.toObject(Product::class.java))
+                } else {
+                    _errorMessage.postValue("Product not found")
+                }
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.postValue(e.message)
+            }
+            .await()
+    }
+
+    private suspend fun fetchReviewsAsync(productId: String) {
+        firestore.collection("reviews")
+            .whereEqualTo("productId", productId)
+            .get()
+            .addOnSuccessListener { documents ->
+                val reviews = documents.toObjects(Review::class.java)
+                _reviews.postValue(reviews)
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.postValue(e.message)
+            }
+            .await()
+    }
+
+    private suspend fun checkIfUserReviewedAsync(productId: String, userId: String) {
+        firestore.collection("reviews")
+            .whereEqualTo("productId", productId)
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                _hasReviewed.postValue(!documents.isEmpty)
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.postValue(e.message)
+                _hasReviewed.postValue(false)
+            }
+            .await()
     }
 
     // Observe changes to the user data

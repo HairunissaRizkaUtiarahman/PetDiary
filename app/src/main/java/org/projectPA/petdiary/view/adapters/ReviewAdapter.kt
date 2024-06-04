@@ -23,8 +23,6 @@ class ReviewAdapter(
 
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review, context: Context, productId: String, productName: String) {
-//            val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
-
             with(binding) {
                 username.text = review.userName
                 reviewDate.text = review.reviewDate?.relativeTime() ?: ""

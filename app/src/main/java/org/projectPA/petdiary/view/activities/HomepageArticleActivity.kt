@@ -67,6 +67,10 @@ class HomepageArticleActivity : AppCompatActivity() {
             viewModel.filterArticlesByCategory(getString(R.string.community_events))
             highlightSelectedCategory(binding.communityEventsButton)
         }
+
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun highlightSelectedCategory(selectedCategory: TextView) {
