@@ -54,17 +54,21 @@ class DetailReviewActivity : AppCompatActivity() {
         viewModel.review.observe(this, Observer { review ->
             review?.let {
                 binding.username.text = it.userName
-                binding.reviewDate.text = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it.reviewDate)
+                it.reviewDate?.let { date ->
+                    try {
+                        val formattedDate = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date.toDate())
+                        binding.reviewDate.text = formattedDate
+                    } catch (e: Exception) {
+                        binding.reviewDate.text = "Unknown date"
+                    }
+                } ?: run {
+                    binding.reviewDate.text = "Unknown date"
+                }
                 binding.deskripsiReview.text = it.reviewText
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod
                 binding.recomendedOrNotText.text = if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"
                 Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
-//                if (it.userPhotoUrl == "default") {
-//                    binding.userPhotoProfile.setImageResource(R.drawable.ic_profile)
-//                } else {
-//                    Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
-//                }
             }
         })
 

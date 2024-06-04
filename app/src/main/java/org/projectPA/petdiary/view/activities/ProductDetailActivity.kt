@@ -43,8 +43,8 @@ class ProductDetailActivity : AppCompatActivity() {
         setupRecyclerView()
         observeViewModel()
 
-        viewModel.fetchProductDetails(productId)
-        viewModel.fetchReviews(productId) // Fetch reviews after fetching product details
+        // Call refresh to load data initially
+        refresh()
 
         binding.reviewButton.setOnClickListener {
             if (::product.isInitialized) {
@@ -117,7 +117,6 @@ class ProductDetailActivity : AppCompatActivity() {
             binding.reviewButton.isEnabled = !hasReviewed
             Log.d("ProductDetailActivity", "Review button enabled: ${!hasReviewed}")
         })
-
     }
 
     private fun displayProductDetails(product: Product) {
@@ -143,5 +142,9 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.ifThereIsNoReview.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
         binding.listReview.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         binding.seeMoreReviewLink.visibility = if (reviews.size > 5) View.VISIBLE else View.GONE
+    }
+
+    private fun refresh() {
+        viewModel.fetchDataInParallel(productId, currentUserId)
     }
 }
