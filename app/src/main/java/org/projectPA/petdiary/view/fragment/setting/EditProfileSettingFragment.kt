@@ -1,7 +1,11 @@
 package org.projectPA.petdiary.view.fragment.setting
 
+import android.Manifest
+import android.content.ContentValues
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,8 +27,8 @@ import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class EditProfileSettingFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileSettingBinding
-
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
+    private val CAMERA_PERMISSION_REQUEST_CODE = 1001
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,17 +44,60 @@ class EditProfileSettingFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        var uri: Uri? = null
+        var imageUri: Uri? = null
 
-        val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        val postImage = registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) {
+            imageUri = it
             binding.profileIV.setImageURI(it)
-            if (it != null) {
-                uri = it
+        }
+
+        val takePictureLauncher =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+                if (success) {
+                    binding.profileIV.setImageURI(imageUri)
+                }
+            }
+
+        fun takePicture() {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.CAMERA
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.CAMERA),
+                    CAMERA_PERMISSION_REQUEST_CODE
+                )
+            } else {
+                val contentValues = ContentValues().apply {
+                    put(
+                        MediaStore.Images.Media.DISPLAY_NAME,
+                        "image_${System.currentTimeMillis()}.jpg"
+                    )
+                    put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+                }
+                imageUri = requireContext().contentResolver.insert(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    contentValues
+                )
+                imageUri?.let { takePictureLauncher.launch(it) }
             }
         }
 
         binding.pickBtn.setOnClickListener {
-            pickImageLauncher.launch("image/*")
+            val options = arrayOf("Take Picture", "Choose from Gallery")
+            val builder = android.app.AlertDialog.Builder(requireContext())
+            builder.setTitle("Select Image")
+                .setItems(options) { _, which ->
+                    when (which) {
+                        0 -> takePicture()
+                        1 -> postImage.launch("image/*")
+                    }
+                }
+            builder.show()
         }
 
         binding.saveBtn.setOnClickListener {
@@ -62,7 +111,7 @@ class EditProfileSettingFragment : Fragment() {
             val bio = binding.bioTIET.text.toString().trim()
 
             if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
-                viewModel.updateData(name, address, gender, birthdate, bio, uri)
+                viewModel.updateData(name, address, gender, birthdate, bio, imageUri)
                 Toast.makeText(requireContext(), "Success Update My Profile", Toast.LENGTH_SHORT)
                     .show()
             } else {
