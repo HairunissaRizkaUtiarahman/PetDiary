@@ -21,20 +21,24 @@ class MyProfileRepository(
     private val storageRef: FirebaseStorage
 ) {
 
-    suspend fun updateMyProfile(name: String, address: String, bio: String, uri: Uri?) {
+    suspend fun updateMyProfile(name: String, address: String, gender: String, birthdate : String, bio: String, uri: Uri?) {
         try {
-            val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
+            val userId =
+                auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
             val userMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
                 "address" to address,
+                "gender" to gender,
+                "birthdate" to birthdate,
                 "bio" to bio
             )
 
             uri?.let {
                 val imageStorageRef = storageRef.getReference("images").child("pictureProfile")
                     .child(System.currentTimeMillis().toString())
-                userMap["imageUrl"] = imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
+                userMap["imageUrl"] =
+                    imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
             // Update user profile
@@ -49,7 +53,11 @@ class MyProfileRepository(
         }
     }
 
-    private suspend fun updateReviewUserData(userId: String, userName: String, userPhotoUrl: String?) {
+    private suspend fun updateReviewUserData(
+        userId: String,
+        userName: String,
+        userPhotoUrl: String?
+    ) {
         try {
             val reviews = db.collection("reviews").whereEqualTo("userId", userId).get().await()
             val batch = db.batch()
@@ -71,7 +79,8 @@ class MyProfileRepository(
 
     fun getMyProfile(): Flow<User?> {
         return flow {
-            val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
+            val userId =
+                auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
             val snapshot = db.collection("user").document(userId).get().await()
             val user = snapshot.toObject(User::class.java)?.copy(id = userId)
             emit(user)

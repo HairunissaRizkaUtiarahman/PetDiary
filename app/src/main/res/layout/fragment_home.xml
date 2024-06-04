@@ -35,7 +35,7 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/notification_icon_description"
-                    android:src="@drawable/icon_notification" />
+                    android:src="@drawable/ic_notification" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -89,7 +89,7 @@
                         android:id="@+id/review_icon"
                         android:layout_width="60dp"
                         android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_reviews" />
+                        app:srcCompat="@drawable/ic_reviews" />
 
                     <TextView
                         android:id="@+id/review_text"
@@ -116,7 +116,7 @@
                         android:id="@+id/ipetshop_clinic_button_icon"
                         android:layout_width="60dp"
                         android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_petshop_clinic" />
+                        app:srcCompat="@drawable/ic_petshop_clinic" />
 
                     <TextView
                         android:id="@+id/petshop_clinic_button_text"
@@ -143,7 +143,7 @@
                         android:id="@+id/community_icon"
                         android:layout_width="60dp"
                         android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_social_media" />
+                        app:srcCompat="@drawable/ic_social_media" />
 
                     <TextView
                         android:id="@+id/community_text"
@@ -170,7 +170,7 @@
                         android:id="@+id/Article_icon"
                         android:layout_width="60dp"
                         android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_article" />
+                        app:srcCompat="@drawable/ic_article" />
 
                     <TextView
                         android:id="@+id/Article_text"

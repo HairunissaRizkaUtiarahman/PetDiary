@@ -36,7 +36,7 @@ class ChangePasswordSettingFragment : Fragment() {
             val confirmNewPassword = binding.confirmNewPasswordTIET.text.toString().trim()
 
             // Validasi panjang minimal dan maksimal password serta kombinasi huruf dan angka
-            val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,8}$"
+            val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$"
             if (!newPassword.matches(passwordRegex.toRegex())) {
                 Toast.makeText(
                     requireContext(),

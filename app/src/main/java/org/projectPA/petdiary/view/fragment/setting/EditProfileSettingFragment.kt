@@ -3,18 +3,19 @@ package org.projectPA.petdiary.view.fragment.setting
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputFilter
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.datepicker.MaterialDatePicker
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentEditProfileSettingBinding
-import org.projectPA.petdiary.databinding.FragmentMyProfileEditBinding
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 
@@ -51,19 +52,52 @@ class EditProfileSettingFragment : Fragment() {
         }
 
         binding.saveBtn.setOnClickListener {
+            val radioGroupCheck = binding.genderRG.checkedRadioButtonId
+            val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
+
             val name = binding.nameTIET.text.toString().trim()
             val address = binding.addressTIET.text.toString().trim()
+            val gender = checkRadioBtn.text.toString()
+            val birthdate = binding.birthdateTIET.text.toString().trim()
             val bio = binding.bioTIET.text.toString().trim()
 
             if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
-                viewModel.updateData(name, address, bio, uri)
-                Toast.makeText(requireContext(), "Success Update My Profile", Toast.LENGTH_SHORT).show()
+                viewModel.updateData(name, address, gender, birthdate, bio, uri)
+                Toast.makeText(requireContext(), "Success Update My Profile", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 when {
-                    name.isEmpty() -> Toast.makeText(requireContext(), "Name cannot be empty", Toast.LENGTH_SHORT).show()
-                    address.isEmpty() -> Toast.makeText(requireContext(), "Address cannot be empty", Toast.LENGTH_SHORT).show()
-                    bio.isEmpty() -> Toast.makeText(requireContext(), "Bio cannot be empty", Toast.LENGTH_SHORT).show()
+                    name.isEmpty() -> Toast.makeText(
+                        requireContext(),
+                        "Name cannot be empty",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    address.isEmpty() -> Toast.makeText(
+                        requireContext(),
+                        "Address cannot be empty",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    bio.isEmpty() -> Toast.makeText(
+                        requireContext(),
+                        "Bio cannot be empty",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            }
+        }
+
+        binding.birthdateTIL.setEndIconOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select birthdate")
+                .build()
+
+            datePicker.show(childFragmentManager, "DATE_PICKER")
+
+            datePicker.addOnPositiveButtonClickListener {
+                val selectedDate = datePicker.headerText
+                binding.birthdateTIET.setText(selectedDate)
             }
         }
 
@@ -80,6 +114,14 @@ class EditProfileSettingFragment : Fragment() {
                 binding.nameTIET.setText(it.name)
                 binding.emailTIET.setText(it.email)
                 binding.addressTIET.setText(it.address)
+
+                if (it.gender == "Male") {
+                    binding.maleRB.isChecked = true
+                } else if (it.gender == "Female") {
+                    binding.femaleRB.isChecked = true
+                }
+
+                binding.birthdateTIET.setText((it.birthdate))
                 binding.bioTIET.setText(it.bio)
 
                 Glide.with(binding.profileIV.context)

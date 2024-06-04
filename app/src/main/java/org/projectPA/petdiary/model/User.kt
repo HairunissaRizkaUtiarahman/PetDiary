@@ -8,6 +8,8 @@ data class User(
     val name: String? = "",
     val address: String? = "",
     val email: String? = "",
+    val gender: String? = "",
+    val birthdate: String? = "",
     val bio: String? = "",
     val imageUrl: String? = ""
 ) : Serializable

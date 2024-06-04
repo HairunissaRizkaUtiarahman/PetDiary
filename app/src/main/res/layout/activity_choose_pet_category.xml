@@ -72,7 +72,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
                     android:padding="10dp"
-                    android:src="@drawable/icon_cat" />
+                    android:src="@drawable/ic_cat" />
 
                 <TextView
                     android:id="@+id/cat_choice_text"
@@ -97,7 +97,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
                     android:padding="10dp"
-                    android:src="@drawable/icon_dog" />
+                    android:src="@drawable/ic_dog" />
 
                 <TextView
                     android:id="@+id/choose_dog_text"
@@ -125,7 +125,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
                     android:padding="10dp"
-                    android:src="@drawable/icon_rabbit" />
+                    android:src="@drawable/ic_rabbit" />
 
                 <TextView
                     android:id="@+id/choose_rabbit_text"
@@ -162,7 +162,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
                     android:padding="10dp"
-                    android:src="@drawable/icon_hamster" />
+                    android:src="@drawable/ic_hamster" />
 
                 <TextView
                     android:id="@+id/choose_hamster_text"
@@ -191,7 +191,7 @@
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
                     android:padding="10dp"
-                    android:src="@drawable/icon_fish" />
+                    android:src="@drawable/ic_fish" />
 
                 <TextView
                     android:id="@+id/choose_fish_text"
