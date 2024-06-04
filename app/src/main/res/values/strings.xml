@@ -253,6 +253,8 @@
 
 
     <string name="age_pet">%1$d Year</string>
+    <string name="back_to_review_detail_button">back_to_review_detail_button</string>
+    <string name="send_comment">send comment</string>
 
 
 </resources>
