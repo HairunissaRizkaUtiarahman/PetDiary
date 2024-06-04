@@ -101,7 +101,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/roboto"
             android:maxLines="5"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut. Lorem ipsum dolor sit amet."
+            android:text="@string/lorem_ipsum"
             android:textSize="16dp" />
 
     </LinearLayout>

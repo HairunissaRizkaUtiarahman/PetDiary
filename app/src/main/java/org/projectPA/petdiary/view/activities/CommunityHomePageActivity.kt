@@ -13,7 +13,8 @@ class CommunityHomePageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community_homepage)
 
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.communityActivity) as NavHostFragment
-        navController =  navHostFragment.navController
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.communityActivity) as NavHostFragment
+        navController = navHostFragment.navController
     }
 }

@@ -10,6 +10,7 @@ import org.projectPA.petdiary.R
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var image: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
