@@ -32,6 +32,11 @@ class SettingFragment : Fragment() {
                 .navigate(R.id.action_settingFragment_to_changePasswordSettingFragment)
         }
 
+        binding.changeLanguageBtn.setOnClickListener {
+            it.findNavController()
+                .navigate(R.id.action_settingFragment_to_changeLanguageSettingFragment)
+        }
+
         binding.backBtn.setOnClickListener {
             requireActivity().finish()
         }

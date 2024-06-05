@@ -1,8 +1,42 @@
 <resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="app_name">PetDiary</string>
 
+    <!-- Activity Login -->
+    <string name="login">LOGIN</string>
+    <string name="please_sign_in_to_continue">Please Sign In to continue</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="sign_up">Sign Up</string>
 
-    //activity_choose_pet_category
+    <!-- Activity Register -->
+    <string name="register">REGISTER</string>
+    <string name="please_register_to_login">Please Register to login</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="bio">Bio</string>
+
+    <!-- Activity Main -->
+    <string name="add_button">add button</string>
+    <string name="fab">\u200B</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+
+    <!-- Activity Review Homepage -->
+    <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
+    <string name="notification_icon_description">notification</string>
+    <string name="Browse_product_by_pet_types">Browse product by pet types</string>
+    <string name="most_reviews_products">5 Most Reviews Products</string>
+    <string name="scroll_horizontally_to_view_pet_options">Scroll horizontally to view pet options</string>
+    <string name="browse_product_by_pet_types">Browse product by pet types</string>
+    <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>
+
+    <!-- Activity Choose Pet Category -->
     <string name="back_to_review_homepage_button">back_to_review_homepage_button</string>
     <string name="pet_category">Pet Category</string>
     <string name="choose_pet_category">Choose Pet Product Category</string>
@@ -13,12 +47,7 @@
     <string name="cat">Cat</string>
     <string name="bird">Bird</string>
 
-    //activity_choose_product
-    <string name="choose_product">Choose Product</string>
-    <string name="search_product">Search product…</string>
-    <string name="sort">Sort</string>
-
-    //activity_choose_product_category
+    <!-- Activity Choose Product Category -->
     <string name="choose_product_category">Choose Product Category</string>
     <string name="back_to_choose_pet_category_page_button">back_to_choose_pet_category_page_button</string>
     <string name="grooming">Grooming</string>
@@ -27,7 +56,12 @@
     <string name="tools">Tools</string>
     <string name="others">Others</string>
 
-    //activity_fill_product_information
+    <!-- Activity Choose Product -->
+    <string name="choose_product">Choose Product</string>
+    <string name="search_product">Search product…</string>
+    <string name="sort">Sort</string>
+
+    <!-- Activity Fill Product Information -->
     <string name="back_to_choose_product_category_page_button">back_to_choose_product_category_page_button</string>
     <string name="fill_product_information">Fill Product Information</string>
     <string name="enter_brand_name">Enter Brand Name</string>
@@ -39,36 +73,21 @@
     <string name="enter_product_description">Enter product description</string>
     <string name="submit">submit</string>
 
-    //activity_give_rating_step_one
+    <!-- Activity Give Rating Step One -->
     <string name="back_to_choose_product_button">back_to_choose_product_button</string>
     <string name="give_review">Give a Review</string>
     <string name="give_your_overall_rating_for_this_product">Give Your Overall Rating For This Product</string>
     <string name="prev">Prev</string>
     <string name="next">Next</string>
 
-    //activity_login
-    <string name="login">LOGIN</string>
-    <string name="please_sign_in_to_continue">Please Sign In to continue</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="sign_in">SIGN IN</string>
-    <string name="don_t_have_an_account">Don’t have an account?</string>
-    <string name="sign_up">Sign Up</string>
-
-    //activity_main
-    <string name="add_button">add button</string>
-    <string name="fab">\u200B</string>
-    <string name="home">Home</string>
-    <string name="profile">Profile</string>
-
-    //activity_more_reviews
+    <!-- Activity More Reviews -->
     <string name="reviews">Reviews</string>
 
-    //activity_product_categories
+    <!-- Activity Product Categories -->
     <string name="back_to_review_landing_page">back_to_review_landing_page</string>
     <string name="product_categories">Product Categories</string>
 
-    //activity_product_detail
+    <!-- Activity Product Detail -->
     <string name="reviewed_this">People Reviewed This Product</string>
     <string name="users_recommend_this">Users Recommend This</string>
     <string name="product_description">Product Description</string>
@@ -79,48 +98,32 @@
     <string name="product_detail">Product Detail</string>
     <string name="add_a_review">Add a Review</string>
 
-    //activity_product_page
+    <!-- Activity Product Page -->
     <string name="back_to_product_categories_button">back_to_product_categories_button</string>
     <string name="product">Products</string>
 
-    //activity_recommend_product_step_four
+    <!-- Activity Recommend Product Step Four -->
     <string name="would_you_recommend_this_product">Would you recommend this product?</string>
 
-    //activity_register
-    <string name="register">REGISTER</string>
-    <string name="please_register_to_login">Please Register to login</string>
-    <string name="name">Name</string>
-    <string name="address">Address</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="bio">Bio</string>
-
-    //activity_review_homepage
-    <string name="Pet_Product_Reviews_Page">Pet Product Reviews </string>
-    <string name="notification_icon_description">notification</string>
-    <string name="Browse_product_by_pet_types">Browse product by pet types</string>
-    <string name="most_reviews_products">5 Most Reviews Products</string>
-    <string name="scroll_horizontally_to_view_pet_options">Scroll horizontally to view pet options</string>
-    <string name="browse_product_by_pet_types">Browse product by pet types</string>
-    <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>
-
-    //activity_review_detail
+    <!-- Activity Review Detail -->
     <string name="review_detail">Review Detail</string>
     <string name="back_to_product_detail_button">back_to_product_detail_button</string>
     <string name="usage_period">Usage Period</string>
     <string name="date">Date</string>
 
-    //activity_usage_product_step_two
+    <!-- Activity Usage Product Step Two -->
     <string name="how_long_have_you_used_it">How Long Have You Used It?</string>
 
-    //activity_usage_product_step_three
+    <!-- Activity Usage Product Step Three -->
     <string name="write_your_review_about_this_product">Write your review about \n this product</string>
     <string name="write_you_review_here">write you review here…</string>
 
-    //fragment_add_button
+
+    <!-- Fragment Add Button -->
     <string name="add_a_post">Add a Post</string>
     <string name="add_a_product">Add a Product</string>
 
-    //fragment_home
+    <!-- Fragment Home -->
     <string name="find_pet_shop_vet">Shop &amp; Vet</string>
     <string name="community">Community</string>
     <string name="article">Article</string>
@@ -130,20 +133,18 @@
     <string name="community_n">Community</string>
     <string name="article_n">Article</string>
 
-    //fragment_review
-
-    //Fragment_sort_button_product
+    <!-- Fragment Sort Button Product -->
     <string name="sort_by">Sort by</string>
     <string name="popular">Popular</string>
     <string name="highest_rating">Highest Rating</string>
     <string name="newest">Newest</string>
 
-    //fragment_sort_button_review
+    <!-- Fragment Sort Button Review -->
     <string name="newest_review">Newest Review</string>
     <string name="oldest_review">Oldest Review</string>
     <string name="lowest_rating">Lowest Rating</string>
 
-    //Menu
+    <!-- Fragment Menu -->
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -159,12 +160,12 @@
     <string-array name="usage_options">
         <item>Using this product for the first time</item>
         <item>1 week - 1 month</item>
-        <item>2 - 6 months</item>
+        <item>2 – 6 months</item>
         <item>More than one year</item>
         <item>Less than a week</item>
     </string-array>
 
-    // Fragment My Pet
+    <!-- Fragment My Pet -->
     <string name="add">ADD</string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
@@ -174,7 +175,40 @@
     <string name="select_image">Select Image</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
-    // Title Toolbar
+    <!-- Fragment Profile -->
+    <string name="my_profile">MY PROFILE</string>
+    <string name="setting">SETTING</string>
+    <string name="logout">LOGOUT</string>
+
+    <!-- Fragment My Profile -->
+    <string name="save">Save</string>
+    <string name="my_profile_edit">Edit My Profile</string>
+
+    <!-- Fragment Community -->
+    <string name="like_count">%1$d Like</string>
+    <string name="comment_count">%1$d Comment</string>
+
+    <string name="home_name_user">Hi! %1$s</string>
+
+
+    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</string>
+    <string name="care_and_health">Care and Health</string>
+    <string name="training">Training</string>
+    <string name="community_events">Events</string>
+    <string name="all">All</string>
+    <string name="back_to_article_homepage">back to article homepage</string>
+    <string name="share_via">Share via</string>
+    <string name="pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda">Pentingnya Perawatan Kesehatan Rutin untuk Kucing Kesayangan Anda</string>
+
+    <string name="sebagai_pemilik_kucing_memastikan_kesehatan_dan_kesejahteraan_hewan_peliharaan_anda_adalah_tanggung_jawab_yang_sangat_penting_merawat_kesehatan_kucing_secara_teratur_bukan_hanya_tentang_memberikan_makanan_yang_baik_dan_memberi_perhatian_tetapi_juga_melibatkan_upaya_pencegahan_dan_pengawasan_yang_teratur_dalam_artikel_ini_kami_akan_membahas_pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka">Sebagai pemilik kucing, memastikan kesehatan dan kesejahteraan hewan peliharaan Anda adalah tanggung jawab yang sangat penting. Merawat kesehatan kucing secara teratur bukan hanya tentang memberikan makanan yang baik dan memberi perhatian, tetapi juga melibatkan upaya pencegahan dan pengawasan yang teratur. Dalam artikel ini, kami akan membahas pentingnya perawatan kesehatan rutin untuk kucing kesayangan Anda. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka.</string>
+
+    <string name="_15_maret_2024">15 Maret 2024</string>
+
+    <string name="age_pet">%1$d Year</string>
+    <string name="back_to_review_detail_button">back_to_review_detail_button</string>
+    <string name="send_comment">send comment</string>
+
+    <!-- Title Toolbar -->
     <string name="my_pet">My Pet</string>
     <string name="my_pet_details">Details My Pet</string>
     <string name="my_pet_add">Add My Pet</string>
@@ -184,77 +218,5 @@
     <string name="my_pet_type">Type or Species</string>
     <string name="my_pet_desc">Description</string>
     <string name="my_pet_edit_btn">EDIT PET PROFILE</string>
-
-
-    // Fragment Profile
-    <string name="my_profile">MY PROFILE</string>
-    <string name="setting">SETTING</string>
-    <string name="logout">LOGOUT</string>
-
-    // Fragment My Profile
-    <string name="save">Save</string>
-
-    <string name="my_profile_edit">Edit My Profile</string>
-
-    // Community
-    <string name="like_count">%1$d Like</string>
-    <string name="comment_count">%1$d Comment</string>
-
-
-    <string name="home_name_user">Hi! %1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <string name="lorem_ipsum">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
-        volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
-        dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
-        litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
-        diam, vel rutrum tellus vulputate quis. Aliquam eget libero aliquet, imperdiet nisl a,
-        ornare ex. Sed rhoncus est ut libero porta lobortis. Fusce in dictum tellus.\n\n
-        Suspendisse interdum ornare ante. Aliquam nec cursus lorem. Morbi id magna felis. Vivamus
-        egestas, est a condimentum egestas, turpis nisl iaculis ipsum, in dictum tellus dolor sed
-        neque. Morbi tellus erat, dapibus ut sem a, iaculis tincidunt dui. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Curabitur et eros porttitor, ultricies urna vitae,
-        molestie nibh. Phasellus at commodo eros, non aliquet metus. Sed maximus nisl nec dolor
-        bibendum, vel congue leo egestas.\n\n
-        Sed interdum tortor nibh, in sagittis risus mollis quis. Curabitur mi odio, condimentum sit
-        amet auctor at, mollis non turpis. Nullam pretium libero vestibulum, finibus orci vel,
-        molestie quam. Fusce blandit tincidunt nulla, quis sollicitudin libero facilisis et. Integer
-        interdum nunc ligula, et fermentum metus hendrerit id. Vestibulum lectus felis, dictum at
-        lacinia sit amet, tristique id quam. Cras eu consequat dui. Suspendisse sodales nunc ligula,
-        in lobortis sem porta sed. Integer id ultrices magna, in luctus elit. Sed a pellentesque
-        est.\n\n
-        Aenean nunc velit, lacinia sed dolor sed, ultrices viverra nulla. Etiam a venenatis nibh.
-        Morbi laoreet, tortor sed facilisis varius, nibh orci rhoncus nulla, id elementum leo dui
-        non lorem. Nam mollis ipsum quis auctor varius. Quisque elementum eu libero sed commodo. In
-        eros nisl, imperdiet vel imperdiet et, scelerisque a mauris. Pellentesque varius ex nunc,
-        quis imperdiet eros placerat ac. Duis finibus orci et est auctor tincidunt. Sed non viverra
-        ipsum. Nunc quis augue egestas, cursus lorem at, molestie sem. Morbi a consectetur ipsum, a
-        placerat diam. Etiam vulputate dignissim convallis. Integer faucibus mauris sit amet finibus
-        convallis.\n\n
-        Phasellus in aliquet mi. Pellentesque habitant morbi tristique senectus et netus et
-        malesuada fames ac turpis egestas. In volutpat arcu ut felis sagittis, in finibus massa
-        gravida. Pellentesque id tellus orci. Integer dictum, lorem sed efficitur ullamcorper,
-        libero justo consectetur ipsum, in mollis nisl ex sed nisl. Donec maximus ullamcorper
-        sodales. Praesent bibendum rhoncus tellus nec feugiat. In a ornare nulla. Donec rhoncus
-        libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
-        vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
-    </string>
-    <string name="care_and_health">Care and Health</string>
-    <string name="training">Training</string>
-    <string name="community_events">Events</string>
-    <string name="all">All</string>
-    <string name="back_to_article_homepage">back to article homepage</string>
-    <string name="share_via">Share via</string>
-    <string name="pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda">Pentingnya Perawatan Kesehatan Rutin untuk Kucing Kesayangan Anda</string>
-    <string name="sebagai_pemilik_kucing_memastikan_kesehatan_dan_kesejahteraan_hewan_peliharaan_anda_adalah_tanggung_jawab_yang_sangat_penting_merawat_kesehatan_kucing_secara_teratur_bukan_hanya_tentang_memberikan_makanan_yang_baik_dan_memberi_perhatian_tetapi_juga_melibatkan_upaya_pencegahan_dan_pengawasan_yang_teratur_dalam_artikel_ini_kami_akan_membahas_pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka">Sebagai pemilik kucing, memastikan kesehatan dan kesejahteraan hewan peliharaan Anda adalah tanggung jawab yang sangat penting. Merawat kesehatan kucing secara teratur bukan hanya tentang memberikan makanan yang baik dan memberi perhatian, tetapi juga melibatkan upaya pencegahan dan pengawasan yang teratur. Dalam artikel ini, kami akan membahas pentingnya perawatan kesehatan rutin untuk kucing kesayangan Anda. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka.</string>
-    <string name="_15_maret_2024">15 Maret 2024</string>
-
-
-    <string name="age_pet">%1$d Year</string>
-    <string name="back_to_review_detail_button">back_to_review_detail_button</string>
-    <string name="send_comment">send comment</string>
-
 
 </resources>
