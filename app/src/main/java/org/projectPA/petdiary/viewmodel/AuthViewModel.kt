@@ -63,7 +63,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun isValidEmail(email: String): Boolean {
-        val regex = Regex("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")
+        val regex = Regex("[a-zA-Z0-9._-]+@(?:gmail|outlook|yahoo|icloud).+[a-z]+")
         return regex.matches(email)
     }
 
