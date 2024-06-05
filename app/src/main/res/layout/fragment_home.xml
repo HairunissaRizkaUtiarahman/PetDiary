@@ -78,7 +78,7 @@
                 <LinearLayout
                     android:id="@+id/review_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:background="@drawable/background_icon_home"
                     android:clickable="true"
                     android:gravity="center"
@@ -87,8 +87,8 @@
 
                     <ImageView
                         android:id="@+id/review_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
                         app:srcCompat="@drawable/ic_reviews" />
 
                     <TextView
@@ -105,7 +105,7 @@
                 <LinearLayout
                     android:id="@+id/find_petshop_clinic_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -114,8 +114,8 @@
 
                     <ImageView
                         android:id="@+id/ipetshop_clinic_button_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
                         app:srcCompat="@drawable/ic_petshop_clinic" />
 
                     <TextView
@@ -132,7 +132,7 @@
                 <LinearLayout
                     android:id="@+id/community_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -141,8 +141,8 @@
 
                     <ImageView
                         android:id="@+id/community_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
                         app:srcCompat="@drawable/ic_social_media" />
 
                     <TextView
@@ -159,7 +159,7 @@
                 <LinearLayout
                     android:id="@+id/article_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -169,7 +169,7 @@
                     <ImageView
                         android:id="@+id/Article_icon"
                         android:layout_width="60dp"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         app:srcCompat="@drawable/ic_article" />
 
                     <TextView

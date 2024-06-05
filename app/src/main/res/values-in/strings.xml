@@ -122,10 +122,10 @@
     <string name="add_a_product">Tambahkan Produk</string>
 
     <!-- Fragment Home -->
-    <string name="find_pet_shop_vet">Toko &amp; Dokter Hewan</string>
+    <string name="find_pet_shop_vet">Toko &amp; Dokter</string>
     <string name="community">Komunitas</string>
     <string name="article">Artikel</string>
-    <string name="manage_pet">Kelola Hewan Peliharaan</string>
+    <string name="manage_pet">Kelola Peliharaanku</string>
     <string name="manage_pet_poster">Kelola Poster Hewan Peliharaan</string>
     <string name="review_n">Ulasan</string>
     <string name="community_n">Komunitas</string>

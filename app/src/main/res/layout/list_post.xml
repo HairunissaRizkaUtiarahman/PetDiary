@@ -114,6 +114,7 @@
                 android:layout_weight="1"
                 android:text="Like"
                 android:textColor="@color/black"
+                android:textSize="12dp"
                 android:visibility="visible"
                 app:icon="@drawable/ic_like_outline"
                 app:iconTint="@color/black" />
@@ -128,6 +129,7 @@
                 android:layout_weight="1"
                 android:text="Like"
                 android:textColor="@color/orange_main"
+                android:textSize="12dp"
                 android:visibility="gone"
                 app:icon="@drawable/ic_like"
                 app:iconTint="@color/orange_main" />
@@ -142,6 +144,7 @@
                 android:layout_weight="1"
                 android:text="Comment"
                 android:textColor="@color/black"
+                android:textSize="12dp"
                 app:icon="@drawable/ic_comment_outline"
                 app:iconTint="@color/black" />
 
@@ -155,6 +158,7 @@
                 android:layout_weight="1"
                 android:text="Delete"
                 android:textColor="@color/black"
+                android:textSize="12dp"
                 android:visibility="gone"
                 app:icon="@drawable/ic_delete_outline"
                 app:iconTint="@color/black" />
