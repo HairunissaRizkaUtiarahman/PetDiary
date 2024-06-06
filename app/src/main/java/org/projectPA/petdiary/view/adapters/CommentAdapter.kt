@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.projectPA.petdiary.databinding.ItemCommentBinding
+import com.google.firebase.firestore.FirebaseFirestore
+import org.projectPA.petdiary.databinding.ListReviewCommentBinding
 import org.projectPA.petdiary.model.Comment
 import org.projectPA.petdiary.model.User
-import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -17,7 +17,8 @@ class CommentAdapter(
     private var comments: List<Comment>
 ) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
-    class CommentViewHolder(val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CommentViewHolder(val binding: ListReviewCommentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {
             with(binding) {
                 val db = FirebaseFirestore.getInstance()
@@ -38,13 +39,17 @@ class CommentAdapter(
                     }
 
                 deskripsiComment.text = comment.text
-                commentDate.text = SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(comment.CommentDate?.toDate() ?: Date())
+                commentDate.text = SimpleDateFormat(
+                    "dd MMM yyyy",
+                    Locale.getDefault()
+                ).format(comment.CommentDate?.toDate() ?: Date())
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val binding = ItemCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListReviewCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CommentViewHolder(binding)
     }
 

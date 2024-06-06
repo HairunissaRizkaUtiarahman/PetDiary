@@ -65,7 +65,7 @@
                     android:id="@+id/list_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_comment" />
+                    tools:listitem="@layout/list_review_comment" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
@@ -110,7 +110,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:contentDescription="@string/send_comment"
-                    app:icon="@drawable/icon_send"
+                    app:icon="@drawable/ic_send"
                     app:iconGravity="textEnd"
                     app:iconTint="@color/white" />
 

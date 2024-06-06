@@ -12,7 +12,6 @@ import com.example.testproject.ui.socialmedia.post.PostAdapter
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostBinding
 import org.projectPA.petdiary.view.activities.AddPostCommunityActivity
-import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.viewmodel.PostViewModel
 
 class PostFragment : Fragment() {

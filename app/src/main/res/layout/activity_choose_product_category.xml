@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
 
@@ -51,7 +50,7 @@
             android:layout_height="80dp"
             android:background="@drawable/background_pet_category"
             android:padding="10dp"
-            android:src="@drawable/icon_cat" />
+            android:src="@drawable/ic_cat" />
 
         <TextView
             android:id="@+id/pet_type_text"
@@ -92,7 +91,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_health" />
+                    android:src="@drawable/ic_health" />
 
                 <TextView
                     android:id="@+id/health_text"
@@ -122,7 +121,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_tools" />
+                    android:src="@drawable/ic_tools" />
 
                 <TextView
                     android:id="@+id/tools_text"
@@ -161,7 +160,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_food" />
+                    android:src="@drawable/ic_food" />
 
                 <TextView
                     android:id="@+id/food_text"
@@ -191,7 +190,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_grooming" />
+                    android:src="@drawable/ic_grooming" />
 
                 <TextView
                     android:id="@+id/grooming_text"
@@ -230,7 +229,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_others" />
+                    android:src="@drawable/ic_others" />
 
                 <TextView
                     android:id="@+id/others_text"
@@ -261,7 +260,7 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:padding="10dp"
-                    android:src="@drawable/icon_grooming" />
+                    android:src="@drawable/ic_grooming" />
 
                 <TextView
                     android:id="@+id/hide_text"

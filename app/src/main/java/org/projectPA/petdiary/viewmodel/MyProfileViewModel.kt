@@ -33,9 +33,9 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
         }
     }
 
-    fun updateData(name: String, address: String, bio: String, uri: Uri?) = viewModelScope.launch {
+    fun updateData(name: String, address: String, gender: String, birthdate : String, bio: String, uri: Uri?) = viewModelScope.launch {
         _isLoading.postValue(true)
-        myProfileRepository.updateMyProfile(name, address, bio, uri)
+        myProfileRepository.updateMyProfile(name, address, gender, birthdate, bio, uri)
         _isLoading.postValue(false)
     }
 }

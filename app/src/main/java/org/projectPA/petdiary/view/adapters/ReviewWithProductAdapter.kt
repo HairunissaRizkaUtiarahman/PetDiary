@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.projectPA.petdiary.databinding.ItemMyReviewBinding
+import org.projectPA.petdiary.databinding.ListMyReviewBinding
 import org.projectPA.petdiary.model.ReviewWithProduct
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -19,7 +19,7 @@ class ReviewWithProductAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<ReviewWithProductAdapter.ReviewWithProductViewHolder>() {
 
-    class ReviewWithProductViewHolder(val binding: ItemMyReviewBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ReviewWithProductViewHolder(val binding: ListMyReviewBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("LongLogTag")
         fun bind(item: ReviewWithProduct, context: Context) {
             val dateFormat = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
@@ -40,7 +40,7 @@ class ReviewWithProductAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewWithProductViewHolder {
-        val binding = ItemMyReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListMyReviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ReviewWithProductViewHolder(binding)
     }
 

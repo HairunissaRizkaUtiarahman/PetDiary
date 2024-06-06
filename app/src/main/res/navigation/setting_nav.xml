@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_settingFragment_to_editProfileSettingFragment"
             app:destination="@id/editProfileSettingFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_changeLanguageSettingFragment"
+            app:destination="@id/changeLanguageSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/changePasswordSettingFragment"
@@ -27,4 +30,8 @@
         android:name="org.projectPA.petdiary.view.fragment.setting.EditProfileSettingFragment"
         android:label="fragment_edit_profile_setting"
         tools:layout="@layout/fragment_edit_profile_setting" />
+    <fragment
+        android:id="@+id/changeLanguageSettingFragment"
+        android:name="com.example.testproject.ui.setting.ChangeLanguageSettingFragment"
+        android:label="ChangeLanguageSettingFragment" />
 </navigation>

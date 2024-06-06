@@ -24,11 +24,17 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.window?.statusBarColor  =resources.getColor(R.color.orange_main)
+
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        activity?.window?.statusBarColor  =resources.getColor(R.color.white)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.myProfileBtn.setOnClickListener {
             val intent = Intent(activity, MyProfileActivity::class.java)

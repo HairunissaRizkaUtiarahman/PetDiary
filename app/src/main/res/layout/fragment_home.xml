@@ -35,7 +35,7 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/notification_icon_description"
-                    android:src="@drawable/icon_notification" />
+                    android:src="@drawable/ic_notification" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -78,7 +78,7 @@
                 <LinearLayout
                     android:id="@+id/review_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:background="@drawable/background_icon_home"
                     android:clickable="true"
                     android:gravity="center"
@@ -87,9 +87,9 @@
 
                     <ImageView
                         android:id="@+id/review_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_reviews" />
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_reviews" />
 
                     <TextView
                         android:id="@+id/review_text"
@@ -105,7 +105,7 @@
                 <LinearLayout
                     android:id="@+id/find_petshop_clinic_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -114,9 +114,9 @@
 
                     <ImageView
                         android:id="@+id/ipetshop_clinic_button_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_petshop_clinic" />
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_petshop_clinic" />
 
                     <TextView
                         android:id="@+id/petshop_clinic_button_text"
@@ -132,7 +132,7 @@
                 <LinearLayout
                     android:id="@+id/community_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -141,9 +141,9 @@
 
                     <ImageView
                         android:id="@+id/community_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_social_media" />
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_social_media" />
 
                     <TextView
                         android:id="@+id/community_text"
@@ -159,7 +159,7 @@
                 <LinearLayout
                     android:id="@+id/article_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:background="@drawable/background_icon_home"
                     android:gravity="center"
@@ -169,8 +169,8 @@
                     <ImageView
                         android:id="@+id/Article_icon"
                         android:layout_width="60dp"
-                        android:layout_height="45dp"
-                        app:srcCompat="@drawable/icon_article" />
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/ic_article" />
 
                     <TextView
                         android:id="@+id/Article_text"

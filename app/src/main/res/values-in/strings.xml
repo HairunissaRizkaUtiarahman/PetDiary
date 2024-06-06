@@ -1,0 +1,220 @@
+<resources>
+    <string name="hello_blank_fragment">Halo fragmen kosong</string>
+
+    <string name="app_name">PetDiary</string>
+
+    <!-- Activity Login -->
+    <string name="login">MASUK</string>
+    <string name="please_sign_in_to_continue">Silakan masuk untuk melanjutkan</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="sign_in">MASUK</string>
+    <string name="don_t_have_an_account">Belum punya akun?</string>
+    <string name="sign_up">Daftar</string>
+
+    <!-- Activity Register -->
+    <string name="register">DAFTAR</string>
+    <string name="please_register_to_login">Silakan daftar untuk masuk</string>
+    <string name="name">Nama</string>
+    <string name="address">Alamat</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
+    <string name="bio">Bio</string>
+
+    <!-- Activity Main -->
+    <string name="add_button">tombol tambah</string>
+    <string name="fab">\u200B</string>
+    <string name="home">Beranda</string>
+    <string name="profile">Profil</string>
+
+    <!-- Activity Review Homepage -->
+    <string name="Pet_Product_Reviews_Page">Ulasan Produk Hewan Peliharaan</string>
+    <string name="notification_icon_description">notifikasi</string>
+    <string name="Browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
+    <string name="most_reviews_products">5 Produk Dengan Ulasan Terbanyak</string>
+    <string name="scroll_horizontally_to_view_pet_options">Gulir secara horizontal untuk melihat opsi hewan peliharaan</string>
+    <string name="browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
+    <string name="scroll_horizontally_to_view_product">gulir secara horizontal untuk melihat produk</string>
+
+    <!-- Activity Choose Pet Category -->
+    <string name="back_to_review_homepage_button">kembali_ke_halaman_utama_ulasan_tombol</string>
+    <string name="pet_category">Kategori Hewan Peliharaan</string>
+    <string name="choose_pet_category">Pilih Kategori Produk Hewan Peliharaan</string>
+    <string name="fish">Ikan</string>
+    <string name="hamster">Hamster</string>
+    <string name="rabbit">Kelinci</string>
+    <string name="dog">Anjing</string>
+    <string name="cat">Kucing</string>
+    <string name="bird">Burung</string>
+
+    <!-- Activity Choose Product Category -->
+    <string name="choose_product_category">Pilih Kategori Produk</string>
+    <string name="back_to_choose_pet_category_page_button">kembali_ke_halaman_pilih_kategori_hewan_peliharaan_tombol</string>
+    <string name="grooming">Perawatan</string>
+    <string name="food">Makanan</string>
+    <string name="health">Kesehatan</string>
+    <string name="tools">Alat</string>
+    <string name="others">Lainnya</string>
+
+    <!-- Activity Choose Product -->
+    <string name="choose_product">Pilih Produk</string>
+    <string name="search_product">Cari produk…</string>
+    <string name="sort">Urutkan</string>
+
+    <!-- Activity Fill Product Information -->
+    <string name="back_to_choose_product_category_page_button">kembali_ke_halaman_pilih_kategori_produk_tombol</string>
+    <string name="fill_product_information">Isi Informasi Produk</string>
+    <string name="enter_brand_name">Masukkan Nama Merek</string>
+    <string name="product_name">Nama Produk</string>
+    <string name="brand_name">Nama Merek</string>
+    <string name="upload_photo">unggah foto</string>
+    <string name="description">Deskripsi</string>
+    <string name="enter_product_name">Masukkan Nama Produk</string>
+    <string name="enter_product_description">Masukkan deskripsi produk</string>
+    <string name="submit">kirim</string>
+
+    <!-- Activity Give Rating Step One -->
+    <string name="back_to_choose_product_button">kembali_ke_pilih_produk_tombol</string>
+    <string name="give_review">Berikan Ulasan</string>
+    <string name="give_your_overall_rating_for_this_product">Berikan Penilaian Keseluruhan Anda untuk Produk Ini</string>
+    <string name="prev">Sebelumnya</string>
+    <string name="next">Berikutnya</string>
+
+    <!-- Activity More Reviews -->
+    <string name="reviews">Ulasan</string>
+
+    <!-- Activity Product Categories -->
+    <string name="back_to_review_landing_page">kembali_ke_halaman_utama_ulasan</string>
+    <string name="product_categories">Kategori Produk</string>
+
+    <!-- Activity Product Detail -->
+    <string name="reviewed_this">Orang yang Memberi Ulasan untuk Produk Ini</string>
+    <string name="users_recommend_this">Pengguna Merekomendasikan Ini</string>
+    <string name="product_description">Deskripsi Produk</string>
+    <string name="overall_rating">Penilaian Keseluruhan</string>
+    <string name="back_to_products_page_button">kembali_ke_halaman_produk_tombol</string>
+    <string name="see_more_reviews"><![CDATA[Lihat lebih banyak Ulasan>>]]></string>
+    <string name="back_to_product_page">kembali ke halaman produk</string>
+    <string name="product_detail">Detail Produk</string>
+    <string name="add_a_review">Tambahkan Ulasan</string>
+
+    <!-- Activity Product Page -->
+    <string name="back_to_product_categories_button">Kembali ke Kategori Produk Tombol</string>
+    <string name="product">Produk</string>
+
+    <!-- Activity Recommend Product Step Four -->
+    <string name="would_you_recommend_this_product">Apakah Anda akan merekomendasikan produk ini?</string>
+
+    <!-- Activity Review Detail -->
+    <string name="review_detail">Detail Ulasan</string>
+    <string name="back_to_product_detail_button">Kembali ke Detail Produk Tombol</string>
+    <string name="usage_period">Periode Penggunaan</string>
+    <string name="date">Tanggal</string>
+
+    <!-- Activity Usage Product Step Two -->
+    <string name="how_long_have_you_used_it">Berapa Lama Anda Menggunakannya?</string>
+
+    <!-- Activity Usage Product Step Three -->
+    <string name="write_your_review_about_this_product">Tulis ulasan Anda tentang produk ini</string>
+    <string name="write_you_review_here">tulis ulasan Anda di sini…</string>
+
+    <!-- Fragment Add Button -->
+    <string name="add_a_post">Tambahkan Postingan</string>
+    <string name="add_a_product">Tambahkan Produk</string>
+
+    <!-- Fragment Home -->
+    <string name="find_pet_shop_vet">Toko &amp; Dokter</string>
+    <string name="community">Komunitas</string>
+    <string name="article">Artikel</string>
+    <string name="manage_pet">Kelola Peliharaanku</string>
+    <string name="manage_pet_poster">Kelola Poster Hewan Peliharaan</string>
+    <string name="review_n">Ulasan</string>
+    <string name="community_n">Komunitas</string>
+    <string name="article_n">Artikel</string>
+
+    <!-- Fragment Sort Button Product -->
+    <string name="sort_by">Urutkan berdasarkan</string>
+    <string name="popular">Populer</string>
+    <string name="highest_rating">Peringkat Tertinggi</string>
+    <string name="newest">Terbaru</string>
+
+    <!-- Fragment Sort Button Review -->
+    <string name="newest_review">Ulasan Terbaru</string>
+    <string name="oldest_review">Ulasan Terlama</string>
+    <string name="lowest_rating">Peringkat Terendah</string>
+
+    <!-- Fragment Menu -->
+    <string name="title_home">Beranda</string>
+    <string name="title_dashboard">Dasbor</string>
+    <string name="title_notifications">Notifikasi</string>
+
+    <string name="back_to_product_detail_page">kembali ke halaman detail produk\n</string>
+    <string name="back_to_detail_product_page" />
+    <string name="back_to_detail_reviews_page" />
+    <string name="back_to_choose_product_category">kembali_ke_pemilihan_kategori_produk</string>
+    <string name="hide_bottom_view_on_scroll" />
+    <string name="title_activity_main">MainActivity</string>
+    <string name="back_button">tombol_kembali</string>
+
+    <string-array name="usage_options">
+        <item>Menggunakan produk ini untuk pertama kalinya</item>
+        <item>1 minggu - 1 bulan</item>
+        <item>2 – 6 bulan</item>
+        <item>Lebih dari satu tahun</item>
+        <item>Kurang dari seminggu</item>
+    </string-array>
+
+    <!-- Fragment My Pet -->
+    <string name="add">TAMBAHKAN</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="male">Jantan</string>
+    <string name="female">Betina</string>
+    <string name="age">Usia</string>
+    <string name="details">Detail</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="lorem">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf.</string>
+
+    <!-- Fragment Profile -->
+    <string name="my_profile">PROFIL SAYA</string>
+    <string name="setting">PENGATURAN</string>
+    <string name="logout">LOGOUT</string>
+
+    <!-- Fragment My Profile -->
+    <string name="save">Simpan</string>
+    <string name="my_profile_edit">Edit Profil Saya</string>
+
+    <!-- Fragment Community -->
+    <string name="like_count">%1$d Suka</string>
+    <string name="comment_count">%1$d Komentar</string>
+
+    <string name="home_name_user">Hai! %1$s</string>
+
+    <string name="lorem_ipsum">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf. Lorem Ipsum telah menjadi standar industri</string>
+    <string name="care_and_health">Perawatan dan Kesehatan</string>
+    <string name="training">Pelatihan</string>
+    <string name="community_events">Acara</string>
+    <string name="all">Semua</string>
+    <string name="back_to_article_homepage">kembali ke halaman utama artikel</string>
+    <string name="share_via">Bagikan melalui</string>
+    <string name="pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda">Pentingnya Perawatan Kesehatan Rutin untuk Kucing Kesayangan Anda</string>
+
+    <string name="sebagai_pemilik_kucing_memastikan_kesehatan_dan_kesejahteraan_hewan_peliharaan_anda_adalah_tanggung_jawab_yang_sangat_penting_merawat_kesehatan_kucing_secara_teratur_bukan_hanya_tentang_memberikan_makanan_yang_baik_dan_memberi_perhatian_tetapi_juga_melibatkan_upaya_pencegahan_dan_pengawasan_yang_teratur_dalam_artikel_ini_kami_akan_membahas_pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka">Sebagai pemilik kucing, memastikan kesehatan dan kesejahteraan hewan peliharaan Anda adalah tanggung jawab yang sangat penting. Merawat kesehatan kucing secara teratur bukan hanya tentang memberikan makanan yang baik dan memberi perhatian, tetapi juga melibatkan upaya pencegahan dan pengawasan yang teratur. Dalam artikel ini, kami akan membahas pentingnya perawatan kesehatan rutin untuk kucing kesayangan Anda. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka.</string>
+
+    <string name="_15_maret_2024">15 Maret 2024</string>
+
+    <string name="age_pet">%1$d Tahun</string>
+    <string name="back_to_review_detail_button">kembali ke detail ulasan</string>
+    <string name="send_comment">kirim komentar</string>
+
+    <!-- Title Toolbar -->
+    <string name="my_pet">Hewan Peliharaan Saya</string>
+    <string name="my_pet_details">Detail Hewan Peliharaan Saya</string>
+    <string name="my_pet_add">Tambah Hewan Peliharaan Saya</string>
+    <string name="my_pet_edit">Edit Hewan Peliharaan Saya</string>
+
+    <string name="my_pet_name">Nama Hewan Peliharaan</string>
+    <string name="my_pet_type">Jenis atau Spesies</string>
+    <string name="my_pet_desc">Deskripsi</string>
+    <string name="my_pet_edit_btn">EDIT PROFIL HEWAN PELIHARAAN</string>
+
+
+</resources>

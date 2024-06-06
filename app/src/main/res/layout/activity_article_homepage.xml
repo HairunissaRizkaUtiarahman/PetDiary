@@ -41,7 +41,7 @@
             android:layout_gravity="end"
             android:background="@color/white"
             android:contentDescription="@string/back_button"
-            android:src="@drawable/icon_search" />
+            android:src="@drawable/ic_search2" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                tools:listitem="@layout/item_article" />
+                tools:listitem="@layout/list_article" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

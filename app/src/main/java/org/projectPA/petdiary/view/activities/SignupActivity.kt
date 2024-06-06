@@ -3,55 +3,49 @@ package org.projectPA.petdiary.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseUser
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import org.projectPA.petdiary.databinding.ActivitySignupBinding
 import org.projectPA.petdiary.viewmodel.AuthViewModel
 
 class SignupActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivitySignupBinding
-    private val viewModel: AuthViewModel by viewModels()
+    private lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.signUpBtn.setOnClickListener {
-            val name = binding.nameTIET.text.toString().trim()
-            val address = binding.addressTIET.text.toString().trim()
-            val email = binding.emailTIET.text.toString().trim()
-            val password = binding.passwordTIET.text.toString().trim()
+        viewModel = ViewModelProvider(this).get(AuthViewModel::class.java)
 
-            if (viewModel.validateInput(name, address, email, password)) {
-                viewModel.createUserWithEmailAndPassword(email, password, name, address)
-            }
+        binding.signUpBtn.setOnClickListener {
+            val name = binding.nameTIET.text.toString()
+            val email = binding.emailTIET.text.toString()
+            val password = binding.passwordTIET.text.toString()
+            val confirmPassword = binding.confirmPasswordTIET.text.toString()
+
+            viewModel.signup(name, email, password, confirmPassword)
         }
+
+        viewModel.signupSuccess.observe(this, Observer { success ->
+            if (success) {
+                Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        })
+
+        viewModel.signupError.observe(this, Observer { error ->
+            if (error != null) {
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            }
+        })
 
         binding.signInTextView.setOnClickListener {
             startActivity(Intent(this, SigninActivity::class.java))
+            finish()
         }
-
-        viewModel.userCreated.observe(this) { user ->
-            user?.let {
-                updateUI(it)
-            }
-        }
-
-        viewModel.errorMessage.observe(this) { message ->
-            message?.let {
-                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        viewModel.isLoading.observe(this) { isLoading ->
-            binding.signUpBtn.isEnabled = !isLoading
-        }
-    }
-
-    private fun updateUI(user: FirebaseUser) {
-        startActivity(Intent(this, DashboardActivity::class.java))
-        finish()
     }
 }

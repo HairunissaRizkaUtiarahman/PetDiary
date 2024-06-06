@@ -59,7 +59,7 @@
                 android:text="@string/my_profile"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:icon="@drawable/icon_user"
+                app:icon="@drawable/ic_user"
                 app:iconTint="@color/black" />
 
             <Button
@@ -71,7 +71,7 @@
                 android:text="@string/setting"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:icon="@drawable/icon_setting"
+                app:icon="@drawable/ic_setting"
                 app:iconTint="@color/black" />
 
             <Button
@@ -83,7 +83,7 @@
                 android:text="@string/logout"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                app:icon="@drawable/icon_logout"
+                app:icon="@drawable/ic_logout"
                 app:iconTint="@color/black" />
 
         </LinearLayout>

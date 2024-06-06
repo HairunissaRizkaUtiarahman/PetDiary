@@ -3,82 +3,72 @@ package org.projectPA.petdiary.viewmodel
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private val _signupSuccess = MutableLiveData<Boolean>()
+    val signupSuccess: LiveData<Boolean> = _signupSuccess
 
-    val isLoading = MutableLiveData<Boolean>()
-    val userCreated = MutableLiveData<FirebaseUser?>()
-    val errorMessage = MutableLiveData<String?>()
+    private val _signupError = MutableLiveData<String>()
+    val signupError: LiveData<String> = _signupError
 
-    fun validateInput(name: String, address: String, email: String, password: String): Boolean {
-        if (name.isEmpty() || address.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            errorMessage.value = "All fields are required!"
-            return false
+    fun signup(name: String, email: String, password: String, confirmPassword: String) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+            _signupError.value = "All fields are required!"
+            return
+        }
+        if (password!= confirmPassword) {
+            _signupError.value = "Passwords do not match!"
+            return
+        }
+        if (!isValidEmail(email)) {
+            _signupError.value = "Invalid email address!"
+            return
+        }
+        if (!isValidPassword(password)) {
+            _signupError.value = "Password should be between 6 and 10 characters and contain letters and numbers!"
+            return
+        }
+        if (name.length > 100) {
+            _signupError.value = "Name should not exceed 100 characters!"
+            return
         }
 
-        if (name.length > 50) {
-            errorMessage.value = "Name must be less than 50 characters!"
-            return false
+        val auth = FirebaseAuth.getInstance()
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val userId = auth.currentUser?.uid
+                if (userId!= null) {
+                    val user = hashMapOf(
+                        "name" to name,
+                        "email" to email
+                    )
+                    val db = FirebaseFirestore.getInstance()
+                    db.collection("user").document(userId).set(user).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            _signupSuccess.value = true
+                        } else {
+                            _signupError.value = "Failed to save user data!"
+                        }
+                    }
+                }
+            } else {
+                _signupError.value = "Registration failed! Try again."
+            }
         }
-
-        if (address.length > 100) {
-            errorMessage.value = "Address must be less than 100 characters!"
-            return false
-        }
-
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            errorMessage.value = "Invalid email format!"
-            return false
-        }
-
-        return true
     }
 
-    fun createUserWithEmailAndPassword(
-        email: String,
-        password: String,
-        name: String,
-        address: String
-    ) {
-        isLoading.value = true
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val currentUser = auth.currentUser
-                    val userId = currentUser?.uid
+    private fun isValidEmail(email: String): Boolean {
+        val regex = Regex("[a-zA-Z0-9._-]+@(?:gmail|outlook|yahoo|icloud).+[a-z]+")
+        return regex.matches(email)
+    }
 
-                    if (userId != null) {
-                        val userMap = hashMapOf(
-                            "name" to name,
-                            "address" to address,
-                            "email" to email
-                        )
-
-                        db.collection("user").document(userId).set(userMap)
-                            .addOnSuccessListener {
-                                Toast.makeText(
-                                    getApplication(),
-                                    "Successfully Added!",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                userCreated.value = currentUser
-                            }
-                            .addOnFailureListener { e ->
-                                errorMessage.value = "Failed! ${e.message}"
-                            }
-                    } else {
-                        errorMessage.value = "No user logged in!"
-                    }
-                } else {
-                    errorMessage.value = "Auth Failed! ${task.exception?.message}"
-                }
-                isLoading.value = false
-            }
+    private fun isValidPassword(password: String): Boolean {
+        val regex = Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$")
+        return regex.matches(password)
     }
 }

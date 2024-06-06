@@ -114,8 +114,9 @@
                 android:layout_weight="1"
                 android:text="Like"
                 android:textColor="@color/black"
+                android:textSize="12dp"
                 android:visibility="visible"
-                app:icon="@drawable/icon_like_outline"
+                app:icon="@drawable/ic_like_outline"
                 app:iconTint="@color/black" />
 
             <Button
@@ -128,8 +129,9 @@
                 android:layout_weight="1"
                 android:text="Like"
                 android:textColor="@color/orange_main"
+                android:textSize="12dp"
                 android:visibility="gone"
-                app:icon="@drawable/icon_like"
+                app:icon="@drawable/ic_like"
                 app:iconTint="@color/orange_main" />
 
             <Button
@@ -142,7 +144,8 @@
                 android:layout_weight="1"
                 android:text="Comment"
                 android:textColor="@color/black"
-                app:icon="@drawable/icon_comment_outline"
+                android:textSize="12dp"
+                app:icon="@drawable/ic_comment_outline"
                 app:iconTint="@color/black" />
 
             <Button
@@ -155,8 +158,9 @@
                 android:layout_weight="1"
                 android:text="Delete"
                 android:textColor="@color/black"
+                android:textSize="12dp"
                 android:visibility="gone"
-                app:icon="@drawable/icon_delete_outline"
+                app:icon="@drawable/ic_delete_outline"
                 app:iconTint="@color/black" />
 
         </LinearLayout>

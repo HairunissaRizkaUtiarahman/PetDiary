@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import org.projectPA.petdiary.databinding.ItemArticleBinding
+import org.projectPA.petdiary.databinding.ListArticleBinding
 import org.projectPA.petdiary.model.Article
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -16,14 +16,16 @@ class ArticleAdapter(
     private val onArticleClick: (String) -> Unit
 ) : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
-    class ArticleViewHolder(private val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ArticleViewHolder(private val binding: ListArticleBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article, context: Context, onArticleClick: (String) -> Unit) {
             with(binding) {
                 val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
                 Glide.with(context).load(article.imageUrl).into(imageArticle)
                 tittleArticle.text = article.tittle
                 categoryArticle.text = article.category
-                articleDate.text = dateFormatter.format(article.date) // We will format the date in ArticleActivity
+                articleDate.text =
+                    dateFormatter.format(article.date) // We will format the date in ArticleActivity
 
                 root.setOnClickListener {
                     onArticleClick(article.id)
@@ -33,7 +35,7 @@ class ArticleAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ArticleViewHolder(binding)
     }
 

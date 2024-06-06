@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/icon_search" />
+                android:src="@drawable/ic_search2" />
 
         </androidx.appcompat.widget.Toolbar>
 
