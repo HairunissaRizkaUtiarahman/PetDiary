@@ -148,6 +148,10 @@
             android:name=".view.activities.HomepageArticleActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activities.ReviewCommentActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -158,6 +162,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <meta-data
+            android:name="firebase_performance_collection_enabled"
+            android:value="false" />
     </application>
 
 </manifest>

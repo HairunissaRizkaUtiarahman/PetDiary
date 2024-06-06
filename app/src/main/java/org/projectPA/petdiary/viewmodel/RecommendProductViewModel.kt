@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,12 +17,17 @@ class RecommendProductViewModel : ViewModel() {
     val errorMessage: LiveData<String> get() = _errorMessage
 
     fun submitReview(review: Review) {
-        FirebaseFirestore.getInstance().collection("reviews").document(review.id ?: "")
+        val reviewId = review.id ?: FirebaseFirestore.getInstance().collection("reviews").document().id
+        review.id = reviewId
+
+        FirebaseFirestore.getInstance().collection("reviews").document(reviewId)
             .set(review)
             .addOnSuccessListener {
+                Log.d("RecommendProductViewModel", "Review submitted successfully with ID: $reviewId")
                 updateProductWithReview(review.productId)
             }
             .addOnFailureListener { e ->
+                Log.e("RecommendProductViewModel", "Failed to submit review: ${e.message}")
                 _errorMessage.value = "Failed to submit review: ${e.message}"
             }
     }
@@ -47,11 +53,14 @@ class RecommendProductViewModel : ViewModel() {
                     "percentageOfUsers" to percentageOfUsers
                 )
             ).addOnSuccessListener {
+                Log.d("RecommendProductViewModel", "Product updated successfully with new review data")
                 _reviewSubmitted.value = true
             }.addOnFailureListener { e ->
+                Log.e("RecommendProductViewModel", "Failed to update product: ${e.message}")
                 _errorMessage.value = "Failed to update product: ${e.message}"
             }
         }.addOnFailureListener { e ->
+            Log.e("RecommendProductViewModel", "Failed to fetch reviews: ${e.message}")
             _errorMessage.value = "Failed to fetch reviews: ${e.message}"
         }
     }

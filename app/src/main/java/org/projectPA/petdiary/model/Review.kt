@@ -6,7 +6,7 @@ import java.io.Serializable
 
 
 data class Review(
-    val id: String? = "",
+    var id: String? = "",
     val productId: String = "",
     val userId: String = "",
     val userName: String = "",

@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.snapshots
+import com.google.firebase.firestore.ktx.snapshots
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageException
 import kotlinx.coroutines.flow.Flow

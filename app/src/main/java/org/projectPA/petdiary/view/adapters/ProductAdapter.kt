@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.databinding.ItemProductBinding
 import org.projectPA.petdiary.model.Product
-import org.projectPA.petdiary.model.Review
 
 class ProductAdapter(
     private var products: List<Product>,

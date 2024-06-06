@@ -114,6 +114,7 @@ class RecommendProductActivity : AppCompatActivity() {
     @SuppressLint("LongLogTag")
     private fun submitReview(userId: String, userName: String, userPhotoUrl: String) {
         Log.d("RecommendProductActivity", "Submitting Review: userId=$userId, userName=$userName, userPhotoUrl=$userPhotoUrl")
+
         val review = Review(
             id = FirebaseFirestore.getInstance().collection("reviews").document().id,
             productId = productId!!,
@@ -123,12 +124,13 @@ class RecommendProductActivity : AppCompatActivity() {
             rating = rating.toFloat(),
             usagePeriod = usagePeriod!!,
             reviewText = reviewText!!,
-            recommend = recommend!!, // Recommend should not be null here
+            recommend = recommend!!,
             reviewDate = Timestamp.now(),
         )
 
         viewModel.submitReview(review)
     }
+
 
     private fun updateSubmitButtonState() {
         binding.nextButtonToRecommendProduct.isEnabled = recommend != null
