@@ -168,11 +168,10 @@
     <!-- Fragment My Pet -->
     <string name="add">ADD</string>
     <string name="gender">Gender</string>
-    <string name="male">Male</string>
-    <string name="female">Female</string>
+    <string name="male_pet">Male</string>
+    <string name="female_pet">Female</string>
     <string name="age">Age</string>
     <string name="details">Details</string>
-    <string name="select_image">Select Image</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
     <!-- Fragment Profile -->
@@ -181,7 +180,6 @@
     <string name="logout">LOGOUT</string>
 
     <!-- Fragment My Profile -->
-    <string name="save">Save</string>
     <string name="my_profile_edit">Edit My Profile</string>
 
     <!-- Fragment Community -->
@@ -208,6 +206,11 @@
     <string name="back_to_review_detail_button">back_to_review_detail_button</string>
     <string name="send_comment">send comment</string>
 
+    <!-- Universal -->
+    <string name="select_image">Select Image</string>
+    <string name="save">Save</string>
+    <string name="birthdate">Birthdate</string>
+
     <!-- Title Toolbar -->
     <string name="my_pet">My Pet</string>
     <string name="my_pet_details">Details My Pet</string>
@@ -218,5 +221,41 @@
     <string name="my_pet_type">Type or Species</string>
     <string name="my_pet_desc">Description</string>
     <string name="my_pet_edit_btn">EDIT PET PROFILE</string>
+
+    <string name="toolbar_setting">Setting</string>
+    <string name="toolbar_change_language">Change Language</string>
+    <string name="toolbar_change_password">Change Password</string>
+    <string name="toolbar_edit_profile">Edit Profile</string>
+
+    <!-- Setting -->
+    <!-- Fragment Setting -->
+    <string name="edit_profile">Edit Profile</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_language">Change Language</string>
+
+    <!-- Fragment Change Language -->
+    <string name="same_on_system">Same on System</string>
+    <string name="language_english">English</string>
+    <string name="indonesian">Indonesian</string>
+
+    <string name="image_system_cd">Image System</string>
+    <string name="image_check_system_cd">Image Check System</string>
+    <string name="image_english_cd">Image English</string>
+    <string name="image_check_english_cd">Image Check English</string>
+    <string name="image_indonesian_cd">Image Indonesian</string>
+    <string name="image_check_indonesian_cd">Image Check Indonesian</string>
+
+    <!-- Fragment Change Password -->
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password_btn">Change Password</string>
+
+    <!-- Fragment Edit Profile -->
+    <string name="male_profile">Male</string>
+    <string name="female_profile">Female</string>
+
+
 
 </resources>

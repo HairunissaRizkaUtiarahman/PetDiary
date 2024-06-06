@@ -40,7 +40,7 @@ class EditProfileSettingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -164,9 +164,9 @@ class EditProfileSettingFragment : Fragment() {
                 binding.emailTIET.setText(it.email)
                 binding.addressTIET.setText(it.address)
 
-                if (it.gender == "Male") {
+                if (it.gender == "Male" || it.gender == "Pria") {
                     binding.maleRB.isChecked = true
-                } else if (it.gender == "Female") {
+                } else if (it.gender == "Female" || it.gender == "Wanita") {
                     binding.femaleRB.isChecked = true
                 }
 

@@ -37,9 +37,8 @@ class SettingFragment : Fragment() {
                 .navigate(R.id.action_settingFragment_to_changeLanguageSettingFragment)
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
-
     }
 }

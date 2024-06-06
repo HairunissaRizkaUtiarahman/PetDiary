@@ -15,5 +15,6 @@
     <color name="orange_secondary">#FDF1C2</color>
     <color name="grey_main">#EDEBEB</color>
     <color name="grey_dark">#DFDEDE</color>
+    <color name="grey_light">#fafafa</color>
     <color name="black_grey">#80000000</color>
 </resources>

@@ -166,11 +166,10 @@
     <!-- Fragment My Pet -->
     <string name="add">TAMBAHKAN</string>
     <string name="gender">Jenis Kelamin</string>
-    <string name="male">Jantan</string>
-    <string name="female">Betina</string>
+    <string name="male_pet">Jantan</string>
+    <string name="female_pet">Betina</string>
     <string name="age">Usia</string>
     <string name="details">Detail</string>
-    <string name="select_image">Pilih Gambar</string>
     <string name="lorem">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf.</string>
 
     <!-- Fragment Profile -->
@@ -179,7 +178,6 @@
     <string name="logout">LOGOUT</string>
 
     <!-- Fragment My Profile -->
-    <string name="save">Simpan</string>
     <string name="my_profile_edit">Edit Profil Saya</string>
 
     <!-- Fragment Community -->
@@ -205,6 +203,11 @@
     <string name="back_to_review_detail_button">kembali ke detail ulasan</string>
     <string name="send_comment">kirim komentar</string>
 
+    <!-- Universal -->
+    <string name="select_image">Pilih Gambar</string>
+    <string name="save">Simpan</string>
+    <string name="birthdate">Tanggal lahir</string>
+
     <!-- Title Toolbar -->
     <string name="my_pet">Hewan Peliharaan Saya</string>
     <string name="my_pet_details">Detail Hewan Peliharaan Saya</string>
@@ -215,6 +218,40 @@
     <string name="my_pet_type">Jenis atau Spesies</string>
     <string name="my_pet_desc">Deskripsi</string>
     <string name="my_pet_edit_btn">EDIT PROFIL HEWAN PELIHARAAN</string>
+
+    <string name="toolbar_setting">Pengaturan</string>
+    <string name="toolbar_change_language">Ganti Bahasa</string>
+    <string name="toolbar_change_password">Ganti Kata Sandi</string>
+    <string name="toolbar_edit_profile">Ubah Profil</string>
+
+    <!-- Activity Setting -->
+    <!-- Fragment Setting -->
+    <string name="edit_profile">Ubah Profil</string>
+    <string name="change_email">Ganti Email</string>
+    <string name="change_password">Ganti Kata Sandi</string>
+    <string name="change_language">Ganti Bahasa</string>
+
+    <!-- Fragment Change Language -->
+    <string name="same_on_system">Sama dengan Sistem</string>
+    <string name="language_english">Bahasa Inggris</string>
+    <string name="indonesian">Bahasa Indonesia</string>
+
+    <string name="image_system_cd">Image System</string>
+    <string name="image_check_system_cd">Image Check System</string>
+    <string name="image_english_cd">Image English</string>
+    <string name="image_check_english_cd">Image Check English</string>
+    <string name="image_indonesian_cd">Image Indonesian</string>
+    <string name="image_check_indonesian_cd">Image Check Indonesian</string>
+
+    <!-- Fragment Change Password -->
+    <string name="old_password">Kata Sandi Lama</string>
+    <string name="new_password">Kata Sandi Baru</string>
+    <string name="confirm_new_password">Konfirmasi Kata Sandi Baru</string>
+    <string name="change_password_btn">Ganti Kata Sandi</string>
+
+    <!-- Fragment Edit Profile -->
+    <string name="male_profile">Pria</string>
+    <string name="female_profile">Wanita</string>
 
 
 </resources>
