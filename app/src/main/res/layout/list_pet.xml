@@ -32,14 +32,15 @@
                 android:id="@+id/petName_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="@string/pet_name"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/petType_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type or Species"
+                android:text="@string/pet_type"
                 android:textColor="@color/black_grey" />
 
             <LinearLayout
@@ -51,7 +52,7 @@
                     android:id="@+id/petGender_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gender"
+                    android:text="@string/gender"
                     android:textColor="@color/black_grey" />
 
                 <TextView
@@ -73,7 +74,7 @@
                 android:id="@+id/petDetail_Btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View Details"
+                android:text="@string/details"
                 android:textStyle="bold" />
 
         </LinearLayout>

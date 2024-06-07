@@ -41,7 +41,7 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/roboto"
                     android:maxLines="1"
-                    android:text="Brand Name"
+                    android:text="@string/brand_name"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -52,14 +52,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Product Name" />
+                    android:text="@string/product_name" />
 
                 <TextView
                     android:id="@+id/reviewDate_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="Timestamp" />
+                    android:text="@string/timestamp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -85,7 +85,7 @@
                 android:id="@+id/seeDetail_Btn"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_gravity="right|center_vertical|end"
+                android:contentDescription="@string/image_see_detail_cd"
                 android:rotation="180"
                 android:src="@drawable/arrow_back" />
 
@@ -102,7 +102,7 @@
             android:fontFamily="@font/roboto"
             android:maxLines="5"
             android:text="@string/lorem_ipsum"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

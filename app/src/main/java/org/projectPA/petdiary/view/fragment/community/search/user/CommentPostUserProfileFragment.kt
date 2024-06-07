@@ -93,7 +93,7 @@ class CommentPostUserProfileFragment : Fragment() {
         commentPostUserProfileViewModel.loadData(postUserProfileViewModel.post.value?.id ?: "")
 
         binding.sendBtn.setOnClickListener {
-            val comment = binding.commentTextInputEditText.text.toString().trim()
+            val comment = binding.commentTIET.text.toString().trim()
 
             if (comment != "") {
                 commentPostUserProfileViewModel.uploadData(
@@ -101,7 +101,7 @@ class CommentPostUserProfileFragment : Fragment() {
                     postUserProfileViewModel.post.value?.id ?: ""
                 )
                 Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
-                binding.commentTextInputEditText.text?.clear()
+                binding.commentTIET.text?.clear()
             }
         }
 

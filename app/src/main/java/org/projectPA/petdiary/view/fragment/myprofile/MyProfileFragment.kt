@@ -54,7 +54,7 @@ class MyProfileFragment : Fragment() {
             }
         }.attach()
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
     }

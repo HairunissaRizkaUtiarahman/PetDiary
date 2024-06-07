@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey_dark"
+    android:background="@color/grey_light"
     tools:context=".view.fragment.myprofile.PetMyProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/list_pet"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <TextView
@@ -19,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:text="No Pet Yet"
+        android:text="@string/no_pet_yet"
         android:textStyle="bold"
         android:gravity="center"/>
 

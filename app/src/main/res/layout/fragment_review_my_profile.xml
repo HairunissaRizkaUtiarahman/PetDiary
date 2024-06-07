@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/grey_dark"
+    android:background="@color/grey_light"
     tools:context=".view.fragment.myprofile.ReviewMyProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:text="No Pet Yet"
+        android:text="@string/no_review_yet"
         android:textStyle="bold"
         android:gravity="center"/>
 

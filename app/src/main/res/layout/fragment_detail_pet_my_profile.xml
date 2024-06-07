@@ -1,92 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.fragment.myprofile.DetailPetMyProfileFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/toolbar_pet_detail"
+            app:titleTextColor="@color/black" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/petImage_IV"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        android:contentDescription="@string/image_pet_cd"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_blank" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <ImageView
-            android:id="@+id/petImage_IV"
+        <TextView
+            android:id="@+id/petName_TV"
             android:layout_width="match_parent"
-            android:layout_height="410dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_blank"/>
+            android:layout_height="wrap_content"
+            android:text="@string/pet_name"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/petType_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pet_type" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp">
+
 
             <TextView
-                android:id="@+id/petName_TV"
+                android:id="@+id/petGender_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pet Name"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_green"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/gender"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/petType_TV"
+                android:id="@+id/petAge_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Type or Species" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="10dp">
-
-
-                <TextView
-                    android:id="@+id/petGender_TV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_green"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="Gender"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/petAge_TV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/rounded_green"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/age_pet"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/desc_TV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Desc"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_green"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/age_pet"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/petDesc_TV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/desc_TV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/petDesc_TV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/lorem_ipsum" />
+
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

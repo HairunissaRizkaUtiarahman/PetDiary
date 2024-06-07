@@ -87,7 +87,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/comment_TextInputLayout"
+                    android:id="@+id/comment_TIL"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     app:counterEnabled="false">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/comment_TextInputEditText"
+                        android:id="@+id/comment_TIET"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter Comment" />

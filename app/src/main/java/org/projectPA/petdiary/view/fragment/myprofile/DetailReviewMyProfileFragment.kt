@@ -37,8 +37,11 @@ class DetailReviewMyProfileFragment : Fragment() {
                 brandNameTV.text = it.product?.brandName
                 productNameTV.text = it.product?.productName
                 productTypeTV.text = it.product?.petType
-                reviewDateTV.text = it.reviewDate?.relativeTime() ?: ""
-                usagePeriodReview.text = it.usagePeriod
+                reviewDateTV.text =
+                    it.reviewDate?.toDate()?.let { it1 ->
+                        SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it1)
+                    }
+                usagePeriodReviewTV.text = it.usagePeriod
                 recomendedOrNotText.text =
                     if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"
                 ratingBar2.rating = it.rating
@@ -53,7 +56,7 @@ class DetailReviewMyProfileFragment : Fragment() {
             }
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
@@ -47,9 +49,20 @@ class ProfileFragment : Fragment() {
         }
 
         binding.logoutBtn.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val intent = Intent(requireContext(), SigninActivity::class.java)
-            startActivity(intent)
+            val alertDialogBuilder = AlertDialog.Builder(requireContext())
+
+            alertDialogBuilder.apply {
+                setMessage("Are you sure you logout?")
+                setPositiveButton("Yes") { _, _ ->
+                    FirebaseAuth.getInstance().signOut()
+                    val intent = Intent(requireContext(), SigninActivity::class.java)
+                    startActivity(intent)
+                }
+                setNegativeButton("No") { dialog, _ ->
+                    dialog.dismiss()
+                }
+            }
+            alertDialogBuilder.create().show()
         }
         fetchData()
     }

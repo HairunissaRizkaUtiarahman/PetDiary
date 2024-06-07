@@ -16,10 +16,8 @@
     <!-- Activity Register -->
     <string name="register">REGISTER</string>
     <string name="please_register_to_login">Please Register to login</string>
-    <string name="name">Name</string>
-    <string name="address">Address</string>
+
     <string name="already_have_an_account">Already have an account?</string>
-    <string name="bio">Bio</string>
 
     <!-- Activity Main -->
     <string name="add_button">add button</string>
@@ -68,7 +66,6 @@
     <string name="product_name">Product Name</string>
     <string name="brand_name">Brand Name</string>
     <string name="upload_photo">upload photo</string>
-    <string name="description">Description</string>
     <string name="enter_product_name">Enter Product Name</string>
     <string name="enter_product_description">Enter product description</string>
     <string name="submit">submit</string>
@@ -166,25 +163,11 @@
     </string-array>
 
     <!-- Fragment My Pet -->
-    <string name="add">ADD</string>
-    <string name="gender">Gender</string>
-    <string name="male_pet">Male</string>
-    <string name="female_pet">Female</string>
-    <string name="age">Age</string>
-    <string name="details">Details</string>
-    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
-    <!-- Fragment Profile -->
-    <string name="my_profile">MY PROFILE</string>
-    <string name="setting">SETTING</string>
-    <string name="logout">LOGOUT</string>
 
     <!-- Fragment My Profile -->
     <string name="my_profile_edit">Edit My Profile</string>
 
-    <!-- Fragment Community -->
-    <string name="like_count">%1$d Like</string>
-    <string name="comment_count">%1$d Comment</string>
 
     <string name="home_name_user">Hi! %1$s</string>
 
@@ -207,9 +190,21 @@
     <string name="send_comment">send comment</string>
 
     <!-- Universal -->
+    <string name="birthdate">Birthdate</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="timestamp">Timestamp</string>
+    <string name="description">Description</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="details">Details</string>
+    <string name="bio">Bio</string>
+
     <string name="select_image">Select Image</string>
     <string name="save">Save</string>
-    <string name="birthdate">Birthdate</string>
+    <string name="add">Add</string>
+
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
     <!-- Title Toolbar -->
     <string name="my_pet">My Pet</string>
@@ -217,15 +212,21 @@
     <string name="my_pet_add">Add My Pet</string>
     <string name="my_pet_edit">Edit My Pet</string>
 
-    <string name="my_pet_name">Pet Name</string>
-    <string name="my_pet_type">Type or Species</string>
-    <string name="my_pet_desc">Description</string>
-    <string name="my_pet_edit_btn">EDIT PET PROFILE</string>
-
     <string name="toolbar_setting">Setting</string>
     <string name="toolbar_change_language">Change Language</string>
     <string name="toolbar_change_password">Change Password</string>
     <string name="toolbar_edit_profile">Edit Profile</string>
+    <string name="toolbar_my_profile">My Profile</string>
+    <string name="toolbar_comment">Comment</string>
+    <string name="toolbar_review_detail">Review Detail</string>
+    <string name="toolbar_pet_detail">Pet Detail</string>
+
+
+    <!-- Dashboard -->
+    <!-- Fragment Profile -->
+    <string name="my_profile">My Profile</string>
+    <string name="setting">Setting</string>
+    <string name="logout">Logout</string>
 
     <!-- Setting -->
     <!-- Fragment Setting -->
@@ -245,6 +246,9 @@
     <string name="image_check_english_cd">Image Check English</string>
     <string name="image_indonesian_cd">Image Indonesian</string>
     <string name="image_check_indonesian_cd">Image Check Indonesian</string>
+    <string name="image_see_detail_cd">Image See Detail</string>
+    <string name="image_pet_cd">Image Pet</string>
+
 
     <!-- Fragment Change Password -->
     <string name="old_password">Old Password</string>
@@ -256,6 +260,36 @@
     <string name="male_profile">Male</string>
     <string name="female_profile">Female</string>
 
+    <!-- Fragment My Profile -->
+    <string name="no_pet_yet">No Pet Yet</string>
+    <string name="no_post_yet">No Post Yet</string>
+    <string name="no_review_yet">No Review Yet</string>
+
+    <!-- List Post -->
+    <string name="like_count">%1$d Like</string>
+    <string name="comment_count">%1$d Comment</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="delete">Delete</string>
+
+    <!-- List Pet -->
+    <string name="pet_name">Pet Name</string>
+    <string name="pet_type">Type or Species</string>
+    <string name="pet_edit_btn">EDIT PET PROFILE</string>
+    <string name="male_pet">Male</string>
+    <string name="female_pet">Female</string>
+
+    <!-- List Review -->
+    <string name="product_type">Product Type</string>
+    <string name="recomend_status">Recomended Status</string>
+    <string name="review_date">Review Date</string>
+    <string name="mm_dd_yyyy">MM, DD, YYYY</string>
+    <string name="period">Period</string>
+
+    <!-- Fragment Comment -->
+    <string name="image_post_cd">image_post_cd</string>
+    <string name="no_comments_yet">No Comments Yet</string>
+    <string name="write_comment">Write Comment</string>
 
 
 </resources>

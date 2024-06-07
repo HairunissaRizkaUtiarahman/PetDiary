@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_dark"
+    android:background="@color/grey_light"
     tools:context=".view.fragment.myprofile.PostMyProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:text="No Posts Yet"
+        android:text="@string/no_post_yet"
         android:textStyle="bold"
         android:gravity="center"/>
 

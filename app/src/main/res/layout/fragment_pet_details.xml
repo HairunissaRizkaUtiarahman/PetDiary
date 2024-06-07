@@ -56,14 +56,14 @@
                 android:id="@+id/petName_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/my_pet_name"
+                android:text="@string/pet_name"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/petType_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/my_pet_type" />
+                android:text="@string/pet_type" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -132,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_toStartOf="@+id/delete_Btn"
-            android:text="@string/my_pet_edit_btn"
+            android:text="@string/pet_edit_btn"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:icon="@drawable/ic_edit"

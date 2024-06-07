@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_light"
     tools:context=".view.fragment.myprofile.CommentPostMyProfileFragmentFragment">
 
     <LinearLayout
@@ -11,33 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/pet_category_toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:elevation="8dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:src="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/toolbar_comment"
+                app:titleTextColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Comment"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -48,7 +38,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
 
@@ -89,7 +79,7 @@
                                     android:id="@+id/name_post_TV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Name"
+                                    android:text="@string/name"
                                     android:textColor="@color/black"
                                     android:textStyle="bold" />
 
@@ -97,7 +87,7 @@
                                     android:id="@+id/time_Post_TV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Timestamp" />
+                                    android:text="@string/timestamp" />
 
                             </LinearLayout>
 
@@ -107,6 +97,7 @@
                             android:id="@+id/postImage_IV"
                             android:layout_width="match_parent"
                             android:layout_height="395dp"
+                            android:contentDescription="@string/image_post_cd"
                             android:scaleType="centerCrop"
                             android:src="@drawable/image_blank"
                             android:visibility="gone" />
@@ -117,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="10dp"
                             android:paddingVertical="5dp"
-                            android:text="Description"
+                            android:text="@string/description"
                             android:textColor="@color/black" />
 
                         <LinearLayout
@@ -164,7 +155,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="Like"
+                                android:text="@string/like"
                                 android:textColor="@color/black"
                                 android:visibility="visible"
                                 app:icon="@drawable/ic_like_outline"
@@ -178,7 +169,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="Like"
+                                android:text="@string/like"
                                 android:textColor="@color/orange_main"
                                 android:visibility="gone"
                                 app:icon="@drawable/ic_like"
@@ -192,7 +183,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="Comment"
+                                android:text="@string/comment"
                                 android:textColor="@color/black"
                                 android:visibility="gone"
                                 app:icon="@drawable/ic_comment_outline"
@@ -206,7 +197,7 @@
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"
-                                android:text="Delete"
+                                android:text="@string/delete"
                                 android:textColor="@color/black"
                                 android:visibility="gone"
                                 app:icon="@drawable/ic_delete_outline"
@@ -221,20 +212,15 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
-                    android:background="@color/black_grey" />
+                    android:background="@color/grey_dark" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:gravity="center"
-                    android:text="-- COMMENT --"
+                    android:text="@string/comment"
                     android:textStyle="bold" />
-
-                <View
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:background="@color/black_grey" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/comments_RV"
@@ -247,9 +233,9 @@
                 <TextView
                     android:id="@+id/noComment_TV"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="500dp"
                     android:gravity="center"
-                    android:text="No Comments Yet"
+                    android:text="@string/no_comments_yet"
                     android:textStyle="bold"
                     android:visibility="gone" />
 
@@ -263,47 +249,38 @@
     <RelativeLayout
         android:id="@+id/layout_comment_RL"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_height="75dp"
+        android:background="@color/grey_light"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/comment_TIL"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/send_Btn">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/comment_TextInputLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:layout_toStartOf="@+id/send_Btn"
-                app:counterEnabled="true"
-                app:counterMaxLength="500">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/comment_TextInputEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Comment" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/send_Btn"
-                style="?attr/materialIconButtonFilledStyle"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/comment_TIET"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:paddingHorizontal="15dp"
-                app:icon="@drawable/ic_send"
-                app:iconTint="@color/white" />
+                android:layout_height="wrap_content"
+                android:hint="@string/write_comment"
+                android:inputType="textMultiLine" />
 
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/send_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            android:layout_alignParentEnd="true"
+            android:paddingHorizontal="15dp"
+            app:icon="@drawable/ic_send"
+            app:iconTint="@color/white" />
 
     </RelativeLayout>
 

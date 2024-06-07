@@ -12,6 +12,8 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListReviewBinding
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.relativeTime
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
     ListAdapter<Review, ReviewMyProfileAdapter.ViewHolder>(Companion) {
@@ -33,7 +35,9 @@ class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
         fun bind(review: Review) = with(binding) {
             brandNameTV.text = review.product?.brandName
             productNameTV.text = review.product?.productName
-            reviewDateTV.text = review.reviewDate?.relativeTime() ?: ""
+            reviewDateTV.text = review.reviewDate?.toDate()?.let {
+                SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it)
+            }
             deskripsiReviewTV.text = review.reviewText
             ratingBar4.rating = review.rating
 

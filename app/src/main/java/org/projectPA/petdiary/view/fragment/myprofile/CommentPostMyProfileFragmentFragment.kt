@@ -98,16 +98,16 @@ class CommentPostMyProfileFragmentFragment : Fragment() {
         commentPostMyProfileViewModel.loadData(postMyProfileViewModel.myPost.value?.id ?: "")
 
         binding.sendBtn.setOnClickListener {
-            val comment = binding.commentTextInputEditText.text.toString().trim()
+            val comment = binding.commentTIET.text.toString().trim()
 
             if (comment != "") {
                 commentPostMyProfileViewModel.uploadData(comment, postMyProfileViewModel.myPost.value?.id ?: "")
                 Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
-                binding.commentTextInputEditText.text?.clear()
+                binding.commentTIET.text?.clear()
             }
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }

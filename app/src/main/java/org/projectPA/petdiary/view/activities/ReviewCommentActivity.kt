@@ -48,7 +48,7 @@ class ReviewCommentActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.sendBtn.setOnClickListener {
-            val commentText = binding.commentTextInputEditText.text.toString()
+            val commentText = binding.commentTIET.text.toString()
             if (commentText.isNotEmpty()) {
                 val comment = Comment(
                     reviewId = reviewId,
@@ -74,7 +74,7 @@ class ReviewCommentActivity : AppCompatActivity() {
 
         viewModel.commentAdded.observe(this) {
             Toast.makeText(this, "Comment added", Toast.LENGTH_SHORT).show()
-            binding.commentTextInputEditText.text?.clear()
+            binding.commentTIET.text?.clear()
             viewModel.fetchCommentsForReview(reviewId)
         }
 
