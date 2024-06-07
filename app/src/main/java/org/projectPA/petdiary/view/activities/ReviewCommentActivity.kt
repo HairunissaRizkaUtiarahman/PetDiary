@@ -36,6 +36,10 @@ class ReviewCommentActivity : AppCompatActivity() {
         observeViewModel()
 
         viewModel.fetchCommentsForReview(reviewId)
+
+        binding.backToReviewDetailButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupRecyclerView() {

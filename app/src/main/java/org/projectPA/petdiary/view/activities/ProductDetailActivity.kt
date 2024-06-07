@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
 import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
@@ -49,7 +50,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.reviewButton.setOnClickListener {
             if (::product.isInitialized) {
                 if (binding.reviewButton.isEnabled) {
-                    val intent = Intent(this, GiveRatingActivity::class.java).apply {
+                    val intent = Intent(this, GiveReviewActivity::class.java).apply {
                         putExtra("productId", productId)
                         putExtra("brandName", product.brandName)
                         putExtra("productName", product.productName)

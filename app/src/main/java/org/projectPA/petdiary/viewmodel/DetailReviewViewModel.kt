@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
-import org.projectPA.petdiary.model.Comment
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.model.User
 
 class DetailReviewViewModel : ViewModel() {
 
@@ -16,6 +16,9 @@ class DetailReviewViewModel : ViewModel() {
 
     private val _review = MutableLiveData<Review?>()
     val review: LiveData<Review?> get() = _review
+
+    private val _user = MutableLiveData<User?>()
+    val user: LiveData<User?> get() = _user
 
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount: LiveData<Int> get() = _commentsCount
@@ -39,9 +42,23 @@ class DetailReviewViewModel : ViewModel() {
             .addOnSuccessListener { document ->
                 val review = document.toObject(Review::class.java)
                 _review.value = review
+                review?.let {
+                    fetchUserDetails(it.userId)
+                }
             }
             .addOnFailureListener { e ->
                 _errorMessage.value = "Failed to load review details: ${e.message}"
+            }
+    }
+
+    private fun fetchUserDetails(userId: String) {
+        FirebaseFirestore.getInstance().collection("user").document(userId).get()
+            .addOnSuccessListener { document ->
+                val user = document.toObject(User::class.java)
+                _user.value = user
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.value = "Failed to load user details: ${e.message}"
             }
     }
 

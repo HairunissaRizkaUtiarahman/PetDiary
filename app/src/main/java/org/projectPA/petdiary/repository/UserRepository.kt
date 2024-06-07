@@ -15,11 +15,10 @@ private const val LOG_TAG = "UserRepository"
 class UserRepository(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth
-    ) {
-
+) {
     suspend fun getUsers(): List<User> {
         return try {
-            db.collection("user")
+            db.collection("users")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         it.toObject(User::class.java)?.copy(id = it.id)
@@ -34,8 +33,8 @@ class UserRepository(
     suspend fun getRandomUsers(): List<User> {
         return try {
             val userId = auth.currentUser!!.uid
-            db.collection("user")
-                .whereNotEqualTo("userId", userId) // Mengecualikan pengguna yang sedang login
+            db.collection("users")
+                .whereNotEqualTo("userId", userId) // Exclude the logged-in user
                 .limit(10)
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
@@ -48,25 +47,23 @@ class UserRepository(
         }
     }
 
-
     suspend fun getUser(userId: String): User? {
         return try {
-            val user = db.collection("user")
+            db.collection("users")
                 .document(userId)
                 .get().await()
                 .let {
                     it.toObject(User::class.java)?.copy(id = it.id)
                 }
-            user
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, " Fail to get user data")
+            Log.e(LOG_TAG, "Fail to get user data", e)
             null
         }
     }
 
     suspend fun searchUser(query: String): List<User> {
         return try {
-            db.collection("user")
+            db.collection("users")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         it.toObject(User::class.java)?.copy(id = it.id)
@@ -80,7 +77,6 @@ class UserRepository(
         }
     }
 
-    // Add this function to fetch user reviews
     suspend fun getUserReviews(userId: String): List<ReviewWithProduct> {
         return try {
             Log.d(LOG_TAG, "Fetching reviews for user ID: $userId")
@@ -117,5 +113,3 @@ class UserRepository(
         }
     }
 }
-
-

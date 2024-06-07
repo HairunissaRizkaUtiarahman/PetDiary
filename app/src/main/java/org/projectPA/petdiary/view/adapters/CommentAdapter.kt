@@ -22,7 +22,7 @@ class CommentAdapter(
         fun bind(comment: Comment) {
             with(binding) {
                 val db = FirebaseFirestore.getInstance()
-                db.collection("users").document(comment.userId).get()
+                db.collection("user").document(comment.userId).get()
                     .addOnSuccessListener { document ->
                         val user = document.toObject(User::class.java)
                         if (user != null) {
