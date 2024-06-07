@@ -1,10 +1,12 @@
 package org.projectPA.petdiary.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import org.projectPA.petdiary.model.Comment
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -23,11 +25,23 @@ class DetailReviewViewModel : ViewModel() {
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount: LiveData<Int> get() = _commentsCount
 
+    private val _comments = MutableLiveData<List<Comment>>()
+    val comments: LiveData<List<Comment>> get() = _comments
+
+    private val _commentAdded = MutableLiveData<Boolean>()
+    val commentAdded: LiveData<Boolean> get() = _commentAdded
+
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
 
+    private val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
+    val currentUserId: String
+        get() = auth.currentUser?.uid ?: ""
+
     fun fetchProductDetails(productId: String) {
-        FirebaseFirestore.getInstance().collection("products").document(productId).get()
+        firestore.collection("products").document(productId).get()
             .addOnSuccessListener { document ->
                 val product = document.toObject(Product::class.java)
                 _product.value = product
@@ -38,21 +52,19 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchReviewDetails(reviewId: String) {
-        FirebaseFirestore.getInstance().collection("reviews").document(reviewId).get()
+        firestore.collection("reviews").document(reviewId).get()
             .addOnSuccessListener { document ->
                 val review = document.toObject(Review::class.java)
                 _review.value = review
-                review?.let {
-                    fetchUserDetails(it.userId)
-                }
+                review?.userId?.let { fetchUserDetails(it) }
             }
             .addOnFailureListener { e ->
                 _errorMessage.value = "Failed to load review details: ${e.message}"
             }
     }
 
-    private fun fetchUserDetails(userId: String) {
-        FirebaseFirestore.getInstance().collection("user").document(userId).get()
+    fun fetchUserDetails(userId: String) {
+        firestore.collection("user").document(userId).get()
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)
                 _user.value = user
@@ -63,7 +75,7 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchCommentsCount(reviewId: String) {
-        FirebaseFirestore.getInstance().collection("comments")
+        firestore.collection("comments")
             .whereEqualTo("reviewId", reviewId)
             .get()
             .addOnSuccessListener { result ->
@@ -71,6 +83,33 @@ class DetailReviewViewModel : ViewModel() {
             }
             .addOnFailureListener { e ->
                 _errorMessage.value = "Failed to load comments count: ${e.message}"
+            }
+    }
+
+    fun fetchCommentsForReview(reviewId: String) {
+        firestore.collection("comments")
+            .whereEqualTo("reviewId", reviewId)
+            .orderBy("commentDate", Query.Direction.ASCENDING) // Ensure the sorting order here
+            .get()
+            .addOnSuccessListener { result ->
+                val comments = result.mapNotNull { it.toObject(Comment::class.java) }
+                _comments.value = comments
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.value = "Failed to load comments: ${e.message}"
+            }
+    }
+
+    fun addComment(comment: Comment) {
+        val newCommentRef = firestore.collection("comments").document()
+        val newComment = comment.copy(id = newCommentRef.id)
+
+        newCommentRef.set(newComment)
+            .addOnSuccessListener {
+                _commentAdded.value = true
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.value = "Failed to add comment: ${e.message}"
             }
     }
 }
