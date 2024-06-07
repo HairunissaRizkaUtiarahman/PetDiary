@@ -1,14 +1,18 @@
 package org.projectPA.petdiary.view.activities
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDetailReviewBinding
+import org.projectPA.petdiary.model.Comment
+import org.projectPA.petdiary.view.adapters.CommentAdapter
 import org.projectPA.petdiary.viewmodel.DetailReviewViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -17,6 +21,8 @@ class DetailReviewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailReviewBinding
     private val viewModel: DetailReviewViewModel by viewModels()
+    private lateinit var commentAdapter: CommentAdapter
+    private lateinit var reviewId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,37 +30,60 @@ class DetailReviewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val productId = intent.getStringExtra("productId") ?: ""
-        val reviewId = intent.getStringExtra("reviewId") ?: ""
+        reviewId = intent.getStringExtra("reviewId") ?: ""
 
         if (productId.isNotEmpty() && reviewId.isNotEmpty()) {
             viewModel.fetchProductDetails(productId)
             viewModel.fetchReviewDetails(reviewId)
             viewModel.fetchCommentsCount(reviewId)
+            viewModel.fetchCommentsForReview(reviewId)
         } else {
             Toast.makeText(this, "Invalid product or review ID", Toast.LENGTH_SHORT).show()
             finish()
             return
         }
 
+        setupRecyclerView()
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupRecyclerView() {
+        commentAdapter = CommentAdapter(emptyList())
+        binding.listComment.layoutManager = LinearLayoutManager(this)
+        binding.listComment.adapter = commentAdapter
+    }
+
+    private fun setupListeners() {
         binding.backToProductDetailButton.setOnClickListener {
             finish()
         }
 
-        binding.addCommentButton.setOnClickListener {
-            val intent = Intent(this, ReviewCommentActivity::class.java).apply {
-                putExtra("reviewId", reviewId)
+        binding.viewAllCommentsButton.setOnClickListener {
+            if (binding.listComment.visibility == View.VISIBLE) {
+                binding.listComment.visibility = View.GONE
+                binding.layoutCommentRL.visibility = View.GONE
+            } else {
+                binding.listComment.visibility = View.VISIBLE
+                binding.layoutCommentRL.visibility = View.VISIBLE
             }
-            startActivity(intent)
         }
 
-        binding.seeCommentButton.setOnClickListener {
-            val intent = Intent(this, ReviewCommentActivity::class.java).apply {
-                putExtra("reviewId", reviewId)
+        binding.sendBtn.setOnClickListener {
+            val commentText = binding.commentTIET.text.toString()
+            if (commentText.isNotBlank()) {
+                val comment = Comment(
+                    id = "",
+                    reviewId = reviewId,
+                    userId = viewModel.currentUserId,
+                    text = commentText
+                )
+                viewModel.addComment(comment)
+                binding.commentTIET.text?.clear()
+            } else {
+                Toast.makeText(this, "Comment cannot be empty", Toast.LENGTH_SHORT).show()
             }
-            startActivity(intent)
         }
-
-        observeViewModel()
     }
 
     private fun observeViewModel() {
@@ -84,12 +113,23 @@ class DetailReviewActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.comments.observe(this, Observer { comments ->
+            commentAdapter.updateData(comments)
+        })
+
         viewModel.commentsCount.observe(this, Observer { count ->
-            binding.jumlahComment.text = count.toString()
+            binding.commentCount.text = count.toString()
         })
 
         viewModel.errorMessage.observe(this, Observer { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.commentAdded.observe(this, Observer { added ->
+            if (added) {
+                viewModel.fetchCommentsForReview(reviewId)
+                viewModel.fetchCommentsCount(reviewId)
+            }
         })
     }
 }

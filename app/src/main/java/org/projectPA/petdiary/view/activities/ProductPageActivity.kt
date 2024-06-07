@@ -24,12 +24,12 @@ class ProductPageActivity : AppCompatActivity() {
         binding = ActivityProductPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Back button functionality
+
         binding.backToProductCategoriesPage.setOnClickListener {
             onBackPressed()
         }
 
-        // Retrieve petType and category from Intent
+
         val petType = intent.getStringExtra("petType")
         val category = intent.getStringExtra("category")
 

@@ -10,7 +10,7 @@ import org.projectPA.petdiary.model.Product
 class ProductAdapter(
     private var products: List<Product>,
     private val onProductClicked: (String) -> Unit
-// Adding a click listener lambda
+
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
