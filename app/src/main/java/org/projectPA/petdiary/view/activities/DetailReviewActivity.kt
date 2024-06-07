@@ -69,13 +69,18 @@ class DetailReviewActivity : AppCompatActivity() {
 
         viewModel.review.observe(this, Observer { review ->
             review?.let {
-                binding.username.text = it.userName
                 binding.reviewDate.text = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it.reviewDate?.toDate())
                 binding.deskripsiReview.text = it.reviewText
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod
                 binding.recomendedOrNotText.text = if (it.recommend) "I Recommend This Product" else "Not Recommended"
-                Glide.with(this).load(it.userPhotoUrl).into(binding.userPhotoProfile)
+            }
+        })
+
+        viewModel.user.observe(this, Observer { user ->
+            user?.let {
+                binding.username.text = it.name
+                Glide.with(this).load(it.imageUrl).into(binding.userPhotoProfile)
             }
         })
 
