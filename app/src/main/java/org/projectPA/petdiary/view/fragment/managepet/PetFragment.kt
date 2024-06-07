@@ -53,7 +53,7 @@ class PetFragment : Fragment() {
             findNavController().navigate(R.id.action_myPetFragment_to_myPetAddFragment)
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
     }

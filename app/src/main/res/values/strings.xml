@@ -200,6 +200,7 @@
     <string name="details">Details</string>
     <string name="bio">Bio</string>
 
+    <string name="search">Search</string>
     <string name="select_image">Select Image</string>
     <string name="save">Save</string>
     <string name="add">Add</string>
@@ -207,10 +208,10 @@
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</string>
 
     <!-- Title Toolbar -->
-    <string name="my_pet">My Pet</string>
-    <string name="my_pet_details">Details My Pet</string>
-    <string name="my_pet_add">Add My Pet</string>
-    <string name="my_pet_edit">Edit My Pet</string>
+    <string name="toolbar_pet">Manage Pet</string>
+    <string name="toolbar_pet_detail">Pet Detail</string>
+    <string name="toolbar_pet_add">Add Pet</string>
+    <string name="toolbar_pet_edit">Edit Pet</string>
 
     <string name="toolbar_setting">Setting</string>
     <string name="toolbar_change_language">Change Language</string>
@@ -219,8 +220,10 @@
     <string name="toolbar_my_profile">My Profile</string>
     <string name="toolbar_comment">Comment</string>
     <string name="toolbar_review_detail">Review Detail</string>
-    <string name="toolbar_pet_detail">Pet Detail</string>
-
+    <string name="toolbar_petshop_clinic">Find Petshop &amp; Clinic</string>
+    <string name="toolbar_community">Community</string>
+    <string name="toolbar_user_profile">User Profile</string>
+    <string name="toolbar_search">Search</string>
 
     <!-- Dashboard -->
     <!-- Fragment Profile -->
@@ -248,7 +251,12 @@
     <string name="image_check_indonesian_cd">Image Check Indonesian</string>
     <string name="image_see_detail_cd">Image See Detail</string>
     <string name="image_pet_cd">Image Pet</string>
-
+    <string name="image_poster_cd">Image Poster</string>
+    <string name="image_review_cd">Image Review</string>
+    <string name="image_pet_shop_vet_cd">Image Pet Shop Vet</string>
+    <string name="image_community_cd">Image Community</string>
+    <string name="image_article_cd">Image Article</string>
+    <string name="image_search_cd">Image Search</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Old Password</string>
@@ -278,10 +286,12 @@
     <string name="pet_edit_btn">EDIT PET PROFILE</string>
     <string name="male_pet">Male</string>
     <string name="female_pet">Female</string>
+    <string name="pet_add">Pet Add</string>
+
 
     <!-- List Review -->
     <string name="product_type">Product Type</string>
-    <string name="recomend_status">Recomended Status</string>
+    <string name="recomend_status">Recommended Status</string>
     <string name="review_date">Review Date</string>
     <string name="mm_dd_yyyy">MM, DD, YYYY</string>
     <string name="period">Period</string>
@@ -290,6 +300,17 @@
     <string name="image_post_cd">image_post_cd</string>
     <string name="no_comments_yet">No Comments Yet</string>
     <string name="write_comment">Write Comment</string>
+
+    <!-- Manage Pet -->
+    <string name="petshop">Petshop</string>
+    <string name="clinic">Clinic Vet</string>
+    <string name="petshop_desc">Looking for the nearest pet shop around you</string>
+    <string name="clinic_desc">Look for the nearest veterinary clinic around you</string>
+
+    <!-- Find Petshop & Clinic -->
+    <string name="user">User</string>
+    <string name="no_user_yet">No User Yet</string>
+    <string name="post">Post</string>
 
 
 </resources>

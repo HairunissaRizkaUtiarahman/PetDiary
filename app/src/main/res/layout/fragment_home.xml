@@ -1,245 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:isScrollContainer="true"
+    android:nestedScrollingEnabled="true"
     android:orientation="vertical"
     tools:context=".view.fragment.dashboard.HomeFragment">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:isScrollContainer="true"
-        android:nestedScrollingEnabled="true">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@android:color/white"
+            android:elevation="8dp"
+            android:minHeight="?attr/actionBarSize"
+            app:title="@string/home_name_user"
+            app:titleTextColor="@color/black">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_review"
+            <ImageView
+                android:id="@+id/back_to_review_homepage_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/notification_icon_description"
+                android:src="@drawable/ic_notification" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:foregroundGravity="center">
+
+            <ImageView
+                android:id="@+id/poster_review_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:elevation="8dp"
-                android:minHeight="?attr/actionBarSize"
-                app:title="@string/home_name_user"
-                app:titleTextColor="@color/black">
+                android:layout_margin="10dp"
+                android:contentDescription="@string/image_poster_cd"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/poster_home_page" />
 
-                <ImageView
-                    android:id="@+id/back_to_review_homepage_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginEnd="16dp"
-                    android:contentDescription="@string/notification_icon_description"
-                    android:src="@drawable/ic_notification" />
+            <Button
+                android:id="@+id/manage_pet_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginBottom="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/manage_pet" />
+        </FrameLayout>
 
-            </androidx.appcompat.widget.Toolbar>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:foregroundGravity="center">
-
-                <ImageView
-                    android:id="@+id/poster_review_page"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/poster_home_page" />
-
-                <Button
-                    android:id="@+id/manage_pet_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginBottom="25dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="@string/manage_pet" />
-            </FrameLayout>
+        <LinearLayout
+            android:id="@+id/pet_diary_features"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="10dp"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/pet_diary_features"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:foregroundGravity="center"
+                android:id="@+id/review_button"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:background="@drawable/background_icon_home"
+                android:clickable="true"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <LinearLayout
-                    android:id="@+id/review_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:background="@drawable/background_icon_home"
-                    android:clickable="true"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
+                <ImageView
+                    android:id="@+id/review_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/image_review_cd"
+                    app:srcCompat="@drawable/ic_reviews" />
 
-                    <ImageView
-                        android:id="@+id/review_icon"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_reviews" />
-
-                    <TextView
-                        android:id="@+id/review_text"
-                        android:layout_width="73dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/review_n"
-                        android:textAlignment="center"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/find_petshop_clinic_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/background_icon_home"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/ipetshop_clinic_button_icon"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_petshop_clinic" />
-
-                    <TextView
-                        android:id="@+id/petshop_clinic_button_text"
-                        android:layout_width="73dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/find_pet_shop_vet"
-                        android:textAlignment="center"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/community_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/background_icon_home"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/community_icon"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_social_media" />
-
-                    <TextView
-                        android:id="@+id/community_text"
-                        android:layout_width="73dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/community_n"
-                        android:textAlignment="center"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/article_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/background_icon_home"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/Article_icon"
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-                        app:srcCompat="@drawable/ic_article" />
-
-                    <TextView
-                        android:id="@+id/Article_text"
-                        android:layout_width="73dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/article_n"
-                        android:textAlignment="center"
-                        android:textColor="@color/black" />
-                </LinearLayout>
-
-
+                <TextView
+                    android:id="@+id/review_text"
+                    android:layout_width="73dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/review_n"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
-            <HorizontalScrollView
-                android:id="@+id/pet_options_scroll"
+            <LinearLayout
+                android:id="@+id/find_petshop_clinic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_icon_home"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/ipetshop_clinic_button_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/image_pet_shop_vet_cd"
+                    app:srcCompat="@drawable/ic_petshop_clinic" />
+
+                <TextView
+                    android:id="@+id/petshop_clinic_button_text"
+                    android:layout_width="73dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/find_pet_shop_vet"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/community_button"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_icon_home"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/community_icon"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/image_community_cd"
+                    app:srcCompat="@drawable/ic_social_media" />
+
+                <TextView
+                    android:id="@+id/community_text"
+                    android:layout_width="73dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/community_n"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/article_button"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_icon_home"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/Article_icon"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/image_article_cd"
+                    app:srcCompat="@drawable/ic_article" />
+
+                <TextView
+                    android:id="@+id/Article_text"
+                    android:layout_width="73dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/article_n"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/pet_options_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:contentDescription="@string/scroll_horizontally_to_view_pet_options"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/most_reviews_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/most_reviews_products"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+
+        <LinearLayout
+            android:id="@+id/list_top_five"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:nestedScrollingEnabled="true"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_most_review_product"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="15dp"
-                android:contentDescription="@string/scroll_horizontally_to_view_pet_options"
-                android:scrollbars="none" />
-
-            <TextView
-                android:id="@+id/most_reviews_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/most_reviews_products"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-
-            <LinearLayout
-                android:id="@+id/list_top_five"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="left"
                 android:isScrollContainer="true"
                 android:nestedScrollingEnabled="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_product" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/list_most_review_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:isScrollContainer="true"
-                    android:nestedScrollingEnabled="true"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/item_product" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/justtoscrolll"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal">
-
-            </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/justtoscrolll"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

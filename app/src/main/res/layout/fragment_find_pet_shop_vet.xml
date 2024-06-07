@@ -1,169 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".view.fragment.findpetshopvet.FindPetShopVetFragment">
 
-    <LinearLayout
+
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:elevation="8dp">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/toolbar_petshop_clinic"
+            app:titleTextColor="@color/black" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
-                android:background="@color/white"
-                android:src="@drawable/arrow_back" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Find PetShop and Clinic Vet"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
 
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            tools:ignore="MissingConstraints">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                <ImageView
+                    android:id="@+id/petShop_IV"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:contentDescription="@string/image_pet_cd"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo_petshop" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/petShop_IV"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo_petshop" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/petShop_TV"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="vertical">
+                        android:text="@string/petshop"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/petShop_TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/black"
-                            android:text="Petshop"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/descPetShop_TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Looking for the nearest pet shop around you" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/descPetShop_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/petshop_desc" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/searchPetShop_Btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Search"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            app:cardCornerRadius="10dp"
+            <Button
+                android:id="@+id/searchPetShop_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/search"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/clinic_IV"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:contentDescription="@string/image_pet_cd"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/logo_clinic" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/clinic_IV"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/logo_clinic" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/clinic_TV"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="vertical">
+                        android:text="@string/clinic"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/clinic_TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Clinic"
-                            android:textColor="@color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/descClinic_TV"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Look for the nearest veterinary clinic around you" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/descClinic_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clinic_desc" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/searchClinic_Btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Search"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/searchClinic_Btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/search"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-</FrameLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

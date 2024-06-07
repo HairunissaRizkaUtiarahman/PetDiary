@@ -12,32 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:elevation="8dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:src="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/toolbar_pet"
+                app:titleTextColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Manage Pet"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pet_RV"
@@ -52,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:text="No Pets Yet"
+            android:text="@string/no_pet_yet"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -65,10 +55,11 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:backgroundTint="@color/green_main"
-        android:text="@string/my_pet_add"
+        android:text="@string/pet_add"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:icon="@drawable/ic_add"
-        app:iconTint="@color/white" />
+        app:iconTint="@color/white"
+        tools:ignore="RtlHardcoded" />
 
 </FrameLayout>

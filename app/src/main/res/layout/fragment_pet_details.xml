@@ -11,37 +11,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:elevation="8dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:src="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/toolbar_pet_detail"
+                app:titleTextColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/my_pet_details"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
             android:id="@+id/petImage_IV"
             android:layout_width="match_parent"
             android:layout_height="410dp"
+            android:contentDescription="@string/image_pet_cd"
             android:scaleType="centerCrop"
             android:src="@drawable/image_blank" />
 
@@ -76,7 +67,7 @@
                     android:id="@+id/petGender_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_green"
                     android:gravity="center"
@@ -89,7 +80,7 @@
                     android:id="@+id/petAge_TV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_green"
                     android:gravity="center"
@@ -130,14 +121,13 @@
             style="@style/Widget.MaterialComponents.Button.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_toStartOf="@+id/delete_Btn"
             android:text="@string/pet_edit_btn"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:icon="@drawable/ic_edit"
             app:iconTint="@color/white" />
-
 
         <Button
             android:id="@+id/delete_Btn"
@@ -147,7 +137,7 @@
             android:layout_alignParentEnd="true"
             android:backgroundTint="@color/Red"
             android:paddingHorizontal="15dp"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:icon="@drawable/ic_delete"

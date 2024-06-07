@@ -11,9 +11,6 @@
         android:label="fragment_my_profile"
         tools:layout="@layout/fragment_my_profile" >
         <action
-            android:id="@+id/action_myProfileFragment_to_myProfileEditFragment"
-            app:destination="@id/myProfileEditFragment" />
-        <action
             android:id="@+id/action_myProfileFragment_to_commentPostMyFragmentFragment"
             app:destination="@id/commentPostMyFragmentFragment" />
         <action
@@ -23,11 +20,6 @@
             android:id="@+id/action_myProfileFragment_to_detailReviewMyProfileFragment"
             app:destination="@id/detailReviewMyProfileFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/myProfileEditFragment"
-        android:name="org.projectPA.petdiary.view.fragment.myprofile.MyProfileEditFragment"
-        android:label="fragment_my_profile_edit"
-        tools:layout="@layout/fragment_my_profile_edit" />
     <fragment
         android:id="@+id/postMyProfileFragment"
         android:name="org.projectPA.petdiary.view.fragment.myprofile.PostMyProfileFragment"

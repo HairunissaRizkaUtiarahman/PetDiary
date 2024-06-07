@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
@@ -26,6 +27,10 @@ class DetailPetUserProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         viewModel.pet.observe(viewLifecycleOwner) {
             with(binding) {
                 petNameTV.text = it.name

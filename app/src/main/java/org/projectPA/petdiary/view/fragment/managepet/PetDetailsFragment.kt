@@ -48,7 +48,7 @@ class PetDetailsFragment : Fragment() {
             showDeleteConfirmationDialog()
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }

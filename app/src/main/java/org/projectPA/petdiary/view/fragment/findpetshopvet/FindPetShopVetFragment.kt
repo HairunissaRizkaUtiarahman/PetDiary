@@ -36,7 +36,7 @@ class FindPetShopVetFragment : Fragment() {
                 .navigate(R.id.action_findPetShopVetFragment_to_findVetFragment)
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
     }

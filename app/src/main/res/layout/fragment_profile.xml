@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/green_main"
+            android:backgroundTint="@color/grey_light"
             app:cardCornerRadius="10dp">
 
             <TextView
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/green_main"
+            android:backgroundTint="@color/grey_light"
             app:cardCornerRadius="10dp">
 
             <TextView
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/green_main"
+            android:backgroundTint="@color/grey_light"
             app:cardCornerRadius="10dp">
 
             <TextView

@@ -7,16 +7,11 @@
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage_IV"
@@ -28,13 +23,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:orientation="vertical"
-                android:layout_marginLeft="10dp">
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:id="@+id/name_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
@@ -45,20 +40,10 @@
                     android:textColor="@color/black_grey"
                     android:maxLines="3"
                     android:ellipsize="end"
-                    android:text="Bio"/>
-
-
-<!--                <Button-->
-<!--                    android:id="@+id/viewProfile_Btn"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="VIEW PROFILE"-->
-<!--                    android:textStyle="bold"/>-->
+                    android:text="@string/bio"/>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

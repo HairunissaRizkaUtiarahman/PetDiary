@@ -196,19 +196,18 @@
     <string name="details">Detail</string>
     <string name="bio">Bio</string>
 
+    <string name="search">Search</string>
     <string name="select_image">Pilih Gambar</string>
     <string name="save">Simpan</string>
     <string name="add">Tambah</string>
     <string name="lorem">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf.</string>
 
+
     <!-- Title Toolbar -->
-    <string name="my_pet">Hewan Peliharaan Saya</string>
-    <string name="my_pet_details">Detail Hewan Peliharaan Saya</string>
-    <string name="my_pet_add">Tambah Hewan Peliharaan Saya</string>
-    <string name="my_pet_edit">Edit Hewan Peliharaan Saya</string>
-
-
-    <string name="pet_edit_btn">EDIT PROFIL HEWAN PELIHARAAN</string>
+    <string name="toolbar_pet">Kelola Peliharaanku</string>
+    <string name="toolbar_pet_add">Tambah Hewan Peliharaan</string>
+    <string name="toolbar_pet_edit">Edit Hewan Peliharaan</string>
+    <string name="toolbar_pet_detail">Detail Hewan Peliharaan</string>
 
     <string name="toolbar_setting">Pengaturan</string>
     <string name="toolbar_change_language">Ganti Bahasa</string>
@@ -217,7 +216,10 @@
     <string name="toolbar_my_profile">Profil Saya</string>
     <string name="toolbar_comment">Komentar</string>
     <string name="toolbar_review_detail">Detail Ulasan</string>
-    <string name="toolbar_pet_detail">Detail Hewan Peliharaan</string>
+    <string name="toolbar_petshop_clinic">Cari Petshop &amp; Klinik</string>
+    <string name="toolbar_community">Komunitas</string>
+    <string name="toolbar_user_profile">Profil Pengguna</string>
+    <string name="toolbar_search">Pencarian</string>
 
     <!-- Dashboard -->
     <!-- Fragment Profile -->
@@ -245,7 +247,12 @@
     <string name="image_check_indonesian_cd">Image Check Indonesian</string>
     <string name="image_see_detail_cd">Image See Detail</string>
     <string name="image_pet_cd">Image Pet</string>
-
+    <string name="image_poster_cd">Image Poster</string>
+    <string name="image_review_cd">Image Review</string>
+    <string name="image_pet_shop_vet_cd">Image Pet Shop Vet</string>
+    <string name="image_community_cd">Image Community</string>
+    <string name="image_article_cd">Image Article</string>
+    <string name="image_search_cd">Image Search</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Kata Sandi Lama</string>
@@ -262,6 +269,7 @@
     <string name="no_pet_yet">Tidak Ada Hewan Peliharaan</string>
     <string name="no_post_yet">Tidak Ada Postingan</string>
     <string name="no_review_yet">Tidak Ada Review</string>
+    <string name="pet_edit_btn">Edit Profil Peliharaanku</string>
 
     <!-- List Post -->
     <string name="like_count">%1$d Suka</string>
@@ -275,6 +283,7 @@
     <string name="pet_type">Jenis atau Spesies</string>
     <string name="male_pet">Jantan</string>
     <string name="female_pet">Betina</string>
+    <string name="pet_add">Tambah Peliharaan</string>
 
     <!-- List Review -->
     <string name="product_type">Tipe Produk</string>
@@ -287,6 +296,17 @@
     <string name="image_post_cd">image_post_cd</string>
     <string name="no_comments_yet">Tidak Ada Komentar</string>
     <string name="write_comment">Tulis Komentar</string>
+
+    <!-- Manage Pet -->
+    <string name="petshop">Petshop</string>
+    <string name="clinic">Klinik Hewan</string>
+    <string name="petshop_desc">Cari petshop terdekat disekitar anda</string>
+    <string name="clinic_desc">Carilah klinik hewan terdekat di sekitar Anda</string>
+
+    <!-- Find Petshop & Clinic -->
+    <string name="user">Pengguna</string>
+    <string name="no_user_yet">Tidak Ada Pengguna</string>
+    <string name="post">Postingan</string>
 
 
 
