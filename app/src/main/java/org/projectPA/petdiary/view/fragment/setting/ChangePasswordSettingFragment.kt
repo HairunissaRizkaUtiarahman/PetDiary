@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.databinding.FragmentChangePasswordSettingBinding
-import org.projectPA.petdiary.view.activities.SigninActivity
+import org.projectPA.petdiary.view.activities.auth.SigninActivity
 
 class ChangePasswordSettingFragment : Fragment() {
     private lateinit var binding: FragmentChangePasswordSettingBinding
@@ -35,7 +35,7 @@ class ChangePasswordSettingFragment : Fragment() {
             val newPassword = binding.newPasswordTIET.text.toString().trim()
             val confirmNewPassword = binding.confirmNewPasswordTIET.text.toString().trim()
 
-            val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$"
+            val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d.]{6,12}$"
             if (!newPassword.matches(passwordRegex.toRegex())) {
                 Toast.makeText(
                     requireContext(),

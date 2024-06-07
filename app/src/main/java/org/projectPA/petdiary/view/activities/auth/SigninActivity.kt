@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.view.activities.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.databinding.ActivitySigninBinding
+import org.projectPA.petdiary.view.activities.DashboardActivity
 
 class SigninActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySigninBinding
@@ -31,7 +32,6 @@ class SigninActivity : AppCompatActivity() {
 
         binding.signUpTV.setOnClickListener {
             startActivity(Intent(this, SignupActivity::class.java))
-            finish()
         }
     }
 
@@ -39,7 +39,19 @@ class SigninActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    updateUI()
+                    val user = auth.currentUser
+                    if (user != null) {
+                        if (user.isEmailVerified) {
+                            updateUI()
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "Please check your email address to verify before logging in.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            auth.signOut()
+                        }
+                    }
                 } else {
                     Toast.makeText(
                         baseContext,
@@ -58,8 +70,15 @@ class SigninActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if (currentUser != null) {
+        if (currentUser != null && currentUser.isEmailVerified) {
             updateUI()
+        } else if (currentUser != null && !currentUser.isEmailVerified) {
+            Toast.makeText(
+                this,
+                "Please verify your email address before logging in.",
+                Toast.LENGTH_LONG
+            ).show()
+            auth.signOut()
         }
     }
 }

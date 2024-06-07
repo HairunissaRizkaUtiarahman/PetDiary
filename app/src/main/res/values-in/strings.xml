@@ -3,19 +3,7 @@
 
     <string name="app_name">PetDiary</string>
 
-    <!-- Activity Login -->
-    <string name="login">MASUK</string>
-    <string name="please_sign_in_to_continue">Silakan masuk untuk melanjutkan</string>
-    <string name="email">Email</string>
-    <string name="password">Kata Sandi</string>
-    <string name="sign_in">MASUK</string>
-    <string name="don_t_have_an_account">Belum punya akun?</string>
-    <string name="sign_up">Daftar</string>
 
-    <!-- Activity Register -->
-    <string name="register">DAFTAR</string>
-    <string name="please_register_to_login">Silakan daftar untuk masuk</string>
-    <string name="already_have_an_account">Sudah punya akun?</string>
 
     <!-- Activity Main -->
     <string name="add_button">tombol tambah</string>
@@ -168,7 +156,6 @@
 
     <string name="home_name_user">Hai! %1$s</string>
 
-    <string name="lorem_ipsum">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf. Lorem Ipsum telah menjadi standar industri</string>
     <string name="care_and_health">Perawatan dan Kesehatan</string>
     <string name="training">Pelatihan</string>
     <string name="community_events">Acara</string>
@@ -195,13 +182,14 @@
     <string name="age">Usia</string>
     <string name="details">Detail</string>
     <string name="bio">Bio</string>
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
 
     <string name="search">Search</string>
     <string name="select_image">Pilih Gambar</string>
     <string name="save">Simpan</string>
     <string name="add">Tambah</string>
-    <string name="lorem">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf.</string>
-
+    <string name="lorem_ipsum">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf. Lorem Ipsum telah menjadi standar industri</string>
 
     <!-- Title Toolbar -->
     <string name="toolbar_pet">Kelola Peliharaanku</string>
@@ -222,13 +210,30 @@
     <string name="toolbar_search">Pencarian</string>
     <string name="toolbar_add_post">Tambah Postingan</string>
 
+    <!-- Auth -->
+    <!-- Activity Sign In -->
+    <string name="sign_in">MASUK</string>
+    <string name="sign_in_desc">Silahkan masuk untuk melanjutkan</string>
+    <string name="forgot_password">Lupa kata sandi?</string>
+    <string name="don_t_have_an_account">Belum punya akun?</string>
+
+    <!-- Activity Sign Up -->
+    <string name="sign_up">DAFTAR</string>
+    <string name="sign_up_desc">Silakan mendaftar untuk masuk</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
+
+    <!-- Activity Reset Password -->
+    <string name="reset_password">RESET KATA SANDI</string>
+    <string name="please_enter_a_valid_email">Silakan isi alamat email Anda</string>
+    <string name="send_to_email">Kirim ke Email</string>
+
     <!-- Dashboard -->
     <!-- Fragment Profile -->
     <string name="my_profile">Profil Saya</string>
     <string name="setting">Pengaturan</string>
     <string name="logout">Logout</string>
 
-    <!-- Activity Setting -->
+    <!-- Setting -->
     <!-- Fragment Setting -->
     <string name="edit_profile">Ubah Profil</string>
     <string name="change_email">Ganti Email</string>
@@ -240,6 +245,7 @@
     <string name="language_english">Bahasa Inggris</string>
     <string name="indonesian">Bahasa Indonesia</string>
 
+    <!-- Fragment Image Content Description -->
     <string name="image_system_cd">Image System</string>
     <string name="image_check_system_cd">Image Check System</string>
     <string name="image_english_cd">Image English</string>
@@ -254,6 +260,7 @@
     <string name="image_community_cd">Image Community</string>
     <string name="image_article_cd">Image Article</string>
     <string name="image_search_cd">Image Search</string>
+    <string name="image_logo_cd">Image Logo</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Kata Sandi Lama</string>
@@ -308,7 +315,6 @@
     <string name="user">Pengguna</string>
     <string name="no_user_yet">Tidak Ada Pengguna</string>
     <string name="post">Postingan</string>
-
 
 
 

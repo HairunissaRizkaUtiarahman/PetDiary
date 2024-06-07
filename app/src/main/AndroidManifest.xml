@@ -32,7 +32,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.ResetPasswordActivity"
+            android:name=".view.activities.auth.ResetPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -50,11 +50,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activities.SignupActivity"
+            android:name=".view.activities.auth.SignupActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.SigninActivity"
+            android:name=".view.activities.auth.SigninActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
 

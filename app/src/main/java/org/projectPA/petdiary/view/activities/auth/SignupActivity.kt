@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.view.activities.auth
 
 import android.content.Intent
 import android.os.Bundle
@@ -32,7 +32,8 @@ class SignupActivity : AppCompatActivity() {
 
         viewModel.signupSuccess.observe(this, Observer { success ->
             if (success) {
-                Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Registration successful! Please verify your email before logging in.", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, SigninActivity::class.java))
                 finish()
             }
         })

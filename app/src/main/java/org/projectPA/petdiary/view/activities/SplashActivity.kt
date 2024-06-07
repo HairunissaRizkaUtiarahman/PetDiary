@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import org.projectPA.petdiary.databinding.ActivitySplashBinding
+import org.projectPA.petdiary.view.activities.auth.SigninActivity
 import java.util.Locale
 
 class SplashActivity : AppCompatActivity() {

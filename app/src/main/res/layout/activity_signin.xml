@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_orange"
-    tools:context=".view.activities.SigninActivity">
+    tools:context=".view.activities.auth.SigninActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
