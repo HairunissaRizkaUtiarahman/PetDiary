@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.view.activities.auth
 
 import android.content.Intent
 import android.os.Bundle

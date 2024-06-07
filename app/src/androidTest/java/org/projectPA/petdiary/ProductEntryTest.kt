@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
@@ -22,10 +21,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.projectPA.petdiary.view.activities.SigninActivity
-import androidx.test.espresso.matcher.RootMatchers.withDecorView
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.not
+import org.projectPA.petdiary.view.activities.auth.SigninActivity
 
 @RunWith(AndroidJUnit4::class)
 class ProductEntryTest {

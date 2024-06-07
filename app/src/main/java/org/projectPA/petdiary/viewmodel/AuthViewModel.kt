@@ -1,12 +1,10 @@
 package org.projectPA.petdiary.viewmodel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,7 +19,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             _signupError.value = "All fields are required!"
             return
         }
-        if (password!= confirmPassword) {
+        if (password != confirmPassword) {
             _signupError.value = "Passwords do not match!"
             return
         }
@@ -30,7 +28,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             return
         }
         if (!isValidPassword(password)) {
-            _signupError.value = "Password should be between 6 and 10 characters and contain letters and numbers!"
+            _signupError.value =
+                "Password should be between 6 and 10 characters and contain letters and numbers!"
             return
         }
         if (name.length > 100) {
@@ -39,10 +38,27 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
 
         val auth = FirebaseAuth.getInstance()
+        auth.fetchSignInMethodsForEmail(email).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val signInMethods = task.result?.signInMethods ?: emptyList()
+                if (signInMethods.isNotEmpty()) {
+                    _signupError.value = "Account already registered!"
+                } else {
+                    createUser(auth, name, email, password)
+                }
+            } else {
+                _signupError.value =
+                    "Failed to check email registration: ${task.exception?.message}"
+            }
+        }
+    }
+
+    private fun createUser(auth: FirebaseAuth, name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid
-                if (userId!= null) {
+                auth.currentUser?.sendEmailVerification()
+                if (userId != null) {
                     val user = hashMapOf(
                         "name" to name,
                         "email" to email
@@ -57,7 +73,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     }
                 }
             } else {
-                _signupError.value = "Registration failed! Try again."
+                _signupError.value = "Registration failed: ${task.exception?.message}"
             }
         }
     }
@@ -68,7 +84,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun isValidPassword(password: String): Boolean {
-        val regex = Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,10}$")
+        val regex = Regex("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d.]{6,12}$")
         return regex.matches(password)
     }
 }

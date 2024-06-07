@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentProfileBinding
-import org.projectPA.petdiary.view.activities.SigninActivity
+import org.projectPA.petdiary.view.activities.auth.SigninActivity
 import org.projectPA.petdiary.view.activities.MyProfileActivity
 import org.projectPA.petdiary.view.activities.SettingActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
