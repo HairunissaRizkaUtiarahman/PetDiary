@@ -24,9 +24,9 @@ class MoreReviewsViewModel : ViewModel() {
                 try {
                     val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
                     reviews.forEach { review ->
-                        if (review.userPhotoUrl.isNullOrEmpty()) {
-                            review.userPhotoUrl = "default"
-                        }
+//                        if (review.userPhotoUrl.isNullOrEmpty()) {
+//                            review.userPhotoUrl = "default"
+//                        }
                     }
                     allReviews = reviews
                     _reviews.value = reviews

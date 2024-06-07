@@ -137,26 +137,6 @@ class ProductDetailViewModel : ViewModel() {
             .await()
     }
 
-    // Observe changes to the user data
-    fun observeUserData(userId: String) {
-        firestore.collection("users").document(userId)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    _errorMessage.value = error.message
-                    return@addSnapshotListener
-                }
-
-                if (snapshot != null && snapshot.exists()) {
-                    val updatedUser = snapshot.toObject(User::class.java)
-                    _user.value = updatedUser
-                    // Update reviews with the new user photo URL
-                    updatedUser?.imageUrl?.let { imageUrl ->
-                        updateReviewUserPhoto(userId, imageUrl)
-                    }
-                }
-            }
-    }
-
     private fun updateReviewUserPhoto(userId: String, imageUrl: String) {
         firestore.collection("reviews")
             .whereEqualTo("userId", userId)

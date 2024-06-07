@@ -67,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:orientation="vertical"
+                    android:paddingBottom="50dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     tools:listitem="@layout/item_product">
 

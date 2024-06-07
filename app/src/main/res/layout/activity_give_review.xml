@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".view.activities.GiveReviewActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/give_review_toolbar"
@@ -32,7 +33,6 @@
             android:text="@string/give_review"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.cardview.widget.CardView
@@ -99,98 +99,9 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/reviewCard"
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/background_icon_home"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/productCard">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_icon_home"
-            android:elevation="5dp"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/green_main">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ic_number_one"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center|top"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/ic_number_1" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/usage_product_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/give_your_overall_rating_for_this_product"
-                android:textAlignment="center"
-                android:textColor="@color/orange_main"
-                android:textSize="20sp" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:isIndicator="false"
-                android:max="5"
-                android:numStars="5"
-                android:progressTint="@color/green_main"
-                android:stepSize="1" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/prev_button_to_usage_product"
-            android:layout_width="150dp"
-            android:layout_height="54dp"
-            android:layout_margin="15dp"
-            android:text="@string/prev"
-            android:textAlignment="gravity"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            app:cornerRadius="8dp"
-            app:iconGravity="textStart" />
-
-        <Button
-            android:id="@+id/next_button_to_usage_product"
-            android:layout_width="150dp"
-            android:layout_height="54dp"
-            android:layout_margin="15dp"
-            android:text="@string/next"
-            android:textAlignment="gravity"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="8dp"
-            app:iconGravity="textStart" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

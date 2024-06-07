@@ -87,7 +87,7 @@ class ChooseProductActivity : AppCompatActivity() {
             if (hasReviewed) {
                 showAlreadyReviewedPopup()
             } else {
-                val intent = Intent(this, GiveRatingActivity::class.java).apply {
+                val intent = Intent(this, GiveReviewActivity::class.java).apply {
                     putExtra("productId", productId)
                 }
                 startActivity(intent)
