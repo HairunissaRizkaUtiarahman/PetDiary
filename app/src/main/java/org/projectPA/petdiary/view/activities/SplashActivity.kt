@@ -4,25 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ActivitySplashBinding
 import java.util.Locale
 
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var image: ImageView
+    private lateinit var binding: ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         loadLocale()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        image = findViewById(R.id.imageView)
-        image.alpha = 0f
-        image.animate().setDuration(2000).alpha(1f).withEndAction {
+        binding.imageView.alpha = 0f
+        binding.imageView.animate().setDuration(2000).alpha(1f).withEndAction {
             val intent = Intent(this, SigninActivity::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)

@@ -224,6 +224,7 @@
     <string name="toolbar_community">Community</string>
     <string name="toolbar_user_profile">User Profile</string>
     <string name="toolbar_search">Search</string>
+    <string name="toolbar_add_post">Add Post</string>
 
     <!-- Dashboard -->
     <!-- Fragment Profile -->
@@ -311,6 +312,10 @@
     <string name="user">User</string>
     <string name="no_user_yet">No User Yet</string>
     <string name="post">Post</string>
+    <string name="image_logo_cd">Image Logo</string>
+    <string name="sign_in_desc">Please login to continue</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up_desc">Please register to login</string>
 
 
 </resources>

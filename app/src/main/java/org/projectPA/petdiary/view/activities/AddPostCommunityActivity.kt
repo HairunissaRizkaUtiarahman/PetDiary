@@ -102,7 +102,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
             }
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
     }

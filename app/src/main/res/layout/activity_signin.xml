@@ -19,6 +19,7 @@
             android:id="@+id/logo_petDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_logo_cd"
             android:src="@drawable/logo" />
 
         <TextView
@@ -28,9 +29,9 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:textColor="@color/black"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textStyle="bold" />
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="Please login to continue"
+            android:text="@string/sign_in_desc"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -52,15 +53,13 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="25dp"
             app:counterEnabled="true"
-            app:counterMaxLength="100"
-            app:helperText="Enter email"
-            app:helperTextEnabled="true">
+            app:counterMaxLength="100">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,16 +70,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
+            app:counterEnabled="true"
             app:counterMaxLength="10"
-            app:helperText="Enter password"
-            app:helperTextEnabled="true"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,11 +87,11 @@
             android:id="@+id/forgotPass_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
             android:gravity="end"
-            android:text="Forgot Password?" />
+            android:text="@string/forgot_password"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/signIn_Btn"
@@ -102,9 +100,10 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="25dp"
             android:backgroundTint="@color/green_main"
-            android:text="SIGN IN"
+            android:text="@string/sign_in"
             android:textColor="@color/white"
             android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,14 +113,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Don’t have an account?"
+                android:text="@string/don_t_have_an_account"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/signUp_TV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Sign Up"
+                android:layout_marginStart="5dp"
+                android:text="@string/sign_up"
                 android:textColor="@color/green_secondary"
                 android:textStyle="bold" />
 

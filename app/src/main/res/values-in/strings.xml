@@ -220,6 +220,7 @@
     <string name="toolbar_community">Komunitas</string>
     <string name="toolbar_user_profile">Profil Pengguna</string>
     <string name="toolbar_search">Pencarian</string>
+    <string name="toolbar_add_post">Tambah Postingan</string>
 
     <!-- Dashboard -->
     <!-- Fragment Profile -->

@@ -19,6 +19,7 @@
             android:id="@+id/logo_petDiary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/image_logo_cd"
             android:src="@drawable/logo" />
 
         <TextView
@@ -28,9 +29,9 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="SIGN UP"
+            android:text="@string/sign_up"
             android:textColor="@color/black"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textStyle="bold" />
 
         <TextView
@@ -40,7 +41,7 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
             android:gravity="start"
-            android:text="Please register to login"
+            android:text="@string/sign_up_desc"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -96,7 +97,7 @@
                 android:id="@+id/password_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +116,7 @@
                 android:id="@+id/confirmPassword_TIET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirm Password"
+                android:hint="@string/confirm_new_password"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -127,7 +128,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
-            android:text="SIGN UP"
+            android:text="@string/sign_up"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
@@ -140,14 +141,15 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/signIn_TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Sign In"
+                android:layout_marginStart="5dp"
+                android:text="@string/sign_in"
                 android:textColor="@color/orange_main"
                 android:textStyle="bold" />
 

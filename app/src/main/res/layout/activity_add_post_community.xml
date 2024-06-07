@@ -12,33 +12,22 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/pet_category_toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:elevation="8dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:src="@drawable/arrow_back" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/toolbar_add_post"
+                app:titleTextColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Comment"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/postImage_IV"
@@ -58,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="5dp"
-            android:text="SELECT IMAGE"
+            android:text="@string/select_image"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -69,16 +58,16 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="10dp"
             app:counterEnabled="true"
-            app:counterMaxLength="250"
+            app:counterMaxLength="500"
             app:helperText="Share something positive"
             app:helperTextEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/desc_TextInputEditText"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:hint="Description"
-                android:inputType="textPersonName" />
+                android:layout_height="200dp"
+                android:hint="@string/description"
+                android:inputType="textMultiLine" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            android:text="POST"
+            android:text="@string/post"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
