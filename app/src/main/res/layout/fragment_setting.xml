@@ -46,26 +46,6 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/changeEmail_Btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="10dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawablePadding="10dp"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="@string/change_email"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:drawableLeftCompat="@drawable/ic_email" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:id="@+id/changePassword_Btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -103,6 +83,30 @@
             android:textStyle="bold"
             app:drawableLeftCompat="@drawable/ic_flag" />
 
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_dark"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/support_Btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/support"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_support" />
 
     </androidx.cardview.widget.CardView>
 

@@ -315,6 +315,13 @@
     <string name="user">User</string>
     <string name="no_user_yet">No User Yet</string>
     <string name="post">Post</string>
+    <string name="support">Support</string>
+    <string name="toolbar_support">Support</string>
+
+    <string name="email_from">From : %1$s</string>
+    <string name="email_to">To : akupetdiary@gmail.com</string>
+    <string name="message">Message</string>
+    <string name="contact_support">Contact Support</string>
 
 
 </resources>

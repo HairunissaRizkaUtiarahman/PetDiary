@@ -37,6 +37,11 @@ class SettingFragment : Fragment() {
                 .navigate(R.id.action_settingFragment_to_changeLanguageSettingFragment)
         }
 
+        binding.supportBtn.setOnClickListener {
+            it.findNavController()
+                .navigate(R.id.action_settingFragment_to_supportSettingFragment)
+        }
+
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
