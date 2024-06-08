@@ -31,7 +31,7 @@ class CommentPostAdapter() : ListAdapter<CommentPost, CommentPostAdapter.ViewHol
             nameTV.text = commentPost.user?.name
 
             Glide.with(profileImageIV.context).load(commentPost.user?.imageUrl)
-                .placeholder(R.drawable.image_blank).into(profileImageIV)
+                .placeholder(R.drawable.image_profile).into(profileImageIV)
         }
     }
 

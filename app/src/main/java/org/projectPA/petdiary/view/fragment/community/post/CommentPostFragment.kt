@@ -41,7 +41,7 @@ class CommentPostFragment : Fragment() {
                 timePostTV.text = it.timestamp?.relativeTime() ?: ""
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
-                    .placeholder(R.drawable.image_blank).into(profileImageIV)
+                    .placeholder(R.drawable.image_profile).into(profileImageIV)
 
                 if (it.imageUrl != "" && it.imageUrl != null) {
                     postImageIV.visibility = View.VISIBLE
