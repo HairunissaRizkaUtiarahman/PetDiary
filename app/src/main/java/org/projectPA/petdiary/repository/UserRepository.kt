@@ -18,7 +18,7 @@ class UserRepository(
 ) {
     suspend fun getUsers(): List<User> {
         return try {
-            db.collection("users")
+            db.collection("user")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         it.toObject(User::class.java)?.copy(id = it.id)
@@ -33,7 +33,7 @@ class UserRepository(
     suspend fun getRandomUsers(): List<User> {
         return try {
             val userId = auth.currentUser!!.uid
-            db.collection("users")
+            db.collection("user")
                 .whereNotEqualTo("userId", userId) // Exclude the logged-in user
                 .limit(10)
                 .get().await().let { querySnapshot ->
@@ -42,14 +42,14 @@ class UserRepository(
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get random users", e)
+            Log.e(LOG_TAG, "Fail to get random user", e)
             emptyList()
         }
     }
 
     suspend fun getUser(userId: String): User? {
         return try {
-            db.collection("users")
+            db.collection("user")
                 .document(userId)
                 .get().await()
                 .let {
@@ -63,7 +63,7 @@ class UserRepository(
 
     suspend fun searchUser(query: String): List<User> {
         return try {
-            db.collection("users")
+            db.collection("user")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         it.toObject(User::class.java)?.copy(id = it.id)
