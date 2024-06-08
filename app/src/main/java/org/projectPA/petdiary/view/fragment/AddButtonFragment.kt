@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.projectPA.petdiary.databinding.FragmentAddButtonBinding
-import org.projectPA.petdiary.view.activities.AddPostCommunityActivity
+import org.projectPA.petdiary.view.activities.community.AddPostCommunityActivity
 import org.projectPA.petdiary.view.activities.ChoosePetCategoryActivity
 import org.projectPA.petdiary.view.activities.ChooseProductActivity
 

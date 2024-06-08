@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentHomeBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.activities.*
+import org.projectPA.petdiary.view.activities.community.CommunityHomePageActivity
+import org.projectPA.petdiary.view.activities.managepet.PetActivity
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
@@ -119,6 +122,10 @@ class HomeFragment : Fragment() {
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {
                 binding.toolbarReview.title = String.format(getString(R.string.home_name_user), user.name)
+                Glide.with(binding.profileImageIV.context)
+                    .load(it.imageUrl)
+                    .placeholder(R.drawable.image_profile)
+                    .into(binding.profileImageIV)
             }
         }
     }

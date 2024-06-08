@@ -13,8 +13,8 @@ import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentProfileBinding
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
-import org.projectPA.petdiary.view.activities.MyProfileActivity
-import org.projectPA.petdiary.view.activities.SettingActivity
+import org.projectPA.petdiary.view.activities.myprofile.MyProfileActivity
+import org.projectPA.petdiary.view.activities.setting.SettingActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
 class ProfileFragment : Fragment() {

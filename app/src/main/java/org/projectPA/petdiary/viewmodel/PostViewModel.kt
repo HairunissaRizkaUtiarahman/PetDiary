@@ -47,9 +47,9 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         _isLoading.postValue(false)
     }
 
-    fun loadRandomPosts() = viewModelScope.launch {
+    fun loadPosts() = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            postRepository.getRandomPosts().collect {
+            postRepository.getPosts().collect {
                 _posts.value = it
             }
         }

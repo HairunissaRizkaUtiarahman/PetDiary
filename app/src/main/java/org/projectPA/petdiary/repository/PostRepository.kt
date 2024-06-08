@@ -61,35 +61,6 @@ class PostRepository(
 
             db.collection("post").whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
-                .snapshots().map { snapshot ->
-                    snapshot.map {
-                        val userId = it.data["userId"] as String? ?: ""
-                        val user = db
-                            .collection("user")
-                            .document(userId).get()
-                            .await().toObject(User::class.java)?.copy(id = userId)
-
-                        val like = db
-                            .collection("like")
-                            .document("${currentUserID}_${it.id}").get().await()
-                            .toObject(Like::class.java)
-
-                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
-                    }
-                }
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get post data", e)
-            emptyFlow()
-        }
-    }
-
-    // Query Get Random Posts
-    suspend fun getRandomPosts(): Flow<List<Post>> {
-        return try {
-            val currentUserID = auth.currentUser!!.uid
-
-            db.collection("post").whereEqualTo("isDeleted", false)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(10)
                 .snapshots().map { snapshot ->
                     snapshot.map {

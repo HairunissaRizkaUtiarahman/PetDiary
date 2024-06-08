@@ -27,7 +27,7 @@ class CommentPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentPostCommentBinding.inflate(layoutInflater, container, false)
         return binding.root

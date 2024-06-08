@@ -1,7 +1,6 @@
 package org.projectPA.petdiary.view.fragment.community.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +26,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUserSearchBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -61,8 +60,8 @@ class SearchFragment : Fragment() {
             binding.postRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 
-        userViewModel.loadRandomUsers()
-        postViewModel.loadRandomPosts()
+        userViewModel.loadUsers()
+        postViewModel.loadPosts()
 
 
         binding.searchUserPostSV.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -77,8 +76,8 @@ class SearchFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     if (it.isEmpty()) {
-                        userViewModel.loadRandomUsers()
-                        postViewModel.loadRandomPosts()
+                        userViewModel.loadUsers()
+                        postViewModel.loadPosts()
                     } else {
                         userViewModel.searchUser(it)
                         postViewModel.searchPost(it)

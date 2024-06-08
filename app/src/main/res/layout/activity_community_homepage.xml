@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:navGraph="@navigation/community_nav"
-    tools:context=".view.activities.CommunityHomePageActivity"
+    tools:context=".view.activities.community.CommunityHomePageActivity"
     tools:viewBindingIgnore="true">
 
 </androidx.fragment.app.FragmentContainerView>
