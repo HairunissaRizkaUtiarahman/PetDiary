@@ -27,38 +27,7 @@ class ProductDetailViewModel : ViewModel() {
     private val _hasReviewed = MutableLiveData<Boolean>()
     val hasReviewed: LiveData<Boolean> get() = _hasReviewed
 
-    private val _user = MutableLiveData<User?>()
-    val user: MutableLiveData<User?> get() = _user
-
     private val firestore = FirebaseFirestore.getInstance()
-
-    fun fetchProductDetails(productId: String) {
-        firestore.collection("products").document(productId)
-            .get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    _product.value = document.toObject(Product::class.java)
-                } else {
-                    _errorMessage.value = "Product not found"
-                }
-            }
-            .addOnFailureListener { e ->
-                _errorMessage.value = e.message
-            }
-    }
-
-    fun fetchReviews(productId: String) {
-        firestore.collection("reviews")
-            .whereEqualTo("productId", productId)
-            .get()
-            .addOnSuccessListener { documents ->
-                val reviews = documents.toObjects(Review::class.java)
-                _reviews.value = reviews
-            }
-            .addOnFailureListener { e ->
-                _errorMessage.value = e.message
-            }
-    }
 
     fun checkIfUserReviewed(productId: String, userId: String) {
         firestore.collection("reviews")
@@ -78,14 +47,19 @@ class ProductDetailViewModel : ViewModel() {
 
     fun fetchDataInParallel(productId: String, userId: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val productDeferred = async { fetchProductDetailsAsync(productId) }
-            val reviewsDeferred = async { fetchReviewsAsync(productId) }
-            val userReviewDeferred = async { checkIfUserReviewedAsync(productId, userId) }
-
             try {
+                val startTime = System.currentTimeMillis()
+
+                val productDeferred = async { fetchProductDetailsAsync(productId) }
+                val reviewsDeferred = async { fetchReviewsAsync(productId) }
+                val userReviewDeferred = async { checkIfUserReviewedAsync(productId, userId) }
+
                 productDeferred.await()
                 reviewsDeferred.await()
                 userReviewDeferred.await()
+
+                val endTime = System.currentTimeMillis()
+                Log.d("ProductDetailViewModel", "fetchDataInParallel: Time taken: ${endTime - startTime} ms")
             } catch (e: Exception) {
                 _errorMessage.postValue(e.message)
             }
@@ -93,6 +67,7 @@ class ProductDetailViewModel : ViewModel() {
     }
 
     private suspend fun fetchProductDetailsAsync(productId: String) {
+        val startTime = System.currentTimeMillis()
         firestore.collection("products").document(productId)
             .get()
             .addOnSuccessListener { document ->
@@ -106,9 +81,12 @@ class ProductDetailViewModel : ViewModel() {
                 _errorMessage.postValue(e.message)
             }
             .await()
+        val endTime = System.currentTimeMillis()
+        Log.d("ProductDetailViewModel", "fetchProductDetailsAsync: Time taken: ${endTime - startTime} ms")
     }
 
     private suspend fun fetchReviewsAsync(productId: String) {
+        val startTime = System.currentTimeMillis()
         firestore.collection("reviews")
             .whereEqualTo("productId", productId)
             .get()
@@ -120,9 +98,12 @@ class ProductDetailViewModel : ViewModel() {
                 _errorMessage.postValue(e.message)
             }
             .await()
+        val endTime = System.currentTimeMillis()
+        Log.d("ProductDetailViewModel", "fetchReviewsAsync: Time taken: ${endTime - startTime} ms")
     }
 
     private suspend fun checkIfUserReviewedAsync(productId: String, userId: String) {
+        val startTime = System.currentTimeMillis()
         firestore.collection("reviews")
             .whereEqualTo("productId", productId)
             .whereEqualTo("userId", userId)
@@ -135,22 +116,7 @@ class ProductDetailViewModel : ViewModel() {
                 _hasReviewed.postValue(false)
             }
             .await()
-    }
-
-    private fun updateReviewUserPhoto(userId: String, imageUrl: String) {
-        firestore.collection("reviews")
-            .whereEqualTo("userId", userId)
-            .get()
-            .addOnSuccessListener { documents ->
-                val batch = firestore.batch()
-                for (document in documents) {
-                    val reviewRef = document.reference
-                    batch.update(reviewRef, "userPhotoUrl", imageUrl)
-                }
-                batch.commit()
-            }
-            .addOnFailureListener { e ->
-                _errorMessage.value = "Failed to update reviews: ${e.message}"
-            }
+        val endTime = System.currentTimeMillis()
+        Log.d("ProductDetailViewModel", "checkIfUserReviewedAsync: Time taken: ${endTime - startTime} ms")
     }
 }

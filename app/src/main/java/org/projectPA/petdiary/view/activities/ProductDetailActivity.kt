@@ -1,6 +1,7 @@
 package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,10 +12,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
-import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
 import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
@@ -96,6 +97,7 @@ class ProductDetailActivity : AppCompatActivity() {
             if (product != null) {
                 this.product = product
                 displayProductDetails(product)
+                showContent()
             } else {
                 Toast.makeText(this, "Failed to load product details", Toast.LENGTH_SHORT).show()
                 finish()
@@ -146,6 +148,21 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun refresh() {
+        showLoading()
         viewModel.fetchDataInParallel(productId, currentUserId)
+    }
+
+    private fun showLoading() {
+        binding.loadingIlustrassion.visibility = View.VISIBLE
+        (binding.loadingIlustrassion.drawable as? AnimationDrawable)?.start()
+        binding.toolbar.visibility = View.GONE
+        binding.mainContent.visibility = View.GONE
+    }
+
+    private fun showContent() {
+        (binding.loadingIlustrassion.drawable as? AnimationDrawable)?.stop()
+        binding.loadingIlustrassion.visibility = View.GONE
+        binding.mainContent.visibility = View.VISIBLE
+        binding.toolbar.visibility = View.VISIBLE
     }
 }
