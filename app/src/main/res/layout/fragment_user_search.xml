@@ -34,7 +34,7 @@
         android:elevation="0dp"
         app:iconifiedByDefault="false"
         app:queryBackground="@null"
-        app:queryHint="Search User" />
+        app:queryHint="Search Anything" />
 
     <TextView
         android:layout_width="match_parent"

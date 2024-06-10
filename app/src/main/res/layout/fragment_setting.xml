@@ -61,7 +61,7 @@
             android:text="@string/change_password"
             android:textColor="@color/black"
             android:textStyle="bold"
-            app:drawableLeftCompat="@drawable/ic_password" />
+            app:drawableLeftCompat="@drawable/ic_lock" />
 
     </androidx.cardview.widget.CardView>
 

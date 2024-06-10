@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:navGraph="@navigation/pet_nav"
-    tools:context=".view.activities.PetActivity"
+    tools:context=".view.activities.managepet.PetActivity"
     tools:viewBindingIgnore="true">
 
 </androidx.fragment.app.FragmentContainerView>

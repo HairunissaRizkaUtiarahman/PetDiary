@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.activities
+package org.projectPA.petdiary.view.activities.community
 
 import android.Manifest
 import android.content.ContentValues

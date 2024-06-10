@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +23,6 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentEditProfileSettingBinding
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
-
 class EditProfileSettingFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileSettingBinding
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
@@ -40,10 +38,6 @@ class EditProfileSettingFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
         var imageUri: Uri? = null
 
         val postImage = registerForActivityResult(
@@ -111,9 +105,19 @@ class EditProfileSettingFragment : Fragment() {
             val bio = binding.bioTIET.text.toString().trim()
 
             if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
-                viewModel.updateData(name, address, gender, birthdate, bio, imageUri)
-                Toast.makeText(requireContext(), "Success Update My Profile", Toast.LENGTH_SHORT)
-                    .show()
+                viewModel.checkIfNameExists(name) { nameExists ->
+                    if (nameExists) {
+                        Toast.makeText(requireContext(), "Name already taken", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        viewModel.updateData(name, address, gender, birthdate, bio, imageUri)
+                        Toast.makeText(
+                            requireContext(),
+                            "Success Update My Profile",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             } else {
                 when {
                     name.isEmpty() -> Toast.makeText(
@@ -180,14 +184,8 @@ class EditProfileSettingFragment : Fragment() {
             }
         }
 
-        val inputFilterName = InputFilter.LengthFilter(100)
-        val inputFilterEmail = InputFilter.LengthFilter(100)
-        val inputFilterAddress = InputFilter.LengthFilter(150)
-        val inputFilterBio = InputFilter.LengthFilter(100)
-
-        binding.nameTIET.filters = arrayOf(inputFilterName)
-        binding.emailTIET.filters = arrayOf(inputFilterEmail)
-        binding.addressTIET.filters = arrayOf(inputFilterAddress)
-        binding.bioTIET.filters = arrayOf(inputFilterBio)
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

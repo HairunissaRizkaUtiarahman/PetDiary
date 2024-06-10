@@ -1,11 +1,13 @@
 package org.projectPA.petdiary.viewmodel
 
 import android.net.Uri
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.User
@@ -21,7 +23,8 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
-                val myProfileRepository = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as PetDiaryApplication).myProfileRepository
+                val myProfileRepository =
+                    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as PetDiaryApplication).myProfileRepository
                 MyProfileViewModel(myProfileRepository)
             }
         }
@@ -33,9 +36,27 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
         }
     }
 
-    fun updateData(name: String, address: String, gender: String, birthdate : String, bio: String, uri: Uri?) = viewModelScope.launch {
+    fun updateData(
+        name: String,
+        address: String,
+        gender: String,
+        birthdate: String,
+        bio: String,
+        uri: Uri?
+    ) = viewModelScope.launch {
         _isLoading.postValue(true)
-        myProfileRepository.updateMyProfile(name, address, gender, birthdate, bio, uri)
+        myProfileRepository.updateMyProfile(
+            name,
+            address,
+            gender,
+            birthdate,
+            bio,
+            uri
+        )
         _isLoading.postValue(false)
+    }
+
+    fun checkIfNameExists(name: String, callback: (Boolean) -> Unit) {
+        myProfileRepository.checkIfNameExists(name, callback)
     }
 }

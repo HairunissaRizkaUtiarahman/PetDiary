@@ -27,7 +27,7 @@ class CommentPostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentPostCommentBinding.inflate(layoutInflater, container, false)
         return binding.root
@@ -41,7 +41,7 @@ class CommentPostFragment : Fragment() {
                 timePostTV.text = it.timestamp?.relativeTime() ?: ""
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
-                    .placeholder(R.drawable.image_blank).into(profileImageIV)
+                    .placeholder(R.drawable.image_profile).into(profileImageIV)
 
                 if (it.imageUrl != "" && it.imageUrl != null) {
                     postImageIV.visibility = View.VISIBLE

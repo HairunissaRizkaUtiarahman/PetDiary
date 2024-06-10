@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.util.Locale
 
 open class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val _signupSuccess = MutableLiveData<Boolean>()
@@ -28,8 +29,7 @@ open class AuthViewModel(application: Application) : AndroidViewModel(applicatio
             return
         }
         if (!isValidPassword(password)) {
-            _signupError.value =
-                "Password should be between 6 and 10 characters and contain letters and numbers!"
+            _signupError.value = "Password should be between 6 and 12 characters and contain letters, numbers, and optionally dots!"
             return
         }
         if (name.length > 100) {
@@ -44,16 +44,32 @@ open class AuthViewModel(application: Application) : AndroidViewModel(applicatio
                 if (signInMethods.isNotEmpty()) {
                     _signupError.value = "Account already registered!"
                 } else {
-                    createUser(auth, name, email, password)
+                    checkIfNameExists(auth, name, email, password)
                 }
             } else {
-                _signupError.value =
-                    "Failed to check email registration: ${task.exception?.message}"
+                _signupError.value = "Failed to check email registration: ${task.exception?.message}"
             }
         }
     }
 
-    private fun createUser(auth: FirebaseAuth, name: String, email: String, password: String) {
+    private fun checkIfNameExists(auth: FirebaseAuth, name: String, email: String, password: String) {
+        val db = FirebaseFirestore.getInstance()
+        val lowercaseName = name.toLowerCase(Locale.ROOT)
+        db.collection("user").whereEqualTo("lowercaseName", lowercaseName).get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val documents = task.result?.documents ?: emptyList()
+                if (documents.isNotEmpty()) {
+                    _signupError.value = "Name already taken!"
+                } else {
+                    createUser(auth, name, lowercaseName, email, password)
+                }
+            } else {
+                _signupError.value = "Failed to check name: ${task.exception?.message}"
+            }
+        }
+    }
+
+    private fun createUser(auth: FirebaseAuth, name: String, lowercaseName: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid
@@ -61,6 +77,7 @@ open class AuthViewModel(application: Application) : AndroidViewModel(applicatio
                 if (userId != null) {
                     val user = hashMapOf(
                         "name" to name,
+                        "lowercaseName" to lowercaseName,
                         "email" to email
                     )
                     val db = FirebaseFirestore.getInstance()

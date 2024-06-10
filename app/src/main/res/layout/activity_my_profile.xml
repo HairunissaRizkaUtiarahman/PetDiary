@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     app:defaultNavHost="true"
     app:navGraph="@navigation/my_profile_nav"
-    tools:context=".view.activities.MyProfileActivity"
+    tools:context=".view.activities.myprofile.MyProfileActivity"
     tools:viewBindingIgnore="true">
 
 </androidx.fragment.app.FragmentContainerView>

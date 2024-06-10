@@ -24,11 +24,11 @@
         android:theme="@style/Theme.PetDiary"
         tools:targetApi="31">
         <activity
-            android:name=".view.activities.SettingActivity"
+            android:name=".view.activities.setting.SettingActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".view.activities.MyProfileActivity"
+            android:name=".view.activities.myprofile.MyProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -63,7 +63,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".view.activities.PetActivity"
+            android:name=".view.activities.managepet.PetActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -75,11 +75,11 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.AddPostCommunityActivity"
+            android:name=".view.activities.community.AddPostCommunityActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activities.CommunityHomePageActivity"
+            android:name=".view.activities.community.CommunityHomePageActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

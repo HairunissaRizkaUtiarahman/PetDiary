@@ -11,7 +11,7 @@ import androidx.navigation.navGraphViewModels
 import com.example.testproject.ui.socialmedia.post.PostAdapter
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostBinding
-import org.projectPA.petdiary.view.activities.AddPostCommunityActivity
+import org.projectPA.petdiary.view.activities.community.AddPostCommunityActivity
 import org.projectPA.petdiary.viewmodel.PostViewModel
 
 class PostFragment : Fragment() {
@@ -23,7 +23,7 @@ class PostFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPostBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -54,7 +54,7 @@ class PostFragment : Fragment() {
             }
         }
 
-        viewModel.loadRandomPosts()  // Call loadRandomPosts() instead of loadData()
+        viewModel.loadPosts()  // Call loadRandomPosts() instead of loadData()
 
         binding.addPostBtn.setOnClickListener {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)
