@@ -3,6 +3,33 @@
   <component name="AndroidTestResultsUserPreferences">
     <option name="androidTestResultsTableState">
       <map>
+        <entry key="-1927220220">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-743559430">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="397081074">
           <value>
             <AndroidTestResultsTableState>
@@ -11,6 +38,20 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_5_API_34" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="1226241910">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="102" />
+                  <entry key="Pixel_5_API_34" value="131" />
+                  <entry key="Tests" value="371" />
                   <entry key="samsung SM-M515F" value="120" />
                 </map>
               </option>
