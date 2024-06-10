@@ -1,6 +1,5 @@
 package org.projectPA.petdiary
 
-
 import android.view.View
 import android.widget.TextView
 import androidx.test.espresso.matcher.BoundedMatcher

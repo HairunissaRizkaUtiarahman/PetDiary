@@ -1,9 +1,7 @@
 package org.projectPA.petdiary
 
-import android.view.View
 import androidx.test.espresso.IdlingResource
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
 
 class SnackbarIdlingResource : IdlingResource {
 
