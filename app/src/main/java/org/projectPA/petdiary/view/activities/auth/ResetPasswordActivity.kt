@@ -3,10 +3,11 @@ package org.projectPA.petdiary.view.activities.auth
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.ActivityResetPasswordBinding
 
 class ResetPasswordActivity : AppCompatActivity() {
@@ -48,28 +49,28 @@ class ResetPasswordActivity : AppCompatActivity() {
                 if (!documents.isEmpty) {
                     sendResetPasswordEmail(email)
                 } else {
-                    Toast.makeText(this, "Email not found", Toast.LENGTH_SHORT).show()
+                    showSnackbar("Email not found")
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to validate email: ${it.message}", Toast.LENGTH_SHORT)
-                    .show()
+                showSnackbar("Failed to validate email: ${it.message}")
             }
     }
 
     private fun sendResetPasswordEmail(email: String) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
-                Toast.makeText(
-                    this,
-                    "Email to reset password has been sent",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showSnackbar("Email to reset password has been sent")
                 startActivity(Intent(this, SigninActivity::class.java))
                 finish()
             } else {
-                Toast.makeText(this, "${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                showSnackbar("${it.exception?.message}")
             }
         }
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        snackbar.show()
     }
 }

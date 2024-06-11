@@ -31,7 +31,6 @@ class ReviewAdapter(
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
                 usageProduct.text = review.usagePeriod
-
                 // Fetch user data and set username and userPhotoProfile
                 fetchUserData(review.userId.trim(), context, binding, firestore)
 
@@ -92,7 +91,7 @@ class ReviewAdapter(
     override fun getItemCount() = reviews.size
 
     fun updateData(newReviews: List<Review>) {
-        reviews = newReviews
+        reviews = newReviews.sortedByDescending { it.reviewDate }
         notifyDataSetChanged()
     }
 }
