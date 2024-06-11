@@ -36,10 +36,12 @@
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/card_review"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">

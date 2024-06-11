@@ -7,19 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.databinding.ListReviewCommentBinding
-import org.projectPA.petdiary.model.Comment
+import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.model.User
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class CommentAdapter(
-    private var comments: List<Comment>
+    private var comments: List<CommentsReview>
 ) : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     class CommentViewHolder(val binding: ListReviewCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(comment: Comment) {
+        fun bind(comment: CommentsReview) {
             with(binding) {
                 val db = FirebaseFirestore.getInstance()
                 db.collection("user").document(comment.userId).get()
@@ -60,8 +60,8 @@ class CommentAdapter(
 
     override fun getItemCount() = comments.size
 
-    fun updateData(newComments: List<Comment>) {
-        comments = newComments
+    fun updateData(newComments: List<CommentsReview>) {
+        comments = newComments.sortedByDescending { it.CommentDate }
         notifyDataSetChanged()
     }
 }
