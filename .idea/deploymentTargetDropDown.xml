@@ -2,14 +2,43 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DashboardActivityTest">
-        <State />
-      </entry>
       <entry key="ProductEntryTest">
         <State />
       </entry>
-      <entry key="app">
+      <entry key="SigninActivityTest">
         <State />
+      </entry>
+      <entry key="SignupActivityTest (1)">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\anisa\.android\avd\Pixel_5_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-06-09T09:00:28.818544500Z" />
+        </State>
+      </entry>
+      <entry key="app">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\anisa\.android\avd\Pixel_5_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-06-10T12:01:12.811290200Z" />
+        </State>
       </entry>
     </value>
   </component>

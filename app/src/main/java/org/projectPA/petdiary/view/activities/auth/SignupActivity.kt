@@ -2,17 +2,18 @@ package org.projectPA.petdiary.view.activities.auth
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.ActivitySignupBinding
 import org.projectPA.petdiary.viewmodel.AuthViewModel
 
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
-    private lateinit var viewModel: AuthViewModel
+    lateinit var viewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +33,16 @@ class SignupActivity : AppCompatActivity() {
 
         viewModel.signupSuccess.observe(this, Observer { success ->
             if (success) {
-                Toast.makeText(this, "Registration successful! Please verify your email before logging in.", Toast.LENGTH_LONG).show()
+                showSnackbar("Registration successful! Please verify your email before logging in.")
                 startActivity(Intent(this, SigninActivity::class.java))
+
                 finish()
             }
         })
 
         viewModel.signupError.observe(this, Observer { error ->
             if (error != null) {
-                Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+                showSnackbar(error)
             }
         })
 
@@ -49,4 +51,16 @@ class SignupActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
+    }
+
 }

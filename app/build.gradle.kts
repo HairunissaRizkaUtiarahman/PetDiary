@@ -53,9 +53,17 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.test.espresso:espresso-idling-resource:3.5.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
+
+    testImplementation("androidx.test:core:1.5.0") {
+        exclude("com.google.protobuf", "protobuf-lite")
+    }
+    testImplementation("androidx.test:runner:1.5.2") {
+        exclude("com.google.protobuf", "protobuf-lite")
+    }
 
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1") {
         exclude("com.google.protobuf", "protobuf-lite")
@@ -69,6 +77,7 @@ dependencies {
     androidTestImplementation("androidx.test:rules:1.5.0") {
         exclude("com.google.protobuf", "protobuf-lite")
     }
+
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
@@ -88,11 +97,9 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     implementation("com.google.android.gms:play-services-location:21.0.1")
-//    androidTestImplementation ("com.github.Upheaval2404:ToastMatcher:1.0.0")
 
-    androidTestImplementation ("androidx.test:orchestrator:1.4.1") // Add orchestrator for better test isolation
+    androidTestImplementation("androidx.test:orchestrator:1.4.1") // Add orchestrator for better test isolation
 }
-
 
 configurations.all {
     resolutionStrategy {

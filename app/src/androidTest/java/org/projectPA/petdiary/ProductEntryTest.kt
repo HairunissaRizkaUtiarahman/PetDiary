@@ -50,7 +50,7 @@ class ProductEntryTest {
 
         // Sign in with email and password
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.password_TIET)).perform(typeText("12345678"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
         onView(withId(R.id.signIn_Btn)).perform(click())
 
         // Wait for the dashboard to load

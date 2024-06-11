@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
 
-class AuthViewModel(application: Application) : AndroidViewModel(application) {
+open class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val _signupSuccess = MutableLiveData<Boolean>()
     val signupSuccess: LiveData<Boolean> = _signupSuccess
 
