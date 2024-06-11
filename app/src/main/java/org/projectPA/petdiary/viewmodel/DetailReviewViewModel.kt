@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import org.projectPA.petdiary.model.Comment
+import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -25,8 +25,8 @@ class DetailReviewViewModel : ViewModel() {
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount: LiveData<Int> get() = _commentsCount
 
-    private val _comments = MutableLiveData<List<Comment>>()
-    val comments: LiveData<List<Comment>> get() = _comments
+    private val _comments = MutableLiveData<List<CommentsReview>>()
+    val comments: LiveData<List<CommentsReview>> get() = _comments
 
     private val _commentAdded = MutableLiveData<Boolean>()
     val commentAdded: LiveData<Boolean> get() = _commentAdded
@@ -75,7 +75,7 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchCommentsCount(reviewId: String) {
-        firestore.collection("comments")
+        firestore.collection("commentsReview")
             .whereEqualTo("reviewId", reviewId)
             .get()
             .addOnSuccessListener { result ->
@@ -87,12 +87,12 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchCommentsForReview(reviewId: String) {
-        firestore.collection("comments")
+        firestore.collection("commentsReview")
             .whereEqualTo("reviewId", reviewId)
-            .orderBy("commentDate", Query.Direction.ASCENDING) // Ensure the sorting order here
+            .orderBy("commentDate", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { result ->
-                val comments = result.mapNotNull { it.toObject(Comment::class.java) }
+                val comments = result.mapNotNull { it.toObject(CommentsReview::class.java) }
                 _comments.value = comments
             }
             .addOnFailureListener { e ->
@@ -100,8 +100,8 @@ class DetailReviewViewModel : ViewModel() {
             }
     }
 
-    fun addComment(comment: Comment) {
-        val newCommentRef = firestore.collection("comments").document()
+    fun addComment(comment: CommentsReview) {
+        val newCommentRef = firestore.collection("commentsReview").document()
         val newComment = comment.copy(id = newCommentRef.id)
 
         newCommentRef.set(newComment)

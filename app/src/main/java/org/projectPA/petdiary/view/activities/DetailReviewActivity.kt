@@ -1,7 +1,6 @@
 package org.projectPA.petdiary.view.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -9,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDetailReviewBinding
-import org.projectPA.petdiary.model.Comment
+import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.view.adapters.CommentAdapter
 import org.projectPA.petdiary.viewmodel.DetailReviewViewModel
 import java.text.SimpleDateFormat
@@ -72,7 +70,7 @@ class DetailReviewActivity : AppCompatActivity() {
         binding.sendBtn.setOnClickListener {
             val commentText = binding.commentTIET.text.toString()
             if (commentText.isNotBlank()) {
-                val comment = Comment(
+                val comment = CommentsReview(
                     id = "",
                     reviewId = reviewId,
                     userId = viewModel.currentUserId,
