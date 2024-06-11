@@ -49,7 +49,7 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     fun searchUser(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        userRepository.searchUser(query.lowercase())?.let {
+        userRepository.searchUser(query.lowercase()).let {
             _users.postValue(it)
         }
     }

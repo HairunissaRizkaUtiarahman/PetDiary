@@ -33,7 +33,7 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
         fun bind(post: Post) = with(binding) {
             descTV.text = post.desc
             nameTV.text = post.user?.name
-            timePostTV.text = post.timestamp?.relativeTime() ?: ""
+            timestampTV.text = post.timestamp?.relativeTime() ?: ""
 
             Glide.with(profileImageIV.context).load(post.user?.imageUrl)
                 .placeholder(R.drawable.image_profile).into(profileImageIV)

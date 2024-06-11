@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             app:counterEnabled="true"
-            app:counterMaxLength="10"
+            app:counterMaxLength="12"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText

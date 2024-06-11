@@ -67,6 +67,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="55dp"
                 android:layout_marginBottom="15dp"
+                android:contentDescription="@string/image_blank_cd"
                 app:srcCompat="@drawable/contoh_product_image" />
 
             <TextView
@@ -78,7 +79,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Royal Canin"
+                android:text="@string/royal_canin"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -90,7 +91,7 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Adult Persian"
+                android:text="@string/adult_persian"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -101,7 +102,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/roboto"
-                android:text="For Cat"
+                android:text="@string/for_cat"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -112,7 +113,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:fontFamily="@font/roboto"
-                android:text="Health"
+                android:text="@string/health"
                 android:textColor="@color/black_grey"
                 android:textSize="16sp" />
 
@@ -141,7 +142,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="6dp"
                 android:gravity="left|center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <RatingBar
                     android:id="@+id/rating_bar_product"
@@ -156,7 +158,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/roboto_black"
-                    android:text="4.6"
+                    android:text="@string/_4_6"
                     android:textColor="@color/orange_main"
                     android:textSize="34sp" />
 
@@ -169,13 +171,15 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:gravity="left|center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <ImageView
                     android:id="@+id/user_icon"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/image_blank_cd"
                     app:srcCompat="@drawable/ic_users" />
 
                 <TextView
@@ -184,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="2K"
+                    android:text="@string/_2k"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -205,13 +209,15 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:gravity="left|center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/image_blank_cd"
                     app:srcCompat="@drawable/ic_thumbs_up_active" />
 
                 <TextView
@@ -220,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="34%"
+                    android:text="@string/_34"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -257,7 +263,7 @@
                     android:fontFamily="@font/roboto"
                     android:text="@string/product_description"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/product_description_text"
@@ -266,7 +272,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    android:text="TextView" />
+                    android:text="@string/textview" />
 
             </LinearLayout>
 
@@ -312,6 +318,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/image_blank_cd"
                     app:srcCompat="@drawable/ic_review" />
 
             </FrameLayout>
@@ -322,7 +329,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="15dp"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/imageView5"
@@ -330,6 +338,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="15dp"
+                    android:contentDescription="@string/image_blank_cd"
                     android:visibility="visible"
                     app:srcCompat="@drawable/ic_no_review__2_" />
 
@@ -338,7 +347,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_bold"
-                    android:text="Be the first to review this product"
+                    android:text="@string/be_the_first_to_review_this_product"
                     android:textAlignment="center"
                     android:textColor="@color/black_grey"
                     android:textSize="18sp" />
@@ -355,7 +364,8 @@
                 android:text="@string/see_more_reviews"
                 android:textColor="@color/orange_main"
                 android:textSize="16sp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                tools:ignore="RtlHardcoded" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_review"
@@ -374,6 +384,7 @@
         android:id="@+id/loading_ilustrassion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/image_blank_cd"
         android:padding="30dp"
         app:srcCompat="@drawable/loading_animation" />
 

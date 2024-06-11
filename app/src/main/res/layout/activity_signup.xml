@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             app:counterEnabled="true"
-            app:counterMaxLength="10"
+            app:counterMaxLength="12"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             app:counterEnabled="true"
-            app:counterMaxLength="10"
+            app:counterMaxLength="12"
             app:endIconMode="password_toggle">
 
             <com.google.android.material.textfield.TextInputEditText

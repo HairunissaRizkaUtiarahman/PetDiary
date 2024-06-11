@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -63,13 +64,15 @@
                 android:id="@+id/choose_cat_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/pet_type_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_cat_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_cat" />
 
@@ -88,13 +91,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/dog_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_dog_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_dog" />
 
@@ -116,13 +121,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/rabbit_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_rabbit_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_rabbit" />
 
@@ -153,13 +160,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/hamster_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_hamster_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_hamster" />
 
@@ -182,13 +191,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/fish_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_fish_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_fish" />
 
@@ -210,13 +221,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/bird_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:background="@drawable/background_pet_category"
+                    android:contentDescription="@string/image_bird_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_bird" />
 

@@ -21,10 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:paddingStart="5dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Sort by"
+            android:text="@string/sort_by"
             android:textColor="@color/orange_main"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="RtlSymmetry" />
 
         <RadioButton
             android:id="@+id/Popular_option_sort"
@@ -33,11 +35,11 @@
             android:layout_gravity="right"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Popular"
+            android:text="@string/popular"
             android:textAlignment="viewStart"
             android:textColor="@color/green_main"
             android:textSize="18sp"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat,RtlHardcoded" />
 
         <RadioButton
             android:id="@+id/highest_rating_option_sort"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Highest Rating"
+            android:text="@string/highest_rating"
             android:textColor="@color/green_main"
             android:textSize="18sp" />
 
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Newest"
+            android:text="@string/newest"
             android:textColor="@color/green_main"
             android:textSize="18sp" />
     </LinearLayout>

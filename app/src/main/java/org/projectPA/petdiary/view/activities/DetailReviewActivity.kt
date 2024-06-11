@@ -89,10 +89,10 @@ class DetailReviewActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.product.observe(this, Observer { product ->
             product?.let {
-                binding.brandName.text = it.brandName
-                binding.productName.text = it.productName
-                binding.productTypeAnimal.text = it.petType
-                Glide.with(this).load(it.imageUrl).into(binding.productPictureRaviewDetailPage)
+                binding.brandNameTV.text = it.brandName
+                binding.productNameTV.text = it.productName
+                binding.productTypeTV.text = it.petType
+                Glide.with(this).load(it.imageUrl).into(binding.productImageIV)
             }
         })
 
@@ -108,7 +108,7 @@ class DetailReviewActivity : AppCompatActivity() {
 
         viewModel.user.observe(this, Observer { user ->
             user?.let {
-                binding.username.text = it.name
+                binding.nameTV.text = it.name
                 Glide.with(this).load(it.imageUrl).into(binding.userPhotoProfile)
             }
         })

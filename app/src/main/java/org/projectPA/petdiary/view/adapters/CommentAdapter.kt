@@ -26,10 +26,10 @@ class CommentAdapter(
                     .addOnSuccessListener { document ->
                         val user = document.toObject(User::class.java)
                         if (user != null) {
-                            username.text = user.name
-                            Glide.with(userPhotoProfile.context)
+                            nameTV.text = user.name
+                            Glide.with(profileImageIV.context)
                                 .load(user.imageUrl)
-                                .into(userPhotoProfile)
+                                .into(profileImageIV)
                         } else {
                             Log.e("CommentAdapter", "User not found for userId: ${comment.userId}")
                         }
@@ -38,11 +38,11 @@ class CommentAdapter(
                         Log.e("CommentAdapter", "Error fetching user details", e)
                     }
 
-                deskripsiComment.text = comment.text
-                commentDate.text = SimpleDateFormat(
+                commentTV.text = comment.text
+                timestampTV.text = SimpleDateFormat(
                     "dd MMM yyyy",
                     Locale.getDefault()
-                ).format(comment.CommentDate?.toDate() ?: Date())
+                ).format(comment.commentDate?.toDate() ?: Date())
             }
         }
     }

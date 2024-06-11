@@ -26,15 +26,15 @@ class ReviewWithProductAdapter(
             Log.d(LOG_TAG, "Binding item: $item")
 
             with(binding) {
-                productName.text = item.product.productName
-                brandName.text = item.product.brandName
-                reviewDate.text = dateFormat.format(item.review.reviewDate)
-                deskripsiReview.text = item.review.reviewText
+                productNameTV.text = item.product.productName
+                brandNameTV.text = item.product.brandName
+                reviewDateTV.text = dateFormat.format(item.review.reviewDate)
+                deskripsiReviewTV.text = item.review.reviewText
                 ratingBar4.rating = item.review.rating
 
-                Glide.with(productImage.context)
+                Glide.with(productImageIV.context)
                     .load(item.product.imageUrl)
-                    .into(productImage)
+                    .into(productImageIV)
             }
         }
     }

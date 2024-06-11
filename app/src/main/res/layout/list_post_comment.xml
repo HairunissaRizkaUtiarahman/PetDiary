@@ -36,15 +36,15 @@
                     android:id="@+id/name_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="@string/name"
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
 
                 <TextView
-                    android:id="@+id/time_Post_TV"
+                    android:id="@+id/timestamp_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Timestamp"/>
+                    android:text="@string/timestamp"/>
 
             </LinearLayout>
 
@@ -54,7 +54,7 @@
             android:id="@+id/comment_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Commet"
+            android:text="@string/lorem_ipsum"
             android:textColor="@color/black"
             android:padding="10dp"/>
 

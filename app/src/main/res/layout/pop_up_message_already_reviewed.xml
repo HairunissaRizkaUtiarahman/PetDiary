@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Thank you for your review! We’ve recorded your feedback for this product already"
+            android:text="@string/thankyou_for_review"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -33,7 +33,7 @@
             android:id="@+id/close_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ok" />
+            android:text="@string/ok" />
     </LinearLayout>
 
 

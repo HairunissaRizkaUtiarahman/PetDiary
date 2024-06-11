@@ -23,12 +23,14 @@
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/ic_add_a_review"
                 android:layout_width="51dp"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/image_add_review_cd"
                 app:srcCompat="@drawable/ic_add_a_review" />
 
             <TextView
@@ -48,12 +50,14 @@
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_marginBottom="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/ic_add_a_post"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/image_add_post_cd"
                 app:srcCompat="@drawable/ic_add_a_post" />
 
             <TextView
@@ -75,12 +79,14 @@
             android:layout_marginBottom="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
             <ImageView
                 android:id="@+id/ic_add_a_product"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/image_add_product_cd"
                 app:srcCompat="@drawable/ic_add_a_product" />
 
             <TextView

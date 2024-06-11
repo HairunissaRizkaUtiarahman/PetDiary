@@ -35,7 +35,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="start"
                     android:background="@color/white"
-                    android:contentDescription="back_to_dasboard_page_button"
+                    android:contentDescription="@string/back_to_dasboard_page_button"
                     android:src="@drawable/arrow_back" />
 
                 <TextView
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/Pet_Product_Reviews_Page"
+                    android:text="@string/toolbar_Product_Reviews"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
@@ -70,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:contentDescription="@string/image_poster_cd"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/poster_review_page" />
 
@@ -77,7 +78,7 @@
                     android:id="@+id/browse_product"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/browse_product_by_pet_types"
@@ -88,7 +89,7 @@
                     android:id="@+id/pet_options_scroll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="15dp"
                     android:contentDescription="@string/scroll_horizontally_to_view_pet_options"
                     android:scrollbars="none">
@@ -102,13 +103,15 @@
                             android:id="@+id/cat_button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/pet_type_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_cat_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_cat" />
 
@@ -127,13 +130,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/dog_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_dog_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_dog" />
 
@@ -155,13 +160,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/rabbit_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_rabbit_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_rabbit" />
 
@@ -183,13 +190,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/hamster_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_hamster_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_hamster" />
 
@@ -212,13 +221,15 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/fish_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_fish_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_fish" />
 
@@ -241,13 +252,15 @@
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
                             android:layout_marginEnd="10dp"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            tools:ignore="UseCompoundDrawables">
 
                             <ImageView
                                 android:id="@+id/bird_icon"
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:background="@drawable/background_pet_category"
+                                android:contentDescription="@string/image_bird_cd"
                                 android:padding="10dp"
                                 android:src="@drawable/ic_bird" />
 
@@ -275,7 +288,7 @@
                     android:id="@+id/most_reviews_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/most_reviews_products"
@@ -287,7 +300,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="left"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="RtlHardcoded">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_most_review_product"

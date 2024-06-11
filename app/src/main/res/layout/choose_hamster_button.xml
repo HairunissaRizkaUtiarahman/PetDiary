@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -7,13 +8,15 @@
         android:id="@+id/choose_hamster_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/hamster_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/background_pet_category"
+            android:contentDescription="@string/image_hamster_cd"
             android:padding="10dp"
             android:src="@drawable/ic_hamster" />
 

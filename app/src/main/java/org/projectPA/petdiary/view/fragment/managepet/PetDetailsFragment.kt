@@ -1,6 +1,7 @@
 package org.projectPA.petdiary.view.fragment.managepet
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,8 +42,10 @@ class PetDetailsFragment : Fragment() {
         }
 
         binding.petEditProfileBtn.setOnClickListener {
+            Log.d("PetDetailsFragment", "Edit button clicked")
             it.findNavController().navigate(R.id.action_myPetDetailsFragment_to_myPetEditFragment)
         }
+
 
         binding.deleteBtn.setOnClickListener {
             showDeleteConfirmationDialog()
@@ -55,12 +58,12 @@ class PetDetailsFragment : Fragment() {
 
     private fun showDeleteConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        val PetId = viewModel.pet.value?.id ?: ""
+        val petId = viewModel.pet.value?.id ?: ""
 
         alertDialogBuilder.apply {
             setMessage("Are you sure you want to delete this post?")
             setPositiveButton("Yes") { _, _ ->
-                viewModel.deleteData(PetId)
+                viewModel.deleteData(petId)
                 findNavController().popBackStack()
             }
             setNegativeButton("No") { dialog, _ ->

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
 
@@ -43,13 +43,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/pet_type_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/background_pet_category"
+            android:contentDescription="@string/image_cat_cd"
             android:padding="10dp"
             android:src="@drawable/ic_cat" />
 
@@ -91,6 +93,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/image_health_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_health" />
 
@@ -121,6 +124,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/image_tools_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_tools" />
 
@@ -160,6 +164,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/image_food_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_food" />
 
@@ -190,6 +195,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/image_grooming_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_grooming" />
 
@@ -221,7 +227,7 @@
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/background_pet_categories"
                 android:padding="20dp"
-                tools:ignore="ExtraText">
+                tools:ignore="ExtraText,UselessParent">
 
                 <ImageView
                     android:id="@+id/others_category_icon"
@@ -229,6 +235,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
+                    android:contentDescription="@string/image_others_cd"
                     android:padding="10dp"
                     android:src="@drawable/ic_others" />
 
@@ -240,37 +247,6 @@
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="bottom|center"
                     android:text="@string/others"
-                    android:textColor="@color/white" />
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/button_hide_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/background_pet_categories"
-                android:padding="20dp"
-                android:visibility="invisible"
-                tools:ignore="ExtraText">
-
-                <ImageView
-                    android:id="@+id/hide_icon"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_grooming" />
-
-                <TextView
-                    android:id="@+id/hide_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="bottom|center"
-                    android:text="@string/grooming"
                     android:textColor="@color/white" />
             </FrameLayout>
 

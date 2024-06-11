@@ -8,5 +8,5 @@ data class Comment(
     val reviewId: String = "",
     val userId: String = "",
     val text: String = "",
-    val CommentDate: Timestamp? = Timestamp.now(),
+    val commentDate: Timestamp? = Timestamp.now(),
 ) : Serializable

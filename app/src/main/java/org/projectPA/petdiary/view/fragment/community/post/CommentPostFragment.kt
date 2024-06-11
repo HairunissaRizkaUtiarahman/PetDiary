@@ -38,7 +38,7 @@ class CommentPostFragment : Fragment() {
             with(binding) {
                 descTV.text = it.desc
                 namePostTV.text = it.user?.name
-                timePostTV.text = it.timestamp?.relativeTime() ?: ""
+                timestampTV.text = it.timestamp?.relativeTime() ?: ""
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
                     .placeholder(R.drawable.image_profile).into(profileImageIV)

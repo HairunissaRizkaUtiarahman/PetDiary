@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/reviewCard"
@@ -83,7 +84,7 @@
                 android:layout_width="150dp"
                 android:layout_height="54dp"
                 android:layout_margin="15dp"
-                android:text="Prev"
+                android:text="@string/prev"
                 android:textAlignment="gravity"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -95,7 +96,7 @@
                 android:layout_width="150dp"
                 android:layout_height="54dp"
                 android:layout_margin="15dp"
-                android:text="Next"
+                android:text="@string/next"
                 android:textAlignment="gravity"
                 android:textSize="14sp"
                 android:textStyle="bold"

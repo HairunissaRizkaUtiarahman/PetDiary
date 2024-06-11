@@ -8,13 +8,15 @@
         android:id="@+id/choose_rabbit_button"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UseCompoundDrawables">
 
         <ImageView
             android:id="@+id/rabbit_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:background="@drawable/background_pet_category"
+            android:contentDescription="@string/image_rabbit_cd"
             android:padding="10dp"
             android:src="@drawable/ic_rabbit" />
 

@@ -83,7 +83,7 @@
                                     android:textStyle="bold" />
 
                                 <TextView
-                                    android:id="@+id/time_Post_TV"
+                                    android:id="@+id/timestamp_TV"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/timestamp" />

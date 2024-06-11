@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Article"
+            android:text="@string/toolbar_article"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -105,7 +105,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="LATEST ARTICLE"
+        android:text="@string/latest_article"
         android:textColor="@color/green_main"
         android:textSize="20sp" />
 

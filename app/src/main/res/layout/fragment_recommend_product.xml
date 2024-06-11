@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
@@ -10,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/reviewCard"
@@ -68,6 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="15dp"
+                        android:contentDescription="@string/image_like_cd"
                         app:srcCompat="@drawable/ic_thumbs_up_inactive" />
 
                     <ImageView
@@ -75,6 +78,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
+                        android:contentDescription="@string/image_unlike_cd"
                         app:srcCompat="@drawable/ic_thumbs_down_inactive" />
                 </LinearLayout>
 
@@ -94,7 +98,7 @@
                 android:layout_width="150dp"
                 android:layout_height="54dp"
                 android:layout_margin="15dp"
-                android:text="Prev"
+                android:text="@string/prev"
                 android:textAlignment="gravity"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -106,7 +110,7 @@
                 android:layout_width="150dp"
                 android:layout_height="54dp"
                 android:layout_margin="15dp"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textAlignment="gravity"
                 android:textSize="14sp"
                 android:textStyle="bold"

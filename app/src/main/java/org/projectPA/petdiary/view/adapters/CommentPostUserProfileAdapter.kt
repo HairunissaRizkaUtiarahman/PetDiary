@@ -29,7 +29,7 @@ class CommentPostUserProfileAdapter() :
 
         fun bind(commentPost: CommentPost) = with(binding) {
             commentTV.text = commentPost.comment
-            timePostTV.text = commentPost.timestamp?.relativeTime() ?: ""
+            timestampTV.text = commentPost.timestamp?.relativeTime() ?: ""
             nameTV.text = commentPost.user?.name
 
             Glide.with(profileImageIV.context).load(commentPost.user?.imageUrl)

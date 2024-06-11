@@ -52,19 +52,21 @@
                     android:id="@+id/petGender_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
                     android:text="@string/gender"
                     android:textColor="@color/black_grey" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" - "
+                    android:text="@string/space_bar"
                     android:textColor="@color/black_grey" />
 
                 <TextView
                     android:id="@+id/petAge_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="@string/age_pet"
                     android:textColor="@color/black_grey" />
 

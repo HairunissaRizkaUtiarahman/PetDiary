@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
-            android:text="Comment"
+            android:text="@string/toolbar_comment"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -94,7 +94,7 @@
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_toStartOf="@+id/send_Btn"
                     app:counterEnabled="false">
 

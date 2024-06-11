@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Reviews"
+                android:text="@string/toolbar_reviews"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -73,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/image_reviews_cd"
                     app:srcCompat="@drawable/ic_review" />
 
             </FrameLayout>

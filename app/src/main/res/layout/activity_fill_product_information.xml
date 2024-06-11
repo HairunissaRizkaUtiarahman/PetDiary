@@ -45,7 +45,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="55dp"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/image_blank" />
+        android:background="@drawable/image_blank"
+        android:contentDescription="@string/image_post_cd" />
 
     <TextView
         android:id="@+id/upload_photo_button"
@@ -54,7 +55,7 @@
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
-        android:text="Upload Image"
+        android:text="@string/select_image"
         android:textColor="@color/orange_main"
         android:textSize="16sp" />
 
@@ -134,7 +135,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:fontFamily="@font/roboto_bold"
-            android:text="Product name already exist!"
+            android:text="@string/product_name_already_exist"
             android:textColor="@color/orange_main"
             android:visibility="gone" />
 

@@ -71,7 +71,7 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
     }
 
     fun searchPost(query: String) = viewModelScope.launch(Dispatchers.IO) {
-        postRepository.searchPost(query.lowercase())?.let {
+        postRepository.searchPost(query.lowercase()).let {
             _posts.postValue(it)
         }
     }

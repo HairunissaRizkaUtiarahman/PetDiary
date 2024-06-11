@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Sort by"
+            android:text="@string/sort_by"
             android:textColor="@color/orange_main"
             android:textSize="20sp" />
 
@@ -33,11 +33,11 @@
             android:layout_gravity="right"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Newest Review"
+            android:text="@string/newest_review"
             android:textAlignment="viewStart"
             android:textColor="@color/green_main"
             android:textSize="18sp"
-            tools:ignore="RtlCompat" />
+            tools:ignore="RtlCompat,RtlHardcoded" />
 
         <RadioButton
             android:id="@+id/Oldest_Review_rating_option_sort"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Oldest Review"
+            android:text="@string/oldest_review"
             android:textColor="@color/green_main"
             android:textSize="18sp" />
 
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/roboto_bold"
-            android:text="Highest Rating"
+            android:text="@string/highest_rating"
             android:textColor="@color/green_main"
             android:textSize="18sp" />
 
@@ -66,8 +66,9 @@
             android:layout_marginStart="10dp"
             android:buttonTint="@color/green_main"
             android:clickable="true"
+            android:focusable="true"
             android:fontFamily="@font/roboto_bold"
-            android:text="Lowest Rating"
+            android:text="@string/lowest_rating"
             android:textColor="@color/green_main"
             android:textSize="18sp" />
     </LinearLayout>

@@ -12,7 +12,7 @@
     <string name="profile">Profil</string>
 
     <!-- Activity Review Homepage -->
-    <string name="Pet_Product_Reviews_Page">Ulasan Produk Hewan Peliharaan</string>
+    <string name="toolbar_Product_Reviews">Ulasan Produk Hewan Peliharaan</string>
     <string name="notification_icon_description">notifikasi</string>
     <string name="Browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
     <string name="most_reviews_products">5 Produk Dengan Ulasan Terbanyak</string>
@@ -316,6 +316,56 @@
     <string name="no_user_yet">Tidak Ada Pengguna</string>
     <string name="post">Postingan</string>
 
-
+    <string name="support">Support</string>
+    <string name="toolbar_support">Support</string>
+    <string name="email_from">From : %1$s</string>
+    <string name="email_to">To : akupetdiary@gmail.com</string>
+    <string name="message">Message</string>
+    <string name="contact_support">Contact Support</string>
+    <string name="image_article">Image Article</string>
+    <string name="baca_selengkapnya">Baca selengkapnya:</string>
+    <string name="www_example_com">www.example.com</string>
+    <string name="related_article">RELATED ARTICLE</string>
+    <string name="toolbar_article">Article</string>
+    <string name="latest_article">LATEST ARTICLE</string>
+    <string name="image_cat_cd">Image Cat</string>
+    <string name="image_dog_cd">Image Dog</string>
+    <string name="image_rabbit_cd">Image Rabbit</string>
+    <string name="image_hamster_cd">Image Hamster</string>
+    <string name="image_fish_cd">Image Fish</string>
+    <string name="image_bird_cd">Image Bird</string>
+    <string name="image_health_cd">Image Health</string>
+    <string name="image_tools_cd">Image Tools</string>
+    <string name="image_food_cd">Image Food</string>
+    <string name="image_grooming_cd">Image Grooming</string>
+    <string name="image_others_cd">Image Others</string>
+    <string name="view_all">View all</string>
+    <string name="_0">0</string>
+    <string name="image_comment_cd">Image Comment</string>
+    <string name="enter_comment">Enter Comment</string>
+    <string name="product_name_already_exist">Product name already exist!</string>
+    <string name="image_product_cd">Image Product</string>
+    <string name="toolbar_reviews">Reviews</string>
+    <string name="image_reviews_cd">Image Reviews</string>
+    <string name="back_to_dasboard_page_button">back_to_dasboard_page_button</string>
+    <string name="image_add_review_cd">Image Add Review</string>
+    <string name="image_add_post_cd">Image Add Post</string>
+    <string name="image_add_product_cd">Image Add Product</string>
+    <string name="image_like_cd">Image Like</string>
+    <string name="image_unlike_cd">Image Unlike</string>
+    <string name="min_10_words">Min 10 words</string>
+    <string name="usage_product">Usage Product</string>
+    <string name="space_bar"> - </string>
+    <string name="thankyou_for_review">Thank you for your review! We’ve recorded your feedback for this product already</string>
+    <string name="ok">Ok</string>
+    <string name="image_blank_cd">Image Blank</string>
+    <string name="royal_canin">Royal Canin</string>
+    <string name="adult_persian">Adult Persian</string>
+    <string name="for_cat">For Cat</string>
+    <string name="_4_6">4.6</string>
+    <string name="_2k">2K</string>
+    <string name="_34">34%</string>
+    <string name="textview">TextView</string>
+    <string name="be_the_first_to_review_this_product">Be the first to review this product</string>
 
 </resources>

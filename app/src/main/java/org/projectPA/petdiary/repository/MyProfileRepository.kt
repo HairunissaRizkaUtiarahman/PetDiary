@@ -33,7 +33,7 @@ class MyProfileRepository(
         try {
             val userId =
                 auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
-            val lowercaseName = name.toLowerCase(Locale.ROOT)
+            val lowercaseName = name.lowercase(Locale.ROOT)
             val userMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -101,7 +101,7 @@ class MyProfileRepository(
     }
 
     fun checkIfNameExists(name: String, callback: (Boolean) -> Unit) {
-        val lowercaseName = name.toLowerCase(Locale.ROOT)
+        val lowercaseName = name.lowercase(Locale.ROOT)
         val userId = auth.currentUser?.uid
         val db = FirebaseFirestore.getInstance()
         db.collection("user").whereEqualTo("lowercaseName", lowercaseName).get()
