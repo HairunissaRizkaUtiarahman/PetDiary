@@ -11,7 +11,6 @@ import org.projectPA.petdiary.databinding.ActivityGiveReviewBinding
 import org.projectPA.petdiary.view.fragment.addreview.GiveRatingFragment
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
 
-// GiveReviewActivity.kt
 
 class GiveReviewActivity : AppCompatActivity() {
 

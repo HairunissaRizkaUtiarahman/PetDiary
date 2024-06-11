@@ -78,6 +78,7 @@ dependencies {
         exclude("com.google.protobuf", "protobuf-lite")
     }
 
+//    androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")

@@ -2,7 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ProductEntryTest">
+      <entry key="AddReviewTest">
+        <State />
+      </entry>
+      <entry key="ResetPasswordActivityTest">
         <State />
       </entry>
       <entry key="SigninActivityTest">
