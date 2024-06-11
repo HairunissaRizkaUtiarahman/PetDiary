@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -92,11 +93,20 @@ class DetailReviewViewModel : ViewModel() {
             .orderBy("commentDate", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { result ->
-                val comments = result.mapNotNull { it.toObject(CommentsReview::class.java) }
+                val comments = result.mapNotNull {
+                    try {
+                        it.toObject(CommentsReview::class.java)
+                    } catch (e: Exception) {
+                        Log.e("DetailReviewViewModel", "Error parsing comment: ${it.id}", e)
+                        null
+                    }
+                }
                 _comments.value = comments
+                Log.d("DetailReviewViewModel", "Fetched ${comments.size} comments")
             }
             .addOnFailureListener { e ->
                 _errorMessage.value = "Failed to load comments: ${e.message}"
+                Log.e("DetailReviewViewModel", "Error fetching comments", e)
             }
     }
 

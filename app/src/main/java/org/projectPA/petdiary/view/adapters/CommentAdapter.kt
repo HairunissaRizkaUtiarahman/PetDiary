@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.databinding.ListReviewCommentBinding
 import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.model.User
+import org.projectPA.petdiary.relativeTime
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -39,10 +40,7 @@ class CommentAdapter(
                     }
 
                 commentTV.text = comment.text
-                timestampTV.text = SimpleDateFormat(
-                    "dd MMM yyyy",
-                    Locale.getDefault()
-                ).format(comment.commentDate?.toDate() ?: Date())
+                timestampTV.text = comment.commentDate?.relativeTime() ?: ""
             }
         }
     }
@@ -60,8 +58,8 @@ class CommentAdapter(
 
     override fun getItemCount() = comments.size
 
-    fun updateData(newComments: List<CommentsReview>) {
-        comments = newComments.sortedByDescending { it.CommentDate }
+    fun updateData(comment: List<CommentsReview>) {
+        comments = comment.sortedByDescending { it.commentDate }
         notifyDataSetChanged()
     }
 }

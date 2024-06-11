@@ -12,6 +12,8 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentDetailReviewUserProfileBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.viewmodel.ReviewUserProfileViewModel
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class DetailReviewUserProfileFragment : Fragment() {
     private lateinit var binding: FragmentDetailReviewUserProfileBinding
@@ -34,7 +36,10 @@ class DetailReviewUserProfileFragment : Fragment() {
                 brandNameTV.text = it.product?.brandName
                 productNameTV.text = it.product?.productName
                 productTypeTV.text = it.product?.petType
-                reviewDateTV.text = it.reviewDate?.relativeTime() ?: ""
+                reviewDateTV.text =
+                    it.reviewDate?.toDate()?.let { it1 ->
+                        SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it1)
+                    }
                 usagePeriodReviewTV.text = it.usagePeriod
                 recomendedOrNotText.text =
                     if (it.rating >= 4) "I Recommend This Product" else "Not Recommended"

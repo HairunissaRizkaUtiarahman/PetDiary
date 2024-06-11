@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_light"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -243,7 +244,6 @@
                             android:layout_height="wrap_content"
                             android:background="@color/grey_main"
                             android:fontFamily="@font/roboto"
-                            android:minHeight="400dp"
                             android:padding="14dp"
                             android:text="@string/lorem_ipsum"
                             android:textColor="@color/black"
@@ -304,11 +304,10 @@
                     android:id="@+id/list_comment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="15sp"
-                    android:background="@drawable/background_icon_home"
+                    android:layout_marginHorizontal="5dp"
                     android:isScrollContainer="true"
                     android:nestedScrollingEnabled="true"
-                    android:paddingBottom="68dp"
+                    android:paddingBottom="80dp"
                     android:visibility="gone"
                     tools:listitem="@layout/list_review_comment" />
 

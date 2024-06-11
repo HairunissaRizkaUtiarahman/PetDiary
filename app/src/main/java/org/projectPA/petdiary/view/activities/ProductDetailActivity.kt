@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
@@ -60,10 +59,12 @@ class ProductDetailActivity : AppCompatActivity() {
                     }
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "You already reviewed this product", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "You already reviewed this product", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } else {
-                Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
@@ -86,6 +87,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 val intent = Intent(this, DashboardActivity::class.java)
                 startActivity(intent)
             }
+
             else -> {
                 onBackPressed()
             }
@@ -136,7 +138,8 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        reviewAdapter = ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
+        reviewAdapter =
+            ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }
