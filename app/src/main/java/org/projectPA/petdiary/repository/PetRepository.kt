@@ -16,14 +16,15 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Pet
 
-private const val LOG_TAG = "MyPetRepository"
+private const val LOG_TAG = "PetRepository"
+
 class PetRepository(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
 
-    // Query Add Pet
+    // Function to add a new pet
     suspend fun addPet(
         name: String,
         type: String,
@@ -33,7 +34,10 @@ class PetRepository(
         uri: Uri?
     ) {
         try {
+            // Get current user ID
             val userId = auth.currentUser!!.uid
+
+            // Prepare data to be stored in Firestore
             val petMap = hashMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -42,10 +46,10 @@ class PetRepository(
                 "age" to age,
                 "desc" to desc,
                 "timestamp" to Timestamp.now(),
-                "isDeleted" to false,
                 "imageUrl" to ""
             )
 
+            // Upload image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -54,20 +58,20 @@ class PetRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
+            // Add pet data to Firestore
             db.collection("pet").add(petMap).await()
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to add post data", e)
+            Log.e(LOG_TAG, "Fail to add pet data", e)
         } catch (e: StorageException) {
-            Log.e(LOG_TAG, "Fail to add post data", e)
+            Log.e(LOG_TAG, "Fail to upload pet image", e)
         }
     }
 
-    // Query Get Pets
+    // Function to get a list of pets for the current user
     suspend fun getPets(): Flow<List<Pet>> {
         return try {
             val userId = auth.currentUser!!.uid
             db.collection("pet").whereEqualTo("userId", userId)
-                .whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
@@ -75,30 +79,28 @@ class PetRepository(
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get post data", e)
+            Log.e(LOG_TAG, "Fail to get pets data", e)
             emptyFlow()
         }
     }
 
-    // Query Get Pet
-    suspend fun getPet(userId: String): Pet? {
+    // Function to get details of a specific pet by user ID
+    suspend fun getPet(petId: String): Pet? {
         return try {
-            val pet = db.collection("pet")
-                .document(userId).get().await().let {
+            db.collection("pet")
+                .document(petId).get().await().let {
                     it.toObject(Pet::class.java)?.copy(id = it.id)
                 }
-            pet
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, " Fail to get pet data")
+            Log.e(LOG_TAG, "Fail to get pet data", e)
             null
         }
     }
 
-    // Query Get Pet (User Profile)
+    // Function to get a list of pets for a specific user by user ID (used for user profile)
     suspend fun getPetsUserProfile(userId: String): Flow<List<Pet>> {
         return try {
             db.collection("pet").whereEqualTo("userId", userId)
-                .whereEqualTo("isDeleted", false)
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
@@ -106,14 +108,14 @@ class PetRepository(
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get post data", e)
+            Log.e(LOG_TAG, "Fail to get pets data", e)
             emptyFlow()
         }
     }
 
-    // Query Update data Pet
+    // Function to update pet details
     suspend fun updatePet(
-        PetId: String,
+        petId: String,
         name: String,
         type: String,
         gender: String,
@@ -124,6 +126,7 @@ class PetRepository(
         try {
             val userId = auth.currentUser!!.uid
 
+            // Prepare updated data
             val petMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -131,10 +134,10 @@ class PetRepository(
                 "gender" to gender,
                 "age" to age,
                 "desc" to desc,
-                "timestamp" to Timestamp.now(),
-                "isDeleted" to false
+                "timestamp" to Timestamp.now()
             )
 
+            // Upload new image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -142,23 +145,33 @@ class PetRepository(
                 petMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-            db.collection("pet").document(PetId).update(petMap.toMap()).await()
+
+            // Update pet data in Firestore
+            db.collection("pet").document(petId).update(petMap.toMap()).await()
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to update post data", e)
+            Log.e(LOG_TAG, "Fail to update pet data", e)
         } catch (e: StorageException) {
-            Log.e(LOG_TAG, "Fail to add post data", e)
+            Log.e(LOG_TAG, "Fail to upload pet image", e)
         }
     }
 
-    // Query Delete Pet
-    suspend fun deletePet(PetId: String) {
+    // Function to mark a pet as deleted and delete associated image from Firebase Storage
+    suspend fun deletePet(petId: String, imageUrl: String?) {
         try {
-            val petMap = mapOf(
-                "isDeleted" to true
-            )
-            db.collection("pet").document(PetId).update(petMap).await()
+            // Hapus dokumen pet dari Firestore
+            db.collection("pet").document(petId).delete().await()
+
+            // Jika ada URL gambar terkait, hapus gambar dari Firebase Storage
+            imageUrl?.let { imageUri ->
+                val imageRef = storageRef.getReferenceFromUrl(imageUri)
+                imageRef.delete().await()
+            }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to delete my pet", e)
+            Log.e(LOG_TAG, "Fail to delete pet", e)
+        } catch (e: StorageException) {
+            Log.e(LOG_TAG, "Fail to delete pet image from Firebase Storage", e)
         }
     }
+
+
 }

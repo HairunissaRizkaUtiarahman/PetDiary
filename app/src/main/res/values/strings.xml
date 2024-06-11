@@ -169,7 +169,7 @@
 
     <string name="_15_maret_2024">15 Maret 2024</string>
 
-    <string name="age_pet">%1$d Year</string>
+    <string name="age_pet">%1$d Month</string>
     <string name="back_to_review_detail_button">back_to_review_detail_button</string>
     <string name="send_comment">send comment</string>
 
@@ -180,7 +180,7 @@
     <string name="timestamp">Timestamp</string>
     <string name="description">Description</string>
     <string name="gender">Gender</string>
-    <string name="age">Age</string>
+    <string name="age">Age (Month) </string>
     <string name="details">Details</string>
     <string name="bio">Bio</string>
     <string name="email">Email</string>
@@ -287,7 +287,7 @@
     <!-- List Pet -->
     <string name="pet_name">Pet Name</string>
     <string name="pet_type">Type or Species</string>
-    <string name="pet_edit_btn">EDIT PET PROFILE</string>
+    <string name="pet_edit_btn">Edit</string>
     <string name="male_pet">Male</string>
     <string name="female_pet">Female</string>
     <string name="pet_add">Pet Add</string>
@@ -367,6 +367,8 @@
     <string name="_34">34%</string>
     <string name="textview">TextView</string>
     <string name="be_the_first_to_review_this_product">Be the first to review this product</string>
+    <string name="image_edit_cd">Image Edit</string>
+    <string name="see_more_details">See More Details</string>
 
 
 </resources>

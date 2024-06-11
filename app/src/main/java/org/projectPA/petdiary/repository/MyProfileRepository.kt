@@ -54,36 +54,10 @@ class MyProfileRepository(
             // Update user profile
             db.collection("user").document(userId).update(userMap.toMap()).await()
 
-            // Update user data in review documents
-            updateReviewUserData(userId, name, userMap["imageUrl"])
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Failed to update profile data", e)
         } catch (e: StorageException) {
             Log.e(LOG_TAG, "Failed to update profile data", e)
-        }
-    }
-
-    private suspend fun updateReviewUserData(
-        userId: String,
-        userName: String,
-        userPhotoUrl: String?
-    ) {
-        try {
-            val reviews = db.collection("reviews").whereEqualTo("userId", userId).get().await()
-            val batch = db.batch()
-            for (review in reviews) {
-                val reviewRef = review.reference
-                val updateMap = mutableMapOf<String, Any>(
-                    "userName" to userName
-                )
-                if (userPhotoUrl != null) {
-                    updateMap["userPhotoUrl"] = userPhotoUrl
-                }
-                batch.update(reviewRef, updateMap)
-            }
-            batch.commit().await()
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Failed to update review data", e)
         }
     }
 

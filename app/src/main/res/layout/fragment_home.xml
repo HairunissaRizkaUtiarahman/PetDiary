@@ -62,14 +62,17 @@
 
                     <Button
                         android:id="@+id/manage_pet_button"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|center"
                         android:layout_marginBottom="25dp"
+                        android:backgroundTint="@color/orange_main"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:text="@string/manage_pet" />
+                        android:text="@string/manage_pet"
+                        android:textColor="@color/white" />
                 </FrameLayout>
 
                 <LinearLayout
@@ -216,6 +219,7 @@
                         android:id="@+id/list_most_review_product"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
                         android:isScrollContainer="true"
                         android:nestedScrollingEnabled="true"
                         android:orientation="horizontal"
