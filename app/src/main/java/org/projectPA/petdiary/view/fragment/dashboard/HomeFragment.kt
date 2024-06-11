@@ -17,6 +17,7 @@ import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.view.activities.*
 import org.projectPA.petdiary.view.activities.community.CommunityHomePageActivity
 import org.projectPA.petdiary.view.activities.managepet.PetActivity
+import org.projectPA.petdiary.view.activities.myprofile.MyProfileActivity
 import org.projectPA.petdiary.view.adapters.ProductAdapter
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
@@ -41,6 +42,11 @@ class HomeFragment : Fragment() {
         firestore = FirebaseFirestore.getInstance()
         setupRecyclerView()
         loadDataFromFirestore()
+
+        binding.profileImageIV.setOnClickListener {
+            val intent = Intent(activity, MyProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.managePetButton.setOnClickListener {
             startActivity(Intent(activity, PetActivity::class.java))
