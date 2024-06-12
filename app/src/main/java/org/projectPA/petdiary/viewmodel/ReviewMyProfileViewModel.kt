@@ -62,19 +62,19 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         }
     }
 
-    fun loadComment(reviewId: String) = viewModelScope.launch {
-        withContext(Dispatchers.Main) {
-            reviewRepository.getCommentReviews(reviewId).collect {
-                _CommentsReview.value = it
-            }
-        }
-    }
-
     fun uploadComment(reviewId: String, text: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             reviewRepository.addCommentReview(reviewId, text)
             // Reload comments after adding a new comment
             loadComment(reviewId)
+        }
+    }
+
+    fun loadComment(reviewId: String) = viewModelScope.launch {
+        withContext(Dispatchers.Main) {
+            reviewRepository.getCommentReviews(reviewId).collect {
+                _CommentsReview.value = it
+            }
         }
     }
 }

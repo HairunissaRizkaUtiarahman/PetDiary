@@ -139,8 +139,6 @@ class ReviewRepository(
                 "text" to text,
                 "userId" to userId
             )
-
-            // Add comment data to Firestore
             val newCommentRef = db.collection("commentsReview").document()
             commentMap["id"] = newCommentRef.id
 
