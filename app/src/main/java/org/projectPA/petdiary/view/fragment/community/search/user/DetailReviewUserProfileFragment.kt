@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentDetailReviewUserProfileBinding
 import org.projectPA.petdiary.relativeTime
+import org.projectPA.petdiary.view.adapters.CommentReviewMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.ReviewUserProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale

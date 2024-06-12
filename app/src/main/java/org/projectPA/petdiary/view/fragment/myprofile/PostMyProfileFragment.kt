@@ -54,15 +54,12 @@ class PostMyProfileFragment : Fragment() {
         // Observe posts LiveData
         viewModel.myPosts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
-            if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
-                // If no posts or all posts are deleted, show noPost_TV and hide postRV
-                binding.noPostTV.visibility = View.VISIBLE
-                binding.myPostRV.visibility = View.GONE
-            } else {
-                // If there are posts and some are not deleted, show postRV and hide noPost_TV
-                binding.noPostTV.visibility = View.GONE
-                binding.myPostRV.visibility = View.VISIBLE
-            }
+
+            // Show or hide the "No Pets" TextView based on the list size
+            binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
+
+            // Show or hide the RecyclerView based on the list size
+            binding.myPostRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 
         viewModel.loadData()

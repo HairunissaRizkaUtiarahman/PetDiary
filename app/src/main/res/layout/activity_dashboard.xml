@@ -44,7 +44,7 @@
                 app:itemTextAppearanceActiveBoldEnabled="true"
                 app:itemTextColor="#000000"
                 app:labelVisibilityMode="labeled"
-                app:menu="@menu/bottom_nav" />
+                app:menu="@menu/bottom_dashboard_menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
 

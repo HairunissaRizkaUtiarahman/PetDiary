@@ -225,7 +225,6 @@
                         android:id="@+id/descReview_TV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="400dp"
                         android:padding="14dp"
                         android:text="@string/lorem_ipsum"
                         android:textSize="14sp" />

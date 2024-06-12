@@ -40,13 +40,13 @@ class ReviewUserProfileFragment : Fragment() {
 
         reviewUserProfileViewModel.reviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
-            if (reviews.isEmpty()) {
-                binding.noReviewTV.visibility = View.VISIBLE
-                binding.reviewRV.visibility = View.GONE
-            } else {
-                binding.noReviewTV.visibility = View.GONE
-                binding.reviewRV.visibility = View.VISIBLE
-            }
+
+
+            // Show or hide the "No Pets" TextView based on the list size
+            binding.noReviewTV.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
+
+            // Show or hide the RecyclerView based on the list size
+            binding.reviewRV.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         }
 
         userViewModel.user.observe(viewLifecycleOwner) { user ->

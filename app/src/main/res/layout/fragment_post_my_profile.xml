@@ -9,9 +9,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myPost_RV"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/list_post" />
 
@@ -19,9 +19,9 @@
         android:id="@+id/noPost_TV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:gravity="center"
         android:text="@string/no_post_yet"
         android:textStyle="bold"
-        android:gravity="center"/>
+        android:visibility="gone" />
 
 </FrameLayout>

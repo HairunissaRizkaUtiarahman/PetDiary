@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import org.projectPA.petdiary.model.CommentsReview
+import org.projectPA.petdiary.model.CommentReview
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -26,8 +26,8 @@ class DetailReviewViewModel : ViewModel() {
     private val _commentsCount = MutableLiveData<Int>()
     val commentsCount: LiveData<Int> get() = _commentsCount
 
-    private val _comments = MutableLiveData<List<CommentsReview>>()
-    val comments: LiveData<List<CommentsReview>> get() = _comments
+    private val _comments = MutableLiveData<List<CommentReview>>()
+    val comments: LiveData<List<CommentReview>> get() = _comments
 
     private val _commentAdded = MutableLiveData<Boolean>()
     val commentAdded: LiveData<Boolean> get() = _commentAdded
@@ -95,7 +95,7 @@ class DetailReviewViewModel : ViewModel() {
             .addOnSuccessListener { result ->
                 val comments = result.mapNotNull {
                     try {
-                        it.toObject(CommentsReview::class.java)
+                        it.toObject(CommentReview::class.java)
                     } catch (e: Exception) {
                         Log.e("DetailReviewViewModel", "Error parsing comment: ${it.id}", e)
                         null
@@ -110,7 +110,7 @@ class DetailReviewViewModel : ViewModel() {
             }
     }
 
-    fun addComment(comment: CommentsReview) {
+    fun addComment(comment: CommentReview) {
         val newCommentRef = firestore.collection("commentsReview").document()
         val newComment = comment.copy(id = newCommentRef.id)
 

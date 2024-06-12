@@ -61,11 +61,17 @@ class PostFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.searchBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_communityFragment_to_userSearchFragment)
+        binding.topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.search -> {
+                    findNavController().navigate(R.id.action_communityFragment_to_userSearchFragment)
+                    true
+                }
+                else -> false
+            }
         }
 
-        binding.backBtn.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
     }

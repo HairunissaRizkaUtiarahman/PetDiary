@@ -39,13 +39,11 @@ class ReviewMyProfileFragment : Fragment() {
 
         viewModel.myReviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
-            if (reviews.isEmpty()) {
-                binding.noReviewTV.visibility = View.VISIBLE
-                binding.myReviewRV.visibility = View.GONE
-            } else {
-                binding.noReviewTV.visibility = View.GONE
-                binding.myReviewRV.visibility = View.VISIBLE
-            }
+            // Show or hide the "No Pets" TextView based on the list size
+            binding.noReviewTV.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
+
+            // Show or hide the RecyclerView based on the list size
+            binding.myReviewRV.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         }
 
         viewModel.loadData()

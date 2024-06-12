@@ -168,14 +168,14 @@
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>
-    
+
     <LinearLayout
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/black_grey"
         android:gravity="center"
-        android:visibility="gone"
-        android:background="@color/black_grey">
+        android:visibility="gone">
 
         <ProgressBar
             style="?android:attr/progressBarStyle"
@@ -199,10 +199,10 @@
             android:id="@+id/add_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
             android:text="@string/add"
             android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible" />
 
     </RelativeLayout>
 
