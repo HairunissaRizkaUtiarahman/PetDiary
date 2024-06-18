@@ -83,11 +83,10 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun handleBackButton() {
         when (sourceActivity) {
-            "RecommendProductActivity", "FillProductInformationActivity" -> {
-                val intent = Intent(this, DashboardActivity::class.java)
+            "GiveReviewActivity", "FillProductInformationActivity" -> {
+                val intent = Intent(this, ReviewHomePageActivity::class.java)
                 startActivity(intent)
             }
-
             else -> {
                 onBackPressed()
             }

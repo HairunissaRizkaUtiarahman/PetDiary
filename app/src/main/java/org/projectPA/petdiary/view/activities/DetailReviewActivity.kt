@@ -1,13 +1,16 @@
 package org.projectPA.petdiary.view.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDetailReviewBinding
 import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.view.adapters.CommentAdapter
@@ -52,6 +55,7 @@ class DetailReviewActivity : AppCompatActivity() {
         binding.listComment.adapter = commentAdapter
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupListeners() {
         binding.backToProductDetailButton.setOnClickListener {
             finish()
@@ -60,9 +64,15 @@ class DetailReviewActivity : AppCompatActivity() {
         binding.viewAllCommentsButton.setOnClickListener {
             if (binding.listComment.visibility == View.VISIBLE) {
                 binding.listComment.visibility = View.GONE
+                binding.viewallTextview.text = "View all"
+                binding.commentCount.visibility = View.VISIBLE
+                binding.commentTextview.text = "comment"
                 binding.layoutCommentRL.visibility = View.GONE
             } else {
                 binding.listComment.visibility = View.VISIBLE
+                binding.viewallTextview.text = "Hide"
+                binding.commentCount.visibility = View.GONE
+                binding.commentTextview.text = "all comment"
                 binding.layoutCommentRL.visibility = View.VISIBLE
             }
         }
@@ -78,9 +88,18 @@ class DetailReviewActivity : AppCompatActivity() {
                 )
                 viewModel.addComment(comment)
                 binding.commentTIET.text?.clear()
+                closeKeyboard()
             } else {
                 Toast.makeText(this, "Comment cannot be empty", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun closeKeyboard() {
+        val view = currentFocus
+        if (view != null) {
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
@@ -90,6 +109,7 @@ class DetailReviewActivity : AppCompatActivity() {
                 binding.brandNameTV.text = it.brandName
                 binding.productNameTV.text = it.productName
                 binding.productTypeTV.text = it.petType
+
                 Glide.with(this).load(it.imageUrl).into(binding.productImageIV)
             }
         })
@@ -107,7 +127,14 @@ class DetailReviewActivity : AppCompatActivity() {
         viewModel.user.observe(this, Observer { user ->
             user?.let {
                 binding.nameTV.text = it.name
-                Glide.with(this).load(it.imageUrl).into(binding.userPhotoProfile)
+                val userPhotoUrl = user.imageUrl ?: ""
+
+                if (userPhotoUrl.isEmpty()) {
+                    binding.userPhotoProfile.setImageResource(R.drawable.ic_user)
+                } else {
+                    Glide.with(this).load(it.imageUrl).into(binding.userPhotoProfile)
+                }
+
             }
         })
 
@@ -117,6 +144,11 @@ class DetailReviewActivity : AppCompatActivity() {
 
         viewModel.commentsCount.observe(this, Observer { count ->
             binding.commentCount.text = count.toString()
+            if (count == 0) {
+                binding.layoutCommentRL.visibility = View.VISIBLE
+                binding.viewAllCommentsButton.visibility = View.GONE
+                binding.listComment.visibility = View.VISIBLE
+            }
         })
 
         viewModel.errorMessage.observe(this, Observer { message ->

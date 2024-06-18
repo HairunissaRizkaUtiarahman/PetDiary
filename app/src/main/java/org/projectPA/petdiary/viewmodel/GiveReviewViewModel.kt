@@ -12,8 +12,6 @@ import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.view.activities.ProductDetailActivity
 
-// GiveReviewViewModel.kt
-
 class GiveReviewViewModel : ViewModel() {
 
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -70,17 +68,18 @@ class GiveReviewViewModel : ViewModel() {
         review.recommend = recommend
     }
 
-    fun submitReview(context: Context, productId: String) {
+    fun submitReview(context: Context, productId: String, sourceActivity: String) {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val reviewRef = firestore.collection("reviews").document()
-            review.id = reviewRef.id // Set the ID here
+            review.id = reviewRef.id
 
             reviewRef.set(review)
                 .addOnSuccessListener {
                     Log.d("GiveReviewViewModel", "Review successfully added to Firestore")
                     val intent = Intent(context, ProductDetailActivity::class.java).apply {
                         putExtra("productId", productId)
+                        putExtra("sourceActivity", sourceActivity)
                     }
                     context.startActivity(intent)
                 }

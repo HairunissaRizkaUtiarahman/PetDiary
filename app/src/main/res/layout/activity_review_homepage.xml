@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="5dp"
     android:background="@null"
     android:fitsSystemWindows="true"
     android:isScrollContainer="true"
@@ -90,7 +91,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:layout_marginBottom="15dp"
                     android:contentDescription="@string/scroll_horizontally_to_view_pet_options"
                     android:scrollbars="none">
 
@@ -281,33 +281,58 @@
 
                     </LinearLayout>
 
-
                 </HorizontalScrollView>
 
-                <TextView
-                    android:id="@+id/most_reviews_text"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/most_reviews_products"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:foregroundGravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp">
 
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/contoh_icon_baru__12_" />
+
+                    <TextView
+                        android:id="@+id/most_reviews_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_black"
+                        android:paddingHorizontal="10dp"
+                        android:text="@string/most_reviews_products"
+                        android:textColor="@color/orange_main"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/contoh_icon_baru__12_" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="left"
-                    android:orientation="horizontal"
-                    tools:ignore="RtlHardcoded">
+                    android:id="@+id/list_top_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/background_most_review"
+                    android:isScrollContainer="true"
+                    android:nestedScrollingEnabled="true"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/list_most_review_product"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="5dp"
                         android:isScrollContainer="true"
                         android:nestedScrollingEnabled="true"
                         android:orientation="horizontal"
@@ -315,10 +340,19 @@
                         tools:itemCount="5"
                         tools:listitem="@layout/item_product" />
 
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:rotationY="180"
+                        android:src="@drawable/ic_back" />
 
                 </LinearLayout>
 
+
             </LinearLayout>
+
+
 
 
         </ScrollView>

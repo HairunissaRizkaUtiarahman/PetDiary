@@ -11,9 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentRecommendProductBinding
+import org.projectPA.petdiary.view.activities.GiveReviewActivity
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
-
-// RecommendProductFragment.kt
 
 class RecommendProductFragment : Fragment() {
 
@@ -51,9 +50,10 @@ class RecommendProductFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             val productId = viewModel.product.value?.id ?: ""
+            val sourceActivity = "GiveReviewActivity"
             if (productId.isNotEmpty()) {
                 viewModel.updateRecommendation(recommend ?: false)
-                viewModel.submitReview(requireContext(), productId)
+                viewModel.submitReview(requireContext(), productId, sourceActivity)
                 Toast.makeText(requireContext(), "Review submitted successfully", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Product ID is missing", Toast.LENGTH_SHORT).show()

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="170dp"
-    android:layout_height="300dp"
-    android:layout_margin="10dp"
+    android:layout_height="280dp"
+    android:layout_margin="7dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout

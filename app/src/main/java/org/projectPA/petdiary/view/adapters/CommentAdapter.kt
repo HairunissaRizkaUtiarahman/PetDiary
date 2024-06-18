@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListReviewCommentBinding
 import org.projectPA.petdiary.model.CommentsReview
 import org.projectPA.petdiary.model.User
@@ -28,9 +29,13 @@ class CommentAdapter(
                         val user = document.toObject(User::class.java)
                         if (user != null) {
                             nameTV.text = user.name
-                            Glide.with(profileImageIV.context)
-                                .load(user.imageUrl)
-                                .into(profileImageIV)
+                            val userPhotoUrl = user.imageUrl ?: ""
+
+                            if (userPhotoUrl.isEmpty()) {
+                                binding.profileImageIV.setImageResource(R.drawable.ic_user)
+                            } else {
+                                Glide.with(profileImageIV.context).load(user.imageUrl).into(binding.profileImageIV)
+                            }
                         } else {
                             Log.e("CommentAdapter", "User not found for userId: ${comment.userId}")
                         }
