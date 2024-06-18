@@ -1,6 +1,5 @@
 package org.projectPA.petdiary.view.fragment.managepet
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPetBinding
-import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.adapters.PetAdapter
 import org.projectPA.petdiary.viewmodel.PetViewModel
 
@@ -22,37 +20,48 @@ class PetFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPetBinding.inflate(layoutInflater, container, false)
+    ): View {
+        // Inflate the layout for this fragment
+        binding = FragmentPetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize the RecyclerView adapter
         adapter = PetAdapter(onClick = { pet, _ ->
+            // Set the selected pet in ViewModel
             viewModel.setPet(pet)
 
+            // Navigate to pet details fragment
             findNavController().navigate(R.id.action_myPetFragment_to_myPetDetailsFragment)
         })
 
+        // Set the adapter to RecyclerView
         binding.petRV.adapter = adapter
 
+        // Observe the pets LiveData from ViewModel
         viewModel.pets.observe(viewLifecycleOwner) { pets ->
+            // Submit the list of pets to the adapter
             adapter.submitList(pets)
-            if (pets.isEmpty() || pets.all { it.isDeleted == true }) {
-                binding.noPetTV.visibility = View.VISIBLE
-                binding.petRV.visibility = View.GONE
-            } else {
-                binding.noPetTV.visibility = View.GONE
-                binding.petRV.visibility = View.VISIBLE
-            }
+
+            // Show or hide the "No Pets" TextView based on the list size
+            binding.noPetTV.visibility = if (pets.isEmpty()) View.VISIBLE else View.GONE
+
+            // Show or hide the RecyclerView based on the list size
+            binding.petRV.visibility = if (pets.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Load pets data from ViewModel
         viewModel.loadData()
 
+        // Handle add pet button click
         binding.addPetBtn.setOnClickListener {
             findNavController().navigate(R.id.action_myPetFragment_to_myPetAddFragment)
         }
 
+        // Handle navigation icon click (back button)
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }

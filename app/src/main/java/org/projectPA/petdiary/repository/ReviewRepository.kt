@@ -1,6 +1,7 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
+import org.projectPA.petdiary.model.CommentReview
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -43,7 +45,7 @@ class ReviewRepository(
                 }
             review
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, " Fail to get pet data")
+            Log.e(LOG_TAG, "Fail to get review data", e)
             null
         }
     }
@@ -103,6 +105,46 @@ class ReviewRepository(
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to get review data", e)
             emptyFlow()
+        }
+    }
+
+    suspend fun getCommentReviews(reviewId: String): Flow<List<CommentReview>> {
+        return try {
+            db.collection("commentsReview").whereEqualTo("reviewId", reviewId)
+                .orderBy("commentDate", Query.Direction.ASCENDING)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("user")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        it.toObject(CommentReview::class.java).copy(id = it.id, user = user)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get comment data", e)
+            emptyFlow()
+        }
+    }
+
+    suspend fun addCommentReview(reviewId: String, text: String) {
+        try {
+            val userId = auth.currentUser!!.uid
+            val commentMap = hashMapOf(
+                "id" to "",
+                "commentDate" to Timestamp.now(),
+                "reviewId" to reviewId,
+                "text" to text,
+                "userId" to userId
+            )
+            val newCommentRef = db.collection("commentsReview").document()
+            commentMap["id"] = newCommentRef.id
+
+            newCommentRef.set(commentMap).await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to add comment review", e)
         }
     }
 }

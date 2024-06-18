@@ -1,4 +1,5 @@
 package org.projectPA.petdiary.model
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 
@@ -11,5 +12,6 @@ data class Pet(
     val desc: String? = "",
     val imageUrl: String? = "",
     val isDeleted: Boolean? = false,
+    val timestamp: Timestamp? = Timestamp.now(),
     @get:Exclude val user: User? = User()
 ) : Serializable

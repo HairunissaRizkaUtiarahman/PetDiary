@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_dark"
+    android:background="@color/grey_light"
     tools:context=".view.fragment.community.post.PostFragment">
 
     <LinearLayout
@@ -12,41 +12,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:elevation="8dp"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="@color/black">
+            android:elevation="8dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/back_Btn"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="start"
-                android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
                 android:background="@color/white"
-                android:src="@drawable/ic_back" />
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/toolbar_community"
+                app:menu="@menu/top_community_menu"
+                app:titleTextColor="@color/black" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/toolbar_community"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <ImageView
-                android:id="@+id/search_Btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/image_search_cd"
-                android:src="@drawable/ic_search2" />
-
-        </androidx.appcompat.widget.Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/post_RV"

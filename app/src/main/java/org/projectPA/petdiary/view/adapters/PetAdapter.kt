@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListPetBinding
 import org.projectPA.petdiary.model.Pet
+import org.projectPA.petdiary.model.Post
 
 class PetAdapter(val onClick: (Pet, View) -> Unit) :
     ListAdapter<Pet, PetAdapter.ViewHolder>(Companion) {

@@ -40,7 +40,7 @@ class EditProfileSettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var imageUri: Uri? = null
 
-        val postImage = registerForActivityResult(
+        val profileImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
             imageUri = it
@@ -88,7 +88,7 @@ class EditProfileSettingFragment : Fragment() {
                 .setItems(options) { _, which ->
                     when (which) {
                         0 -> takePicture()
-                        1 -> postImage.launch("image/*")
+                        1 -> profileImage.launch("image/*")
                     }
                 }
             builder.show()

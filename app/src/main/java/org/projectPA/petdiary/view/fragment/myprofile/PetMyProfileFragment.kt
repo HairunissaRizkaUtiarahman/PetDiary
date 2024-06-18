@@ -38,13 +38,12 @@ class PetMyProfileFragment : Fragment() {
 
         viewModel.pets.observe(viewLifecycleOwner) { pets ->
             adapter.submitList(pets)
-            if (pets.isEmpty() || pets.all { it.isDeleted == true }) {
-                binding.noPetTV.visibility = View.VISIBLE
-                binding.myPetRV.visibility = View.GONE
-            } else {
-                binding.noPetTV.visibility = View.GONE
-                binding.myPetRV.visibility = View.VISIBLE
-            }
+
+            // Show or hide the "No Pets" TextView based on the list size
+            binding.noPetTV.visibility = if (pets.isEmpty()) View.VISIBLE else View.GONE
+
+            // Show or hide the RecyclerView based on the list size
+            binding.myPetRV.visibility = if (pets.isEmpty()) View.GONE else View.VISIBLE
         }
 
         viewModel.loadData()

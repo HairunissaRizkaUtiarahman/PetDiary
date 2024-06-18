@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityDetailReviewBinding
-import org.projectPA.petdiary.model.CommentsReview
-import org.projectPA.petdiary.view.adapters.CommentAdapter
+import org.projectPA.petdiary.model.CommentReview
+import org.projectPA.petdiary.view.adapters.CommentReviewAdapter
 import org.projectPA.petdiary.viewmodel.DetailReviewViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -22,7 +22,7 @@ class DetailReviewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailReviewBinding
     private val viewModel: DetailReviewViewModel by viewModels()
-    private lateinit var commentAdapter: CommentAdapter
+    private lateinit var commentReviewAdapter: CommentReviewAdapter
     private lateinit var reviewId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,9 +50,9 @@ class DetailReviewActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        commentAdapter = CommentAdapter(emptyList())
+        commentReviewAdapter = CommentReviewAdapter(emptyList())
         binding.listComment.layoutManager = LinearLayoutManager(this)
-        binding.listComment.adapter = commentAdapter
+        binding.listComment.adapter = commentReviewAdapter
     }
 
     @SuppressLint("SetTextI18n")
@@ -80,7 +80,7 @@ class DetailReviewActivity : AppCompatActivity() {
         binding.sendBtn.setOnClickListener {
             val commentText = binding.commentTIET.text.toString()
             if (commentText.isNotBlank()) {
-                val comment = CommentsReview(
+                val comment = CommentReview(
                     id = "",
                     reviewId = reviewId,
                     userId = viewModel.currentUserId,
@@ -139,7 +139,7 @@ class DetailReviewActivity : AppCompatActivity() {
         })
 
         viewModel.comments.observe(this, Observer { comments ->
-            commentAdapter.updateData(comments)
+            commentReviewAdapter.updateData(comments)
         })
 
         viewModel.commentsCount.observe(this, Observer { count ->

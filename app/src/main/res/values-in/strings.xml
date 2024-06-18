@@ -168,7 +168,7 @@
 
     <string name="_15_maret_2024">15 Maret 2024</string>
 
-    <string name="age_pet">%1$d Tahun</string>
+    <string name="age_pet">%1$d Bulan</string>
     <string name="back_to_review_detail_button">kembali ke detail ulasan</string>
     <string name="send_comment">kirim komentar</string>
 
@@ -179,7 +179,7 @@
     <string name="timestamp">Timestamp</string>
     <string name="description">Deskripsi</string>
     <string name="gender">Jenis Kelamin</string>
-    <string name="age">Usia</string>
+    <string name="age">Usia (Bulan)</string>
     <string name="details">Detail</string>
     <string name="bio">Bio</string>
     <string name="email">Email</string>
@@ -367,5 +367,8 @@
     <string name="_34">34%</string>
     <string name="textview">TextView</string>
     <string name="be_the_first_to_review_this_product">Be the first to review this product</string>
+    <string name="image_edit_cd">Image Edit</string>
+    <string name="see_more_details">See More Details</string>
+    <string name="text_search_cd">Text Search</string>
 
 </resources>

@@ -118,11 +118,12 @@
 
         <Button
             android:id="@+id/petEditProfileBtn"
-            style="@style/Widget.MaterialComponents.Button.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_toStartOf="@+id/delete_Btn"
+            android:backgroundTint="@color/orange_main"
             android:text="@string/pet_edit_btn"
             android:textColor="@color/white"
             android:textStyle="bold"

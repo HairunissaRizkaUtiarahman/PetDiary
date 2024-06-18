@@ -44,74 +44,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/myProfile_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/grey_light"
-            app:cardCornerRadius="10dp">
+            android:background="@drawable/background_icon_home"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/my_profile"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_user" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:text="@string/my_profile"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/ic_user" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/setting_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/grey_light"
-            app:cardCornerRadius="10dp">
+            android:background="@drawable/background_icon_home"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/setting"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_setting" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:text="@string/setting"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/ic_setting" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/logout_Btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="@color/grey_light"
-            app:cardCornerRadius="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
-                android:gravity="center_vertical"
-                android:padding="10dp"
-                android:text="@string/logout"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:drawableLeftCompat="@drawable/ic_logout" />
-
-        </androidx.cardview.widget.CardView>
+            android:background="@drawable/background_icon_home"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="@string/logout"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:drawableLeftCompat="@drawable/ic_logout" />
 
     </LinearLayout>
 

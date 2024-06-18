@@ -43,20 +43,8 @@ class PetMyProfileViewModel(private val petRepository: PetRepository) : ViewMode
         }
     }
 
-    fun getPet(userId: String) = viewModelScope.launch(Dispatchers.IO) {
-        petRepository.getPet(userId)?.let {
-            _pet.postValue(it)
-        }
-    }
-
     fun setPet(pet: Pet) {
         _pet.value = pet
-    }
-
-    fun deleteData(myPetId: String) = viewModelScope.launch(Dispatchers.IO) {
-        _isLoading.postValue(true)
-        petRepository.deletePet(myPetId)
-        _isLoading.postValue(false)
     }
 
 }
