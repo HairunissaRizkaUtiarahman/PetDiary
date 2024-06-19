@@ -45,7 +45,7 @@ class PetRepository(
                 "gender" to gender,
                 "age" to age,
                 "desc" to desc,
-                "timestamp" to Timestamp.now(),
+                "timeAdded" to Timestamp.now(),
                 "imageUrl" to ""
             )
 
@@ -59,7 +59,7 @@ class PetRepository(
             }
 
             // Add pet data to Firestore
-            db.collection("pet").add(petMap).await()
+            db.collection("pets").add(petMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add pet data", e)
         } catch (e: StorageException) {
@@ -71,8 +71,8 @@ class PetRepository(
     suspend fun getPets(): Flow<List<Pet>> {
         return try {
             val userId = auth.currentUser!!.uid
-            db.collection("pet").whereEqualTo("userId", userId)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("pets").whereEqualTo("userId", userId)
+                .orderBy("timeAdded", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         it.toObject(Pet::class.java).copy(id = it.id)
@@ -87,7 +87,7 @@ class PetRepository(
     // Function to get details of a specific pet by user ID
     suspend fun getPet(petId: String): Pet? {
         return try {
-            db.collection("pet")
+            db.collection("pets")
                 .document(petId).get().await().let {
                     it.toObject(Pet::class.java)?.copy(id = it.id)
                 }
@@ -100,8 +100,8 @@ class PetRepository(
     // Function to get a list of pets for a specific user by user ID (used for user profile)
     suspend fun getPetsUserProfile(userId: String): Flow<List<Pet>> {
         return try {
-            db.collection("pet").whereEqualTo("userId", userId)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("pets").whereEqualTo("userId", userId)
+                .orderBy("timeAdded", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         it.toObject(Pet::class.java).copy(id = it.id)
@@ -134,7 +134,7 @@ class PetRepository(
                 "gender" to gender,
                 "age" to age,
                 "desc" to desc,
-                "timestamp" to Timestamp.now()
+                "timeAdded" to Timestamp.now()
             )
 
             // Upload new image if URI is provided
@@ -147,7 +147,7 @@ class PetRepository(
             }
 
             // Update pet data in Firestore
-            db.collection("pet").document(petId).update(petMap.toMap()).await()
+            db.collection("pets").document(petId).update(petMap.toMap()).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to update pet data", e)
         } catch (e: StorageException) {
@@ -159,11 +159,11 @@ class PetRepository(
     suspend fun deletePet(petId: String, imageUrl: String?) {
         try {
             // Hapus dokumen pet dari Firestore
-            db.collection("pet").document(petId).delete().await()
+            db.collection("pets").document(petId).delete().await()
 
             // Jika ada URL gambar terkait, hapus gambar dari Firebase Storage
-            imageUrl?.let { imageUri ->
-                val imageRef = storageRef.getReferenceFromUrl(imageUri)
+            if (!imageUrl.isNullOrEmpty()) {
+                val imageRef = storageRef.getReferenceFromUrl(imageUrl)
                 imageRef.delete().await()
             }
         } catch (e: FirebaseFirestoreException) {
@@ -172,6 +172,4 @@ class PetRepository(
             Log.e(LOG_TAG, "Fail to delete pet image from Firebase Storage", e)
         }
     }
-
-
 }

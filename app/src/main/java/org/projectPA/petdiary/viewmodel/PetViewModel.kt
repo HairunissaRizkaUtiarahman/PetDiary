@@ -10,6 +10,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.Pet
 import org.projectPA.petdiary.repository.PetRepository
@@ -39,7 +40,7 @@ class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
     }
 
     // Function to upload pet data
-    fun uploadData(
+    fun uploadPet(
         name: String,
         type: String,
         gender: String,
@@ -53,7 +54,7 @@ class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
     }
 
     // Function to update pet data
-    fun updateData(
+    fun updatePet(
         petId: String,
         name: String,
         type: String,
@@ -68,16 +69,9 @@ class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
     }
 
     // Function to load all pets data
-    fun loadData() = viewModelScope.launch(Dispatchers.IO) {
+    fun loadPet() = viewModelScope.launch(Dispatchers.IO) {
         petRepository.getPets().collect { pets ->
             _pets.postValue(pets) // Post list of pets to LiveData
-        }
-    }
-
-    // Function to load specific pet data by ID
-    fun getPet(petId: String) = viewModelScope.launch(Dispatchers.IO) {
-        petRepository.getPet(petId)?.let {
-            _pet.postValue(it) // Post specific pet to LiveData
         }
     }
 
@@ -86,10 +80,18 @@ class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
         _pet.value = pet
     }
 
-    // Function to delete pet data
-    fun deleteData(petId: String, imageUrl: String?) = viewModelScope.launch(Dispatchers.IO) {
-        _isLoading.postValue(true) // Indicate loading start
-        petRepository.deletePet(petId, imageUrl) // Delete pet data from repository
-        _isLoading.postValue(false) // Indicate loading end
+    // Function to delete pet data and return result as Boolean
+    suspend fun deletePet(petId: String, imageUrl: String?): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                _isLoading.postValue(true) // Indicate loading start
+                petRepository.deletePet(petId, imageUrl) // Delete pet data from repository
+                _isLoading.postValue(false) // Indicate loading end
+                true // Return success
+            } catch (e: Exception) {
+                _isLoading.postValue(false) // Indicate loading end
+                false // Return failure
+            }
+        }
     }
 }

@@ -51,7 +51,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_profile" />
+                        android:src="@drawable/image_blank" />
 
                     <Button
                         android:id="@+id/pick_Btn"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     app:counterEnabled="true"
-                    app:counterMaxLength="50">
+                    app:counterMaxLength="5">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/petAge_TIET"

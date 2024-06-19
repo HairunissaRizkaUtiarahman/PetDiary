@@ -2,6 +2,7 @@ package org.projectPA.petdiary.view.fragment.managepet
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPetAddBinding
+import org.projectPA.petdiary.view.activities.managepet.PetActivity
 import org.projectPA.petdiary.viewmodel.PetViewModel
 
 class PetAddFragment : Fragment() {
@@ -152,7 +154,7 @@ class PetAddFragment : Fragment() {
                 checkRadioBtn.isChecked = false
 
                 // Upload data to ViewModel
-                viewModel.uploadData(name, type, gender, age.toInt(), desc, imageUri)
+                viewModel.uploadPet(name, type, gender, age.toInt(), desc, imageUri)
 
                 // Clear input fields
                 binding.petNameTIET.text?.clear()
@@ -174,7 +176,8 @@ class PetAddFragment : Fragment() {
                 binding.addBtn.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.GONE
                 // Navigate back to previous fragment after adding pet
-                findNavController().popBackStack()
+                startActivity(Intent(requireActivity(), PetActivity::class.java))
+                requireActivity().finish()
             }
         }
 

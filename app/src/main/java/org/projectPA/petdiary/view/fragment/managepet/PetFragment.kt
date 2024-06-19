@@ -54,7 +54,7 @@ class PetFragment : Fragment() {
         }
 
         // Load pets data from ViewModel
-        viewModel.loadData()
+        viewModel.loadPet()
 
         // Handle add pet button click
         binding.addPetBtn.setOnClickListener {

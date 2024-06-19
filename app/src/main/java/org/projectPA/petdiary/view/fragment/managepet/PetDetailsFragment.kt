@@ -5,12 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import kotlinx.coroutines.launch
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPetDetailsBinding
 import org.projectPA.petdiary.viewmodel.PetViewModel
@@ -75,9 +78,16 @@ class PetDetailsFragment : Fragment() {
         alertDialogBuilder.apply {
             setMessage("Are you sure you want to delete this pet?")
             setPositiveButton("Yes") { _, _ ->
-                // Delete the pet and navigate back
-                viewModel.deleteData(petId, imageUrl)
-                findNavController().popBackStack()
+                // Delete the pet and show toast notification based on result
+                lifecycleScope.launch {
+                    val result = viewModel.deletePet(petId, imageUrl)
+                    if (result) {
+                        Toast.makeText(requireContext(), "Pet deleted successfully", Toast.LENGTH_SHORT).show()
+                        findNavController().popBackStack()
+                    } else {
+                        Toast.makeText(requireContext(), "Failed to delete pet", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()

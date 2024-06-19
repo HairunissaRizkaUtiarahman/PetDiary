@@ -157,7 +157,7 @@ class PetEditFragment : Fragment() {
 
                 val myPetId = viewModel.pet.value?.id ?: ""
 
-                viewModel.updateData(myPetId, name, type, gender, age.toInt(), desc, imageUri)
+                viewModel.updatePet(myPetId, name, type, gender, age.toInt(), desc, imageUri)
 
                 binding.petNameTIET.text?.clear()
                 binding.petTypeTIET.text?.clear()
