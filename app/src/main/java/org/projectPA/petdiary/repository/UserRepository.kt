@@ -17,7 +17,7 @@ class UserRepository(
     suspend fun getUsers(): List<User> {
         return try {
             val userId = auth.currentUser!!.uid
-            db.collection("user")
+            db.collection("users")
                 .whereNotEqualTo("userId", userId) // Exclude the logged-in user
                 .limit(10)
                 .get().await().let { querySnapshot ->
@@ -33,7 +33,7 @@ class UserRepository(
 
     suspend fun searchUser(query: String): List<User> {
         return try {
-            db.collection("user")
+            db.collection("users")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         it.toObject(User::class.java)?.copy(id = it.id)

@@ -100,41 +100,59 @@ class EditProfileSettingFragment : Fragment() {
 
             val name = binding.nameTIET.text.toString().trim()
             val address = binding.addressTIET.text.toString().trim()
-            val gender = checkRadioBtn.text.toString()
             val birthdate = binding.birthdateTIET.text.toString().trim()
             val bio = binding.bioTIET.text.toString().trim()
 
-            if (name.isNotEmpty() && address.isNotEmpty() && bio.isNotEmpty()) {
-                viewModel.checkIfNameExists(name) { nameExists ->
-                    if (nameExists) {
-                        Toast.makeText(requireContext(), "Name already taken", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        viewModel.updateData(name, address, gender, birthdate, bio, imageUri)
-                        Toast.makeText(
-                            requireContext(),
-                            "Success Update My Profile",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                }
-            } else {
-                when {
-                    name.isEmpty() -> Toast.makeText(
-                        requireContext(),
-                        "Name cannot be empty",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            // Validate inputs
+            if (name.isEmpty() || name.length > 100) {
+                Toast.makeText(
+                    requireContext(),
+                    "Name is required and must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
 
-                    address.isEmpty() -> Toast.makeText(
-                        requireContext(),
-                        "Address cannot be empty",
-                        Toast.LENGTH_SHORT
-                    ).show()
+            if (address.isEmpty() || address.length > 150) {
+                Toast.makeText(
+                    requireContext(),
+                    "Address is required and must be less than 150 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
 
-                    bio.isEmpty() -> Toast.makeText(
+            if (radioGroupCheck == -1) {
+                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+
+            if (birthdate.isEmpty()) {
+                Toast.makeText(requireContext(), "Birthdate is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (bio.length > 100) {
+                Toast.makeText(
+                    requireContext(),
+                    "Bio must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            val gender = checkRadioBtn.text.toString()
+
+            viewModel.checkIfNameExists(name) { nameExists ->
+                if (nameExists) {
+                    Toast.makeText(requireContext(), "Name already taken", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    viewModel.updateMyProfile(name, address, gender, birthdate, bio, imageUri)
+                    Toast.makeText(
                         requireContext(),
-                        "Bio cannot be empty",
+                        "Success Update My Profile",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -155,13 +173,18 @@ class EditProfileSettingFragment : Fragment() {
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.saveBtn.text = if (it) "UPDATING..." else "SAVE"
-            if (!it) {
+            if (it) {
+                binding.saveBtn.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.saveBtn.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
                 findNavController().popBackStack()
             }
         }
 
-        viewModel.loadData()
+        viewModel.loadMyProfile()
+
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {
                 binding.nameTIET.setText(it.name)

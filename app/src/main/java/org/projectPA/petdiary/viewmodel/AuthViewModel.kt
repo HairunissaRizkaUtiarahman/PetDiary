@@ -54,14 +54,14 @@ open class AuthViewModel(application: Application) : AndroidViewModel(applicatio
 
     private fun checkIfNameExists(auth: FirebaseAuth, name: String, email: String, password: String) {
         val db = FirebaseFirestore.getInstance()
-        val lowercaseName = name.toLowerCase(Locale.ROOT)
-        db.collection("user").whereEqualTo("lowercaseName", lowercaseName).get().addOnCompleteListener { task ->
+        val lowercaseName = name.lowercase(Locale.ROOT)
+        db.collection("users").whereEqualTo("lowercaseName", lowercaseName).get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val documents = task.result?.documents ?: emptyList()
                 if (documents.isNotEmpty()) {
                     _signupError.value = "Name already taken!"
                 } else {
-                    createUser(auth, name, lowercaseName, email, password)
+                    createUser(auth, name, email, password)
                 }
             } else {
                 _signupError.value = "Failed to check name: ${task.exception?.message}"
@@ -69,19 +69,21 @@ open class AuthViewModel(application: Application) : AndroidViewModel(applicatio
         }
     }
 
-    private fun createUser(auth: FirebaseAuth, name: String, lowercaseName: String, email: String, password: String) {
+    private fun createUser(auth: FirebaseAuth, name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val userId = auth.currentUser?.uid
+                val lowercaseName = name.lowercase(Locale.ROOT)
                 auth.currentUser?.sendEmailVerification()
                 if (userId != null) {
                     val user = hashMapOf(
                         "name" to name,
                         "lowercaseName" to lowercaseName,
-                        "email" to email
+                        "email" to email,
+                        "isModerator" to false
                     )
                     val db = FirebaseFirestore.getInstance()
-                    db.collection("user").document(userId).set(user).addOnCompleteListener { task ->
+                    db.collection("users").document(userId).set(user).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             _signupSuccess.value = true
                         } else {

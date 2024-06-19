@@ -29,7 +29,7 @@ class MyProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.loadData()
+        viewModel.loadMyProfile()
 
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {

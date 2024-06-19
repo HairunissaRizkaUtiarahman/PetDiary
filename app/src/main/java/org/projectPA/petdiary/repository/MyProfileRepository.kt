@@ -52,7 +52,7 @@ class MyProfileRepository(
             }
 
             // Update user profile
-            db.collection("user").document(userId).update(userMap.toMap()).await()
+            db.collection("users").document(userId).update(userMap.toMap()).await()
 
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Failed to update profile data", e)
@@ -65,7 +65,7 @@ class MyProfileRepository(
         return flow {
             val userId =
                 auth.currentUser?.uid ?: throw IllegalStateException("User not authenticated")
-            val snapshot = db.collection("user").document(userId).get().await()
+            val snapshot = db.collection("users").document(userId).get().await()
             val user = snapshot.toObject(User::class.java)?.copy(id = userId)
             emit(user)
         }.catch { e ->
@@ -78,7 +78,7 @@ class MyProfileRepository(
         val lowercaseName = name.lowercase(Locale.ROOT)
         val userId = auth.currentUser?.uid
         val db = FirebaseFirestore.getInstance()
-        db.collection("user").whereEqualTo("lowercaseName", lowercaseName).get()
+        db.collection("users").whereEqualTo("lowercaseName", lowercaseName).get()
             .addOnSuccessListener { documents ->
                 var nameExists = false
                 for (document in documents) {

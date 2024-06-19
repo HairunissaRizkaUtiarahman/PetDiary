@@ -30,13 +30,13 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
         }
     }
 
-    fun loadData() = viewModelScope.launch {
+    fun loadMyProfile() = viewModelScope.launch {
         myProfileRepository.getMyProfile().collect { user ->
             _myProfile.postValue(user)
         }
     }
 
-    fun updateData(
+    fun updateMyProfile(
         name: String,
         address: String,
         gender: String,

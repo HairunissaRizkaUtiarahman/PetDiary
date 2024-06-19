@@ -72,7 +72,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun fetchData() {
-        viewModel.loadData()
+        viewModel.loadMyProfile()
 
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {

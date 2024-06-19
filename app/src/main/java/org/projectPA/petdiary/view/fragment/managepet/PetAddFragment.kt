@@ -135,7 +135,7 @@ class PetAddFragment : Fragment() {
             }
 
             if (desc.length > 500) {
-                binding.petDescTIL.error = "Description is required and must be less than 500 characters"
+                binding.petDescTIL.error = "Description must be less than 500 characters"
                 isValid = false
             } else {
                 binding.petDescTIL.error = null
