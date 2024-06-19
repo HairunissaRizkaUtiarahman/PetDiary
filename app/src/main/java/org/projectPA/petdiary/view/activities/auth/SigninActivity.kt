@@ -2,8 +2,8 @@ package org.projectPA.petdiary.view.activities.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.FirebaseAuthIdlingResource
 import org.projectPA.petdiary.databinding.ActivitySigninBinding
@@ -47,12 +47,12 @@ class SigninActivity : AppCompatActivity() {
                         if (user.isEmailVerified) {
                             updateUI()
                         } else {
-                            showSnackbar("Please check your email address to verify before logging in.")
+                            Toast.makeText(this, "Please check your email address to verify before logging in.", Toast.LENGTH_SHORT).show()
                             auth.signOut()
                         }
                     }
                 } else {
-                    showSnackbar("Authentication failed")
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
                 }
             }
     }
@@ -68,13 +68,8 @@ class SigninActivity : AppCompatActivity() {
         if (currentUser != null && currentUser.isEmailVerified) {
             updateUI()
         } else if (currentUser != null && !currentUser.isEmailVerified) {
-            showSnackbar("Please verify your email address before logging in.")
+            Toast.makeText(this, "Please verify your email address before logging in.", Toast.LENGTH_SHORT).show()
             auth.signOut()
         }
-    }
-
-    private fun showSnackbar(message: String) {
-        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-        snackbar.show()
     }
 }

@@ -111,60 +111,59 @@ class PetAddFragment : Fragment() {
             val desc = binding.petDescTIET.text.toString().trim()
 
             // Validate inputs
-            var isValid = true
-
             if (name.isEmpty() || name.length > 100) {
-                binding.petNameTIL.error = "Name is required and must be less than 100 characters"
-                isValid = false
-            } else {
-                binding.petNameTIL.error = null
+                Toast.makeText(
+                    requireContext(),
+                    "Name is required and must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
 
             if (type.isEmpty() || type.length > 100) {
-                binding.petTypeTIL.error = "Type is required and must be less than 100 characters"
-                isValid = false
-            } else {
-                binding.petTypeTIL.error = null
-            }
-
-            if (age.isEmpty() || age.length > 5) {
-                binding.petAgeTIL.error = "Age is required and must be less than 5 characters"
-                isValid = false
-            } else {
-                binding.petAgeTIL.error = null
-            }
-
-            if (desc.length > 500) {
-                binding.petDescTIL.error = "Description must be less than 500 characters"
-                isValid = false
-            } else {
-                binding.petDescTIL.error = null
+                Toast.makeText(
+                    requireContext(),
+                    "Type is required and must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
 
             if (radioGroupCheck == -1) {
-                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT).show()
-                isValid = false
+                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT)
+                    .show()
             }
 
-            if (isValid) {
-                val gender = checkRadioBtn.text.toString()
-
-                // Show success message and reset fields if all fields are filled
-                Toast.makeText(requireContext(), "Success Add My Pet", Toast.LENGTH_SHORT).show()
-                checkRadioBtn.isChecked = false
-
-                // Upload data to ViewModel
-                viewModel.uploadPet(name, type, gender, age.toInt(), desc, imageUri)
-
-                // Clear input fields
-                binding.petNameTIET.text?.clear()
-                binding.petTypeTIET.text?.clear()
-                binding.petAgeTIET.text?.clear()
-                binding.petDescTIET.text?.clear()
-            } else {
-                // Show error message if any field is empty
-                Toast.makeText(requireContext(), "Failed to Add My Pet", Toast.LENGTH_SHORT).show()
+            if (age.isEmpty() || age.length > 5) {
+                Toast.makeText(
+                    requireContext(),
+                    "Age is required and must be less than 5 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
+
+            if (desc.length > 500) {
+                Toast.makeText(
+                    requireContext(),
+                    "Description must be less than 500 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            val gender = checkRadioBtn.text.toString()
+            checkRadioBtn.isChecked = false
+
+            // Upload data to ViewModel
+            viewModel.uploadPet(name, type, gender, age.toInt(), desc, imageUri)
+            Toast.makeText(requireContext(), "Success Add My Pet", Toast.LENGTH_SHORT).show()
+
+            // Clear input fields
+            binding.petNameTIET.text?.clear()
+            binding.petTypeTIET.text?.clear()
+            binding.petAgeTIET.text?.clear()
+            binding.petDescTIET.text?.clear()
         }
 
         // Observe loading state and update button text accordingly

@@ -21,7 +21,6 @@ import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPetEditBinding
-import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.activities.managepet.PetActivity
 import org.projectPA.petdiary.viewmodel.PetViewModel
 
@@ -113,59 +112,58 @@ class PetEditFragment : Fragment() {
             val desc = binding.petDescTIET.text.toString().trim()
 
             // Validate inputs
-            var isValid = true
-
             if (name.isEmpty() || name.length > 100) {
-                binding.petNameTIL.error = "Name is required and must be less than 100 characters"
-                isValid = false
-            } else {
-                binding.petNameTIL.error = null
+                Toast.makeText(
+                    requireContext(),
+                    "Name is required and must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
 
             if (type.isEmpty() || type.length > 100) {
-                binding.petTypeTIL.error = "Type is required and must be less than 100 characters"
-                isValid = false
-            } else {
-                binding.petTypeTIL.error = null
-            }
-
-            if (age.isEmpty() || age.length > 5) {
-                binding.petAgeTIL.error = "Age is required and must be less than 5 characters"
-                isValid = false
-            } else {
-                binding.petAgeTIL.error = null
-            }
-
-            if (desc.length > 500) {
-                binding.petDescTIL.error = "Description is required and must be less than 500 characters"
-                isValid = false
-            } else {
-                binding.petDescTIL.error = null
+                Toast.makeText(
+                    requireContext(),
+                    "Type is required and must be less than 100 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
 
             if (radioGroupCheck == -1) {
-                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT).show()
-                isValid = false
+                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT)
+                    .show()
             }
 
-            if (isValid) {
-                val gender = checkRadioBtn.text.toString()
-
-                Toast.makeText(requireContext(), "Success Update My Pet", Toast.LENGTH_SHORT).show()
-                checkRadioBtn.isChecked = false
-
-
-                val myPetId = viewModel.pet.value?.id ?: ""
-
-                viewModel.updatePet(myPetId, name, type, gender, age.toInt(), desc, imageUri)
-
-                binding.petNameTIET.text?.clear()
-                binding.petTypeTIET.text?.clear()
-                binding.petAgeTIET.text?.clear()
-                binding.petDescTIET.text?.clear()
-            } else {
-                Toast.makeText(requireContext(), "Failed to Update My Pet", Toast.LENGTH_SHORT).show()
+            if (age.isEmpty() || age.length > 5) {
+                Toast.makeText(
+                    requireContext(),
+                    "Age is required and must be less than 5 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
+
+            if (desc.length > 500) {
+                Toast.makeText(
+                    requireContext(),
+                    "Description must be less than 500 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            val gender = checkRadioBtn.text.toString()
+            checkRadioBtn.isChecked = false
+            val myPetId = viewModel.pet.value?.id ?: ""
+
+            viewModel.updatePet(myPetId, name, type, gender, age.toInt(), desc, imageUri)
+            Toast.makeText(requireContext(), "Success Update My Pet", Toast.LENGTH_SHORT).show()
+
+            binding.petNameTIET.text?.clear()
+            binding.petTypeTIET.text?.clear()
+            binding.petAgeTIET.text?.clear()
+            binding.petDescTIET.text?.clear()
         }
 
         // Observe loading state and update button text accordingly

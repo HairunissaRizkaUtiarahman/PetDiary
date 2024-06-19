@@ -16,7 +16,6 @@ import org.projectPA.petdiary.model.Pet
 import org.projectPA.petdiary.repository.PetRepository
 
 class PetViewModel(private val petRepository: PetRepository) : ViewModel() {
-
     // LiveData for list of pets
     private val _pets = MutableLiveData<List<Pet>>()
     val pets: LiveData<List<Pet>> get() = _pets
