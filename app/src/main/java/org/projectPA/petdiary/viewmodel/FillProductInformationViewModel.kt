@@ -103,8 +103,7 @@ class FillProductInformationViewModel : ViewModel() {
 
     private fun uploadPhotoToStorage(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         val storageRef = FirebaseStorage.getInstance().reference
-        val filePath = "images/${UUID.randomUUID()}.jpg"
-        val imageRef = storageRef.child(filePath)
+        val imageRef = storageRef.child("images").child("pictureProduct").child(System.currentTimeMillis().toString())
 
         _imageUri.value?.let { uri ->
             imageRef.putFile(uri)
