@@ -80,7 +80,7 @@
             android:layout_height="25dp"
             android:contentDescription="@string/image_see_detail_cd"
             android:rotation="180"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/ic_back" />
 
     </LinearLayout>
 

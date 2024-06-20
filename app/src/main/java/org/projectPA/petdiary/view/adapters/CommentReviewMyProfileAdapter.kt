@@ -28,12 +28,12 @@ class CommentReviewMyProfileAdapter() :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(commentReview: CommentReview) = with(binding) {
-            commentTV.text = commentReview.text
-            timestampTV.text = commentReview.commentDate?.relativeTime() ?: ""
+            commentTV.text = commentReview.commentText
+            timestampTV.text = commentReview.timeCommented?.relativeTime() ?: ""
             nameTV.text = commentReview.user?.name
 
             Glide.with(profileImageIV.context).load(commentReview.user?.imageUrl)
-                .placeholder(R.drawable.image_blank).into(profileImageIV)
+                .placeholder(R.drawable.image_profile).into(profileImageIV)
         }
     }
 

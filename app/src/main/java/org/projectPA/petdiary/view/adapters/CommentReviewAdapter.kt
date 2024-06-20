@@ -21,7 +21,7 @@ class CommentReviewAdapter(
         fun bind(comment: CommentReview) {
             with(binding) {
                 val db = FirebaseFirestore.getInstance()
-                db.collection("user").document(comment.userId).get()
+                db.collection("users").document(comment.userId).get()
                     .addOnSuccessListener { document ->
                         val user = document.toObject(User::class.java)
                         if (user != null) {
@@ -41,8 +41,8 @@ class CommentReviewAdapter(
                         Log.e("CommentAdapter", "Error fetching user details", e)
                     }
 
-                commentTV.text = comment.text
-                timestampTV.text = comment.commentDate?.relativeTime() ?: ""
+                commentTV.text = comment.commentText
+                timestampTV.text = comment.timeCommented?.relativeTime() ?: ""
             }
         }
     }
@@ -61,7 +61,7 @@ class CommentReviewAdapter(
     override fun getItemCount() = comments.size
 
     fun updateData(comment: List<CommentReview>) {
-        comments = comment.sortedByDescending { it.commentDate }
+        comments = comment.sortedByDescending { it.timeCommented }
         notifyDataSetChanged()
     }
 }

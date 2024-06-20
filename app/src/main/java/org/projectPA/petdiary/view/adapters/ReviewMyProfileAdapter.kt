@@ -35,7 +35,7 @@ class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
         fun bind(review: Review) = with(binding) {
             brandNameTV.text = review.product?.brandName
             productNameTV.text = review.product?.productName
-            reviewDateTV.text = review.reviewDate?.toDate()?.let {
+            reviewDateTV.text = review.timeReviewed?.toDate()?.let {
                 SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it)
             }
             deskripsiReviewTV.text = review.reviewText

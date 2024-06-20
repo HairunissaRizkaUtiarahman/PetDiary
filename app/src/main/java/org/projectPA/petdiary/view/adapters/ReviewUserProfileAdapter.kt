@@ -33,7 +33,7 @@ class ReviewUserProfileAdapter(val onClick: (Review, View) -> Unit) :
         fun bind(review: Review) = with(binding) {
             brandNameTV.text = review.product?.brandName
             productNameTV.text = review.product?.productName
-            reviewDateTV.text = review.reviewDate?.relativeTime() ?: ""
+            reviewDateTV.text = review.timeReviewed?.relativeTime() ?: ""
             deskripsiReviewTV.text = review.reviewText
             ratingBar4.rating = review.rating
 

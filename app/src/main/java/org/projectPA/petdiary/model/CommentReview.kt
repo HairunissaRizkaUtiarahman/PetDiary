@@ -8,7 +8,7 @@ data class CommentReview(
     @get:Exclude val id: String? = "",
     val reviewId: String = "",
     val userId: String = "",
-    val text: String = "",
-    val commentDate: Timestamp? = Timestamp.now(),
+    val commentText: String = "",
+    val timeCommented: Timestamp? = Timestamp.now(),
     @get:Exclude val user: User? = User()
 ) : Serializable

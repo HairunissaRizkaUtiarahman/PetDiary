@@ -41,7 +41,7 @@ class DetailReviewUserProfileFragment : Fragment() {
                 productNameTV.text = it.product?.productName
                 productTypeTV.text = it.product?.petType
                 reviewDateTV.text =
-                    it.reviewDate?.toDate()?.let { date ->
+                    it.timeReviewed?.toDate()?.let { date ->
                         SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(date)
                     }
                 usagePeriodReviewTV.text = it.usagePeriod

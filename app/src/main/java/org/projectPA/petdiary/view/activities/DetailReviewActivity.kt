@@ -84,7 +84,7 @@ class DetailReviewActivity : AppCompatActivity() {
                     id = "",
                     reviewId = reviewId,
                     userId = viewModel.currentUserId,
-                    text = commentText
+                    commentText = commentText
                 )
                 viewModel.addComment(comment)
                 binding.commentTIET.text?.clear()
@@ -116,7 +116,7 @@ class DetailReviewActivity : AppCompatActivity() {
 
         viewModel.review.observe(this, Observer { review ->
             review?.let {
-                binding.reviewDate.text = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it.reviewDate?.toDate())
+                binding.reviewDate.text = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it.timeReviewed?.toDate())
                 binding.deskripsiReview.text = it.reviewText
                 binding.ratingBar2.rating = it.rating
                 binding.usagePeriodReview.text = it.usagePeriod

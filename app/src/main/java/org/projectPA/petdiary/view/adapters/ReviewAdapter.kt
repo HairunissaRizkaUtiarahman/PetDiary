@@ -27,7 +27,7 @@ class ReviewAdapter(
     class ReviewViewHolder(val binding: ItemReviewBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review, context: Context, productId: String, firestore: FirebaseFirestore) {
             with(binding) {
-                reviewDate.text = review.reviewDate?.relativeTime() ?: ""
+                reviewDate.text = review.timeReviewed?.relativeTime() ?: ""
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
                 usageProduct.text = review.usagePeriod
@@ -46,7 +46,7 @@ class ReviewAdapter(
         }
 
         private fun fetchUserData(userId: String, context: Context, binding: ItemReviewBinding, firestore: FirebaseFirestore) {
-            val userDocRef = firestore.collection("user").document(userId)
+            val userDocRef = firestore.collection("users").document(userId)
             Log.d("ReviewAdapter", "Fetching user data from: ${userDocRef.path} for userId: $userId")
 
             userDocRef.get()
@@ -91,7 +91,7 @@ class ReviewAdapter(
     override fun getItemCount() = reviews.size
 
     fun updateData(newReviews: List<Review>) {
-        reviews = newReviews.sortedByDescending { it.reviewDate }
+        reviews = newReviews.sortedByDescending { it.timeReviewed }
         notifyDataSetChanged()
     }
 }

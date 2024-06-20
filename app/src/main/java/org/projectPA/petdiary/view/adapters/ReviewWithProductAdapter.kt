@@ -28,7 +28,7 @@ class ReviewWithProductAdapter(
             with(binding) {
                 productNameTV.text = item.product.productName
                 brandNameTV.text = item.product.brandName
-                reviewDateTV.text = dateFormat.format(item.review.reviewDate)
+                reviewDateTV.text = dateFormat.format(item.review.timeReviewed)
                 deskripsiReviewTV.text = item.review.reviewText
                 ratingBar4.rating = item.review.rating
 

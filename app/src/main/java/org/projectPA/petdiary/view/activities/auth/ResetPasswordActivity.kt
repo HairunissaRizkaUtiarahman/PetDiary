@@ -44,7 +44,7 @@ class ResetPasswordActivity : AppCompatActivity() {
 
     private fun validateEmailAndSendResetLink(email: String) {
         val db = FirebaseFirestore.getInstance()
-        db.collection("user").whereEqualTo("email", email).get()
+        db.collection("users").whereEqualTo("email", email).get()
             .addOnSuccessListener { documents ->
                 if (!documents.isEmpty) {
                     sendResetPasswordEmail(email)

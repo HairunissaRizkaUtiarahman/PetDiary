@@ -28,7 +28,7 @@
                 android:layout_gravity="start"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="@string/back_to_detail_product_page"
-                android:src="@drawable/arrow_back" />
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:layout_width="wrap_content"

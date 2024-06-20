@@ -36,7 +36,7 @@ class ReviewRepository(
 
                     val userId = it.get("userId") as String? ?: ""
                     val user = db
-                        .collection("user")
+                        .collection("users")
                         .document(userId).get().await()
                         .toObject(User::class.java)?.copy(id = userId)
 
@@ -55,7 +55,7 @@ class ReviewRepository(
         return try {
             val userId = auth.currentUser!!.uid
             db.collection("reviews").whereEqualTo("userId", userId)
-                .orderBy("reviewDate", Query.Direction.DESCENDING)
+                .orderBy("timeReviewed", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val productId = it.data["productId"] as String? ?: ""
@@ -66,7 +66,7 @@ class ReviewRepository(
 
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
@@ -84,7 +84,7 @@ class ReviewRepository(
     suspend fun getReviewUserProfile(userId: String): Flow<List<Review>> {
         return try {
             db.collection("reviews").whereEqualTo("userId", userId)
-                .orderBy("reviewDate", Query.Direction.DESCENDING)
+                .orderBy("timeReviewed", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val productId = it.data["productId"] as String? ?: ""
@@ -94,7 +94,7 @@ class ReviewRepository(
 
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
@@ -110,13 +110,13 @@ class ReviewRepository(
 
     suspend fun getCommentReviews(reviewId: String): Flow<List<CommentReview>> {
         return try {
-            db.collection("commentsReview").whereEqualTo("reviewId", reviewId)
-                .orderBy("commentDate", Query.Direction.ASCENDING)
+            db.collection("commentReviews").whereEqualTo("reviewId", reviewId)
+                .orderBy("timeCommented", Query.Direction.ASCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
@@ -134,12 +134,12 @@ class ReviewRepository(
             val userId = auth.currentUser!!.uid
             val commentMap = hashMapOf(
                 "id" to "",
-                "commentDate" to Timestamp.now(),
+                "timeCommented" to Timestamp.now(),
                 "reviewId" to reviewId,
-                "text" to text,
+                "commentText" to text,
                 "userId" to userId
             )
-            val newCommentRef = db.collection("commentsReview").document()
+            val newCommentRef = db.collection("commentReviews").document()
             commentMap["id"] = newCommentRef.id
 
             newCommentRef.set(commentMap).await()

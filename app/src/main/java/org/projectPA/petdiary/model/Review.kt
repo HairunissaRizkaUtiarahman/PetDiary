@@ -13,7 +13,7 @@ data class Review(
     var usagePeriod: String = "",
     var reviewText: String = "",
     var recommend: Boolean = false,
-    val reviewDate: Timestamp? = Timestamp.now(),
+    val timeReviewed: Timestamp? = Timestamp.now(),
     @get:Exclude val product: Product? = Product(),
     @get:Exclude var user: User? = User()
 ) : Serializable

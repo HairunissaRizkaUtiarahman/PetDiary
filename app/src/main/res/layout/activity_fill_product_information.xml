@@ -23,7 +23,7 @@
             android:layout_gravity="start"
             android:background="@color/white"
             android:contentDescription="@string/back_to_choose_product_category_page_button"
-            android:src="@drawable/arrow_back" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/pet_category_text"

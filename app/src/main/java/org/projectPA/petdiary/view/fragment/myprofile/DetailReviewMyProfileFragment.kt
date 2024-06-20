@@ -40,7 +40,7 @@ class DetailReviewMyProfileFragment : Fragment() {
                 productNameTV.text = it.product?.productName
                 productTypeTV.text = it.product?.petType
                 reviewDateTV.text =
-                    it.reviewDate?.toDate()?.let { it1 ->
+                    it.timeReviewed?.toDate()?.let { it1 ->
                         SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(it1)
                     }
                 usagePeriodReviewTV.text = it.usagePeriod
@@ -50,10 +50,10 @@ class DetailReviewMyProfileFragment : Fragment() {
                 nameTV.text = it.user?.name
 
                 Glide.with(productImageIV.context).load(it.product?.imageUrl)
-                    .placeholder(R.drawable.image_blank).into(productImageIV)
+                    .placeholder(R.drawable.image_profile).into(productImageIV)
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
-                    .placeholder(R.drawable.image_blank).into(profileImageIV)
+                    .placeholder(R.drawable.image_profile).into(profileImageIV)
             }
         }
 

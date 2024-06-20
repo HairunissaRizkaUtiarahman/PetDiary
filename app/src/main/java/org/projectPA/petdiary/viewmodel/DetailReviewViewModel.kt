@@ -65,7 +65,7 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchUserDetails(userId: String) {
-        firestore.collection("user").document(userId).get()
+        firestore.collection("users").document(userId).get()
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)
                 _user.value = user
@@ -76,7 +76,7 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchCommentsCount(reviewId: String) {
-        firestore.collection("commentsReview")
+        firestore.collection("commentReviews")
             .whereEqualTo("reviewId", reviewId)
             .get()
             .addOnSuccessListener { result ->
@@ -88,9 +88,9 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun fetchCommentsForReview(reviewId: String) {
-        firestore.collection("commentsReview")
+        firestore.collection("commentReviews")
             .whereEqualTo("reviewId", reviewId)
-            .orderBy("commentDate", Query.Direction.ASCENDING)
+            .orderBy("timeCommented", Query.Direction.ASCENDING)
             .get()
             .addOnSuccessListener { result ->
                 val comments = result.mapNotNull {
@@ -111,7 +111,7 @@ class DetailReviewViewModel : ViewModel() {
     }
 
     fun addComment(comment: CommentReview) {
-        val newCommentRef = firestore.collection("commentsReview").document()
+        val newCommentRef = firestore.collection("commentReviews").document()
         val newComment = comment.copy(id = newCommentRef.id)
 
         newCommentRef.set(newComment)

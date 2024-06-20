@@ -41,8 +41,8 @@ class MoreReviewsViewModel : ViewModel() {
 
     fun sortReviews(sortOption: String) {
         val sortedReviews = when (sortOption) {
-            "newest" -> allReviews.sortedByDescending { it.reviewDate }
-            "oldest" -> allReviews.sortedBy { it.reviewDate }
+            "newest" -> allReviews.sortedByDescending { it.timeReviewed }
+            "oldest" -> allReviews.sortedBy { it.timeReviewed }
             "highest_rating" -> allReviews.sortedByDescending { it.rating }
             "lowest_rating" -> allReviews.sortedBy { it.rating }
             else -> allReviews
