@@ -41,11 +41,13 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/postImage_IV"
                     android:layout_width="match_parent"
-                    android:layout_height="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginTop="25dp"
+                    android:background="@drawable/image_blank"
+                    android:contentDescription="@string/image_post_cd"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_blank"
                     app:shapeAppearanceOverlay="@style/circulas" />
 
                 <Button
@@ -59,22 +61,28 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/desc_TextInputLayout"
+                    android:id="@+id/desc_TIL"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="100dp"
                     app:counterEnabled="true"
                     app:counterMaxLength="1000">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/desc_TextInputEditText"
+                        android:id="@+id/desc_TIET"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_gravity="top"
+                        android:gravity="top"
                         android:hint="@string/description"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:maxEms="30"
+                        android:minEms="10"
+                        android:minLines="3"
+                        android:nestedScrollingEnabled="true"
+                        android:textAlignment="gravity" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,7 +126,7 @@
             android:text="@string/post"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
     </RelativeLayout>
 

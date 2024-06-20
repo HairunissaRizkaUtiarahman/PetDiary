@@ -84,7 +84,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
         }
 
         binding.postBtn.setOnClickListener {
-            val desc = binding.descTextInputEditText.text.toString().trim()
+            val desc = binding.descTIET.text.toString().trim()
 
             // Validate inputs
             if (desc.isEmpty() || desc.length > 1000) {
@@ -99,7 +99,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
             viewModel.uploadData(desc, imageUri)
             Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
 
-            binding.descTextInputEditText.text?.clear()
+            binding.descTIET.text?.clear()
         }
 
         viewModel.isLoading.observe(this) {

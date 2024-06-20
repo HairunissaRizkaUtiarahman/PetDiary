@@ -128,7 +128,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.productNameText.text = product.productName
         binding.forWhatPetType.text = product.petType
         binding.productCategory.text = product.category
-        binding.productDescriptionText.text = product.description
+        binding.productDescriptionText.text = product.desc
         binding.reviewAverage.text = String.format("%.1f", product.averageRating)
         binding.reviewersCount.text = product.reviewCount.toString()
         binding.percentageOfUser.text = "${product.percentageOfUsers}%"

@@ -120,7 +120,7 @@ class FillProductInformationViewModel : ViewModel() {
         }
     }
 
-    private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, description: String, imageUrl: String, petType: String, category: String) {
+    private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, desc: String, imageUrl: String, petType: String, category: String) {
         val productId = FirebaseFirestore.getInstance().collection("products").document().id
 
         val product = Product(
@@ -129,14 +129,14 @@ class FillProductInformationViewModel : ViewModel() {
             category = category,
             brandName = brandName,
             productName = productName,
-            description = description,
+            desc = desc,
             imageUrl = imageUrl,
             averageRating = 0.0,
             reviewCount = 0,
             percentageOfUsers = 0,
-            createdAt = Timestamp.now(),
-            productNameLower = productName.lowercase(),
-            brandNameLower = brandName.lowercase()
+            timeAdded = Timestamp.now(),
+            lowercaseProductName = productName.lowercase(),
+            lowercaseBrandName = brandName.lowercase()
         )
 
         FirebaseFirestore.getInstance().collection("products").document(productId)

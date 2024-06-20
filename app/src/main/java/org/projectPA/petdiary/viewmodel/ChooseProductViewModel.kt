@@ -60,7 +60,7 @@ class ChooseProductViewModel : ViewModel() {
         val sortedProducts = when (sortOption) {
             "popular" -> listToSort.sortedByDescending { it.reviewCount }
             "highest_rating" -> listToSort.sortedByDescending { it.averageRating }
-            "newest" -> listToSort.sortedByDescending { it.createdAt }
+            "newest" -> listToSort.sortedByDescending { it.timeAdded }
             else -> listToSort
         }
 
