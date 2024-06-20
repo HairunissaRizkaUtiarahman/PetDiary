@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -85,18 +86,30 @@ class AddPostCommunityActivity : AppCompatActivity() {
         binding.postBtn.setOnClickListener {
             val desc = binding.descTextInputEditText.text.toString().trim()
 
-            if (desc != "") {
-                viewModel.uploadData(desc, imageUri)
-                Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
-                binding.descTextInputEditText.text?.clear()
+            // Validate inputs
+            if (desc.isEmpty() || desc.length > 1000) {
+                Toast.makeText(
+                    this,
+                    "Description is required and must be less than 1000 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
+
+            viewModel.uploadData(desc, imageUri)
+            Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
+
+            binding.descTextInputEditText.text?.clear()
         }
 
         viewModel.isLoading.observe(this) {
             if (it) {
-                binding.postBtn.text = "UPLOADING..."
+                binding.postBtn.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
             } else {
-                binding.postBtn.text = "POST"
+                binding.postBtn.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+
                 startActivity(Intent(this, CommunityHomePageActivity::class.java))
                 finish()
             }

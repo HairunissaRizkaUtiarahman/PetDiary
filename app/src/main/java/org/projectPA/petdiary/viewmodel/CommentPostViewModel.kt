@@ -39,9 +39,9 @@ class CommentPostViewModel(private val postRepository: PostRepository) : ViewMod
         }
     }
 
-    fun uploadData(comment: String, postId: String) = viewModelScope.launch {
+    fun uploadData(commentText: String, postId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            postRepository.addCommentPost(comment, postId)
+            postRepository.addCommentPost(commentText, postId)
         }
     }
 }

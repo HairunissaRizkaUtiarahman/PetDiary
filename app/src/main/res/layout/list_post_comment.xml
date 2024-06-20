@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:text="@string/lorem_ipsum"
             android:textColor="@color/black"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:justificationMode="inter_word"/>
 
     </LinearLayout>
 

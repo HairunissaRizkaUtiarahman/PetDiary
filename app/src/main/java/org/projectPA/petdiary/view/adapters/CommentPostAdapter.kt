@@ -26,8 +26,8 @@ class CommentPostAdapter() : ListAdapter<CommentPost, CommentPostAdapter.ViewHol
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(commentPost: CommentPost) = with(binding) {
-            commentTV.text = commentPost.comment
-            timestampTV.text = commentPost.timestamp?.relativeTime() ?: ""
+            commentTV.text = commentPost.commentText
+            timestampTV.text = commentPost.timeCommented?.relativeTime() ?: ""
             nameTV.text = commentPost.user?.name
 
             Glide.with(profileImageIV.context).load(commentPost.user?.imageUrl)

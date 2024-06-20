@@ -18,7 +18,7 @@ import org.projectPA.petdiary.view.adapters.CommentPostMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.CommentPostMyProfileViewModel
 import org.projectPA.petdiary.viewmodel.PostMyProfileViewModel
 
-class CommentPostMyProfileFragmentFragment : Fragment() {
+class CommentPostMyProfileFragment : Fragment() {
     private lateinit var binding: FragmentCommentPostMyProfileFragmentBinding
     private lateinit var commentPostMyProfileAdapter: CommentPostMyProfileAdapter
 
@@ -38,7 +38,7 @@ class CommentPostMyProfileFragmentFragment : Fragment() {
             with(binding) {
                 descTV.text = it.desc
                 namePostTV.text = it.user?.name
-                timestampTV.text = it.timestamp?.relativeTime() ?: ""
+                timestampTV.text = it.timePosted?.relativeTime() ?: ""
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
                     .placeholder(R.drawable.image_blank).into(profileImageIV)

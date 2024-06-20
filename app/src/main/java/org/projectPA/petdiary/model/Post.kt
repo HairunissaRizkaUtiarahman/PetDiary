@@ -8,7 +8,7 @@ data class Post(
     @get:Exclude val id: String? = "",
     val desc: String? = "",
     val imageUrl: String? = "",
-    val timestamp: Timestamp? = Timestamp.now(),
+    val timePosted: Timestamp? = Timestamp.now(),
     val isDeleted: Boolean? = false,
     val like: Like? = Like(),
     val likeCount: Int? = 0,

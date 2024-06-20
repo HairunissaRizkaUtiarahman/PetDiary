@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_post_my_profile" />
     <fragment
         android:id="@+id/commentPostMyFragmentFragment"
-        android:name="org.projectPA.petdiary.view.fragment.myprofile.CommentPostMyProfileFragmentFragment"
+        android:name="org.projectPA.petdiary.view.fragment.myprofile.CommentPostMyProfileFragment"
         android:label="fragment_comment_post_my_fragment"
         tools:layout="@layout/fragment_comment_post_my_profile_fragment" />
     <fragment

@@ -33,7 +33,7 @@ class PostRepository(
             val postMap = hashMapOf(
                 "userId" to userId,
                 "desc" to desc,
-                "timestamp" to Timestamp.now(),
+                "timePosted" to Timestamp.now(),
                 "isDeleted" to false,
                 "imageUrl" to ""
             )
@@ -46,7 +46,7 @@ class PostRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
-            db.collection("post").add(postMap).await()
+            db.collection("posts").add(postMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add post data", e)
         } catch (e: StorageException) {
@@ -59,19 +59,19 @@ class PostRepository(
         return try {
             val currentUserID = auth.currentUser!!.uid
 
-            db.collection("post").whereEqualTo("isDeleted", false)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("posts").whereEqualTo("isDeleted", false)
+                .orderBy("timePosted", Query.Direction.DESCENDING)
                 .limit(10)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
                         val like = db
-                            .collection("like")
+                            .collection("likes")
                             .document("${currentUserID}_${it.id}").get().await()
                             .toObject(Like::class.java)
 
@@ -87,17 +87,17 @@ class PostRepository(
     // Query Get Post
     suspend fun getPost(postId: String): Post? {
         return try {
-            val post = db.collection("post")
+            val post = db.collection("posts")
                 .document(postId)
                 .get().await()
                 .let {
                     val userId = it.get("userId") as String? ?: ""
                     val user = db
-                        .collection("user")
+                        .collection("users")
                         .document(userId).get().await()
                         .toObject(User::class.java)?.copy(id = userId)
                     val like = db
-                        .collection("like")
+                        .collection("likes")
                         .document("${userId}_${it.id}").get().await()
                         .toObject(Like::class.java)
 
@@ -117,7 +117,7 @@ class PostRepository(
             val petMap = mapOf(
                 "isDeleted" to true
             )
-            db.collection("post").document(postId).update(petMap).await()
+            db.collection("posts").document(postId).update(petMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to delete post", e)
         }
@@ -128,18 +128,18 @@ class PostRepository(
         return try {
             val currentUserID = auth.currentUser!!.uid
             val userId = auth.currentUser!!.uid
-            db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("posts").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
+                .orderBy("timePosted", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
                         val like = db
-                            .collection("like")
+                            .collection("likes")
                             .document("${currentUserID}_${it.id}").get().await()
                             .toObject(Like::class.java)
 
@@ -156,18 +156,18 @@ class PostRepository(
     suspend fun getPostsUserProfile(userId: String): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
-            db.collection("post").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
-                .orderBy("timestamp", Query.Direction.DESCENDING)
+            db.collection("posts").whereEqualTo("userId", userId).whereEqualTo("isDeleted", false)
+                .orderBy("timePosted", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
                         val like = db
-                            .collection("like")
+                            .collection("likes")
                             .document("${currentUserID}_${it.id}").get().await()
                             .toObject(Like::class.java)
 
@@ -181,17 +181,17 @@ class PostRepository(
     }
 
     // Query Add Comment to Post
-    suspend fun addCommentPost(comment: String, postId: String) {
+    suspend fun addCommentPost(commentText: String, postId: String) {
         try {
             val userId = auth.currentUser!!.uid
             val postCommentMap = mapOf(
-                "comment" to comment,
+                "commentText" to commentText,
                 "userId" to userId,
-                "timestamp" to Timestamp.now()
+                "timeCommented" to Timestamp.now()
             )
-            db.collection("post").document(postId).update("commentCount", FieldValue.increment(1))
+            db.collection("posts").document(postId).update("commentCount", FieldValue.increment(1))
                 .await()
-            db.collection("post").document(postId).collection("comment").add(postCommentMap).await()
+            db.collection("posts").document(postId).collection("comments").add(postCommentMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to get post data", e)
         }
@@ -200,13 +200,13 @@ class PostRepository(
     // Query Get Comment from Post
     suspend fun getCommentPost(postId: String): Flow<List<CommentPost>> {
         return try {
-            db.collection("post").document(postId).collection("comment")
-                .orderBy("timestamp", Query.Direction.ASCENDING)
+            db.collection("posts").document(postId).collection("comments")
+                .orderBy("timeCommented", Query.Direction.ASCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
@@ -223,8 +223,8 @@ class PostRepository(
     suspend fun setLike(currentUserID: String, postId: String) {
         try {
             val docId = "${currentUserID}_${postId}"
-            val likeRef = db.collection("like").document(docId)
-            val postRef = db.collection("post").document(postId)
+            val likeRef = db.collection("likes").document(docId)
+            val postRef = db.collection("posts").document(postId)
             if (!likeRef.get().await().exists()) {
                 postRef.update("likeCount", FieldValue.increment(1)).await()
                 likeRef.set(mapOf("id" to docId)).await()
@@ -242,17 +242,17 @@ class PostRepository(
         return try {
             val currentUserID = auth.currentUser!!.uid
 
-            db.collection("post")
+            db.collection("posts")
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {
                         val userId = it.get("userId") as String? ?: ""
                         val user = db
-                            .collection("user")
+                            .collection("users")
                             .document(userId).get()
                             .await().toObject(User::class.java)?.copy(id = userId)
 
                         val like = db
-                            .collection("like")
+                            .collection("likes")
                             .document("${currentUserID}_${it.id}").get().await()
                             .toObject(Like::class.java)
 

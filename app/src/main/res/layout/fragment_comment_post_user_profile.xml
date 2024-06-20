@@ -256,7 +256,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/comment_TIL"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -269,17 +268,15 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/write_comment"
                 android:inputType="textMultiLine" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <ImageView
             android:id="@+id/send_Btn"
-            android:layout_width="wrap_content"
-            android:layout_height="65dp"
+            android:layout_width="65dp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:paddingHorizontal="15dp"
-            app:icon="@drawable/ic_send"
-            app:iconTint="@color/white" />
+            android:src="@drawable/ic_send_background"
+            app:shapeAppearanceOverlay="@style/circulas" />
 
     </RelativeLayout>
 

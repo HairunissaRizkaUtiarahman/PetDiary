@@ -38,7 +38,7 @@ class CommentPostFragment : Fragment() {
             with(binding) {
                 descTV.text = it.desc
                 namePostTV.text = it.user?.name
-                timestampTV.text = it.timestamp?.relativeTime() ?: ""
+                timestampTV.text = it.timePosted?.relativeTime() ?: ""
 
                 Glide.with(profileImageIV.context).load(it.user?.imageUrl)
                     .placeholder(R.drawable.image_profile).into(profileImageIV)
@@ -97,13 +97,22 @@ class CommentPostFragment : Fragment() {
         commentPostViewModel.loadData(postViewModel.post.value?.id ?: "")
 
         binding.sendBtn.setOnClickListener {
-            val comment = binding.commentTIET.text.toString().trim()
+            val commentText = binding.commentTIET.text.toString().trim()
 
-            if (comment != "") {
-                commentPostViewModel.uploadData(comment, postViewModel.post.value?.id ?: "")
-                Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
-                binding.commentTIET.text?.clear()
+            // Validate inputs
+            if (commentText.isEmpty() || commentText.length > 1000) {
+                Toast.makeText(
+                    requireContext(),
+                    "Comment is required and must be less than 1000 characters",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
             }
+
+            commentPostViewModel.uploadData(commentText, postViewModel.post.value?.id ?: "")
+            Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
+
+            binding.commentTIET.text?.clear()
         }
 
         binding.topAppBar.setNavigationOnClickListener {

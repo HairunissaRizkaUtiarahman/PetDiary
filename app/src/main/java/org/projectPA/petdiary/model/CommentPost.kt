@@ -7,7 +7,7 @@ import java.io.Serializable
 
 data class CommentPost(
     @get:Exclude val id: String? = "",
-    val comment: String? = "",
-    val timestamp: Timestamp? = Timestamp.now(),
+    val commentText: String? = "",
+    val timeCommented: Timestamp? = Timestamp.now(),
     @get:Exclude val user: User? = User()
 ) : Serializable
