@@ -27,7 +27,6 @@ class ChangePasswordSettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         auth = FirebaseAuth.getInstance()
 
         binding.changePasswordBtn.setOnClickListener {
@@ -39,7 +38,7 @@ class ChangePasswordSettingFragment : Fragment() {
             if (!newPassword.matches(passwordRegex.toRegex())) {
                 Toast.makeText(
                     requireContext(),
-                    "Password must be 4-8 characters long and contain both letters and numbers",
+                    "Password must be 6-12 characters long and contain both letters and numbers",
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener

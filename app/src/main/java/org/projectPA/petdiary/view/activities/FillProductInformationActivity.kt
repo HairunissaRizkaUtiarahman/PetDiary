@@ -58,7 +58,7 @@ class FillProductInformationActivity : AppCompatActivity() {
         binding = ActivityFillProductInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backButton.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             onBackPressed()
         }
 
