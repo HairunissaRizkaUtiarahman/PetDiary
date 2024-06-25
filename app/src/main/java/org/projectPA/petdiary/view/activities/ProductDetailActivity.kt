@@ -138,7 +138,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         reviewAdapter =
-            ReviewAdapter(emptyList(), this, productId, binding.productNameText.text.toString())
+            ReviewAdapter(emptyList(), this, productId)
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }

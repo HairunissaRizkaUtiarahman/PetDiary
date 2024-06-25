@@ -73,10 +73,10 @@ class GiveReviewViewModel : ViewModel() {
         if (currentUser != null) {
             val reviewRef = firestore.collection("reviews").document()
             review.id = reviewRef.id
-
             reviewRef.set(review)
                 .addOnSuccessListener {
                     Log.d("GiveReviewViewModel", "Review successfully added to Firestore")
+                    updateProductStatistics(productId)  // Update statistics after adding a review
                     val intent = Intent(context, ProductDetailActivity::class.java).apply {
                         putExtra("productId", productId)
                         putExtra("sourceActivity", sourceActivity)
@@ -90,4 +90,32 @@ class GiveReviewViewModel : ViewModel() {
             Log.e("GiveReviewViewModel", "No authenticated user found")
         }
     }
+
+    fun updateProductStatistics(productId: String) {
+        val reviewsRef = firestore.collection("reviews").whereEqualTo("productId", productId)
+        reviewsRef.get().addOnSuccessListener { documents ->
+            val reviews = documents.toObjects(Review::class.java)
+            val averageRating = reviews.map { it.rating.toDouble() }.average()
+            val reviewCount = reviews.size
+            val recommendedCount = reviews.count { it.recommend }
+            val percentageOfUsers = if (reviewCount > 0) (recommendedCount * 100 / reviewCount) else 0
+
+            val productRef = firestore.collection("products").document(productId)
+            productRef.update(
+                mapOf(
+                    "averageRating" to averageRating,
+                    "reviewCount" to reviewCount,
+                    "percentageOfUsers" to percentageOfUsers
+                )
+            ).addOnSuccessListener {
+                Log.d("ProductRepository", "Product stats updated successfully.")
+            }.addOnFailureListener { e ->
+                Log.e("ProductRepository", "Error updating product stats: ", e)
+            }
+        }
+    }
 }
+
+
+
+

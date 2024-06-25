@@ -18,8 +18,7 @@ import org.projectPA.petdiary.view.activities.DetailReviewActivity
 class ReviewAdapter(
     private var reviews: List<Review>,
     private val context: Context,
-    private val productId: String,
-    private val productName: String
+    private val productId: String
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     private val firestore = FirebaseFirestore.getInstance()

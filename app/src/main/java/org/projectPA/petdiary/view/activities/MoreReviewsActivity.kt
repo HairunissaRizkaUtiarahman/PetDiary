@@ -49,7 +49,7 @@ class MoreReviewsActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(productId: String, productName: String) {
-        reviewAdapter = ReviewAdapter(emptyList(), this, productId, productName)
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId)
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
     }
