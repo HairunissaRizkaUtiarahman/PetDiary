@@ -2,6 +2,7 @@ package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,17 +17,29 @@ class HomepageArticleActivity : AppCompatActivity() {
     private val viewModel: ArticleViewModel by viewModels()
     private lateinit var binding: ActivityArticleHomepageBinding
     private lateinit var articleAdapter: ArticleAdapter
+    private var isModerator: Boolean = false // Flag to check moderator status
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityArticleHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Check if user is moderator
+        isModerator = checkModeratorStatus()
+
         setupRecyclerView()
         setupListeners()
         observeArticles()
 
         viewModel.fetchArticles()
+    }
+
+    private fun checkModeratorStatus(): Boolean {
+        // Replace with actual logic to check moderator status from user data or preferences
+        // For example, if using Firebase, you might check the current user's data
+        // This is a placeholder for actual implementation
+        // Assuming isModerator flag is set elsewhere based on user authentication and data retrieval
+        return true // Placeholder logic, replace with actual check
     }
 
     private fun setupRecyclerView() {
@@ -41,7 +54,6 @@ class HomepageArticleActivity : AppCompatActivity() {
             adapter = articleAdapter
         }
     }
-
 
     private fun setupListeners() {
         binding.searchButton.setOnClickListener {
@@ -70,6 +82,16 @@ class HomepageArticleActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener {
             onBackPressed()
+        }
+
+        // Show add article button only if user is moderator
+        if (isModerator) {
+            binding.addArticleOnlyForAdminButton.visibility = View.VISIBLE
+            binding.addArticleOnlyForAdminButton.setOnClickListener {
+                // Handle click event for adding articles (admin only action)
+            }
+        } else {
+            binding.addArticleOnlyForAdminButton.visibility = View.GONE
         }
     }
 

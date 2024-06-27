@@ -64,7 +64,7 @@ class DetailReviewActivity : AppCompatActivity() {
         binding.viewAllCommentsButton.setOnClickListener {
             if (binding.listComment.visibility == View.VISIBLE) {
                 binding.listComment.visibility = View.GONE
-                binding.viewallTextview.text = "View all"
+                binding.viewallTextview.text = "View"
                 binding.commentCount.visibility = View.VISIBLE
                 binding.commentTextview.text = "comment"
                 binding.layoutCommentRL.visibility = View.GONE

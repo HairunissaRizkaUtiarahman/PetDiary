@@ -11,5 +11,6 @@ data class User(
     val gender: String? = "",
     val birthdate: String? = "",
     val bio: String? = "",
-    val imageUrl: String? = ""
+    val imageUrl: String? = "",
+    val isModerator: Boolean = false
 ) : Serializable
