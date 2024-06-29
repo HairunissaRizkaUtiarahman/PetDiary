@@ -166,6 +166,11 @@
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
+            android:name=".view.activities.ActivityPreviewResultArticle"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -99,7 +99,9 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
-    androidTestImplementation("androidx.test:orchestrator:1.4.1") // Add orchestrator for better test isolation
+    androidTestImplementation("androidx.test:orchestrator:1.4.1")
+
+    implementation ("jp.wasabeef:richeditor-android:2.0.0")
 }
 
 configurations.all {

@@ -1,8 +1,10 @@
 package org.projectPA.petdiary.view.activities
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -38,24 +40,26 @@ class ActivityPreviewResultArticle : AppCompatActivity() {
         }
     }
 
-
     private fun displayArticleDetails(article: Article) {
         binding.tittleArticle.text = article.tittle
         binding.articleCategory.text = article.category
         binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.date)
-        binding.articleBody.text = article.body
+
+        binding.articleBody.settings.javaScriptEnabled = true
+        binding.articleBody.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
+                val url = request.url.toString()
+                if (Uri.parse(url).host != null) {
+                    return false // Allow the URL to be loaded within the WebView
+                }
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                return true
+            }
+        }
+        binding.articleBody.loadDataWithBaseURL(null, article.body, "text/html", "UTF-8", null)
 
         Glide.with(this)
             .load(article.imageUrl)
             .into(binding.articleImage)
-    }
-
-    private fun publishArticle(article: Article) {
-        viewModel.saveArticleToFirestore(article, onSuccess = {
-            Toast.makeText(this, "Article published successfully", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, HomepageArticleActivity::class.java))
-        }, onFailure = { e ->
-            Toast.makeText(this, "Failed to publish article: ${e.message}", Toast.LENGTH_SHORT).show()
-        })
     }
 }

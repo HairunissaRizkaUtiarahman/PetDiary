@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -75,22 +77,26 @@ class ArticleActivity : AppCompatActivity() {
     }
 
     private fun displayArticleDetails(article: Article) {
-        val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
-        with(binding) {
-            Glide.with(this@ArticleActivity).load(article.imageUrl).into(articleImage)
-            tittleArticle.text = article.tittle
-            articleCategory.text = article.category
-            articleDate.text = dateFormatter.format(article.date)
-            articleBody.text = article.body
+        binding.tittleArticle.text = article.tittle
+        binding.articleCategory.text = article.category
+        binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.date)
 
-            linkSumberArticle.text = article.sourceUrl
-            linkSumberArticle.setOnClickListener {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(article.sourceUrl))
-                startActivity(intent)
+        binding.articleBody.settings.javaScriptEnabled = true
+        binding.articleBody.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
+                val url = request.url.toString()
+                if (Uri.parse(url).host != null) {
+                    return false // Allow the URL to be loaded within the WebView
+                }
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                return true
             }
-
-            Log.d("ArticleActivity", "Displayed article details: $article")
         }
+        binding.articleBody.loadDataWithBaseURL(null, article.body, "text/html", "UTF-8", null)
+
+        Glide.with(this)
+            .load(article.imageUrl)
+            .into(binding.articleImage)
     }
 
     private fun shareArticle() {
