@@ -91,7 +91,6 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
             toggleButtonState(binding.subheadingTextButton, isSubheadingActive)
             toggleButtonState(binding.headingTextButton, isHeadingActive)
             toggleButtonState(binding.bodyTextButton, isBodyActive)
-
         }
 
         binding.bodyTextButton.setOnClickListener {
@@ -107,7 +106,6 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         binding.boldTextButton.setOnClickListener {
             isBoldActive = !isBoldActive
             toggleButtonState(binding.boldTextButton, isBoldActive)
-
         }
 
         binding.italicTextButton.setOnClickListener {
@@ -122,16 +120,28 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
 
         binding.listBulletPointsButton.setOnClickListener {
             isBulletPointsActive = !isBulletPointsActive
+            isNumberingActive = false
             toggleButtonState(binding.listBulletPointsButton, isBulletPointsActive)
+            toggleButtonState(binding.listNumberPoints, isNumberingActive)
             if (isBulletPointsActive) {
+                removeNumberedPoints(binding.inputBodyField)
                 addBulletPointToCurrentLine(binding.inputBodyField)
+            } else {
+                removeBulletPoints(binding.inputBodyField)
             }
         }
 
         binding.listNumberPoints.setOnClickListener {
             isNumberingActive = !isNumberingActive
-            insertNumberedPoints(binding.inputBodyField)
+            isBulletPointsActive = false
             toggleButtonState(binding.listNumberPoints, isNumberingActive)
+            toggleButtonState(binding.listBulletPointsButton, isBulletPointsActive)
+            if (isNumberingActive) {
+                removeBulletPoints(binding.inputBodyField)
+                insertNumberedPoints(binding.inputBodyField)
+            } else {
+                removeNumberedPoints(binding.inputBodyField)
+            }
         }
 
         binding.decreaseIndent2.setOnClickListener {
@@ -159,9 +169,7 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.categoryDropdown.adapter = adapter
 
-
         binding.publishButton.isEnabled = false
-
 
         binding.categoryDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
@@ -210,7 +218,6 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 val start = binding.inputBodyField.selectionStart
                 val end = binding.inputBodyField.selectionEnd
-
 
                 if (start in 1..end) {
                     applyActiveStyles(s, start, end)
@@ -281,6 +288,8 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         val lineEnd = findLineEnd(editText.text, start)
         if (!editText.text.substring(lineStart, lineEnd).startsWith("• ")) {
             editText.text.insert(lineStart, "• ")
+        } else if (editText.text.substring(lineStart, lineEnd).matches(Regex("^\\d+\\.\\s.*"))) {
+            editText.text.replace(lineStart, lineEnd, "• " + editText.text.substring(lineStart + editText.text.substring(lineStart, lineEnd).indexOf(' ') + 1, lineEnd))
         }
     }
 
@@ -292,15 +301,40 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
 
     private fun insertNumberedPoints(editText: EditText) {
         val start = editText.selectionStart
-        val lines = editText.text.substring(0, start).split("\n")
-        val lastLine = lines.lastOrNull()
-        val nextNumber = if (lastLine != null && lastLine.matches(Regex("^\\d+\\.\\s.*"))) {
-            val number = lastLine.substringBefore('.').toIntOrNull() ?: 0
-            number + 1
+        val lineStart = findLineStart(editText.text, start)
+        val lineEnd = findLineEnd(editText.text, start)
+        if (editText.text.substring(lineStart, lineEnd).startsWith("• ")) {
+            editText.text.replace(lineStart, lineEnd, "1. " + editText.text.substring(lineStart + 2, lineEnd))
         } else {
-            1
+            val lines = editText.text.substring(0, start).split("\n")
+            val lastLine = lines.lastOrNull()
+            val nextNumber = if (lastLine != null && lastLine.matches(Regex("^\\d+\\.\\s.*"))) {
+                val number = lastLine.substringBefore('.').toIntOrNull() ?: 0
+                number + 1
+            } else {
+                1
+            }
+            editText.text.insert(lineStart, "$nextNumber. ")
         }
-        editText.text.insert(start, "$nextNumber. ")
+    }
+
+    private fun removeBulletPoints(editText: EditText) {
+        val start = editText.selectionStart
+        val lineStart = findLineStart(editText.text, start)
+        val lineEnd = findLineEnd(editText.text, start)
+        if (editText.text.substring(lineStart, lineEnd).startsWith("• ")) {
+            editText.text.replace(lineStart, lineEnd, editText.text.substring(lineStart + 2, lineEnd))
+        }
+    }
+
+    private fun removeNumberedPoints(editText: EditText) {
+        val start = editText.selectionStart
+        val lineStart = findLineStart(editText.text, start)
+        val lineEnd = findLineEnd(editText.text, start)
+        if (editText.text.substring(lineStart, lineEnd).matches(Regex("^\\d+\\.\\s.*"))) {
+            val indexOfSpace = editText.text.substring(lineStart, lineEnd).indexOf(' ')
+            editText.text.replace(lineStart, lineEnd, editText.text.substring(lineStart + indexOfSpace + 1, lineEnd))
+        }
     }
 
     private fun continueNumbering(editText: EditText) {
@@ -312,7 +346,7 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
             val number = lastLine.substringBefore('.').toIntOrNull() ?: 0
             val nextNumber = number + 1
             editText.text.insert(start, "\n$nextNumber. ")
-            editText.setSelection(start + nextNumber.toString().length + 2)
+            editText.setSelection(start + nextNumber.toString().length + 3)
         }
     }
 
