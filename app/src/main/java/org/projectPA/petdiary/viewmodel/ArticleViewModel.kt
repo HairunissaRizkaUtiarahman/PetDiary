@@ -1,10 +1,10 @@
 package org.projectPA.petdiary.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -23,8 +23,12 @@ class ArticleViewModel : ViewModel() {
     private val _relatedArticles = MutableLiveData<List<Article>>()
     val relatedArticles: LiveData<List<Article>> get() = _relatedArticles
 
+    private val _isModerator = MutableLiveData<Boolean>()
+    val isModerator: LiveData<Boolean> get() = _isModerator
+
     init {
         fetchArticles()
+        checkModeratorStatus()
     }
 
     fun fetchArticles() {
@@ -41,6 +45,7 @@ class ArticleViewModel : ViewModel() {
         }
     }
 
+
     fun fetchArticleById(articleId: String) {
         viewModelScope.launch {
             val article = try {
@@ -48,10 +53,8 @@ class ArticleViewModel : ViewModel() {
                     .document(articleId)
                     .get().await().toObject(Article::class.java)
             } catch (e: Exception) {
-                Log.e("ArticleViewModel", "Error fetching article", e)
                 null
             }
-            Log.d("ArticleViewModel", "Fetched article: $article")
             _articleDetails.postValue(article)
         }
     }
@@ -63,7 +66,7 @@ class ArticleViewModel : ViewModel() {
                     .whereEqualTo("category", category)
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                            .filter { it.id != currentArticleId } // Filter out the current article
+                            .filter { it.id != currentArticleId }
                     }
             } catch (e: Exception) {
                 emptyList()
@@ -78,7 +81,7 @@ class ArticleViewModel : ViewModel() {
                 db.collection("articles")
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                            .filter { it.tittle.contains(query, ignoreCase = true) } // Case-insensitive search
+                            .filter { it.tittle.contains(query, ignoreCase = true) }
                     }
             } catch (e: Exception) {
                 emptyList()
@@ -93,7 +96,7 @@ class ArticleViewModel : ViewModel() {
                 db.collection("articles")
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                    }.shuffled().take(10) // Randomly shuffle and take 10 articles
+                    }.shuffled().take(10)
             } catch (e: Exception) {
                 emptyList()
             }
@@ -113,6 +116,32 @@ class ArticleViewModel : ViewModel() {
                 emptyList()
             }
             _articles.postValue(articles)
+        }
+    }
+
+    fun saveArticleToFirestore(article: Article, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        viewModelScope.launch {
+            try {
+                db.collection("articles").document(article.id).set(article).await()
+                onSuccess()
+            } catch (e: Exception) {
+                onFailure(e)
+            }
+        }
+    }
+
+    private fun checkModeratorStatus() {
+        viewModelScope.launch {
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            currentUser?.let { user ->
+                val isModerator = try {
+                    val document = db.collection("users").document(user.uid).get().await()
+                    document.getBoolean("isModerator") ?: false
+                } catch (e: Exception) {
+                    false
+                }
+                _isModerator.postValue(isModerator)
+            } ?: _isModerator.postValue(false)
         }
     }
 }

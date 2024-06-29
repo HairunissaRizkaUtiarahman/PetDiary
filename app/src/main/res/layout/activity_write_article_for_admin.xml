@@ -68,12 +68,182 @@
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/upload_image_article"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="330dp"
                     android:layout_gravity="center"
+                    android:background="@drawable/image_blank"
                     android:contentDescription="@string/image_post_cd"
                     android:scaleType="centerCrop"
-                    app:shapeAppearanceOverlay="@style/circulas"
-                    app:srcCompat="@drawable/background_add_photo" />
+                    app:shapeAppearanceOverlay="@style/circulas" />
+
+                <Button
+                    android:id="@+id/upload_photo_button"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="15dp"
+                    android:gravity="center"
+                    android:text="@string/select_image"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="12dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/heading_text_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="6dp"
+                            android:text="Heading"
+                            android:textColor="@color/black"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/subheading_text_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="6dp"
+                            android:text="Subheading"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/body_text_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto"
+                            android:padding="6dp"
+                            android:text="Body"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="1dp">
+
+                        <TextView
+                            android:id="@+id/bold_text_button"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="B"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/italic_text_button"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="I"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="25sp"
+                            android:textStyle="bold|italic" />
+
+                        <TextView
+                            android:id="@+id/underline_text_button"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="U"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/list_bullet_points_button"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:padding="3dp"
+                            app:srcCompat="@drawable/icon_list_bullet_points" />
+
+                        <ImageView
+                            android:id="@+id/list_number_points"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:padding="3dp"
+                            app:srcCompat="@drawable/icon_list_numbers" />
+
+                        <ImageView
+                            android:id="@+id/decrease_indent2"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:padding="4dp"
+                            app:srcCompat="@drawable/icon_tab_back" />
+
+                        <ImageView
+                            android:id="@+id/increase_indent3"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:padding="4dp"
+                            android:rotation="180"
+                            app:srcCompat="@drawable/icon_tab_back" />
+
+                        <ImageView
+                            android:id="@+id/make_text_to_link_button"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginEnd="5dp"
+                            android:background="@drawable/background_unselected_format_text"
+                            android:padding="3dp"
+                            android:rotation="180"
+                            app:srcCompat="@drawable/baseline_add_link_24" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <EditText
                     android:id="@+id/input_tittle_field"
@@ -89,9 +259,22 @@
                     android:hint="Write tittle..."
                     android:inputType="text"
                     android:outlineProvider="none"
-                    android:textColor="@color/black_grey"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_grey"
                     android:textSize="26sp"
                     android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/categoryDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/backgorund_dropdown"
+                    android:backgroundTintMode="src_in"
+                    android:hapticFeedbackEnabled="false"
+                    android:visibility="visible" />
 
                 <EditText
                     android:id="@+id/input_body_field"
@@ -105,165 +288,16 @@
                     android:ems="10"
                     android:fontFamily="@font/roboto"
                     android:gravity="top"
-                    android:hint="Write your content... \n \n \n"
+                    android:hint="Write your content... \n \n \n \n \n \n \n \n \n\n \n \n"
                     android:inputType="text|textMultiLine"
                     android:outlineProvider="none"
                     android:textColor="@color/black_grey"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:background="@drawable/background_icon_home"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Format"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/heading_text_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="6dp"
-                    android:text="Heading"
-                    android:textColor="@color/black"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/subheading_text_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="6dp"
-                    android:text="Subheading"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/body_text_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_medium"
-                    android:padding="6dp"
-                    android:text="Body"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="1dp">
-
-                <TextView
-                    android:id="@+id/bold_text_button"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="B"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/italic_text_button"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="I"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold|italic" />
-
-                <TextView
-                    android:id="@+id/underline_text_button"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/background_grey"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="U"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textColor="@color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/list_bullet_points_button"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/icon_list_bullet_points" />
-
-                <ImageView
-                    android:id="@+id/list_number_points"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/icon_list_numbers" />
-
-                <ImageView
-                    android:id="@+id/decrease_indent2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:padding="3dp"
-                    app:srcCompat="@drawable/icon_tab_back" />
-
-                <ImageView
-                    android:id="@+id/increase_indent3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="@drawable/background_grey"
-                    android:padding="3dp"
-                    android:rotation="180"
-                    app:srcCompat="@drawable/icon_tab_back" />
-
-            </LinearLayout>
-
-        </LinearLayout>
     </FrameLayout>
 
 
