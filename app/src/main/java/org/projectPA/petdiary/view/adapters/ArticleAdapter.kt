@@ -22,13 +22,13 @@ class ArticleAdapter(
             with(binding) {
                 val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
                 Glide.with(context).load(article.imageUrl).into(imageArticle)
-                tittleArticle.text = article.tittle
+                tittleArticle.text = article.title
                 categoryArticle.text = article.category
                 articleDate.text =
-                    dateFormatter.format(article.date)
+                    dateFormatter.format(article.timeAdded)
 
                 root.setOnClickListener {
-                    onArticleClick(article.id)
+                    onArticleClick(article.articleId)
                 }
             }
         }

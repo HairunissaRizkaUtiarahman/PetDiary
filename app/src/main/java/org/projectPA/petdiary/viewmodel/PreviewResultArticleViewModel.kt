@@ -23,7 +23,7 @@ class PreviewResultArticleViewModel : ViewModel() {
     fun saveArticleToFirestore(article: Article, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch {
             try {
-                db.collection("articles").document(article.id).set(article).await()
+                db.collection("articles").document(article.articleId).set(article).await()
                 onSuccess()
             } catch (e: Exception) {
                 onFailure(e)

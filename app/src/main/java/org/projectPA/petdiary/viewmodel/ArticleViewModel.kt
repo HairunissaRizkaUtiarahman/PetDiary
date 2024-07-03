@@ -69,7 +69,7 @@ class ArticleViewModel : ViewModel() {
                     .whereEqualTo("category", category)
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                            .filter { it.id != currentArticleId }
+                            .filter { it.articleId != currentArticleId }
                     }
             } catch (e: Exception) {
                 emptyList()
@@ -84,7 +84,7 @@ class ArticleViewModel : ViewModel() {
                 db.collection("articles")
                     .get().await().let { querySnapshot ->
                         querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                            .filter { it.tittle.contains(query, ignoreCase = true) }
+                            .filter { it.title.contains(query, ignoreCase = true) }
                     }
             } catch (e: Exception) {
                 emptyList()
@@ -125,7 +125,7 @@ class ArticleViewModel : ViewModel() {
     fun uploadImageAndSaveArticle(uri: Uri, article: Article, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch {
             try {
-                val storageRef = storage.reference.child("articles/${UUID.randomUUID()}")
+                val storageRef = storage.reference.child("images").child("pictureArticle").child(System.currentTimeMillis().toString())
                 val uploadTask = storageRef.putFile(uri).await()
                 val downloadUrl = uploadTask.storage.downloadUrl.await()
                 article.imageUrl = downloadUrl.toString()
@@ -139,7 +139,7 @@ class ArticleViewModel : ViewModel() {
     fun saveArticleToFirestore(article: Article, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
         viewModelScope.launch {
             try {
-                db.collection("articles").document(article.id).set(article).await()
+                db.collection("articles").document(article.articleId).set(article).await()
                 onSuccess()
             } catch (e: Exception) {
                 onFailure(e)

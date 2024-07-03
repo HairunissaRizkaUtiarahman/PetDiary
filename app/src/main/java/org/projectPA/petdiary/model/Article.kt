@@ -4,11 +4,11 @@ import java.io.Serializable
 import java.util.Date
 
 data class Article(
-    val id: String = "",
-    val tittle: String = "",
+    val articleId: String = "",
+    val title: String = "",
     val category: String = "",
-    val date: Date = Date(),
-    val body: String = "",
+    val timeAdded: Date = Date(),
+    val articleText: String = "",
     var imageUrl: String = "",
     val sourceUrl: String = ""
 ) : Serializable

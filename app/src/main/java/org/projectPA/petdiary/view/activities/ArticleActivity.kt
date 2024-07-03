@@ -78,9 +78,9 @@ class ArticleActivity : AppCompatActivity() {
     }
 
     private fun displayArticleDetails(article: Article) {
-        binding.tittleArticle.text = article.tittle
+        binding.tittleArticle.text = article.title
         binding.articleCategory.text = article.category
-        binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.date)
+        binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.timeAdded)
 
         binding.articleBody.settings.javaScriptEnabled = true
         binding.articleBody.webViewClient = object : WebViewClient() {
@@ -93,7 +93,7 @@ class ArticleActivity : AppCompatActivity() {
                 return true
             }
         }
-        binding.articleBody.loadDataWithBaseURL(null, article.body, "text/html", "UTF-8", null)
+        binding.articleBody.loadDataWithBaseURL(null, article.articleText, "text/html", "UTF-8", null)
 
         Glide.with(this)
             .load(article.imageUrl)
@@ -103,10 +103,10 @@ class ArticleActivity : AppCompatActivity() {
     private fun shareArticle() {
         val article = viewModel.articleDetails.value
         article?.let {
-            val plainTextBody = Jsoup.parse(it.body).text()
+            val plainTextBody = Jsoup.parse(it.articleText).text()
             val shareIntent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Check out this article from PetDiary App: ${it.tittle}\n\n$plainTextBody")
+                putExtra(Intent.EXTRA_TEXT, "Check out this article from PetDiary App: ${it.title}\n\n$plainTextBody")
                 type = "text/plain"
             }
             startActivity(Intent.createChooser(shareIntent, "Share article via"))

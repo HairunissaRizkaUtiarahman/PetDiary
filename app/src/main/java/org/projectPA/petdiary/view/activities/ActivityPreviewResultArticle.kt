@@ -41,9 +41,9 @@ class ActivityPreviewResultArticle : AppCompatActivity() {
     }
 
     private fun displayArticleDetails(article: Article) {
-        binding.tittleArticle.text = article.tittle
+        binding.tittleArticle.text = article.title
         binding.articleCategory.text = article.category
-        binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.date)
+        binding.articleDate.text = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(article.timeAdded)
 
         binding.articleBody.settings.javaScriptEnabled = true
         binding.articleBody.webViewClient = object : WebViewClient() {
@@ -56,7 +56,7 @@ class ActivityPreviewResultArticle : AppCompatActivity() {
                 return true
             }
         }
-        binding.articleBody.loadDataWithBaseURL(null, article.body, "text/html", "UTF-8", null)
+        binding.articleBody.loadDataWithBaseURL(null, article.articleText, "text/html", "UTF-8", null)
 
         Glide.with(this)
             .load(article.imageUrl)

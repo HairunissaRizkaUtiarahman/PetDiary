@@ -187,12 +187,12 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         val category = binding.categoryDropdown.selectedItem.toString()
 
         return Article(
-            id = UUID.randomUUID().toString(),
-            tittle = title,
+            articleId = UUID.randomUUID().toString(),
+            title = title,
             category = category,
-            date = Date(),
-            body = body,
-            imageUrl = "", // This will be updated after the image is uploaded
+            timeAdded = Date(),
+            articleText = body,
+            imageUrl = "",
             sourceUrl = ""
         )
     }
@@ -204,7 +204,7 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         }
 
         val article = createArticle().apply {
-            imageUrl = selectedImageUri.toString() // Preview with local URI
+            imageUrl = selectedImageUri.toString()
         }
 
         val intent = Intent(this, ActivityPreviewResultArticle::class.java)
