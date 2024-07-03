@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
@@ -24,7 +25,7 @@ class PetRepository(
     private val storageRef: FirebaseStorage
 ) {
 
-
+    // Function to add a new pet
     suspend fun addPet(
         name: String,
         type: String,
@@ -34,10 +35,10 @@ class PetRepository(
         uri: Uri?
     ) {
         try {
-
+            // Get current user ID
             val userId = auth.currentUser!!.uid
 
-
+            // Prepare data to be stored in Firestore
             val petMap = hashMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -49,7 +50,7 @@ class PetRepository(
                 "imageUrl" to ""
             )
 
-
+            // Upload image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -58,8 +59,10 @@ class PetRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
-
+            // Add pet data to Firestore
             db.collection("pets").add(petMap).await()
+
+            db.collection("users").document(userId).update("petCount", FieldValue.increment(1))
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add pet data", e)
         } catch (e: StorageException) {
@@ -67,7 +70,7 @@ class PetRepository(
         }
     }
 
-
+    // Function to get a list of pets for the current user
     suspend fun getPets(): Flow<List<Pet>> {
         return try {
             val userId = auth.currentUser!!.uid
@@ -84,7 +87,7 @@ class PetRepository(
         }
     }
 
-
+    // Function to get details of a specific pet by user ID
     suspend fun getPet(petId: String): Pet? {
         return try {
             db.collection("pets")
@@ -97,7 +100,7 @@ class PetRepository(
         }
     }
 
-
+    // Function to get a list of pets for a specific user by user ID (used for user profile)
     suspend fun getPetsUserProfile(userId: String): Flow<List<Pet>> {
         return try {
             db.collection("pets").whereEqualTo("userId", userId)
@@ -113,7 +116,7 @@ class PetRepository(
         }
     }
 
-
+    // Function to update pet details
     suspend fun updatePet(
         petId: String,
         name: String,
@@ -126,7 +129,7 @@ class PetRepository(
         try {
             val userId = auth.currentUser!!.uid
 
-
+            // Prepare updated data
             val petMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -137,7 +140,7 @@ class PetRepository(
                 "timeAdded" to Timestamp.now()
             )
 
-
+            // Upload new image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -146,7 +149,7 @@ class PetRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
-
+            // Update pet data in Firestore
             db.collection("pets").document(petId).update(petMap.toMap()).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to update pet data", e)
@@ -155,13 +158,17 @@ class PetRepository(
         }
     }
 
-
+    // Function to mark a pet as deleted and delete associated image from Firebase Storage
     suspend fun deletePet(petId: String, imageUrl: String?) {
         try {
+            val userId = auth.currentUser!!.uid
 
+            // Hapus dokumen pet dari Firestore
             db.collection("pets").document(petId).delete().await()
 
+            db.collection("users").document(userId).update("petCount", FieldValue.increment(-1))
 
+            // Jika ada URL gambar terkait, hapus gambar dari Firebase Storage
             if (!imageUrl.isNullOrEmpty()) {
                 val imageRef = storageRef.getReferenceFromUrl(imageUrl)
                 imageRef.delete().await()

@@ -34,6 +34,9 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                         "name" to name,
                         "lowercaseName" to lowercaseName,
                         "email" to email,
+                        "postCount" to 0,
+                        "reviewCount" to 0,
+                        "petCount" to 0,
                         "isModerator" to false
                     )
                     val db = FirebaseFirestore.getInstance()

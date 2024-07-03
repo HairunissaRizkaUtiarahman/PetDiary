@@ -45,6 +45,7 @@ class PostRepository(
                 postMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
+            db.collection("users").document(userId).update("postCount", FieldValue.increment(1))
 
             db.collection("posts").add(postMap).await()
         } catch (e: FirebaseFirestoreException) {
@@ -114,9 +115,13 @@ class PostRepository(
 
     suspend fun deletePost(postId: String) {
         try {
+            val userId = auth.currentUser!!.uid
+
             val petMap = mapOf(
                 "isDeleted" to true
             )
+            db.collection("users").document(userId).update("postCount", FieldValue.increment(-1))
+
             db.collection("posts").document(postId).update(petMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to delete post", e)

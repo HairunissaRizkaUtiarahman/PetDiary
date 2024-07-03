@@ -76,7 +76,10 @@ class ProfileFragment : Fragment() {
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {
                 binding.nameTv.text = it.name
-                binding.bioTv.text = it.bio
+                binding.emailTv.text = it.email
+                binding.postCountTV.text = it.postCount.toString()
+                binding.reviewCountTV.text = it.reviewCount.toString()
+                binding.petCountTV.text = it.petCount.toString()
                 Glide.with(binding.profileImageIV.context)
                     .load(it.imageUrl)
                     .placeholder(R.drawable.image_profile)
