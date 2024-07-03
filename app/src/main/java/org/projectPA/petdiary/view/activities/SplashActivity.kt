@@ -38,7 +38,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun setLocale(lang: String) {
         val locale: Locale = if (lang == "system") {
-            Locale.getDefault() // Get the default system language
+            Locale.getDefault()
         } else {
             Locale(lang)
         }

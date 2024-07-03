@@ -22,7 +22,6 @@ class PetMyProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentPetMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -39,10 +38,8 @@ class PetMyProfileFragment : Fragment() {
         viewModel.pets.observe(viewLifecycleOwner) { pets ->
             adapter.submitList(pets)
 
-            // Show or hide the "No Pets" TextView based on the list size
             binding.noPetTV.visibility = if (pets.isEmpty()) View.VISIBLE else View.GONE
 
-            // Show or hide the RecyclerView based on the list size
             binding.myPetRV.visibility = if (pets.isEmpty()) View.GONE else View.VISIBLE
         }
 

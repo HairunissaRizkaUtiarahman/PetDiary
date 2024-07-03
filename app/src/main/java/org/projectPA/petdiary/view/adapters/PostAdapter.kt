@@ -1,4 +1,4 @@
-package com.example.testproject.ui.socialmedia.post
+package org.projectPA.petdiary.view.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListReviewBinding
 import org.projectPA.petdiary.model.Review
-import org.projectPA.petdiary.relativeTime
 import java.text.SimpleDateFormat
 import java.util.Locale
 

@@ -27,7 +27,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         activity?.window?.statusBarColor  =resources.getColor(R.color.orange_main)
 
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

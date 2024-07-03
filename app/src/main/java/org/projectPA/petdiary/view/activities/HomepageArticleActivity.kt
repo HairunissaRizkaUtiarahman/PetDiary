@@ -70,11 +70,8 @@ class HomepageArticleActivity : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            onBackPressed()
-        }
-
-        binding.addArticleOnlyForAdminButton.setOnClickListener {
-            onBackPressed()
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
 
     }

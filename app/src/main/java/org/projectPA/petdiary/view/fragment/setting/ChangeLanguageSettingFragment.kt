@@ -1,4 +1,4 @@
-package com.example.testproject.ui.setting
+package org.projectPA.petdiary.view.fragment.setting
 
 import android.content.Context
 import android.content.res.Configuration
@@ -24,11 +24,10 @@ class ChangeLanguageSettingFragment : Fragment() {
         _binding = FragmentChangeLanguageSettingBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Load saved language
         val sharedPreferences =
             requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
         val currentLanguage = sharedPreferences.getString("lang", "system") ?: "system"
-        setLocale(requireContext(), currentLanguage)  // Apply the saved language
+        setLocale(requireContext(), currentLanguage)
         updateCheckImage(currentLanguage)
 
         binding.systemBtn.setOnClickListener {
@@ -66,7 +65,7 @@ class ChangeLanguageSettingFragment : Fragment() {
 
     private fun setLocale(context: Context, lang: String) {
         val locale: Locale = if (lang == "system") {
-            Locale.getDefault() // Get the default system language
+            Locale.getDefault()
         } else {
             Locale(lang)
         }
@@ -74,7 +73,6 @@ class ChangeLanguageSettingFragment : Fragment() {
         val config = Configuration()
         config.setLocale(locale)
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
-        // activity?.recreate() // Re-create activity to apply new language
     }
 
     private fun showLanguageSelected(language: String) {

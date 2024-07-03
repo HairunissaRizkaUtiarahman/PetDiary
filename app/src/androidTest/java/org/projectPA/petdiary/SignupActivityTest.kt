@@ -13,7 +13,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.projectPA.petdiary.view.activities.auth.SignupActivity
-import org.projectPA.petdiary.view.activities.auth.SigninActivity
 import java.util.concurrent.CountDownLatch
 
 @RunWith(AndroidJUnit4::class)

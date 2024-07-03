@@ -18,7 +18,7 @@ class UserRepository(
         return try {
             val userId = auth.currentUser!!.uid
             db.collection("users")
-                .whereNotEqualTo("userId", userId) // Exclude the logged-in user
+                .whereNotEqualTo("userId", userId)
                 .limit(10)
                 .get().await().let { querySnapshot ->
                     querySnapshot.documents.mapNotNull {

@@ -30,10 +30,9 @@ class ReviewAdapter(
                 deskripsiReview.text = review.reviewText
                 ratingBar4.rating = review.rating
                 usageProduct.text = review.usagePeriod
-                // Fetch user data and set username and userPhotoProfile
+
                 fetchUserData(review.userId.trim(), context, binding, firestore)
 
-                // Make the entire root view clickable
                 root.setOnClickListener {
                     val intent = Intent(context, DetailReviewActivity::class.java).apply {
                         putExtra("productId", productId)

@@ -8,7 +8,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.testproject.ui.socialmedia.post.PostAdapter
+import org.projectPA.petdiary.view.adapters.PostAdapter
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentUserSearchBinding
 import org.projectPA.petdiary.view.adapters.UserAdapter

@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityChooseProductBinding
 import org.projectPA.petdiary.view.adapters.ProductAdapter
-import org.projectPA.petdiary.view.fragments.SortButtonProductFragment
+import org.projectPA.petdiary.view.fragment.SortButtonProductFragment
 import org.projectPA.petdiary.viewmodel.ChooseProductViewModel
 
 class ChooseProductActivity : AppCompatActivity() {

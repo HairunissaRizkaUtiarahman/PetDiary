@@ -11,7 +11,6 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Article
-import java.util.UUID
 
 class ArticleViewModel : ViewModel() {
 
@@ -36,15 +35,11 @@ class ArticleViewModel : ViewModel() {
     }
 
     fun fetchArticles() {
-        viewModelScope.launch {
-            val articles = try {
-                db.collection("articles")
-                    .get().await().let { querySnapshot ->
-                        querySnapshot.documents.mapNotNull { it.toObject(Article::class.java) }
-                    }
-            } catch (e: Exception) {
-                emptyList()
+        db.collection("articles").addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                return@addSnapshotListener
             }
+            val articles = snapshot?.documents?.mapNotNull { it.toObject(Article::class.java) } ?: emptyList()
             _articles.postValue(articles)
         }
     }
@@ -140,6 +135,17 @@ class ArticleViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 db.collection("articles").document(article.articleId).set(article).await()
+                onSuccess()
+            } catch (e: Exception) {
+                onFailure(e)
+            }
+        }
+    }
+
+    fun deleteArticle(articleId: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        viewModelScope.launch {
+            try {
+                db.collection("articles").document(articleId).delete().await()
                 onSuccess()
             } catch (e: Exception) {
                 onFailure(e)

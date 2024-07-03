@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
-import org.projectPA.petdiary.model.User
 
 class ProductDetailViewModel : ViewModel() {
     private val _product = MutableLiveData<Product>()

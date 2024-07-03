@@ -19,25 +19,20 @@ class DashboardActivityTest {
 
     @Test
     fun testDefaultFragmentIsHomeFragment() {
-        // Check if the HomeFragment is displayed by default
         onView(withId(R.layout.fragment_home)).check(matches(isDisplayed()))
     }
 
     @Test
     fun testSwitchToProfileFragment() {
-        // Perform click action on the profile item in the bottom navigation view
         onView(withId(R.id.profile)).perform(click())
 
-        // Check if the ProfileFragment is displayed
         onView(withId(R.layout.fragment_profile)).check(matches(isDisplayed()))
     }
 
     @Test
     fun testAddButtonOpensAddButtonFragment() {
-        // Perform click action on the add button
         onView(withId(R.id.add_button)).perform(click())
 
-        // Check if the AddButtonFragment is displayed
         onView(withId(R.layout.fragment_add_button)).check(matches(isDisplayed()))
     }
 }

@@ -51,14 +51,11 @@ class PostMyProfileFragment : Fragment() {
 
         binding.myPostRV.adapter = adapter
 
-        // Observe posts LiveData
         viewModel.myPosts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
 
-            // Show or hide the "No Pets" TextView based on the list size
             binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
 
-            // Show or hide the RecyclerView based on the list size
             binding.myPostRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 

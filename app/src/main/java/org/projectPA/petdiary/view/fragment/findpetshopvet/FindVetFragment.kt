@@ -43,10 +43,8 @@ class FindVetFragment : Fragment() {
         webSettings.javaScriptEnabled = true
         webSettings.setGeolocationEnabled(true)
 
-        // Initialize fusedLocationClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        // Check for location permission
         checkLocationPermission()
 
         return binding.root
@@ -61,7 +59,6 @@ class FindVetFragment : Fragment() {
                     LOCATION_PERMISSION_REQUEST_CODE)
             }
         } else {
-            // If permission is already granted, get the location
             getLocationAndLoadMap()
         }
     }
@@ -74,10 +71,8 @@ class FindVetFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Permission was granted, get the location
                 getLocationAndLoadMap()
             } else {
-                // Permission was denied, show a message to the user
                 Toast.makeText(requireContext(), "Location permission denied", Toast.LENGTH_SHORT).show()
             }
         }
@@ -107,7 +102,6 @@ class FindVetFragment : Fragment() {
 
     private fun loadMapWithCoordinates(latitude: Double, longitude: Double) {
         val webView: WebView = binding.vetWV
-        // Load Google Maps with the search query for nearby vet clinics
         val url = "https://www.google.com/maps/search/veterinary+clinic+near+me/@$latitude,$longitude,15z"
         webView.loadUrl(url)
     }

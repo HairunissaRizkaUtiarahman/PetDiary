@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import org.projectPA.petdiary.databinding.ActivityProductPageBinding
 import org.projectPA.petdiary.view.adapters.ProductAdapter
-import org.projectPA.petdiary.view.fragments.SortButtonProductFragment
+import org.projectPA.petdiary.view.fragment.SortButtonProductFragment
 import org.projectPA.petdiary.viewmodel.ProductPageViewModel
 
 class ProductPageActivity : AppCompatActivity() {
@@ -31,13 +31,13 @@ class ProductPageActivity : AppCompatActivity() {
         val petType = intent.getStringExtra("petType")
         val category = intent.getStringExtra("category")
 
-        // Setup RecyclerView
+
         setupRecyclerView()
 
-        // Observe ViewModel data
+
         observeViewModel()
 
-        // Validate and load products
+
         if (petType != null && category != null) {
             viewModel.loadProductsFromFirestore(petType, category)
         } else {
@@ -62,7 +62,6 @@ class ProductPageActivity : AppCompatActivity() {
             }
         })
 
-        // Show sort options when button is clicked
         binding.buttonSortProducts.setOnClickListener {
             val sortButtonFragment = SortButtonProductFragment { sortOption ->
                 viewModel.sortProducts(sortOption)

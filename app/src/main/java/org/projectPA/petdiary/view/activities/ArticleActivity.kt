@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +39,7 @@ class ArticleActivity : AppCompatActivity() {
         setupRecyclerView()
         observeArticleDetails()
         observeRelatedArticles()
+        observeUser()
 
         binding.backButton.setOnClickListener {
             onBackPressed()
@@ -44,6 +47,10 @@ class ArticleActivity : AppCompatActivity() {
 
         binding.shareButton.setOnClickListener {
             shareArticle()
+        }
+
+        binding.deleteButton.setOnClickListener {
+            deleteArticle()
         }
     }
 
@@ -87,7 +94,7 @@ class ArticleActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 if (Uri.parse(url).host != null) {
-                    return false //
+                    return false
                 }
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 return true
@@ -110,6 +117,25 @@ class ArticleActivity : AppCompatActivity() {
                 type = "text/plain"
             }
             startActivity(Intent.createChooser(shareIntent, "Share article via"))
+        }
+    }
+
+    private fun deleteArticle() {
+        viewModel.deleteArticle(articleId, onSuccess = {
+            Toast.makeText(this, "Article deleted successfully", Toast.LENGTH_SHORT).show()
+            finish()
+        }, onFailure = { e ->
+            Toast.makeText(this, "Failed to delete article: ${e.message}", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun observeUser() {
+        viewModel.isModerator.observe(this) { isModerator ->
+            if (isModerator) {
+                binding.deleteButton.visibility = View.VISIBLE
+            } else {
+                binding.deleteButton.visibility = View.GONE
+            }
         }
     }
 }

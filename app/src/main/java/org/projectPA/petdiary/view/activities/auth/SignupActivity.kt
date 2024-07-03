@@ -30,7 +30,7 @@ class SignupActivity : AppCompatActivity() {
             val password = binding.passwordTIET.text.toString()
             val confirmPassword = binding.confirmPasswordTIET.text.toString()
 
-            // Validate inputs
+
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     this,

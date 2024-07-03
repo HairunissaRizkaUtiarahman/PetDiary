@@ -1,7 +1,6 @@
 package org.projectPA.petdiary.view.fragment.setting
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ class SupportSettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentSupportSettingBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

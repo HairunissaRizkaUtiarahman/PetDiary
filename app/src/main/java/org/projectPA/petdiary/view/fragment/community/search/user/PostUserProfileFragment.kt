@@ -25,7 +25,6 @@ class PostUserProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentPostUserProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -44,10 +43,8 @@ class PostUserProfileFragment : Fragment() {
         postUserProfileViewModel.posts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
 
-            // Show or hide the "No Pets" TextView based on the list size
             binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
 
-            // Show or hide the RecyclerView based on the list size
             binding.postRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 

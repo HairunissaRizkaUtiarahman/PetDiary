@@ -44,6 +44,28 @@
             android:contentDescription="@string/preview_article_button"
             android:src="@drawable/ic_eye"
             app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/redo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/redo_button"
+            android:src="@drawable/ic_redo"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/undo_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/undo_button"
+            android:src="@drawable/ic_undo"
+            app:tint="@color/black" />
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout

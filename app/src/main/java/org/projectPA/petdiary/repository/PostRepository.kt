@@ -55,7 +55,7 @@ class PostRepository(
         }
     }
 
-    // Query Get Posts
+
     suspend fun getPosts(): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -85,7 +85,7 @@ class PostRepository(
         }
     }
 
-    // Query Get Post
+
     suspend fun getPost(postId: String): Post? {
         return try {
             val post = db.collection("posts")
@@ -112,7 +112,7 @@ class PostRepository(
         }
     }
 
-    // Query Delete Post
+
     suspend fun deletePost(postId: String) {
         try {
             val userId = auth.currentUser!!.uid
@@ -128,7 +128,7 @@ class PostRepository(
         }
     }
 
-    // Query Get Posts (My Profile)
+
     suspend fun getMyPosts(): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -157,7 +157,7 @@ class PostRepository(
         }
     }
 
-    // Query Get Posts (User Profile)
+
     suspend fun getPostsUserProfile(userId: String): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -185,7 +185,7 @@ class PostRepository(
         }
     }
 
-    // Query Add Comment to Post
+
     suspend fun addCommentPost(commentText: String, postId: String) {
         try {
             val userId = auth.currentUser!!.uid
@@ -202,7 +202,7 @@ class PostRepository(
         }
     }
 
-    // Query Get Comment from Post
+
     suspend fun getCommentPost(postId: String): Flow<List<CommentPost>> {
         return try {
             db.collection("posts").document(postId).collection("comments")
@@ -224,7 +224,7 @@ class PostRepository(
         }
     }
 
-    // Query Set Like
+
     suspend fun setLike(currentUserID: String, postId: String) {
         try {
             val docId = "${currentUserID}_${postId}"
@@ -242,7 +242,7 @@ class PostRepository(
         }
     }
 
-    // Query Search Post
+
     suspend fun searchPost(query: String): List<Post> {
         return try {
             val currentUserID = auth.currentUser!!.uid

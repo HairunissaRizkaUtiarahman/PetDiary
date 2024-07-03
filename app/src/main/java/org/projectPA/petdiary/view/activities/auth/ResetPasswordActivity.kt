@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.ActivityResetPasswordBinding
 
 class ResetPasswordActivity : AppCompatActivity() {

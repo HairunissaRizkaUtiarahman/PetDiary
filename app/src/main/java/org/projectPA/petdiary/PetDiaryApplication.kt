@@ -17,7 +17,6 @@ class PetDiaryApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        // Enable Firestore offline persistence
         Firebase.firestore.firestoreSettings = FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .build()

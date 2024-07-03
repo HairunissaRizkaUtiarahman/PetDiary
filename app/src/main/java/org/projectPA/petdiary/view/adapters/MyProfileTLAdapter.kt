@@ -9,14 +9,14 @@ import org.projectPA.petdiary.view.fragment.myprofile.ReviewMyProfileFragment
 
 class MyProfileTLAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
     override fun getItemCount(): Int {
-        return 3 // Jumlah tab
+        return 3
     }
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> PostMyProfileFragment() // Fragment untuk tab "POST"
-            1 -> ReviewMyProfileFragment() // Fragment untuk tab "REVIEW"
-            2 -> PetMyProfileFragment() // Fragment untuk tab "PET"
+            0 -> PostMyProfileFragment()
+            1 -> ReviewMyProfileFragment()
+            2 -> PetMyProfileFragment()
             else -> throw IllegalStateException("Invalid position $position")
         }
     }

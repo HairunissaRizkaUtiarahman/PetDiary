@@ -25,7 +25,7 @@ class ReviewRepository(
     private val storageRef: FirebaseStorage
 ) {
 
-    // Query Get Review
+
     suspend fun getReview(reviewId: String): Review? {
         return try {
             val review = db.collection("reviews")
@@ -50,7 +50,7 @@ class ReviewRepository(
         }
     }
 
-    // Query Get Reviews (My Profile)
+
     suspend fun getReviewsMyProfile(): Flow<List<Review>> {
         return try {
             val userId = auth.currentUser!!.uid
@@ -80,7 +80,7 @@ class ReviewRepository(
         }
     }
 
-    // Query Get Reviews (User Profile)
+
     suspend fun getReviewUserProfile(userId: String): Flow<List<Review>> {
         return try {
             db.collection("reviews").whereEqualTo("userId", userId)

@@ -21,7 +21,6 @@ class PetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPetBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,39 +28,28 @@ class PetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize the RecyclerView adapter
         adapter = PetAdapter(onClick = { pet, _ ->
-            // Set the selected pet in ViewModel
             viewModel.setPet(pet)
 
-            // Navigate to pet details fragment
             findNavController().navigate(R.id.action_myPetFragment_to_myPetDetailsFragment)
         })
 
-        // Set the adapter to RecyclerView
         binding.petRV.adapter = adapter
 
-        // Observe the pets LiveData from ViewModel
         viewModel.pets.observe(viewLifecycleOwner) { pets ->
-            // Submit the list of pets to the adapter
             adapter.submitList(pets)
 
-            // Show or hide the "No Pets" TextView based on the list size
             binding.noPetTV.visibility = if (pets.isEmpty()) View.VISIBLE else View.GONE
 
-            // Show or hide the RecyclerView based on the list size
             binding.petRV.visibility = if (pets.isEmpty()) View.GONE else View.VISIBLE
         }
 
-        // Load pets data from ViewModel
         viewModel.loadPet()
 
-        // Handle add pet button click
         binding.addPetBtn.setOnClickListener {
             findNavController().navigate(R.id.action_myPetFragment_to_myPetAddFragment)
         }
 
-        // Handle navigation icon click (back button)
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }

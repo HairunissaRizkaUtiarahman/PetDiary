@@ -58,7 +58,6 @@ class ChangePasswordSettingFragment : Fragment() {
                     if (task.isSuccessful) {
                         user.updatePassword(newPassword).addOnCompleteListener { updateTask ->
                             if (updateTask.isSuccessful) {
-                                // Logout user after password change
                                 auth.signOut()
                                 val intent = Intent(requireContext(), SigninActivity::class.java)
                                 startActivity(intent)
@@ -67,7 +66,6 @@ class ChangePasswordSettingFragment : Fragment() {
                                     "Password changed successfully, Please login again",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                // Navigate to login screen or perform necessary action after logout
                             } else {
                                 Toast.makeText(
                                     requireContext(),
