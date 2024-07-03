@@ -32,7 +32,6 @@ class PetAddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPetAddBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +41,6 @@ class PetAddFragment : Fragment() {
 
         var imageUri: Uri? = null
 
-        // Activity result launcher for picking image from gallery
         val petImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
@@ -50,7 +48,6 @@ class PetAddFragment : Fragment() {
             binding.petImageIV.setImageURI(it)
         }
 
-        // Activity result launcher for taking picture from camera
         val takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
@@ -58,7 +55,6 @@ class PetAddFragment : Fragment() {
                 }
             }
 
-        // Function to take picture using camera
         fun takePicture() {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -86,7 +82,6 @@ class PetAddFragment : Fragment() {
             }
         }
 
-        // Handle click on pick button to select image from gallery or take picture using camera
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(requireContext())
@@ -100,7 +95,6 @@ class PetAddFragment : Fragment() {
             builder.show()
         }
 
-        // Handle click on add button to add new pet
         binding.addBtn.setOnClickListener {
             val radioGroupCheck = binding.petGenderRG.checkedRadioButtonId
             val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
@@ -110,7 +104,6 @@ class PetAddFragment : Fragment() {
             val age = binding.petAgeTIET.text.toString().trim()
             val desc = binding.petDescTIET.text.toString().trim()
 
-            // Validate inputs
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     requireContext(),
@@ -155,18 +148,15 @@ class PetAddFragment : Fragment() {
             val gender = checkRadioBtn.text.toString()
             checkRadioBtn.isChecked = false
 
-            // Upload data to ViewModel
             viewModel.uploadPet(name, type, gender, age.toInt(), desc, imageUri)
             Toast.makeText(requireContext(), "Success Add My Pet", Toast.LENGTH_SHORT).show()
 
-            // Clear input fields
             binding.petNameTIET.text?.clear()
             binding.petTypeTIET.text?.clear()
             binding.petAgeTIET.text?.clear()
             binding.petDescTIET.text?.clear()
         }
 
-        // Observe loading state and update button text accordingly
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.addBtn.visibility = View.GONE
@@ -174,13 +164,11 @@ class PetAddFragment : Fragment() {
             } else {
                 binding.addBtn.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.GONE
-                // Navigate back to previous fragment after adding pet
                 startActivity(Intent(requireActivity(), PetActivity::class.java))
                 requireActivity().finish()
             }
         }
 
-        // Handle click on navigation icon (back button)
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }

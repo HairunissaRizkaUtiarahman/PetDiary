@@ -8,10 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
-import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentRecommendProductBinding
-import org.projectPA.petdiary.view.activities.GiveReviewActivity
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
 
 class RecommendProductFragment : Fragment() {

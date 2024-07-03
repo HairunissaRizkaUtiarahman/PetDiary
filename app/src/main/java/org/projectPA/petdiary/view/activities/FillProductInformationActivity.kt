@@ -84,7 +84,7 @@ class FillProductInformationActivity : AppCompatActivity() {
         setupHintVisibility(binding.formInputProductName, binding.productNameLayout)
         setupHintVisibility(binding.formInputDescription, binding.descriptionLayout)
 
-        // Add text changed listeners to validate inputs on the fly
+
         binding.formInputBrandName.addTextChangedListener { text ->
             viewModel.validateInputs(
                 text.toString().trim(),

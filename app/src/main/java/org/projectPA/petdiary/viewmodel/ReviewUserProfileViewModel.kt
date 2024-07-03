@@ -18,23 +18,18 @@ import org.projectPA.petdiary.repository.ReviewRepository
 
 class ReviewUserProfileViewModel(private val reviewRepository: ReviewRepository) : ViewModel() {
 
-    // LiveData to hold list of reviews
     private val _reviews = MutableLiveData<List<Review>>()
     val reviews: LiveData<List<Review>> get() = _reviews
 
-    // LiveData to hold a single review
     private val _review = MutableLiveData<Review>()
     val review: LiveData<Review> get() = _review
 
-    // LiveData to hold list of comments
     private val _commentsReview = MutableLiveData<List<CommentReview>>()
     val commentsReview: LiveData<List<CommentReview>> get() = _commentsReview
 
-    // LiveData to indicate loading state
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    // Factory method to create the ViewModel with a repository
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
@@ -45,7 +40,6 @@ class ReviewUserProfileViewModel(private val reviewRepository: ReviewRepository)
         }
     }
 
-    // Load reviews for a specific user
     fun loadData(userId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
             reviewRepository.getReviewUserProfile(userId).collect {
@@ -54,21 +48,17 @@ class ReviewUserProfileViewModel(private val reviewRepository: ReviewRepository)
         }
     }
 
-    // Set the current review
     fun setReview(review: Review) {
         _review.value = review
     }
 
-    // Add a comment to a review
     fun uploadComment(reviewId: String, text: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             reviewRepository.addCommentReview(reviewId, text)
-            // Reload comments after adding a new comment
             loadComment(reviewId)
         }
     }
 
-    // Load comments for a specific review
     fun loadComment(reviewId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
             reviewRepository.getCommentReviews(reviewId).collect {

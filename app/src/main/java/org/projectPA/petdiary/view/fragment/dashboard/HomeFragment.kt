@@ -86,14 +86,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun loadDataFromFirestore() {
-        // Clear local cache before fetching data
         firestore.clearPersistence().addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("HomeFragment", "Local cache cleared")
                 fetchProductsFromFirestore()
             } else {
                 Log.e("HomeFragment", "Failed to clear local cache", it.exception)
-                fetchProductsFromFirestore() // Fetch anyway if cache clear fails
+                fetchProductsFromFirestore()
             }
         }
     }

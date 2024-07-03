@@ -65,7 +65,6 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         binding.italicTextButton.setOnClickListener { editor.setItalic() }
         binding.underlineTextButton.setOnClickListener { editor.setUnderline() }
 
-        // Inject JavaScript to track cursor position
         editor.setOnTextChangeListener {
             editor.loadUrl(
                 "javascript:(function() {" +
@@ -109,6 +108,16 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
         binding.previewButton.setOnClickListener {
             Log.d("ActivityWriteArticleForAdmin", "Preview button clicked")
             previewArticle()
+        }
+
+        binding.undoButton.setOnClickListener {
+            Log.d("ActivityWriteArticleForAdmin", "Undo button clicked")
+            editor.undo()
+        }
+
+        binding.redoButton.setOnClickListener {
+            Log.d("ActivityWriteArticleForAdmin", "Redo button clicked")
+            editor.redo()
         }
 
         binding.headingTextButton.setOnClickListener {

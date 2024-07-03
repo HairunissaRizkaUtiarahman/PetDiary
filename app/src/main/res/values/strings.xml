@@ -166,7 +166,7 @@
 
     <string name="care_and_health">Care and Health</string>
     <string name="training">Training</string>
-    <string name="community_events">Events</string>
+    <string name="community_events">Event</string>
     <string name="all">All</string>
     <string name="back_to_article_homepage">back to article homepage</string>
     <string name="share_via">Share via</string>
@@ -384,6 +384,9 @@
     <string name="publish">Publish</string>
     <string name="please_complete_the_article_first">Please complete the article first!</string>
     <string name="thank_you_for_your_feedback_you_have_already_submitted_a_review_for_this_product">Thank you for your feedback! You have already submitted a review for this product.</string>
+    <string name="otherss">Others</string>
+    <string name="redo_button">redo_button</string>
+    <string name="undo_button">undo_button</string>
 
 
 </resources>

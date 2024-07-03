@@ -14,7 +14,6 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentWriteReviewBinding
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
 
-// WriteReviewFragment.kt
 
 class WriteReviewFragment : Fragment() {
 
@@ -28,7 +27,7 @@ class WriteReviewFragment : Fragment() {
         binding = FragmentWriteReviewBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(GiveReviewViewModel::class.java)
 
-        // Disable the Next button initially
+
         binding.nextButtonToRecommendProduct.isEnabled = false
 
         binding.prevButtonToUsageProduct.setOnClickListener {

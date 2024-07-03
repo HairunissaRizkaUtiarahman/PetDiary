@@ -28,7 +28,7 @@ class PetMyProfileAdapter(val onClick: (Pet, View) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pet: Pet) = with(binding) {
-            val context = itemView.context // Get context from the itemView
+            val context = itemView.context
             petNameTV.text = pet.name
             petTypeTV.text = pet.type
             petGenderTV.text = pet.gender

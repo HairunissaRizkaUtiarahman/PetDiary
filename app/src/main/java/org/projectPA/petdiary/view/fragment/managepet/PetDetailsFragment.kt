@@ -26,7 +26,6 @@ class PetDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPetDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,9 +33,7 @@ class PetDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Observe pet data from ViewModel
         viewModel.pet.observe(viewLifecycleOwner) { pet ->
-            // Update UI with pet details
             with(binding) {
                 petNameTV.text = pet.name
                 petTypeTV.text = pet.type
@@ -44,7 +41,6 @@ class PetDetailsFragment : Fragment() {
                 petAgeTV.text = requireContext().getString(R.string.age_pet, pet.age)
                 petDescTV.text = pet.desc
 
-                // Load pet image using Glide library
                 Glide.with(petImageIV.context)
                     .load(pet.imageUrl)
                     .placeholder(R.drawable.image_blank)
@@ -52,24 +48,20 @@ class PetDetailsFragment : Fragment() {
             }
         }
 
-        // Handle click on edit button to navigate to edit fragment
         binding.petEditProfileBtn.setOnClickListener {
             Log.d("PetDetailsFragment", "Edit button clicked")
             it.findNavController().navigate(R.id.action_myPetDetailsFragment_to_myPetEditFragment)
         }
 
-        // Handle click on delete button to show confirmation dialog
         binding.deleteBtn.setOnClickListener {
             showDeleteConfirmationDialog()
         }
 
-        // Handle click on navigation icon (back button)
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }
 
-    // Function to show delete confirmation dialog
     private fun showDeleteConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         val petId = viewModel.pet.value?.id ?: ""
@@ -78,7 +70,6 @@ class PetDetailsFragment : Fragment() {
         alertDialogBuilder.apply {
             setMessage("Are you sure you want to delete this pet?")
             setPositiveButton("Yes") { _, _ ->
-                // Delete the pet and show toast notification based on result
                 lifecycleScope.launch {
                     val result = viewModel.deletePet(petId, imageUrl)
                     if (result) {

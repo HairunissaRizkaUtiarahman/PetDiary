@@ -12,8 +12,6 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentUsageProductBinding
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
 
-// UsageProductFragment.kt
-
 class UsageProductFragment : Fragment() {
 
     private lateinit var binding: FragmentUsageProductBinding

@@ -55,7 +55,6 @@ class ActivityWriteArticleForAdminTest {
 
     @Test
     fun testSelectImage() {
-        // Ganti dengan URI gambar nyata dari galeri setelah mengambil gambar menggunakan kamera
         val imageUri = getImageUriFromFilePath(InstrumentationRegistry.getInstrumentation().targetContext, "/storage/emulated/0/Pictures/IMG_20240521_221734.jpg")
         val resultData = Intent().apply {
             data = imageUri
@@ -71,11 +70,9 @@ class ActivityWriteArticleForAdminTest {
 
         onView(withId(R.id.upload_photo_button)).perform(click())
 
-        // Check if the image URI is set correctly
         onView(withId(R.id.upload_image_article)).check(matches(imageUri?.let { withImageUri(it) }))
     }
 
-    // Matcher to check if an ImageView has the expected image URI
     private fun withImageUri(expectedUri: Uri): Matcher<View> {
         return object : BoundedMatcher<View, ImageView>(ImageView::class.java) {
             override fun describeTo(description: Description) {
@@ -83,7 +80,6 @@ class ActivityWriteArticleForAdminTest {
             }
 
             override fun matchesSafely(imageView: ImageView): Boolean {
-                // Anda mungkin perlu menetapkan tag di kode aktivitas saat memuat gambar
                 return imageView.drawable != null && imageView.tag == expectedUri
             }
         }
@@ -91,7 +87,6 @@ class ActivityWriteArticleForAdminTest {
 
     @Test
     fun testPublishWithCompleteForm() {
-        // Ganti dengan URI gambar nyata dari galeri setelah mengambil gambar menggunakan kamera
         val imageUri = getImageUriFromFilePath(InstrumentationRegistry.getInstrumentation().targetContext, "/storage/emulated/0/Pictures/IMG_20240521_221734.jpg")
         val resultData = Intent().apply {
             data = imageUri
@@ -110,14 +105,11 @@ class ActivityWriteArticleForAdminTest {
         onData(allOf(instanceOf(String::class.java), `is`("Category 1"))).perform(click())
         onView(withId(R.id.editor)).perform(typeText("This is the body of the article"), closeSoftKeyboard())
 
-        // Simulate selecting an image
         onView(withId(R.id.upload_photo_button)).perform(click())
 
-        // Check if the image URI is set correctly
         onView(withId(R.id.upload_image_article)).check(matches(imageUri?.let { withImageUri(it) }))
 
         onView(withId(R.id.publish_button)).perform(click())
-        // Check for success toast
         onView(withText("Article published successfully"))
             .inRoot(withDecorView(not(getActivityDecorView())))
             .check(matches(isDisplayed()))

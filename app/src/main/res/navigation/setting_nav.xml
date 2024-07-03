@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_edit_profile_setting" />
     <fragment
         android:id="@+id/changeLanguageSettingFragment"
-        android:name="com.example.testproject.ui.setting.ChangeLanguageSettingFragment"
+        android:name="org.projectPA.petdiary.view.fragment.setting.ChangeLanguageSettingFragment"
         android:label="ChangeLanguageSettingFragment" />
     <fragment
         android:id="@+id/supportSettingFragment"

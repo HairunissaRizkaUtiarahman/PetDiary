@@ -32,7 +32,6 @@ class EditProfileSettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentEditProfileSettingBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -103,7 +102,6 @@ class EditProfileSettingFragment : Fragment() {
             val birthdate = binding.birthdateTIET.text.toString().trim()
             val bio = binding.bioTIET.text.toString().trim()
 
-            // Validate inputs
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     requireContext(),

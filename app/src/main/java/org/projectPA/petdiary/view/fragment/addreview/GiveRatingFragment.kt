@@ -12,7 +12,6 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentGiveRatingBinding
 import org.projectPA.petdiary.viewmodel.GiveReviewViewModel
 
-// GiveRatingFragment.kt
 
 class GiveRatingFragment : Fragment() {
 
@@ -39,7 +38,7 @@ class GiveRatingFragment : Fragment() {
             }
         }
 
-        // Initially disable the button
+
         binding.nextButtonToUsageProduct.isEnabled = false
 
         return binding.root

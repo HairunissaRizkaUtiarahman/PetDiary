@@ -28,7 +28,6 @@ class CommentPostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPostCommentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -99,7 +98,6 @@ class CommentPostFragment : Fragment() {
         binding.sendBtn.setOnClickListener {
             val commentText = binding.commentTIET.text.toString().trim()
 
-            // Validate inputs
             if (commentText.isEmpty() || commentText.length > 1000) {
                 Toast.makeText(
                     requireContext(),

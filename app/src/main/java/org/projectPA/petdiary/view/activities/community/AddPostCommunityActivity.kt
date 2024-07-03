@@ -86,7 +86,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
         binding.postBtn.setOnClickListener {
             val desc = binding.descTIET.text.toString().trim()
 
-            // Validate inputs
+
             if (desc.isEmpty() || desc.length > 1000) {
                 Toast.makeText(
                     this,

@@ -11,7 +11,6 @@ import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentDetailReviewMyProfileBinding
-import org.projectPA.petdiary.view.adapters.CommentReviewAdapter
 import org.projectPA.petdiary.view.adapters.CommentReviewMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.ReviewMyProfileViewModel
 import java.text.SimpleDateFormat
@@ -27,7 +26,6 @@ class DetailReviewMyProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentDetailReviewMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

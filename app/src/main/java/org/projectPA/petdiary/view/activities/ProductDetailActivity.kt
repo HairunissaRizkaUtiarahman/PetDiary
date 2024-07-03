@@ -44,7 +44,7 @@ class ProductDetailActivity : AppCompatActivity() {
         setupRecyclerView()
         observeViewModel()
 
-        // Call refresh to load data initially
+
         refresh()
 
         binding.reviewButton.setOnClickListener {
@@ -133,7 +133,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.reviewersCount.text = product.reviewCount.toString()
         binding.percentageOfUser.text = "${product.percentageOfUsers}%"
         Glide.with(this).load(product.imageUrl).into(binding.productPicture)
-        binding.ratingBarProduct.rating = product.averageRating.toFloat() // Set rating bar
+        binding.ratingBarProduct.rating = product.averageRating.toFloat()
     }
 
     private fun setupRecyclerView() {

@@ -32,15 +32,15 @@ class SigninActivityTest {
 
     @Before
     fun setUp() {
-        Intents.init() // Initialize Espresso Intents
+        Intents.init()
         auth = FirebaseAuth.getInstance()
-        auth.signOut() // Ensure no user is signed in
+        auth.signOut()
         IdlingRegistry.getInstance().register(FirebaseAuthIdlingResource.countingIdlingResource)
     }
 
     @After
     fun tearDown() {
-        Intents.release() // Release Espresso Intents
+        Intents.release()
         IdlingRegistry.getInstance().unregister(FirebaseAuthIdlingResource.countingIdlingResource)
     }
 
@@ -49,15 +49,12 @@ class SigninActivityTest {
         Log.d(TAG, "Starting testSigninWithValidCredentials")
 
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
-        // Simulate user input
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
 
-        // Perform click action on sign-in button
         onView(withId(R.id.signIn_Btn)).perform(click())
 
         Thread.sleep(5000)
-        // Check if the DashboardActivity is opened
         intended(hasComponent(DashboardActivity::class.java.name))
 
         scenario.close()
@@ -68,14 +65,11 @@ class SigninActivityTest {
 
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
 
-        // Simulate user input
         onView(withId(R.id.email_TIET)).perform(typeText("ragdoll@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
 
-        // Perform click action on sign-in button
         onView(withId(R.id.signIn_Btn)).perform(click())
 
-        // Check if the error message is displayed as a Snackbar
         onView(withSnackbarText("Please check your email address to verify before logging in.")).check(matches(isDisplayed()))
         scenario.close()
 
@@ -86,14 +80,11 @@ class SigninActivityTest {
 
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
 
-        // Simulate user input
         onView(withId(R.id.email_TIET)).perform(typeText("invalidemaill@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("WrongPassword"), closeSoftKeyboard())
 
-        // Perform click action on sign-in button
         onView(withId(R.id.signIn_Btn)).perform(click())
 
-        // Check if the error message is displayed as a Snackbar
         onView(withSnackbarText("Authentication failed")).check(matches(isDisplayed()))
         scenario.close()
 

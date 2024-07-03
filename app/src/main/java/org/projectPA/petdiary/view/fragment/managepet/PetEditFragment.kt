@@ -33,7 +33,6 @@ class PetEditFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentPetEditBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -43,7 +42,6 @@ class PetEditFragment : Fragment() {
 
         var imageUri: Uri? = null
 
-        // Register activity result for picking image from gallery
         val petImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
@@ -51,7 +49,6 @@ class PetEditFragment : Fragment() {
             binding.petImageIV.setImageURI(it)
         }
 
-        // Register activity result for taking picture
         val takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
@@ -59,7 +56,6 @@ class PetEditFragment : Fragment() {
                 }
             }
 
-        // Function to handle taking picture
         fun takePicture() {
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
@@ -87,7 +83,6 @@ class PetEditFragment : Fragment() {
             }
         }
 
-        // Handle click on pick button to select image from gallery or take picture
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(requireContext())
@@ -101,7 +96,6 @@ class PetEditFragment : Fragment() {
             builder.show()
         }
 
-        // Handle click on save button to update pet data
         binding.saveBtn.setOnClickListener {
             val radioGroupCheck = binding.petGenderRG.checkedRadioButtonId
             val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
@@ -111,7 +105,6 @@ class PetEditFragment : Fragment() {
             val age = binding.petAgeTIET.text.toString().trim()
             val desc = binding.petDescTIET.text.toString().trim()
 
-            // Validate inputs
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     requireContext(),
@@ -166,7 +159,6 @@ class PetEditFragment : Fragment() {
             binding.petDescTIET.text?.clear()
         }
 
-        // Observe loading state and update button text accordingly
         viewModel.isLoading.observe(viewLifecycleOwner) {
             if (it) {
                 binding.saveBtn.visibility = View.GONE
@@ -180,7 +172,6 @@ class PetEditFragment : Fragment() {
             }
         }
 
-        // Observe pet data and populate UI fields
         viewModel.pet.observe(viewLifecycleOwner) { pet ->
             with(binding) {
                 if (pet.gender == "Male" || pet.gender == "Jantan") {
@@ -200,7 +191,6 @@ class PetEditFragment : Fragment() {
             }
         }
 
-        // Handle click on navigation icon (back button)
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }

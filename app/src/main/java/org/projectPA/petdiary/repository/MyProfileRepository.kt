@@ -51,7 +51,6 @@ class MyProfileRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
-            // Update user profile
             db.collection("users").document(userId).update(userMap.toMap()).await()
 
         } catch (e: FirebaseFirestoreException) {
@@ -84,7 +83,6 @@ class MyProfileRepository(
                 for (document in documents) {
                     val id = document.id
                     if (id != userId) {
-                        // Jika bukan user yang sedang login, maka namanya sudah ada
                         nameExists = true
                         break
                     }

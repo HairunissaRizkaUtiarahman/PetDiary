@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.example.testproject.ui.socialmedia.post.PostAdapter
+import org.projectPA.petdiary.view.adapters.PostAdapter
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostBinding
 import org.projectPA.petdiary.view.activities.community.AddPostCommunityActivity
@@ -40,21 +40,19 @@ class PostFragment : Fragment() {
 
         binding.postRV.adapter = adapter
 
-        // Observe posts LiveData
+
         viewModel.posts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
             if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
-                // If no posts or all posts are deleted, show noPost_TV and hide postRV
                 binding.noPostTV.visibility = View.VISIBLE
                 binding.postRV.visibility = View.GONE
             } else {
-                // If there are posts and some are not deleted, show postRV and hide noPost_TV
                 binding.noPostTV.visibility = View.GONE
                 binding.postRV.visibility = View.VISIBLE
             }
         }
 
-        viewModel.loadPosts()  // Call loadRandomPosts() instead of loadData()
+        viewModel.loadPosts()
 
         binding.addPostBtn.setOnClickListener {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)
