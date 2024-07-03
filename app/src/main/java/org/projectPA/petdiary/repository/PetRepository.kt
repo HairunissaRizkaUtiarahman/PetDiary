@@ -4,6 +4,7 @@ import android.net.Uri
 import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
@@ -60,6 +61,8 @@ class PetRepository(
 
             // Add pet data to Firestore
             db.collection("pets").add(petMap).await()
+
+            db.collection("users").document(userId).update("petCount", FieldValue.increment(1))
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add pet data", e)
         } catch (e: StorageException) {
@@ -158,8 +161,12 @@ class PetRepository(
     // Function to mark a pet as deleted and delete associated image from Firebase Storage
     suspend fun deletePet(petId: String, imageUrl: String?) {
         try {
+            val userId = auth.currentUser!!.uid
+
             // Hapus dokumen pet dari Firestore
             db.collection("pets").document(petId).delete().await()
+
+            db.collection("users").document(userId).update("petCount", FieldValue.increment(-1))
 
             // Jika ada URL gambar terkait, hapus gambar dari Firebase Storage
             if (!imageUrl.isNullOrEmpty()) {

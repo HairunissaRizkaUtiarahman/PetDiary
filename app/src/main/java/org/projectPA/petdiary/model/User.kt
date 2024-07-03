@@ -12,5 +12,8 @@ data class User(
     val birthdate: String? = "",
     val bio: String? = "",
     val imageUrl: String? = "",
+    val postCount: Int? = 0,
+    val reviewCount: Int? = 0,
+    val petCount: Int? = 0,
     val isModerator: Boolean = false
 ) : Serializable
