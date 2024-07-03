@@ -1,5 +1,3 @@
-package org.projectPA.petdiary.view.fragment.myprofile
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,6 @@ class ReviewMyProfileFragment : Fragment() {
 
     private val viewModel: ReviewMyProfileViewModel by navGraphViewModels(R.id.my_profile_nav) { ReviewMyProfileViewModel.Factory }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,22 +25,25 @@ class ReviewMyProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter = ReviewMyProfileAdapter(onClick = { review, _ ->
-            viewModel.setReview(review)
-
-            findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment)
-
-        })
+        adapter = ReviewMyProfileAdapter(
+            onClick = { review, _ ->
+                viewModel.setReview(review)
+                findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment)
+            },
+            onDeleteClick = { review ->
+                review.id?.let { viewModel.deleteReview(it) }
+            }
+        )
 
         binding.myReviewRV.adapter = adapter
 
         viewModel.myReviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
             binding.noReviewTV.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
-
             binding.myReviewRV.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         }
 
         viewModel.loadData()
     }
 }
+

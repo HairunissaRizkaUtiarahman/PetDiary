@@ -11,9 +11,9 @@
         android:id="@+id/myReview_RV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_review"
         android:visibility="visible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/list_review" />
 
     <TextView
         android:id="@+id/noReview_TV"

@@ -63,7 +63,8 @@ class ReviewHomePageActivity : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            finish()
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -1,6 +1,8 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,10 +21,12 @@ import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "ReviewRepository"
 
+
 class ReviewRepository(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
+
 ) {
 
 
@@ -145,6 +149,14 @@ class ReviewRepository(
             newCommentRef.set(commentMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add comment review", e)
+        }
+    }
+
+    suspend fun deleteReview(reviewId: String) {
+        try {
+            db.collection("reviews").document(reviewId).delete().await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Failed to delete review", e)
         }
     }
 }

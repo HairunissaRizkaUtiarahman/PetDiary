@@ -53,7 +53,7 @@ class FillProductInformationViewModel : ViewModel() {
         _description.value = description
 
         val isValid = brandName.isNotEmpty() && brandName.length <= 50 &&
-                productName.isNotEmpty() && productName.length  >=4 &&
+                productName.isNotEmpty() && productName.length >= 4 &&
                 description.isNotEmpty() && description.length >= 30 &&
                 _imageUri.value != null &&
                 _productNameError.value == false
@@ -62,8 +62,7 @@ class FillProductInformationViewModel : ViewModel() {
 
     fun checkProductNameExists(brandName: String, productName: String) {
         FirebaseFirestore.getInstance().collection("products")
-            .whereEqualTo("productNameLower", productName.lowercase())
-            .whereEqualTo("brandNameLower", brandName.lowercase())
+            .whereEqualTo("lowercaseProductName", productName.lowercase())
             .get()
             .addOnSuccessListener { documents ->
                 _productNameError.value = !documents.isEmpty
@@ -82,6 +81,7 @@ class FillProductInformationViewModel : ViewModel() {
                 )
             }
     }
+
 
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         val formattedProductName = capitalizeWords(productName)
