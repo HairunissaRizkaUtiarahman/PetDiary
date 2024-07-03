@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,7 +31,7 @@
             android:layout_marginEnd="10dp"
             android:fontFamily="@font/roboto_bold"
             android:gravity="end"
-            android:text="Publish"
+            android:text="@string/publish"
             android:textColor="@color/orange_main"
             android:textSize="18sp" />
 
@@ -42,20 +41,23 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="16dp"
-            android:contentDescription="preview article button"
+            android:contentDescription="@string/preview_article_button"
             android:src="@drawable/ic_eye"
             app:tint="@color/black" />
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:isScrollContainer="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,12 +84,53 @@
                     android:text="@string/select_image"
                     android:textStyle="bold" />
 
+                <EditText
+                    android:id="@+id/input_tittle_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/background_line"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/roboto_black"
+                    android:hint="@string/write_title"
+                    android:inputType="text"
+                    android:maxLines="3"
+                    android:outlineProvider="none"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_grey"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/categoryDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/backgorund_dropdown"
+                    android:backgroundTintMode="src_in"
+                    android:hapticFeedbackEnabled="false"
+                    android:visibility="visible" />
+
+                <jp.wasabeef.richeditor.RichEditor
+                    android:id="@+id/editor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@android:color/white"
+                    android:padding="10dp" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
+                    android:layout_gravity="bottom"
                     android:background="@color/white"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -144,7 +187,7 @@
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="B"
+                            android:text="@string/b"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="25sp"
@@ -214,59 +257,17 @@
                             android:rotation="180"
                             app:srcCompat="@drawable/icon_tab_back" />
 
-                        <ImageView
-                            android:id="@+id/make_text_to_link_button"
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginEnd="5dp"
-                            android:background="@drawable/background_unselected_format_text"
-                            android:padding="3dp"
-                            android:rotation="180"
-                            app:srcCompat="@drawable/baseline_add_link_24" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/input_tittle_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="51dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/background_line"
-                    android:backgroundTint="@color/white"
-                    android:ems="10"
-                    android:fontFamily="@font/roboto_black"
-                    android:hint="Write title..."
-                    android:inputType="text"
-                    android:maxLines="3"
-                    android:outlineProvider="none"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black_grey"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/categoryDropdown"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/backgorund_dropdown"
-                    android:backgroundTintMode="src_in"
-                    android:hapticFeedbackEnabled="false"
-                    android:visibility="visible" />
-
-                <jp.wasabeef.richeditor.RichEditor
-                    android:id="@+id/editor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@android:color/white"
-                    android:padding="10dp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:id="@+id/popup_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
     </FrameLayout>
+
 </LinearLayout>

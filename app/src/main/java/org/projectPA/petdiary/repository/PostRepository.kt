@@ -2,7 +2,7 @@ package org.projectPA.petdiary.repository
 
 import android.net.Uri
 import android.util.Log
-import com.example.testproject.dataclass.CommentPost
+import org.projectPA.petdiary.model.CommentPost
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue

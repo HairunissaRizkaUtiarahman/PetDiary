@@ -64,7 +64,7 @@
                     android:layout_height="48dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:backgroundTint="@color/black"
+                    android:background="@drawable/backgorund_dropdown"
                     android:backgroundTintMode="src_in"
                     android:hapticFeedbackEnabled="false"
                     android:visibility="visible" />

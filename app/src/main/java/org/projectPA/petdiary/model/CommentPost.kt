@@ -1,4 +1,4 @@
-package com.example.testproject.dataclass
+package org.projectPA.petdiary.model
 
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude

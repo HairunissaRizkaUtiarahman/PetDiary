@@ -1,18 +1,22 @@
 package org.projectPA.petdiary.viewmodel
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Article
+import java.util.UUID
 
 class ArticleViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
 
     private val _articles = MutableLiveData<List<Article>>()
     val articles: LiveData<List<Article>> get() = _articles
@@ -44,7 +48,6 @@ class ArticleViewModel : ViewModel() {
             _articles.postValue(articles)
         }
     }
-
 
     fun fetchArticleById(articleId: String) {
         viewModelScope.launch {
@@ -116,6 +119,20 @@ class ArticleViewModel : ViewModel() {
                 emptyList()
             }
             _articles.postValue(articles)
+        }
+    }
+
+    fun uploadImageAndSaveArticle(uri: Uri, article: Article, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        viewModelScope.launch {
+            try {
+                val storageRef = storage.reference.child("articles/${UUID.randomUUID()}")
+                val uploadTask = storageRef.putFile(uri).await()
+                val downloadUrl = uploadTask.storage.downloadUrl.await()
+                article.imageUrl = downloadUrl.toString()
+                saveArticleToFirestore(article, onSuccess, onFailure)
+            } catch (e: Exception) {
+                onFailure(e)
+            }
         }
     }
 

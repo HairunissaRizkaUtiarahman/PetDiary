@@ -2,23 +2,11 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AddReviewCommentTest">
-        <State />
-      </entry>
-      <entry key="AddReviewTest">
-        <State />
-      </entry>
-      <entry key="ResetPasswordActivityTest">
-        <State />
-      </entry>
-      <entry key="SigninActivityTest">
-        <State />
-      </entry>
-      <entry key="SignupActivityTest (1)">
+      <entry key="ActivityWriteArticleForAdminTest">
         <State>
-          <targetSelectedWithDropDown>
+          <runningDeviceTargetSelectedWithDropDown>
             <Target>
-              <type value="QUICK_BOOT_TARGET" />
+              <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
@@ -26,9 +14,34 @@
                 </Key>
               </deviceKey>
             </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-09T09:00:28.818544500Z" />
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-02T14:39:26.634685Z" />
         </State>
+      </entry>
+      <entry key="AddReviewCommentTest">
+        <State />
+      </entry>
+      <entry key="AddReviewTest">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RR8R103YHYV-HWme4i._adb-tls-connect._tcp" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-02T09:52:38.331309900Z" />
+        </State>
+      </entry>
+      <entry key="ProductEntryTest">
+        <State />
+      </entry>
+      <entry key="WriteArticleTest">
+        <State />
       </entry>
       <entry key="app">
         <State>
@@ -43,7 +56,7 @@
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-06-29T10:50:57.155816300Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-07-03T02:11:21.739727700Z" />
         </State>
       </entry>
     </value>

@@ -78,8 +78,6 @@ dependencies {
         exclude("com.google.protobuf", "protobuf-lite")
     }
 
-//    androidTestImplementation 'org.hamcrest:hamcrest-library:2.2'
-
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.cardview:cardview:1.0.0")
@@ -99,10 +97,10 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
-    androidTestImplementation("androidx.test:orchestrator:1.4.1")
-
     implementation ("jp.wasabeef:richeditor-android:2.0.0")
+    implementation ("org.jsoup:jsoup:1.13.1")
 }
+
 
 configurations.all {
     resolutionStrategy {

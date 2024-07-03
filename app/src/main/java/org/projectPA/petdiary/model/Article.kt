@@ -9,6 +9,6 @@ data class Article(
     val category: String = "",
     val date: Date = Date(),
     val body: String = "",
-    val imageUrl: String = "",
+    var imageUrl: String = "",
     val sourceUrl: String = ""
 ) : Serializable

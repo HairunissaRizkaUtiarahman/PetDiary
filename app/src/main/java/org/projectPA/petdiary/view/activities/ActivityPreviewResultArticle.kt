@@ -50,7 +50,7 @@ class ActivityPreviewResultArticle : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 if (Uri.parse(url).host != null) {
-                    return false // Allow the URL to be loaded within the WebView
+                    return false //
                 }
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 return true

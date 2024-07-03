@@ -147,6 +147,13 @@
         <item>Less than a week</item>
     </string-array>
 
+    <string-array name="article_category">
+        <item>Select Article Category</item>
+        <item>Care and Health</item>
+        <item>Training</item>
+        <item>Event</item>
+    </string-array>
+
     <!-- Fragment My Pet -->
 
 
@@ -370,7 +377,13 @@
     <string name="image_edit_cd">Image Edit</string>
     <string name="see_more_details">See More Details</string>
     <string name="text_search_cd">Text Search</string>
-
+    <string name="please_complete_the_article_before_publish">Please Complete the Article before publish</string>
+    <string name="write_title">Write title...</string>
+    <string name="b">B</string>
+    <string name="preview_article_button">preview article button</string>
+    <string name="publish">Publish</string>
+    <string name="please_complete_the_article_first">Please complete the article first!</string>
+    <string name="thank_you_for_your_feedback_you_have_already_submitted_a_review_for_this_product">Thank you for your feedback! You have already submitted a review for this product.</string>
 
 
 </resources>

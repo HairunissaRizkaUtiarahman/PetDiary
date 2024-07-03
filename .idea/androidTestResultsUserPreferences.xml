@@ -24,6 +24,7 @@
                   <entry key="Duration" value="90" />
                   <entry key="Pixel_5_API_34" value="120" />
                   <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
                 </map>
               </option>
             </AndroidTestResultsTableState>
@@ -70,6 +71,33 @@
           </value>
         </entry>
         <entry key="397081074">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="403400262">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="102" />
+                  <entry key="Tests" value="371" />
+                  <entry key="samsung SM-M515F" value="131" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="953148275">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">

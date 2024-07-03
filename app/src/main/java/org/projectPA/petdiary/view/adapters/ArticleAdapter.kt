@@ -25,7 +25,7 @@ class ArticleAdapter(
                 tittleArticle.text = article.tittle
                 categoryArticle.text = article.category
                 articleDate.text =
-                    dateFormatter.format(article.date) // We will format the date in ArticleActivity
+                    dateFormatter.format(article.date)
 
                 root.setOnClickListener {
                     onArticleClick(article.id)

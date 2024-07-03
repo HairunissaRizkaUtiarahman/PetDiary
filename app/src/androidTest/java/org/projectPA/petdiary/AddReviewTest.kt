@@ -2,35 +2,34 @@ package org.projectPA.petdiary
 
 import android.view.View
 import android.widget.RatingBar
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.onData
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import org.hamcrest.CoreMatchers.*
+import androidx.test.rule.GrantPermissionRule
+import com.google.firebase.auth.FirebaseAuth
+import org.hamcrest.CoreMatchers.containsString
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.hasToString
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.projectPA.petdiary.view.activities.ProductDetailActivity
-import org.projectPA.petdiary.view.activities.DetailReviewActivity
-import org.projectPA.petdiary.view.activities.DashboardActivity
-import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import androidx.test.rule.GrantPermissionRule
-import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.view.activities.ChooseProductActivity
+import org.projectPA.petdiary.view.activities.DetailReviewActivity
+import org.projectPA.petdiary.view.activities.ProductDetailActivity
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 
 @RunWith(AndroidJUnit4::class)
@@ -86,7 +85,7 @@ class AddReviewTest {
 
         // UsageProductFragment
         onView(withId(R.id.usageDropdown)).perform(click())
-        onData(allOf(instanceOf(String::class.java), hasToString("2 – 6 months"))).perform(click())
+        onView(withText("2 – 6 months")).perform(click())
         onView(withId(R.id.next_button_to_write_review)).perform(click())
 
         // WriteReviewFragment
@@ -96,7 +95,6 @@ class AddReviewTest {
         // RecommendProductFragment
         onView(withId(R.id.ic_thumbs_up_inactive)).perform(click())
         onView(withId(R.id.submit_button)).perform(click())
-
 
         Thread.sleep(5000)
 
@@ -130,20 +128,17 @@ class AddReviewTest {
     private fun setRating(rating: Float): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
-                return isAssignableFrom(android.widget.RatingBar::class.java)
+                return isAssignableFrom(RatingBar::class.java)
             }
-
 
             override fun getDescription(): String {
                 return "Set rating on RatingBar"
             }
 
-
             override fun perform(uiController: UiController, view: View) {
-                val ratingBar = view as android.widget.RatingBar
+                val ratingBar = view as RatingBar
                 ratingBar.rating = rating
             }
         }
     }
-
 }

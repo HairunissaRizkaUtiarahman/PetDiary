@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import org.jsoup.Jsoup
 import org.projectPA.petdiary.databinding.ActivityArticleBinding
 import org.projectPA.petdiary.model.Article
 import org.projectPA.petdiary.view.adapters.ArticleAdapter
@@ -86,7 +87,7 @@ class ArticleActivity : AppCompatActivity() {
             override fun shouldOverrideUrlLoading(view: WebView, request: android.webkit.WebResourceRequest): Boolean {
                 val url = request.url.toString()
                 if (Uri.parse(url).host != null) {
-                    return false // Allow the URL to be loaded within the WebView
+                    return false //
                 }
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
                 return true
@@ -102,9 +103,10 @@ class ArticleActivity : AppCompatActivity() {
     private fun shareArticle() {
         val article = viewModel.articleDetails.value
         article?.let {
+            val plainTextBody = Jsoup.parse(it.body).text()
             val shareIntent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "Check out this article: ${it.tittle}\n\n${it.body}\n\nRead more at: ${it.sourceUrl}")
+                putExtra(Intent.EXTRA_TEXT, "Check out this article from PetDiary App: ${it.tittle}\n\n$plainTextBody")
                 type = "text/plain"
             }
             startActivity(Intent.createChooser(shareIntent, "Share article via"))
