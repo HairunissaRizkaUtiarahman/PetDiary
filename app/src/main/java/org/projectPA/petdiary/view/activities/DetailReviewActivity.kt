@@ -73,6 +73,16 @@ class DetailReviewActivity : AppCompatActivity() {
                 return false
             }
 
+            override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+                val position = viewHolder.adapterPosition
+                val comment = commentReviewAdapter.comments[position]
+                return if (comment.userId == viewModel.currentUserId) {
+                    super.getSwipeDirs(recyclerView, viewHolder)
+                } else {
+                    0 // Disables swipe for comments not owned by the current user
+                }
+            }
+
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.adapterPosition
                 Log.d("DetailReviewActivity", "Swiped to delete comment at position: $position")
@@ -115,7 +125,6 @@ class DetailReviewActivity : AppCompatActivity() {
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.listComment)
-
     }
 
     @SuppressLint("SetTextI18n")

@@ -77,6 +77,7 @@ class CommentReviewAdapter(
             notifyItemRemoved(position)
         } else {
             Log.e("CommentReviewAdapter", "Invalid comment ID or user unauthorized: $commentId")
+            notifyItemChanged(position)  // Reset the swipe action
         }
     }
 
