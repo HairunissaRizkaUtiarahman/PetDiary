@@ -112,6 +112,7 @@ class ProductDetailActivity : AppCompatActivity() {
         })
     }
 
+
     private fun displayProductDetails(product: Product) {
         binding.productBrandText.text = product.brandName
         binding.productNameText.text = product.productName

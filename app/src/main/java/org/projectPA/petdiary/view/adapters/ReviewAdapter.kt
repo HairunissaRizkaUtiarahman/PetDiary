@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ItemReviewBinding
@@ -89,7 +90,11 @@ class ReviewAdapter(
     override fun getItemCount() = reviews.size
 
     fun updateData(newReviews: List<Review>) {
-        reviews = newReviews.sortedByDescending { it.timeReviewed }
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+        val myReviews = newReviews.filter { it.userId == currentUserId }
+        val otherReviews = newReviews.filter { it.userId != currentUserId }.sortedByDescending { it.timeReviewed }
+
+        reviews = myReviews + otherReviews
         notifyDataSetChanged()
     }
 }

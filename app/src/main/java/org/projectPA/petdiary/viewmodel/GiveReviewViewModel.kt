@@ -96,22 +96,27 @@ class GiveReviewViewModel : ViewModel() {
     }
 
     private suspend fun updateProductStatistics(productId: String) {
-        val reviews = firestore.collection("reviews").whereEqualTo("productId", productId).get().await()
-        val recommendedCount = reviews.documents.count { it.getBoolean("recommend") == true }
-        val totalRating = reviews.documents.sumOf { it.getDouble("rating") ?: 0.0 }
-        val reviewCount = reviews.size()
+        try {
+            val reviews = firestore.collection("reviews").whereEqualTo("productId", productId).get().await()
+            val recommendedCount = reviews.documents.count { it.getBoolean("recommend") == true }
+            val totalRating = reviews.documents.sumOf { it.getDouble("rating") ?: 0.0 }
+            val reviewCount = reviews.size()
 
-        val newAverageRating = if (reviewCount > 0) totalRating / reviewCount else 0.0
-        val newPercentageOfUsers = if (reviewCount > 0) (recommendedCount * 100 / reviewCount) else 0
+            val newAverageRating = if (reviewCount > 0) totalRating / reviewCount else 0.0
+            val newPercentageOfUsers = if (reviewCount > 0) (recommendedCount * 100 / reviewCount) else 0
 
-        val productRef = firestore.collection("products").document(productId)
-        firestore.runTransaction { transaction ->
-            transaction.update(productRef, mapOf(
-                "reviewCount" to reviewCount,
-                "totalRating" to totalRating,
-                "averageRating" to newAverageRating,
-                "percentageOfUsers" to newPercentageOfUsers
-            ))
-        }.await()
+            val productRef = firestore.collection("products").document(productId)
+            firestore.runTransaction { transaction ->
+                transaction.update(productRef, mapOf(
+                    "reviewCount" to reviewCount,
+                    "totalRating" to totalRating,
+                    "averageRating" to newAverageRating,
+                    "percentageOfUsers" to newPercentageOfUsers
+                ))
+            }.await()
+            Log.d("GiveReviewViewModel", "Product statistics updated successfully")
+        } catch (e: Exception) {
+            Log.e("GiveReviewViewModel", "Error updating product statistics", e)
+        }
     }
 }
