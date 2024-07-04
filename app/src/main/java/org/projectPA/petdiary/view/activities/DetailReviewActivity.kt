@@ -240,8 +240,6 @@ class DetailReviewActivity : AppCompatActivity() {
                 viewModel.fetchCommentsCount(reviewId)
             }
         })
-
-
-
     }
 }
+

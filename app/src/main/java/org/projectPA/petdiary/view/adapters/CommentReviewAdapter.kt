@@ -62,8 +62,11 @@ class CommentReviewAdapter(
 
     override fun getItemCount() = comments.size
 
-    fun updateData(comment: List<CommentReview>) {
-        comments = comment.sortedByDescending { it.timeCommented }
+    fun updateData(commentList: List<CommentReview>) {
+        val myComments = commentList.filter { it.userId == currentUserId }
+        val otherComments = commentList.filter { it.userId != currentUserId }.sortedByDescending { it.timeCommented }
+
+        comments = myComments + otherComments
         notifyDataSetChanged()
     }
 
@@ -77,8 +80,7 @@ class CommentReviewAdapter(
             notifyItemRemoved(position)
         } else {
             Log.e("CommentReviewAdapter", "Invalid comment ID or user unauthorized: $commentId")
-            notifyItemChanged(position)  // Reset the swipe action
+            notifyItemChanged(position)
         }
     }
-
 }
