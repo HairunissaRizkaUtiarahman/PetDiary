@@ -1,262 +1,261 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+<resources>
+    <string name="hello_blank_fragment">Halo fragmen kosong</string>
 
     <string name="app_name">PetDiary</string>
 
+
+
     <!-- Activity Main -->
-    <string name="add_button">add button</string>
+    <string name="add_button">tombol tambah</string>
     <string name="fab">\u200B</string>
-    <string name="home">Home</string>
-    <string name="profile">Profile</string>
+    <string name="home">Beranda</string>
+    <string name="profile">Profil</string>
 
     <!-- Activity Review Homepage -->
-    <string name="toolbar_Product_Reviews">Pet Product Reviews </string>
-    <string name="notification_icon_description">notification</string>
-    <string name="Browse_product_by_pet_types">Browse product by pet types</string>
-    <string name="most_reviews_products">5 Most Reviewed Products</string>
-    <string name="scroll_horizontally_to_view_pet_options">Scroll horizontally to view pet options</string>
-    <string name="browse_product_by_pet_types">Browse product by pet types</string>
-    <string name="scroll_horizontally_to_view_product">scroll horizontally to view product</string>
+    <string name="toolbar_Product_Reviews">Ulasan Produk Hewan Peliharaan</string>
+    <string name="notification_icon_description">notifikasi</string>
+    <string name="Browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
+    <string name="most_reviews_products">5 Produk Dengan Ulasan Terbanyak</string>
+    <string name="scroll_horizontally_to_view_pet_options">Gulir secara horizontal untuk melihat opsi hewan peliharaan</string>
+    <string name="browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
+    <string name="scroll_horizontally_to_view_product">gulir secara horizontal untuk melihat produk</string>
 
     <!-- Activity Choose Pet Category -->
-    <string name="back_to_review_homepage_button">back_to_review_homepage_button</string>
-    <string name="pet_category">Pet Category</string>
-    <string name="choose_pet_category">Choose Pet Product Category</string>
-    <string name="fish">Fish</string>
+    <string name="back_to_review_homepage_button">kembali_ke_halaman_utama_ulasan_tombol</string>
+    <string name="pet_category">Kategori Hewan Peliharaan</string>
+    <string name="choose_pet_category">Pilih Kategori Produk Hewan Peliharaan</string>
+    <string name="fish">Ikan</string>
     <string name="hamster">Hamster</string>
-    <string name="rabbit">Rabbit</string>
-    <string name="dog">Dog</string>
-    <string name="cat">Cat</string>
-    <string name="bird">Bird</string>
+    <string name="rabbit">Kelinci</string>
+    <string name="dog">Anjing</string>
+    <string name="cat">Kucing</string>
+    <string name="bird">Burung</string>
 
     <!-- Activity Choose Product Category -->
-    <string name="choose_product_category">Choose Product Category</string>
-    <string name="back_to_choose_pet_category_page_button">back_to_choose_pet_category_page_button</string>
-    <string name="grooming">Grooming</string>
-    <string name="food">Food</string>
-    <string name="health">Health</string>
-    <string name="tools">Tools</string>
-    <string name="others">Others</string>
+    <string name="choose_product_category">Pilih Kategori Produk</string>
+    <string name="back_to_choose_pet_category_page_button">kembali_ke_halaman_pilih_kategori_hewan_peliharaan_tombol</string>
+    <string name="grooming">Perawatan</string>
+    <string name="food">Makanan</string>
+    <string name="health">Kesehatan</string>
+    <string name="tools">Alat</string>
+    <string name="others">Lainnya</string>
 
     <!-- Activity Choose Product -->
-    <string name="choose_product">Choose Product</string>
-    <string name="search_product">Search product…</string>
-    <string name="sort">Sort</string>
+    <string name="choose_product">Pilih Produk</string>
+    <string name="search_product">Cari produk…</string>
+    <string name="sort">Urutkan</string>
 
     <!-- Activity Fill Product Information -->
-    <string name="back_to_choose_product_category_page_button">back_to_choose_product_category_page_button</string>
-    <string name="fill_product_information">Fill Product Information</string>
-    <string name="enter_brand_name">Enter Brand Name</string>
-    <string name="product_name">Product Name</string>
-    <string name="brand_name">Brand Name</string>
-    <string name="upload_photo">upload photo</string>
-    <string name="enter_product_name">Enter Product Name</string>
-    <string name="enter_product_description">Enter product description</string>
-    <string name="submit">submit</string>
+    <string name="back_to_choose_product_category_page_button">kembali_ke_halaman_pilih_kategori_produk_tombol</string>
+    <string name="fill_product_information">Isi Informasi Produk</string>
+    <string name="enter_brand_name">Masukkan Nama Merek</string>
+    <string name="product_name">Nama Produk</string>
+    <string name="brand_name">Nama Merek</string>
+    <string name="upload_photo">unggah foto</string>
+    <string name="enter_product_name">Masukkan Nama Produk</string>
+    <string name="enter_product_description">Masukkan deskripsi produk</string>
+    <string name="submit">kirim</string>
 
     <!-- Activity Give Rating Step One -->
-    <string name="back_to_choose_product_button">back_to_choose_product_button</string>
-    <string name="give_review">Give a Review</string>
-    <string name="give_your_overall_rating_for_this_product">Give Your Overall Rating For This Product</string>
-    <string name="prev">Prev</string>
-    <string name="next">Next</string>
+    <string name="back_to_choose_product_button">kembali_ke_pilih_produk_tombol</string>
+    <string name="give_review">Berikan Ulasan</string>
+    <string name="give_your_overall_rating_for_this_product">Berikan Penilaian Keseluruhan Anda untuk Produk Ini</string>
+    <string name="prev">Sebelumnya</string>
+    <string name="next">Berikutnya</string>
 
     <!-- Activity More Reviews -->
-    <string name="reviews">Reviews</string>
+    <string name="reviews">Ulasan</string>
 
     <!-- Activity Product Categories -->
-    <string name="back_to_review_landing_page">back_to_review_landing_page</string>
-    <string name="product_categories">Product Categories</string>
+    <string name="back_to_review_landing_page">kembali_ke_halaman_utama_ulasan</string>
+    <string name="product_categories">Kategori Produk</string>
 
     <!-- Activity Product Detail -->
-    <string name="reviewed_this">People Reviewed This Product</string>
-    <string name="users_recommend_this">Users Recommend This</string>
-    <string name="product_description">Product Description</string>
-    <string name="overall_rating">Overall Rating</string>
-    <string name="back_to_products_page_button">back_to_products_page_button</string>
-    <string name="see_more_reviews"><![CDATA[See more Reviews>>]]></string>
-    <string name="back_to_product_page">back to product page</string>
-    <string name="product_detail">Product Detail</string>
-    <string name="add_a_review">Add a Review</string>
+    <string name="reviewed_this">Orang yang Memberi Ulasan untuk Produk Ini</string>
+    <string name="users_recommend_this">Pengguna Merekomendasikan Ini</string>
+    <string name="product_description">Deskripsi Produk</string>
+    <string name="overall_rating">Penilaian Keseluruhan</string>
+    <string name="back_to_products_page_button">kembali_ke_halaman_produk_tombol</string>
+    <string name="see_more_reviews"><![CDATA[Lihat lebih banyak Ulasan>>]]></string>
+    <string name="back_to_product_page">kembali ke halaman produk</string>
+    <string name="product_detail">Detail Produk</string>
+    <string name="add_a_review">Tambahkan Ulasan</string>
 
     <!-- Activity Product Page -->
-    <string name="back_to_product_categories_button">back_to_product_categories_button</string>
-    <string name="product">Products</string>
+    <string name="back_to_product_categories_button">Kembali ke Kategori Produk Tombol</string>
+    <string name="product">Produk</string>
 
     <!-- Activity Recommend Product Step Four -->
-    <string name="would_you_recommend_this_product">Would you recommend this product?</string>
+    <string name="would_you_recommend_this_product">Apakah Anda akan merekomendasikan produk ini?</string>
 
     <!-- Activity Review Detail -->
-    <string name="review_detail">Review Detail</string>
-    <string name="back_to_product_detail_button">back_to_product_detail_button</string>
-    <string name="usage_period">Usage Period</string>
-    <string name="date">Date</string>
+    <string name="review_detail">Detail Ulasan</string>
+    <string name="back_to_product_detail_button">Kembali ke Detail Produk Tombol</string>
+    <string name="usage_period">Periode Penggunaan</string>
+    <string name="date">Tanggal</string>
 
     <!-- Activity Usage Product Step Two -->
-    <string name="how_long_have_you_used_it">How Long Have You Used It?</string>
+    <string name="how_long_have_you_used_it">Berapa Lama Anda Menggunakannya?</string>
 
     <!-- Activity Usage Product Step Three -->
-    <string name="write_your_review_about_this_product">Write your review about \n this product</string>
-    <string name="write_you_review_here">write you review here…</string>
-
+    <string name="write_your_review_about_this_product">Tulis ulasan Anda tentang produk ini</string>
+    <string name="write_you_review_here">tulis ulasan Anda di sini…</string>
 
     <!-- Fragment Add Button -->
-    <string name="add_a_post">Add a Post</string>
-    <string name="add_a_product">Add a Product</string>
+    <string name="add_a_post">Tambahkan Postingan</string>
+    <string name="add_a_product">Tambahkan Produk</string>
 
     <!-- Fragment Home -->
-    <string name="find_pet_shop_vet">Shop &amp; Vet</string>
-    <string name="community">Community</string>
-    <string name="article">Article</string>
-    <string name="manage_pet">Manage Pet</string>
-    <string name="manage_pet_poster">Manage Pet Poster</string>
-    <string name="review_n">Review</string>
-    <string name="community_n">Community</string>
-    <string name="article_n">Article</string>
+    <string name="find_pet_shop_vet">Toko &amp; Dokter</string>
+    <string name="community">Komunitas</string>
+    <string name="article">Artikel</string>
+    <string name="manage_pet">Kelola Peliharaanku</string>
+    <string name="manage_pet_poster">Kelola Poster Hewan Peliharaan</string>
+    <string name="review_n">Ulasan</string>
+    <string name="community_n">Komunitas</string>
+    <string name="article_n">Artikel</string>
 
     <!-- Fragment Sort Button Product -->
-    <string name="sort_by">Sort by</string>
-    <string name="popular">Popular</string>
-    <string name="highest_rating">Highest Rating</string>
-    <string name="newest">Newest</string>
+    <string name="sort_by">Urutkan berdasarkan</string>
+    <string name="popular">Populer</string>
+    <string name="highest_rating">Peringkat Tertinggi</string>
+    <string name="newest">Terbaru</string>
 
     <!-- Fragment Sort Button Review -->
-    <string name="newest_review">Newest Review</string>
-    <string name="oldest_review">Oldest Review</string>
-    <string name="lowest_rating">Lowest Rating</string>
+    <string name="newest_review">Ulasan Terbaru</string>
+    <string name="oldest_review">Ulasan Terlama</string>
+    <string name="lowest_rating">Peringkat Terendah</string>
 
     <!-- Fragment Menu -->
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_dashboard">Dasbor</string>
+    <string name="title_notifications">Notifikasi</string>
 
-    <string name="back_to_product_detail_page">back to product detail page\n</string>
+    <string name="back_to_product_detail_page">kembali ke halaman detail produk\n</string>
     <string name="back_to_detail_product_page" />
     <string name="back_to_detail_reviews_page" />
-    <string name="back_to_choose_product_category">back_to_choose_product_category</string>
+    <string name="back_to_choose_product_category">kembali_ke_pemilihan_kategori_produk</string>
     <string name="hide_bottom_view_on_scroll" />
     <string name="title_activity_main">MainActivity</string>
-    <string name="back_button">back_button</string>
+    <string name="back_button">tombol_kembali</string>
 
-    <string-array name="usage_options" tools:ignore="InconsistentArrays">
-        <item>Select Usage Product</item>
-        <item>Using this product for the first time</item>
-        <item>1 week - 1 month</item>
-        <item>2 – 6 months</item>
-        <item>More than one year</item>
-        <item>Less than a week</item>
+    <string-array name="usage_options">
+        <item>Menggunakan produk ini untuk pertama kalinya</item>
+        <item>1 minggu - 1 bulan</item>
+        <item>2 – 6 bulan</item>
+        <item>Lebih dari satu tahun</item>
+        <item>Kurang dari seminggu</item>
     </string-array>
 
     <string-array name="article_category">
-        <item>Select Article Category</item>
+        <item>Select article category</item>
         <item>Care and Health</item>
-        <item>Training</item>
         <item>Event</item>
+        <item>Others</item>
     </string-array>
 
     <!-- Fragment My Pet -->
 
 
+
     <!-- Fragment My Profile -->
-    <string name="my_profile_edit">Edit My Profile</string>
+    <string name="my_profile_edit">Edit Profil Saya</string>
 
+    <string name="home_name_user">Hai! %1$s</string>
 
-    <string name="home_name_user">Hi! %1$s</string>
-
-
-    <string name="care_and_health">Care and Health</string>
-    <string name="training">Training</string>
-    <string name="community_events">Event</string>
-    <string name="all">All</string>
-    <string name="back_to_article_homepage">back to article homepage</string>
-    <string name="share_via">Share via</string>
+    <string name="care_and_health">Perawatan dan Kesehatan</string>
+    <string name="training">Pelatihan</string>
+    <string name="community_events">Acara</string>
+    <string name="all">Semua</string>
+    <string name="back_to_article_homepage">kembali ke halaman utama artikel</string>
+    <string name="share_via">Bagikan melalui</string>
     <string name="pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda">Pentingnya Perawatan Kesehatan Rutin untuk Kucing Kesayangan Anda</string>
 
     <string name="sebagai_pemilik_kucing_memastikan_kesehatan_dan_kesejahteraan_hewan_peliharaan_anda_adalah_tanggung_jawab_yang_sangat_penting_merawat_kesehatan_kucing_secara_teratur_bukan_hanya_tentang_memberikan_makanan_yang_baik_dan_memberi_perhatian_tetapi_juga_melibatkan_upaya_pencegahan_dan_pengawasan_yang_teratur_dalam_artikel_ini_kami_akan_membahas_pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka_1_kunjungan_rutin_ke_dokter_hewan_penting_untuk_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_setidaknya_sekali_setahun_selama_kunjungan_ini_dokter_hewan_dapat_melakukan_pemeriksaan_fisik_menyeluruh_vaksinasi_yang_diperlukan_dan_memberikan_saran_tentang_perawatan_kesehatan_yang_tepat_untuk_kucing_anda_pemeriksaan_rutin_ini_juga_membantu_dalam_mendeteksi_masalah_kesehatan_yang_mungkin_tidak_terlihat_secara_kasat_mata_2_vaksinasi_yang_tepat_waktu_vaksinasi_adalah_bagian_penting_dari_perawatan_kesehatan_kucing_vaksin_melindungi_kucing_dari_penyakit_serius_seperti_rabies_panleukopenia_herpesvirus_felis_dan_calicivirus_felis_pastikan_untuk_mematuhi_jadwal_vaksinasi_yang_direkomendasikan_oleh_dokter_hewan_anda_untuk_memastikan_kucing_anda_tetap_sehat_dan_terlindungi_3_perawatan_gigi_dan_mulut_kesehatan_gigi_dan_mulut_sangat_penting_untuk_kucing_pemeriksaan_rutin_gigi_dan_pembersihan_oleh_dokter_hewan_dapat_mencegah_masalah_seperti_penyakit_gusi_plak_dan_tartar_selain_itu_memberikan_makanan_khusus_untuk_kesehatan_gigi_dan_memberikan_mainan_kunyah_dapat_membantu_menjaga_kebersihan_mulut_kucing_anda_perawatan_kesehatan_rutin_adalah_langkah_penting_dalam_menjaga_kesehatan_dan_kesejahteraan_kucing_kesayangan_anda_dengan_menjadwalkan_kunjungan_rutin_ke_dokter_hewan_mematuhi_jadwal_vaksinasi_merawat_gigi_dan_mulut_menjaga_bulu_dan_kulit_serta_memberikan_diet_seimbang_dan_aktivitas_fisik_yang_cukup_anda_dapat_membantu_kucing_anda_hidup_lebih_lama_dan_lebih_sehat_ingatlah_bahwa_investasi_dalam_perawatan_kesehatan_kucing_anda_akan_membayar_dengan_kualitas_hidup_yang_lebih_baik_bagi_mereka">Sebagai pemilik kucing, memastikan kesehatan dan kesejahteraan hewan peliharaan Anda adalah tanggung jawab yang sangat penting. Merawat kesehatan kucing secara teratur bukan hanya tentang memberikan makanan yang baik dan memberi perhatian, tetapi juga melibatkan upaya pencegahan dan pengawasan yang teratur. Dalam artikel ini, kami akan membahas pentingnya perawatan kesehatan rutin untuk kucing kesayangan Anda. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka. 1. Kunjungan Rutin ke Dokter Hewan: Penting untuk menjadwalkan kunjungan rutin ke dokter hewan setidaknya sekali setahun. Selama kunjungan ini, dokter hewan dapat melakukan pemeriksaan fisik menyeluruh, vaksinasi yang diperlukan, dan memberikan saran tentang perawatan kesehatan yang tepat untuk kucing Anda. Pemeriksaan rutin ini juga membantu dalam mendeteksi masalah kesehatan yang mungkin tidak terlihat secara kasat mata. 2. Vaksinasi yang Tepat Waktu: Vaksinasi adalah bagian penting dari perawatan kesehatan kucing. Vaksin melindungi kucing dari penyakit serius seperti rabies, panleukopenia, herpesvirus felis, dan calicivirus felis. Pastikan untuk mematuhi jadwal vaksinasi yang direkomendasikan oleh dokter hewan Anda untuk memastikan kucing Anda tetap sehat dan terlindungi. 3. Perawatan Gigi dan Mulut: Kesehatan gigi dan mulut sangat penting untuk kucing. Pemeriksaan rutin gigi dan pembersihan oleh dokter hewan dapat mencegah masalah seperti penyakit gusi, plak, dan tartar. Selain itu, memberikan makanan khusus untuk kesehatan gigi dan memberikan mainan kunyah dapat membantu menjaga kebersihan mulut kucing Anda. Perawatan kesehatan rutin adalah langkah penting dalam menjaga kesehatan dan kesejahteraan kucing kesayangan Anda. Dengan menjadwalkan kunjungan rutin ke dokter hewan, mematuhi jadwal vaksinasi, merawat gigi dan mulut, menjaga bulu dan kulit, serta memberikan diet seimbang dan aktivitas fisik yang cukup, Anda dapat membantu kucing Anda hidup lebih lama dan lebih sehat. Ingatlah bahwa investasi dalam perawatan kesehatan kucing Anda akan membayar dengan kualitas hidup yang lebih baik bagi mereka.</string>
 
     <string name="_15_maret_2024">15 Maret 2024</string>
 
-    <string name="age_pet">%1$d Month</string>
-    <string name="back_to_review_detail_button">back_to_review_detail_button</string>
-    <string name="send_comment">send comment</string>
+    <string name="age_pet">%1$d Bulan</string>
+    <string name="back_to_review_detail_button">kembali ke detail ulasan</string>
+    <string name="send_comment">kirim komentar</string>
 
     <!-- Universal -->
-    <string name="birthdate">Birthdate</string>
-    <string name="name">Name</string>
-    <string name="address">Address</string>
+    <string name="birthdate">Tanggal lahir</string>
+    <string name="name">Nama</string>
+    <string name="address">Alamat</string>
     <string name="timestamp">Timestamp</string>
-    <string name="description">Description</string>
-    <string name="gender">Gender</string>
-    <string name="age">Age (Month) </string>
-    <string name="details">Details</string>
+    <string name="description">Deskripsi</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="age">Usia (Bulan)</string>
+    <string name="details">Detail</string>
     <string name="bio">Bio</string>
     <string name="email">Email</string>
-    <string name="password">Password</string>
+    <string name="password">Kata Sandi</string>
 
     <string name="search">Search</string>
-    <string name="select_image">Select Image</string>
-    <string name="save">Save</string>
-    <string name="add">Add</string>
-    <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</string>
+    <string name="select_image">Pilih Gambar</string>
+    <string name="save">Simpan</string>
+    <string name="add">Tambah</string>
+    <string name="lorem_ipsum">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf. Lorem Ipsum telah menjadi standar industri</string>
 
     <!-- Title Toolbar -->
-    <string name="toolbar_pet">Manage Pet</string>
-    <string name="toolbar_pet_detail">Pet Detail</string>
-    <string name="toolbar_pet_add">Add Pet</string>
-    <string name="toolbar_pet_edit">Edit Pet</string>
+    <string name="toolbar_pet">Kelola Peliharaanku</string>
+    <string name="toolbar_pet_add">Tambah Hewan Peliharaan</string>
+    <string name="toolbar_pet_edit">Edit Hewan Peliharaan</string>
+    <string name="toolbar_pet_detail">Detail Hewan Peliharaan</string>
 
-    <string name="toolbar_setting">Setting</string>
-    <string name="toolbar_change_language">Change Language</string>
-    <string name="toolbar_change_password">Change Password</string>
-    <string name="toolbar_edit_profile">Edit Profile</string>
-    <string name="toolbar_my_profile">My Profile</string>
-    <string name="toolbar_comment">Comment</string>
-    <string name="toolbar_review_detail">Review Detail</string>
-    <string name="toolbar_petshop_clinic">Find Petshop &amp; Clinic</string>
-    <string name="toolbar_community">Community</string>
-    <string name="toolbar_user_profile">User Profile</string>
-    <string name="toolbar_search">Search</string>
-    <string name="toolbar_add_post">Add Post</string>
+    <string name="toolbar_setting">Pengaturan</string>
+    <string name="toolbar_change_language">Ganti Bahasa</string>
+    <string name="toolbar_change_password">Ganti Kata Sandi</string>
+    <string name="toolbar_edit_profile">Ubah Profil</string>
+    <string name="toolbar_my_profile">Profil Saya</string>
+    <string name="toolbar_comment">Komentar</string>
+    <string name="toolbar_review_detail">Detail Ulasan</string>
+    <string name="toolbar_petshop_clinic">Cari Petshop &amp; Klinik</string>
+    <string name="toolbar_community">Komunitas</string>
+    <string name="toolbar_user_profile">Profil Pengguna</string>
+    <string name="toolbar_search">Pencarian</string>
+    <string name="toolbar_add_post">Tambah Postingan</string>
 
     <!-- Auth -->
     <!-- Activity Sign In -->
-    <string name="sign_in">SIGN IN</string>
-    <string name="sign_in_desc">Please enter email and password to continue</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="sign_in">MASUK</string>
+    <string name="sign_in_desc">Silahkan masuk untuk melanjutkan</string>
+    <string name="forgot_password">Lupa kata sandi?</string>
+    <string name="don_t_have_an_account">Belum punya akun?</string>
 
     <!-- Activity Sign Up -->
-    <string name="sign_up">SIGN UP</string>
-    <string name="sign_up_desc">Please Sign Up to continue</string>
-    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_up">DAFTAR</string>
+    <string name="sign_up_desc">Silakan mendaftar untuk masuk</string>
+    <string name="already_have_an_account">Sudah punya akun?</string>
 
     <!-- Activity Reset Password -->
-    <string name="reset_password">RESET PASSWORD</string>
-    <string name="please_enter_a_valid_email">Please enter a valid email</string>
-    <string name="send_to_email">Send to Email</string>
+    <string name="reset_password">RESET KATA SANDI</string>
+    <string name="please_enter_a_valid_email">Silakan isi alamat email Anda</string>
+    <string name="send_to_email">Kirim ke Email</string>
 
     <!-- Dashboard -->
     <!-- Fragment Profile -->
-    <string name="my_profile">My Profile</string>
+    <string name="my_profile">Profil Saya</string>
+    <string name="setting">Pengaturan</string>
     <string name="post_count">%1$d</string>
     <string name="review_count">%1$d</string>
     <string name="pet_count">%1$d</string>
-    <string name="setting">Setting</string>
     <string name="logout">Logout</string>
 
     <!-- Setting -->
     <!-- Fragment Setting -->
-    <string name="edit_profile">Edit Profile</string>
-    <string name="change_email">Change Email</string>
-    <string name="change_password">Change Password</string>
-    <string name="change_language">Change Language</string>
+    <string name="edit_profile">Ubah Profil</string>
+    <string name="change_email">Ganti Email</string>
+    <string name="change_password">Ganti Kata Sandi</string>
+    <string name="change_language">Ganti Bahasa</string>
 
     <!-- Fragment Change Language -->
-    <string name="same_on_system">Same on System</string>
-    <string name="language_english">English</string>
-    <string name="indonesian">Indonesian</string>
+    <string name="same_on_system">Sama dengan Sistem</string>
+    <string name="language_english">Bahasa Inggris</string>
+    <string name="indonesian">Bahasa Indonesia</string>
 
+    <!-- Fragment Image Content Description -->
     <string name="image_system_cd">Image System</string>
     <string name="image_check_system_cd">Image Check System</string>
     <string name="image_english_cd">Image English</string>
@@ -274,60 +273,59 @@
     <string name="image_logo_cd">Image Logo</string>
 
     <!-- Fragment Change Password -->
-    <string name="old_password">Old Password</string>
-    <string name="new_password">New Password</string>
-    <string name="confirm_new_password">Confirm New Password</string>
-    <string name="change_password_btn">Change Password</string>
+    <string name="old_password">Kata Sandi Lama</string>
+    <string name="new_password">Kata Sandi Baru</string>
+    <string name="confirm_new_password">Konfirmasi Kata Sandi Baru</string>
+    <string name="change_password_btn">Ganti Kata Sandi</string>
 
     <!-- Fragment Edit Profile -->
-    <string name="male_profile">Male</string>
-    <string name="female_profile">Female</string>
+    <string name="male_profile">Pria</string>
+    <string name="female_profile">Wanita</string>
 
-    <!-- Fragment My Profile -->
-    <string name="no_pet_yet">No Pet Yet</string>
-    <string name="no_post_yet">No Post Yet</string>
-    <string name="no_review_yet">No Review Yet</string>
+    <!-- My Profile -->
+    <!-- Fragment Pet -->
+    <string name="no_pet_yet">Tidak Ada Hewan Peliharaan</string>
+    <string name="no_post_yet">Tidak Ada Postingan</string>
+    <string name="no_review_yet">Tidak Ada Review</string>
+    <string name="pet_edit_btn">Edit Profil Peliharaanku</string>
 
     <!-- List Post -->
-    <string name="like_count">%1$d Like</string>
-    <string name="comment_count">%1$d Comment</string>
-    <string name="like">Like</string>
-    <string name="comment">Comment</string>
-    <string name="delete">Delete</string>
+    <string name="like_count">%1$d Suka</string>
+    <string name="comment_count">%1$d Komentar</string>
+    <string name="like">Suka</string>
+    <string name="comment">Komentar</string>
+    <string name="delete">Hapus</string>
 
     <!-- List Pet -->
-    <string name="pet_name">Pet Name</string>
-    <string name="pet_type">Type or Species</string>
-    <string name="pet_edit_btn">Edit</string>
-    <string name="male_pet">Male</string>
-    <string name="female_pet">Female</string>
-    <string name="pet_add">Pet Add</string>
-
+    <string name="pet_name">Nama Hewan Peliharaan</string>
+    <string name="pet_type">Jenis atau Spesies</string>
+    <string name="male_pet">Jantan</string>
+    <string name="female_pet">Betina</string>
+    <string name="pet_add">Tambah Peliharaan</string>
 
     <!-- List Review -->
-    <string name="product_type">Product Type</string>
-    <string name="recomend_status">Recommended Status</string>
-    <string name="review_date">Review Date</string>
+    <string name="product_type">Tipe Produk</string>
+    <string name="recomend_status">Status Rekomendasi</string>
+    <string name="review_date">Tanggal Review</string>
     <string name="mm_dd_yyyy">MM, DD, YYYY</string>
-    <string name="period">Period</string>
+    <string name="period">Periode</string>
 
     <!-- Fragment Comment -->
     <string name="image_post_cd">image_post_cd</string>
-    <string name="no_comments_yet">No Comments Yet</string>
-    <string name="write_comment">Write Comment</string>
+    <string name="no_comments_yet">Tidak Ada Komentar</string>
+    <string name="write_comment">Tulis Komentar</string>
 
     <!-- Manage Pet -->
     <string name="petshop">Petshop</string>
-    <string name="clinic">Clinic Vet</string>
-    <string name="petshop_desc">Looking for the nearest pet shop around you</string>
-    <string name="clinic_desc">Look for the nearest veterinary clinic around you</string>
+    <string name="clinic">Klinik Hewan</string>
+    <string name="petshop_desc">Cari petshop terdekat disekitar anda</string>
+    <string name="clinic_desc">Carilah klinik hewan terdekat di sekitar Anda</string>
 
     <!-- Find Petshop & Clinic -->
-    <string name="user">User</string>
-    <string name="no_user_yet">No User Yet</string>
-    <string name="post">Post</string>
+    <string name="user">Pengguna</string>
+    <string name="no_user_yet">Tidak Ada Pengguna</string>
+    <string name="post">Postingan</string>
 
-    <string name="support">Support</string>
     <string name="toolbar_support">Support</string>
     <string name="email_from">From : %1$s</string>
     <string name="email_to">To : akupetdiary@gmail.com</string>
@@ -368,7 +366,7 @@
     <string name="usage_product">Usage Product</string>
     <string name="space_bar"> - </string>
     <string name="thankyou_for_review">Thank you for your review! We’ve recorded your feedback for this product already</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
     <string name="image_blank_cd">Image Blank</string>
     <string name="royal_canin">Royal Canin</string>
     <string name="adult_persian">Adult Persian</string>
@@ -382,7 +380,7 @@
     <string name="see_more_details">See More Details</string>
     <string name="text_search_cd">Text Search</string>
     <string name="please_complete_the_article_before_publish">Please Complete the Article before publish</string>
-    <string name="write_title">Write title...</string>
+    <string name="write_title">Write title…</string>
     <string name="b">B</string>
     <string name="preview_article_button">preview article button</string>
     <string name="publish">Publish</string>
@@ -391,9 +389,15 @@
     <string name="otherss">Others</string>
     <string name="redo_button">redo_button</string>
     <string name="undo_button">undo_button</string>
-    <string name="description_must_be_at_least_30_characters_long">Description must be at least 30 characters long!</string>
-    <string name="product_brand_cannot_be_empty">Product brand cannot be empty</string>
-    <string name="image_has_not_been_uploaded_yet">Image has not been uploaded yet!</string>
-
+    <string name="posts">Post</string>
+    <string name="pets">Pets</string>
+    <string name="account">Account</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="description_must_be_at_least_30_characters_long">Desc must be at least 30 characters long</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="email_pet_diary">akupetdiary@gmail.com</string>
+    <string name="open_email">Open Email</string>
+    <string name="faq">FAQ</string>
+    <string name="deletereview">delete review</string>
 
 </resources>
