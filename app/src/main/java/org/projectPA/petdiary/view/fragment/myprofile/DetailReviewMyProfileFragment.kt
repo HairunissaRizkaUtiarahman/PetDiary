@@ -57,7 +57,7 @@ class DetailReviewMyProfileFragment : Fragment() {
 
         commentReviewMyProfileAdapter = CommentReviewMyProfileAdapter()
 
-        binding.commentsRV.adapter = commentReviewMyProfileAdapter
+        binding.listComment.adapter = commentReviewMyProfileAdapter
 
         viewModel.commentsReview.observe(viewLifecycleOwner) { comments ->
             commentReviewMyProfileAdapter.submitList(comments)

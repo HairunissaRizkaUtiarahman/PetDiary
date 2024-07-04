@@ -326,7 +326,6 @@
     <string name="no_user_yet">No User Yet</string>
     <string name="post">Post</string>
 
-    <string name="support">Support</string>
     <string name="toolbar_support">Support</string>
     <string name="email_from">From : %1$s</string>
     <string name="email_to">To : akupetdiary@gmail.com</string>
@@ -394,6 +393,7 @@
     <string name="pets">Pets</string>
     <string name="account">Account</string>
     <string name="help_support">Help &amp; Support</string>
+    <string name="description_must_be_at_least_30_characters_long">Desc must be at least 30 characters long</string>
 
 
 </resources>
