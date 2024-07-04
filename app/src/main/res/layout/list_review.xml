@@ -11,6 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_delete" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -87,7 +98,7 @@
                 android:layout_height="25dp"
                 android:contentDescription="@string/image_see_detail_cd"
                 android:rotation="180"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/baseline_arrow_back_ios_24" />
 
         </LinearLayout>
 

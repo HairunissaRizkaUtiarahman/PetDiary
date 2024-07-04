@@ -326,7 +326,7 @@
     <string name="no_user_yet">No User Yet</string>
     <string name="post">Post</string>
 
-    <string name="helpandsupport">Help &amp; Support</string>
+    <string name="support">Support</string>
     <string name="toolbar_support">Support</string>
     <string name="email_from">From : %1$s</string>
     <string name="email_to">To : akupetdiary@gmail.com</string>
@@ -390,9 +390,6 @@
     <string name="otherss">Others</string>
     <string name="redo_button">redo_button</string>
     <string name="undo_button">undo_button</string>
-    <string name="pets">Pets</string>
-    <string name="account">Account</string>
-    <string name="posts">Posts</string>
 
 
 </resources>

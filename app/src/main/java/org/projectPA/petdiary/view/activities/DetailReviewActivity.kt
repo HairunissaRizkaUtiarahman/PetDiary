@@ -147,6 +147,13 @@ class DetailReviewActivity : AppCompatActivity() {
             if (count == 0) {
                 binding.layoutCommentRL.visibility = View.VISIBLE
                 binding.viewAllCommentsButton.visibility = View.GONE
+                binding.listComment.visibility = View.GONE
+            }else{
+                binding.layoutCommentRL.visibility = View.VISIBLE
+                binding.viewallTextview.text = "Hide"
+                binding.commentCount.visibility = View.GONE
+                binding.commentTextview.text = "all comment"
+                binding.viewAllCommentsButton.visibility = View.VISIBLE
                 binding.listComment.visibility = View.VISIBLE
             }
         })

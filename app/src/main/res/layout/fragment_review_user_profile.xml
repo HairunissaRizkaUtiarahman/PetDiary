@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/list_review" />
+        tools:listitem="@layout/list_my_review" />
 
     <TextView
         android:id="@+id/noReview_TV"

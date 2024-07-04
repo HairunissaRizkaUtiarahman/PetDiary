@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
@@ -20,7 +21,7 @@ class UsageProductFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentUsageProductBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(GiveReviewViewModel::class.java)
 
@@ -28,6 +29,17 @@ class UsageProductFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, usageOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.usageDropdown.adapter = adapter
+
+        binding.usageDropdown.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                binding.nextButtonToWriteReview.isEnabled = selectedItem != "Select Usage Product"
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                binding.nextButtonToWriteReview.isEnabled = false
+            }
+        }
 
         binding.prevButtonToGiveRating.setOnClickListener {
             parentFragmentManager.commit {
@@ -44,6 +56,8 @@ class UsageProductFragment : Fragment() {
                 addToBackStack(null)
             }
         }
+
+        binding.nextButtonToWriteReview.isEnabled = false
 
         return binding.root
     }

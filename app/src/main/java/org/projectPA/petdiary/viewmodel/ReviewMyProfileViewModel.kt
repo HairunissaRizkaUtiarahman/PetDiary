@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -30,6 +31,17 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
 
     val commentsReview: LiveData<List<CommentReview>>
         get() = _CommentsReview
+
+    private val _commentsCount = MutableLiveData<Int>()
+    val commentsCount: LiveData<Int> get() = _commentsCount
+
+    private val firestore = FirebaseFirestore.getInstance()
+    private val _commentAdded = MutableLiveData<Boolean>()
+    val commentAdded: LiveData<Boolean> get() = _commentAdded
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> get() = _errorMessage
+
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
@@ -65,6 +77,7 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         withContext(Dispatchers.IO) {
             reviewRepository.addCommentReview(reviewId, text)
             loadComment(reviewId)
+            fetchCommentsCount(reviewId)
         }
     }
 
@@ -72,7 +85,27 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         withContext(Dispatchers.Main) {
             reviewRepository.getCommentReviews(reviewId).collect {
                 _CommentsReview.value = it
+                _commentsCount.value = it.size
             }
         }
+    }
+
+    fun deleteReview(reviewId: String) = viewModelScope.launch {
+        withContext(Dispatchers.IO) {
+            reviewRepository.deleteReview(reviewId)
+            loadData()
+        }
+    }
+
+    fun fetchCommentsCount(reviewId: String) = viewModelScope.launch {
+        firestore.collection("commentReviews")
+            .whereEqualTo("reviewId", reviewId)
+            .get()
+            .addOnSuccessListener { result ->
+                _commentsCount.value = result.size()
+            }
+            .addOnFailureListener { e ->
+                _errorMessage.value = "Failed to load comments count: ${e.message}"
+            }
     }
 }

@@ -1,6 +1,7 @@
 package org.projectPA.petdiary.view.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,14 @@ import com.bumptech.glide.Glide
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ListReviewBinding
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.view.activities.DetailReviewActivity
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
-    ListAdapter<Review, ReviewMyProfileAdapter.ViewHolder>(Companion) {
+class ReviewMyProfileAdapter(
+    val onClick: (Review, View) -> Unit,
+    val onDeleteClick: (Review) -> Unit
+) : ListAdapter<Review, ReviewMyProfileAdapter.ViewHolder>(Companion) {
     private lateinit var context: Context
 
     companion object : DiffUtil.ItemCallback<Review>() {
@@ -44,7 +48,15 @@ class ReviewMyProfileAdapter(val onClick: (Review, View) -> Unit) :
                 .placeholder(R.drawable.image_blank).into(productImageIV)
 
             seeDetailBtn.setOnClickListener {
-                onClick(review, it)
+                val intent = Intent(context, DetailReviewActivity::class.java).apply {
+                    putExtra("productId", review.productId)
+                    putExtra("reviewId", review.id)
+                }
+                context.startActivity(intent)
+            }
+
+            deleteButton.setOnClickListener {
+                onDeleteClick(review)
             }
         }
     }

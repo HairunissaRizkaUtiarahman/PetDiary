@@ -58,7 +58,7 @@ class FillProductInformationActivity : AppCompatActivity() {
         binding = ActivityFillProductInformationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.topAppBar.setNavigationOnClickListener {
+        binding.backButton.setOnClickListener {
             onBackPressed()
         }
 
@@ -84,7 +84,6 @@ class FillProductInformationActivity : AppCompatActivity() {
         setupHintVisibility(binding.formInputProductName, binding.productNameLayout)
         setupHintVisibility(binding.formInputDescription, binding.descriptionLayout)
 
-
         binding.formInputBrandName.addTextChangedListener { text ->
             viewModel.validateInputs(
                 text.toString().trim(),
@@ -108,13 +107,23 @@ class FillProductInformationActivity : AppCompatActivity() {
                 binding.formInputDescription.text.toString().trim()
             )
         }
+
         binding.formInputDescription.addTextChangedListener { text ->
+            if (text != null) {
+                if (text.length < 30) {
+                    binding.warningDescription.visibility = View.VISIBLE
+                } else {
+                    binding.warningDescription.visibility = View.GONE
+                }
+            }
             viewModel.validateInputs(
                 binding.formInputBrandName.text.toString().trim(),
                 binding.formInputProductName.text.toString().trim(),
                 text.toString().trim()
             )
         }
+
+
 
         binding.submitButton.setOnClickListener {
             if (binding.submitButton.isEnabled) {
@@ -127,6 +136,7 @@ class FillProductInformationActivity : AppCompatActivity() {
                 viewModel.uploadData(this, brandName, productName, description, petType, category)
             }
         }
+
     }
 
     private fun setupObservers() {
@@ -143,7 +153,7 @@ class FillProductInformationActivity : AppCompatActivity() {
         })
 
         viewModel.productNameError.observe(this, Observer { error ->
-            binding.warningProductNameAlreadyExist.visibility = if (error == true) View.VISIBLE else View.GONE
+            binding.warningProductNameAlreadyExist2.visibility = if (error == true) View.VISIBLE else View.GONE
             viewModel.validateInputs(
                 binding.formInputBrandName.text.toString().trim(),
                 binding.formInputProductName.text.toString().trim(),
@@ -155,10 +165,8 @@ class FillProductInformationActivity : AppCompatActivity() {
             productId?.let {
                 val intent = Intent(this, ProductDetailActivity::class.java).apply {
                     putExtra("productId", it)
-                    putExtra("fromFillProductInfo", true)
                 }
                 startActivity(intent)
-                finish()
             }
         })
     }

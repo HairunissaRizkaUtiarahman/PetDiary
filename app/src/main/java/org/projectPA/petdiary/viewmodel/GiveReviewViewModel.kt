@@ -76,7 +76,7 @@ class GiveReviewViewModel : ViewModel() {
             reviewRef.set(review)
                 .addOnSuccessListener {
                     Log.d("GiveReviewViewModel", "Review successfully added to Firestore")
-                    updateProductStatistics(productId)  // Update statistics after adding a review
+                    updateProductStatistics(productId)
                     val intent = Intent(context, ProductDetailActivity::class.java).apply {
                         putExtra("productId", productId)
                         putExtra("sourceActivity", sourceActivity)

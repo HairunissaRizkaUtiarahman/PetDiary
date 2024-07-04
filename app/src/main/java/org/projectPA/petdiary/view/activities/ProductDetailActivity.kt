@@ -33,7 +33,6 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         productId = intent.getStringExtra("productId") ?: ""
-        sourceActivity = intent.getStringExtra("sourceActivity")
 
         if (productId.isEmpty()) {
             Toast.makeText(this, "Product ID is missing!", Toast.LENGTH_SHORT).show()
@@ -77,21 +76,11 @@ class ProductDetailActivity : AppCompatActivity() {
         }
 
         binding.backButton.setOnClickListener {
-            handleBackButton()
+            val intent = Intent(this, ReviewHomePageActivity::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun handleBackButton() {
-        when (sourceActivity) {
-            "GiveReviewActivity", "FillProductInformationActivity" -> {
-                val intent = Intent(this, ReviewHomePageActivity::class.java)
-                startActivity(intent)
-            }
-            else -> {
-                onBackPressed()
-            }
-        }
-    }
 
     private fun observeViewModel() {
         viewModel.product.observe(this, Observer { product ->
