@@ -25,7 +25,6 @@ class PetRepository(
     private val storageRef: FirebaseStorage
 ) {
 
-    // Function to add a new pet
     suspend fun addPet(
         name: String,
         type: String,
@@ -35,10 +34,8 @@ class PetRepository(
         uri: Uri?
     ) {
         try {
-            // Get current user ID
             val userId = auth.currentUser!!.uid
 
-            // Prepare data to be stored in Firestore
             val petMap = hashMapOf(
                 "userId" to userId,
                 "name" to name,
@@ -58,8 +55,6 @@ class PetRepository(
                 petMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-
-            // Add pet data to Firestore
             db.collection("pets").add(petMap).await()
 
             db.collection("users").document(userId).update("petCount", FieldValue.increment(1))
@@ -163,12 +158,10 @@ class PetRepository(
         try {
             val userId = auth.currentUser!!.uid
 
-            // Hapus dokumen pet dari Firestore
             db.collection("pets").document(petId).delete().await()
 
             db.collection("users").document(userId).update("petCount", FieldValue.increment(-1))
 
-            // Jika ada URL gambar terkait, hapus gambar dari Firebase Storage
             if (!imageUrl.isNullOrEmpty()) {
                 val imageRef = storageRef.getReferenceFromUrl(imageUrl)
                 imageRef.delete().await()

@@ -224,6 +224,17 @@ class PostRepository(
         }
     }
 
+    suspend fun deleteCommentPost(postId: String, commentId: String) {
+        try {
+            db.collection("posts").document(postId).collection("comments").document(commentId).delete().await()
+            db.collection("posts").document(postId).update("commentCount", FieldValue.increment(-1)).await()
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to delete comment", e)
+        }
+    }
+
+
+
 
     suspend fun setLike(currentUserID: String, postId: String) {
         try {
