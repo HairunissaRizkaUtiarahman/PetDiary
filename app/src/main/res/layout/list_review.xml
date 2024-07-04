@@ -13,14 +13,14 @@
 
         <ImageView
             android:id="@+id/deleteButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:layout_gravity="end"
             android:clickable="true"
             android:contentDescription="@string/deletereview"
             android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:padding="10dp"
+            android:focusableInTouchMode="false"
+            android:padding="15dp"
             app:srcCompat="@drawable/ic_delete" />
 
         <LinearLayout

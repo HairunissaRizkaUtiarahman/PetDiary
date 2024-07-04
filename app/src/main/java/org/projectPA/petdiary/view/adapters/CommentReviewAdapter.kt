@@ -13,12 +13,14 @@ import org.projectPA.petdiary.model.User
 import org.projectPA.petdiary.relativeTime
 
 class CommentReviewAdapter(
-    private var comments: List<CommentReview>
+    var comments: List<CommentReview>,
+    private val currentUserId: String,
+    private val deleteComment: (CommentReview) -> Unit
 ) : RecyclerView.Adapter<CommentReviewAdapter.CommentViewHolder>() {
 
     class CommentViewHolder(val binding: ListReviewCommentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(comment: CommentReview) {
+        fun bind(comment: CommentReview, currentUserId: String) {
             with(binding) {
                 val db = FirebaseFirestore.getInstance()
                 db.collection("users").document(comment.userId).get()
@@ -43,19 +45,19 @@ class CommentReviewAdapter(
 
                 commentTV.text = comment.commentText
                 timestampTV.text = comment.timeCommented?.relativeTime() ?: ""
+                root.isClickable = comment.userId == currentUserId
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommentViewHolder {
-        val binding =
-            ListReviewCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ListReviewCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CommentViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
         val comment = comments[position]
-        holder.bind(comment)
+        holder.bind(comment, currentUserId)
     }
 
     override fun getItemCount() = comments.size
@@ -64,4 +66,18 @@ class CommentReviewAdapter(
         comments = comment.sortedByDescending { it.timeCommented }
         notifyDataSetChanged()
     }
+
+    fun removeItem(position: Int) {
+        val comment = comments[position]
+        val commentId = comment.id
+        if (commentId != null && commentId.isNotEmpty() && comment.userId == currentUserId) {
+            Log.d("CommentReviewAdapter", "Attempting to delete comment with ID: $commentId")
+            deleteComment(comment)
+            comments = comments.toMutableList().apply { removeAt(position) }
+            notifyItemRemoved(position)
+        } else {
+            Log.e("CommentReviewAdapter", "Invalid comment ID or user unauthorized: $commentId")
+        }
+    }
+
 }

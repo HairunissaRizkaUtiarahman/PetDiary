@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/comment_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/grey_main"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp"
-            android:gravity="center">
+            android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profileImage_IV"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/image_profile"/>
+                android:src="@drawable/image_profile" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/name_TV"
@@ -39,13 +39,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/name"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/timestamp_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/timestamp"/>
+                    android:text="@string/timestamp" />
 
             </LinearLayout>
 
@@ -55,9 +55,9 @@
             android:id="@+id/comment_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="@string/lorem_ipsum"
-            android:textColor="@color/black"
-            android:padding="10dp"/>
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

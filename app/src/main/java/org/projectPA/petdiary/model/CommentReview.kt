@@ -5,7 +5,7 @@ import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 
 data class CommentReview(
-    @get:Exclude val id: String? = "",
+    val id: String? = "",
     val reviewId: String = "",
     val userId: String = "",
     val commentText: String = "",

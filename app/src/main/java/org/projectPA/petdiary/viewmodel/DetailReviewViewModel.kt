@@ -4,9 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.model.CommentReview
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
@@ -110,16 +116,45 @@ class DetailReviewViewModel : ViewModel() {
             }
     }
 
+
     fun addComment(comment: CommentReview) {
         val newCommentRef = firestore.collection("commentReviews").document()
         val newComment = comment.copy(id = newCommentRef.id)
+        Log.d("DetailReviewViewModel", "Generated ID: ${newCommentRef.id}")
 
         newCommentRef.set(newComment)
             .addOnSuccessListener {
+                Log.d("DetailReviewViewModel", "Comment added with ID: ${newComment.id}")
                 _commentAdded.value = true
             }
             .addOnFailureListener { e ->
+                Log.e("DetailReviewViewModel", "Failed to add comment: ${e.message}")
                 _errorMessage.value = "Failed to add comment: ${e.message}"
             }
     }
+
+
+
+    fun deleteComment(comment: CommentReview) = viewModelScope.launch {
+        try {
+            comment.id?.let { id ->
+                if (id.isNotEmpty()) {
+                    Log.d("DetailReviewViewModel", "Deleting comment with ID: $id")
+                    firestore.collection("commentReviews").document(id).delete().await()
+                    Log.d("DetailReviewViewModel", "Comment deleted successfully: $id")
+                    _commentAdded.postValue(true)
+                } else {
+                    Log.e("DetailReviewViewModel", "Invalid comment ID: $id")
+                    _errorMessage.postValue("Invalid comment ID")
+                }
+            } ?: run {
+                Log.e("DetailReviewViewModel", "Comment ID is null")
+                _errorMessage.postValue("Comment ID is null")
+            }
+        } catch (e: Exception) {
+            Log.e("DetailReviewViewModel", "Failed to delete comment: ${comment.id}", e)
+            _errorMessage.postValue("Failed to delete comment: ${e.message}")
+        }
+    }
+
 }
