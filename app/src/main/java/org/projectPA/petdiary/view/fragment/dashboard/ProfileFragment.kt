@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentProfileBinding
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 import org.projectPA.petdiary.view.activities.myprofile.MyProfileActivity
+import org.projectPA.petdiary.view.activities.profile.ChangeLanguageProfileActivity
+import org.projectPA.petdiary.view.activities.profile.ChangePasswordProfileActivity
+import org.projectPA.petdiary.view.activities.profile.EditProfileActivity
+import org.projectPA.petdiary.view.activities.profile.HelpAndSupportProfileActivity
 import org.projectPA.petdiary.view.activities.setting.SettingActivity
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
@@ -25,24 +30,33 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        activity?.window?.statusBarColor  =resources.getColor(R.color.orange_main)
-
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        activity?.window?.statusBarColor  =resources.getColor(R.color.white)
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.myProfileBtn.setOnClickListener {
             val intent = Intent(activity, MyProfileActivity::class.java)
             startActivity(intent)
         }
 
-        binding.settingBtn.setOnClickListener {
-            val intent = Intent(activity, SettingActivity::class.java)
+        binding.editProfileBtn.setOnClickListener {
+            val intent = Intent(activity, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.changePasswordBtn.setOnClickListener {
+            val intent = Intent(activity, ChangePasswordProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.changeLanguageBtn.setOnClickListener {
+            val intent = Intent(activity, ChangeLanguageProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.supportBtn.setOnClickListener {
+            val intent = Intent(activity, HelpAndSupportProfileActivity::class.java)
             startActivity(intent)
         }
 

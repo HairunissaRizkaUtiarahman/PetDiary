@@ -316,7 +316,7 @@
     <string name="no_user_yet">Tidak Ada Pengguna</string>
     <string name="post">Postingan</string>
 
-    <string name="support">Support</string>
+    <string name="helpandsupport">Support</string>
     <string name="toolbar_support">Support</string>
     <string name="email_from">From : %1$s</string>
     <string name="email_to">To : akupetdiary@gmail.com</string>

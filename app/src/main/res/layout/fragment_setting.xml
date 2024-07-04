@@ -103,7 +103,7 @@
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:padding="10dp"
-            android:text="@string/support"
+            android:text="@string/helpandsupport"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:drawableLeftCompat="@drawable/ic_support" />
