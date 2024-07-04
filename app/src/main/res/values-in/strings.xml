@@ -373,7 +373,7 @@
     <string name="see_more_details">See More Details</string>
     <string name="text_search_cd">Text Search</string>
     <string name="please_complete_the_article_before_publish">Please Complete the Article before publish</string>
-    <string name="write_title">Write title...</string>
+    <string name="write_title">Write title…</string>
     <string name="b">B</string>
     <string name="preview_article_button">preview article button</string>
     <string name="publish">Publish</string>
@@ -386,5 +386,10 @@
     <string name="pets">Pets</string>
     <string name="account">Account</string>
     <string name="help_support">Help &amp; Support</string>
+    <string name="description_must_be_at_least_30_characters_long">Desc must be at least 30 characters long</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="email_pet_diary">akupetdiary@gmail.com</string>
+    <string name="open_email">Open Email</string>
+    <string name="faq">FAQ</string>
 
 </resources>
