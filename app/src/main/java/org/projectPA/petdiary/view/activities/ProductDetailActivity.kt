@@ -23,9 +23,8 @@ class ProductDetailActivity : AppCompatActivity() {
     private lateinit var productId: String
     private val viewModel: ProductDetailViewModel by viewModels()
     private lateinit var reviewAdapter: ReviewAdapter
-    private var sourceActivity: String? = null
     private lateinit var product: Product
-    private var currentUserId: String = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+    private val currentUserId: String by lazy { FirebaseAuth.getInstance().currentUser?.uid ?: "" }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,6 @@ class ProductDetailActivity : AppCompatActivity() {
         setupRecyclerView()
         observeViewModel()
 
-
         refresh()
 
         binding.reviewButton.setOnClickListener {
@@ -58,12 +56,10 @@ class ProductDetailActivity : AppCompatActivity() {
                     }
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "You already reviewed this product", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "You already reviewed this product", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Product details are not yet loaded", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -81,21 +77,20 @@ class ProductDetailActivity : AppCompatActivity() {
         }
     }
 
-
     private fun observeViewModel() {
         viewModel.product.observe(this, Observer { product ->
-            if (product != null) {
-                this.product = product
-                displayProductDetails(product)
+            product?.let {
+                this.product = it
+                displayProductDetails(it)
                 showContent()
-            } else {
+            } ?: run {
                 Toast.makeText(this, "Failed to load product details", Toast.LENGTH_SHORT).show()
                 finish()
             }
         })
 
         viewModel.reviews.observe(this, Observer { reviews ->
-            val limitedReviews = if (reviews.size > 5) reviews.take(5) else reviews
+            val limitedReviews = reviews.takeIf { it.size > 5 }?.take(5) ?: reviews
             reviewAdapter.updateData(limitedReviews)
             updateReviewVisibility(reviews)
         })
@@ -112,7 +107,6 @@ class ProductDetailActivity : AppCompatActivity() {
         })
     }
 
-
     private fun displayProductDetails(product: Product) {
         binding.productBrandText.text = product.brandName
         binding.productNameText.text = product.productName
@@ -127,10 +121,10 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        reviewAdapter =
-            ReviewAdapter(emptyList(), this, productId)
+        reviewAdapter = ReviewAdapter(emptyList(), this, productId)
         binding.listReview.layoutManager = LinearLayoutManager(this)
         binding.listReview.adapter = reviewAdapter
+        binding.listReview.setHasFixedSize(true) // Optimize RecyclerView
     }
 
     private fun updateReviewVisibility(reviews: List<Review>) {

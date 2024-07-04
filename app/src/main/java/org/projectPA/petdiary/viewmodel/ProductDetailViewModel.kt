@@ -118,7 +118,4 @@ class ProductDetailViewModel : ViewModel() {
         val endTime = System.currentTimeMillis()
         Log.d("ProductDetailViewModel", "checkIfUserReviewedAsync: Time taken: ${endTime - startTime} ms")
     }
-
-
-
 }

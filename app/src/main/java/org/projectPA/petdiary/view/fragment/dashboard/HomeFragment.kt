@@ -83,39 +83,31 @@ class HomeFragment : Fragment() {
         }
         binding.listMostReviewProduct.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.listMostReviewProduct.adapter = productAdapter
+        binding.listMostReviewProduct.setHasFixedSize(true)
     }
 
     private fun loadDataFromFirestore() {
-        firestore.clearPersistence().addOnCompleteListener {
-            if (it.isSuccessful) {
-                Log.d("HomeFragment", "Local cache cleared")
-                fetchProductsFromFirestore()
-            } else {
-                Log.e("HomeFragment", "Failed to clear local cache", it.exception)
-                fetchProductsFromFirestore()
-            }
-        }
-    }
-
-    private fun fetchProductsFromFirestore() {
         firestore.collection("products")
             .orderBy("reviewCount", com.google.firebase.firestore.Query.Direction.DESCENDING)
             .limit(5)
-            .get()
-            .addOnSuccessListener { documents ->
-                val productList = documents.mapNotNull { document ->
-                    val product = document.toObject(Product::class.java)
-                    Log.d("HomeFragment", "Fetched product: ${product.id} - ${product.productName}")
-                    product
+            .addSnapshotListener { snapshot, exception ->
+                if (exception != null) {
+                    Log.e("HomeFragment", "Error getting documents: ", exception)
+                    return@addSnapshotListener
                 }
+
+                val productList = snapshot?.documents?.mapNotNull { document ->
+                    val product = document.toObject(Product::class.java)
+                    if (product != null) {
+                        Log.d("HomeFragment", "Fetched product: ${product.id} - ${product.productName}")
+                    }
+                    product
+                } ?: emptyList()
+
                 productAdapter.updateData(productList)
                 Log.d("HomeFragment", "Total products fetched: ${productList.size}")
             }
-            .addOnFailureListener { exception ->
-                Log.e("HomeFragment", "Error getting documents: ", exception)
-            }
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
