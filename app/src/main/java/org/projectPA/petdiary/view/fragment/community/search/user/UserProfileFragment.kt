@@ -2,7 +2,6 @@ package org.projectPA.petdiary.view.fragment.community.search.user
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +37,9 @@ class UserProfileFragment : Fragment() {
                 with(binding) {
                     nameTv.text = it.name
                     bioTv.text = it.bio
+                    binding.postCountTV.text = it.postCount.toString()
+                    binding.reviewCountTV.text = it.reviewCount.toString()
+                    binding.petCountTV.text = it.petCount.toString()
                     Glide.with(profileImageIV.context)
                         .load(it.imageUrl)
                         .placeholder(R.drawable.image_profile)

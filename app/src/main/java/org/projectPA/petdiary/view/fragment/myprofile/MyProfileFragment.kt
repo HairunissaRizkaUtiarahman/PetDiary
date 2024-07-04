@@ -20,7 +20,7 @@ class MyProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -32,6 +32,9 @@ class MyProfileFragment : Fragment() {
             user?.let {
                 binding.nameTv.text = it.name
                 binding.bioTv.text = it.bio
+                binding.postCountTV.text = it.postCount.toString()
+                binding.reviewCountTV.text = it.reviewCount.toString()
+                binding.petCountTV.text = it.petCount.toString()
                 Glide.with(binding.profileImageIV.context)
                     .load(it.imageUrl)
                     .placeholder(R.drawable.image_profile)

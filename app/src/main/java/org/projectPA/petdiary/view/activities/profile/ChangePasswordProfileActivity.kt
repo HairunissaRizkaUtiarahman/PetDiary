@@ -1,31 +1,23 @@
-package org.projectPA.petdiary.view.fragment.setting
+package org.projectPA.petdiary.view.activities.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import org.projectPA.petdiary.databinding.FragmentChangePasswordSettingBinding
+import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ActivityChangePasswordProfileBinding
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 
-class ChangePasswordSettingFragment : Fragment() {
-    private lateinit var binding: FragmentChangePasswordSettingBinding
+class ChangePasswordProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityChangePasswordProfileBinding
     private lateinit var auth: FirebaseAuth
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentChangePasswordSettingBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityChangePasswordProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
@@ -37,7 +29,7 @@ class ChangePasswordSettingFragment : Fragment() {
             val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d.]{6,12}$"
             if (!newPassword.matches(passwordRegex.toRegex())) {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     "Password must be 6-12 characters long and contain both letters and numbers",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -45,7 +37,7 @@ class ChangePasswordSettingFragment : Fragment() {
             }
 
             if (newPassword != confirmNewPassword) {
-                Toast.makeText(requireContext(), "Passwords do not match", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
@@ -59,16 +51,16 @@ class ChangePasswordSettingFragment : Fragment() {
                         user.updatePassword(newPassword).addOnCompleteListener { updateTask ->
                             if (updateTask.isSuccessful) {
                                 auth.signOut()
-                                val intent = Intent(requireContext(), SigninActivity::class.java)
+                                val intent = Intent(this, SigninActivity::class.java)
                                 startActivity(intent)
                                 Toast.makeText(
-                                    requireContext(),
+                                    this,
                                     "Password changed successfully, Please login again",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             } else {
                                 Toast.makeText(
-                                    requireContext(),
+                                    this,
                                     "Failed to change password",
                                     Toast.LENGTH_SHORT
                                 ).show()
@@ -76,7 +68,7 @@ class ChangePasswordSettingFragment : Fragment() {
                         }
                     } else {
                         Toast.makeText(
-                            requireContext(),
+                            this,
                             "Authentication failed",
                             Toast.LENGTH_SHORT
                         ).show()
@@ -86,7 +78,7 @@ class ChangePasswordSettingFragment : Fragment() {
         }
 
         binding.topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            finish()
         }
     }
 }

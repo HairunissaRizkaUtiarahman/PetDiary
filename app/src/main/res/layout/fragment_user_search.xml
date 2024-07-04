@@ -42,7 +42,8 @@
         android:layout_marginHorizontal="10dp"
         android:text="@string/user"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/user_RV"
@@ -68,7 +69,8 @@
         android:layout_marginHorizontal="10dp"
         android:text="@string/post"
         android:textColor="@color/black"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/post_RV"

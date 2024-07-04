@@ -231,6 +231,9 @@
     <!-- Fragment Profile -->
     <string name="my_profile">Profil Saya</string>
     <string name="setting">Pengaturan</string>
+    <string name="post_count">%1$d</string>
+    <string name="review_count">%1$d</string>
+    <string name="pet_count">%1$d</string>
     <string name="logout">Logout</string>
 
     <!-- Setting -->
@@ -316,7 +319,6 @@
     <string name="no_user_yet">Tidak Ada Pengguna</string>
     <string name="post">Postingan</string>
 
-    <string name="support">Support</string>
     <string name="toolbar_support">Support</string>
     <string name="email_from">From : %1$s</string>
     <string name="email_to">To : akupetdiary@gmail.com</string>
@@ -370,5 +372,24 @@
     <string name="image_edit_cd">Image Edit</string>
     <string name="see_more_details">See More Details</string>
     <string name="text_search_cd">Text Search</string>
+    <string name="please_complete_the_article_before_publish">Please Complete the Article before publish</string>
+    <string name="write_title">Write title…</string>
+    <string name="b">B</string>
+    <string name="preview_article_button">preview article button</string>
+    <string name="publish">Publish</string>
+    <string name="please_complete_the_article_first">Please complete the article first!</string>
+    <string name="thank_you_for_your_feedback_you_have_already_submitted_a_review_for_this_product">Thank you for your feedback! You have already submitted a review for this product.</string>
+    <string name="otherss">Others</string>
+    <string name="redo_button">redo_button</string>
+    <string name="undo_button">undo_button</string>
+    <string name="posts">Post</string>
+    <string name="pets">Pets</string>
+    <string name="account">Account</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="description_must_be_at_least_30_characters_long">Desc must be at least 30 characters long</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="email_pet_diary">akupetdiary@gmail.com</string>
+    <string name="open_email">Open Email</string>
+    <string name="faq">FAQ</string>
 
 </resources>

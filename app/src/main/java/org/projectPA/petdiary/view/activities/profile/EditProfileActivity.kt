@@ -1,4 +1,4 @@
-package org.projectPA.petdiary.view.fragment.setting
+package org.projectPA.petdiary.view.activities.profile
 
 import android.Manifest
 import android.content.ContentValues
@@ -6,37 +6,30 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.databinding.FragmentEditProfileSettingBinding
+import org.projectPA.petdiary.databinding.ActivityEditProfileBinding
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
 
-class EditProfileSettingFragment : Fragment() {
-    private lateinit var binding: FragmentEditProfileSettingBinding
+class EditProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
     private val CAMERA_PERMISSION_REQUEST_CODE = 1001
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentEditProfileSettingBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityEditProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         var imageUri: Uri? = null
 
         val profileImage = registerForActivityResult(
@@ -55,12 +48,12 @@ class EditProfileSettingFragment : Fragment() {
 
         fun takePicture() {
             if (ContextCompat.checkSelfPermission(
-                    requireContext(),
+                    this,
                     Manifest.permission.CAMERA
                 ) != PackageManager.PERMISSION_GRANTED
             ) {
                 ActivityCompat.requestPermissions(
-                    requireActivity(),
+                    this,
                     arrayOf(Manifest.permission.CAMERA),
                     CAMERA_PERMISSION_REQUEST_CODE
                 )
@@ -72,7 +65,7 @@ class EditProfileSettingFragment : Fragment() {
                     )
                     put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
                 }
-                imageUri = requireContext().contentResolver.insert(
+                imageUri = this.contentResolver.insert(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     contentValues
                 )
@@ -82,7 +75,7 @@ class EditProfileSettingFragment : Fragment() {
 
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
-            val builder = android.app.AlertDialog.Builder(requireContext())
+            val builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Select Image")
                 .setItems(options) { _, which ->
                     when (which) {
@@ -95,7 +88,7 @@ class EditProfileSettingFragment : Fragment() {
 
         binding.saveBtn.setOnClickListener {
             val radioGroupCheck = binding.genderRG.checkedRadioButtonId
-            val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
+            val checkRadioBtn = findViewById<RadioButton>(radioGroupCheck)
 
             val name = binding.nameTIET.text.toString().trim()
             val address = binding.addressTIET.text.toString().trim()
@@ -104,7 +97,7 @@ class EditProfileSettingFragment : Fragment() {
 
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     "Name is required and must be less than 100 characters",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -113,7 +106,7 @@ class EditProfileSettingFragment : Fragment() {
 
             if (address.isEmpty() || address.length > 150) {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     "Address is required and must be less than 150 characters",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -121,19 +114,19 @@ class EditProfileSettingFragment : Fragment() {
             }
 
             if (radioGroupCheck == -1) {
-                Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Gender must be selected", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
             if (birthdate.isEmpty()) {
-                Toast.makeText(requireContext(), "Birthdate is required", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Birthdate is required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (bio.length > 100) {
                 Toast.makeText(
-                    requireContext(),
+                    this,
                     "Bio must be less than 100 characters",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -144,12 +137,12 @@ class EditProfileSettingFragment : Fragment() {
 
             viewModel.checkIfNameExists(name) { nameExists ->
                 if (nameExists) {
-                    Toast.makeText(requireContext(), "Name already taken", Toast.LENGTH_SHORT)
+                    Toast.makeText(this, "Name already taken", Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     viewModel.updateMyProfile(name, address, gender, birthdate, bio, imageUri)
                     Toast.makeText(
-                        requireContext(),
+                        this,
                         "Success Update My Profile",
                         Toast.LENGTH_SHORT
                     ).show()
@@ -162,7 +155,7 @@ class EditProfileSettingFragment : Fragment() {
                 .setTitleText("Select birthdate")
                 .build()
 
-            datePicker.show(childFragmentManager, "DATE_PICKER")
+            datePicker.show(supportFragmentManager, "DATE_PICKER")
 
             datePicker.addOnPositiveButtonClickListener {
                 val selectedDate = datePicker.headerText
@@ -170,20 +163,20 @@ class EditProfileSettingFragment : Fragment() {
             }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {
+        viewModel.isLoading.observe(this) {
             if (it) {
                 binding.saveBtn.visibility = View.GONE
                 binding.progressBar.visibility = View.VISIBLE
             } else {
                 binding.saveBtn.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.GONE
-                findNavController().popBackStack()
+                finish() // Kembali ke aktivitas sebelumnya saat selesai
             }
         }
 
         viewModel.loadMyProfile()
 
-        viewModel.myProfile.observe(viewLifecycleOwner) { user ->
+        viewModel.myProfile.observe(this) { user ->
             user?.let {
                 binding.nameTIET.setText(it.name)
                 binding.emailTIET.setText(it.email)
@@ -195,7 +188,7 @@ class EditProfileSettingFragment : Fragment() {
                     binding.femaleRB.isChecked = true
                 }
 
-                binding.birthdateTIET.setText((it.birthdate))
+                binding.birthdateTIET.setText(it.birthdate)
                 binding.bioTIET.setText(it.bio)
 
                 Glide.with(binding.profileIV.context)
@@ -206,7 +199,7 @@ class EditProfileSettingFragment : Fragment() {
         }
 
         binding.topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            finish()
         }
     }
 }

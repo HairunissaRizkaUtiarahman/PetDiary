@@ -394,7 +394,6 @@
     <string name="description_must_be_at_least_30_characters_long">Description must be at least 30 characters long!</string>
     <string name="product_brand_cannot_be_empty">Product brand cannot be empty</string>
     <string name="image_has_not_been_uploaded_yet">Image has not been uploaded yet!</string>
-    <string name="deletereview">deleteReview</string>
 
 
 </resources>

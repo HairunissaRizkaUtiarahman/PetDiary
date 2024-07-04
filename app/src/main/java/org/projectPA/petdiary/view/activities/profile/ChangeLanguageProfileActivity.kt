@@ -1,66 +1,52 @@
-package org.projectPA.petdiary.view.fragment.setting
+package org.projectPA.petdiary.view.activities.profile
 
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import org.projectPA.petdiary.databinding.FragmentChangeLanguageSettingBinding
+import androidx.appcompat.app.AppCompatActivity
+import org.projectPA.petdiary.R
+import org.projectPA.petdiary.databinding.ActivityChangeLanguageProfileBinding
 import java.util.Locale
 
-class ChangeLanguageSettingFragment : Fragment() {
+class ChangeLanguageProfileActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityChangeLanguageProfileBinding
 
-    private var _binding: FragmentChangeLanguageSettingBinding? = null
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityChangeLanguageProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentChangeLanguageSettingBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        val sharedPreferences =
-            requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
         val currentLanguage = sharedPreferences.getString("lang", "system") ?: "system"
-        setLocale(requireContext(), currentLanguage)
+        setLocale(this, currentLanguage)
         updateCheckImage(currentLanguage)
 
         binding.systemBtn.setOnClickListener {
-            setLocale(requireContext(), "system")
+            setLocale(this, "system")
             showLanguageSelected("System")
             saveLanguageSelection("system")
             updateCheckImage("system")
         }
 
         binding.englishBtn.setOnClickListener {
-            setLocale(requireContext(), "en")
+            setLocale(this, "en")
             showLanguageSelected("English")
             saveLanguageSelection("en")
             updateCheckImage("en")
         }
 
         binding.indonesianBtn.setOnClickListener {
-            setLocale(requireContext(), "in")
+            setLocale(this, "in")
             showLanguageSelected("Bahasa Indonesia")
             saveLanguageSelection("in")
             updateCheckImage("in")
         }
 
         binding.topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            finish() // Kembali ke aktivitas sebelumnya saat tombol navigasi ditekan
         }
-
-        return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun setLocale(context: Context, lang: String) {
@@ -76,12 +62,11 @@ class ChangeLanguageSettingFragment : Fragment() {
     }
 
     private fun showLanguageSelected(language: String) {
-        Toast.makeText(requireContext(), "Language changed to $language", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Language changed to $language", Toast.LENGTH_SHORT).show()
     }
 
     private fun saveLanguageSelection(lang: String) {
-        val sharedPreferences =
-            requireContext().getSharedPreferences("settings", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
             putString("lang", lang)
             apply()
