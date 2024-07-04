@@ -1,13 +1,14 @@
 package org.projectPA.petdiary.view.activities.profile
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityChangeLanguageProfileBinding
+import org.projectPA.petdiary.view.activities.DashboardActivity
 import java.util.Locale
 
 class ChangeLanguageProfileActivity : AppCompatActivity() {
@@ -19,22 +20,17 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
-        val currentLanguage = sharedPreferences.getString("lang", "system") ?: "system"
+        val currentLanguage = sharedPreferences.getString("lang", "en") ?: "en"
         setLocale(this, currentLanguage)
         updateCheckImage(currentLanguage)
-
-        binding.systemBtn.setOnClickListener {
-            setLocale(this, "system")
-            showLanguageSelected("System")
-            saveLanguageSelection("system")
-            updateCheckImage("system")
-        }
 
         binding.englishBtn.setOnClickListener {
             setLocale(this, "en")
             showLanguageSelected("English")
             saveLanguageSelection("en")
             updateCheckImage("en")
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
 
         binding.indonesianBtn.setOnClickListener {
@@ -42,19 +38,17 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
             showLanguageSelected("Bahasa Indonesia")
             saveLanguageSelection("in")
             updateCheckImage("in")
+            val intent = Intent(this, DashboardActivity::class.java)
+            startActivity(intent)
         }
 
         binding.topAppBar.setNavigationOnClickListener {
-            finish() // Kembali ke aktivitas sebelumnya saat tombol navigasi ditekan
+            finish()
         }
     }
 
     private fun setLocale(context: Context, lang: String) {
-        val locale: Locale = if (lang == "system") {
-            Locale.getDefault()
-        } else {
-            Locale(lang)
-        }
+        val locale = Locale(lang)
         Locale.setDefault(locale)
         val config = Configuration()
         config.setLocale(locale)
@@ -74,8 +68,9 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
     }
 
     private fun updateCheckImage(lang: String) {
-        binding.checkSystemIV.visibility = if (lang == "system") View.VISIBLE else View.GONE
         binding.checkEnglishIV.visibility = if (lang == "en") View.VISIBLE else View.GONE
+        binding.uncheckEnglishIV.visibility = if (lang == "en") View.GONE else View.VISIBLE
         binding.checkIndonesianIV.visibility = if (lang == "in") View.VISIBLE else View.GONE
+        binding.uncheckIndonesianIV.visibility = if (lang == "in") View.GONE else View.VISIBLE
     }
 }

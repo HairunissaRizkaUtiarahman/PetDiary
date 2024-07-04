@@ -3,8 +3,6 @@
 
     <string name="app_name">PetDiary</string>
 
-
-
     <!-- Activity Main -->
     <string name="add_button">tombol tambah</string>
     <string name="fab">\u200B</string>
@@ -264,6 +262,29 @@
     <string name="image_article_cd">Image Article</string>
     <string name="image_search_cd">Image Search</string>
     <string name="image_logo_cd">Image Logo</string>
+    <string name="image_cat_cd">Image Cat</string>
+    <string name="image_dog_cd">Image Dog</string>
+    <string name="image_rabbit_cd">Image Rabbit</string>
+    <string name="image_hamster_cd">Image Hamster</string>
+    <string name="image_fish_cd">Image Fish</string>
+    <string name="image_bird_cd">Image Bird</string>
+    <string name="image_health_cd">Image Health</string>
+    <string name="image_tools_cd">Image Tools</string>
+    <string name="image_food_cd">Image Food</string>
+    <string name="image_grooming_cd">Image Grooming</string>
+    <string name="image_others_cd">Image Others</string>
+    <string name="image_product_cd">Image Product</string>
+    <string name="image_comment_cd">Image Comment</string>
+    <string name="image_reviews_cd">Image Reviews</string>
+    <string name="image_add_review_cd">Image Add Review</string>
+    <string name="image_add_post_cd">Image Add Post</string>
+    <string name="image_add_product_cd">Image Add Product</string>
+    <string name="image_like_cd">Image Like</string>
+    <string name="image_unlike_cd">Image Unlike</string>
+    <string name="image_blank_cd">Image Blank</string>
+    <string name="image_edit_cd">Image Edit</string>
+    <string name="text_search_cd">Text Search</string>
+    <string name="image_post_cd">image_post_cd</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Kata Sandi Lama</string>
@@ -304,7 +325,6 @@
     <string name="period">Periode</string>
 
     <!-- Fragment Comment -->
-    <string name="image_post_cd">image_post_cd</string>
     <string name="no_comments_yet">Tidak Ada Komentar</string>
     <string name="write_comment">Tulis Komentar</string>
 
@@ -319,77 +339,61 @@
     <string name="no_user_yet">Tidak Ada Pengguna</string>
     <string name="post">Postingan</string>
 
-    <string name="toolbar_support">Support</string>
-    <string name="email_from">From : %1$s</string>
-    <string name="email_to">To : akupetdiary@gmail.com</string>
-    <string name="message">Message</string>
-    <string name="contact_support">Contact Support</string>
-    <string name="image_article">Image Article</string>
-    <string name="baca_selengkapnya">Baca selengkapnya:</string>
+    <string name="toolbar_support">Bantuan &amp; Dukungan</string>
+    <string name="email_from">Dari : %1$s</string>
+    <string name="email_to">Ke : akupetdiary@gmail.com</string>
+    <string name="message">Pesan</string>
+    <string name="contact_support">Hubungi Dukungan</string>
+    <string name="image_article">Gambar Artikel</string>
+    <string name="read_more">Baca selengkapnya :</string>
     <string name="www_example_com">www.example.com</string>
-    <string name="related_article">RELATED ARTICLE</string>
-    <string name="toolbar_article">Article</string>
-    <string name="latest_article">LATEST ARTICLE</string>
-    <string name="image_cat_cd">Image Cat</string>
-    <string name="image_dog_cd">Image Dog</string>
-    <string name="image_rabbit_cd">Image Rabbit</string>
-    <string name="image_hamster_cd">Image Hamster</string>
-    <string name="image_fish_cd">Image Fish</string>
-    <string name="image_bird_cd">Image Bird</string>
-    <string name="image_health_cd">Image Health</string>
-    <string name="image_tools_cd">Image Tools</string>
-    <string name="image_food_cd">Image Food</string>
-    <string name="image_grooming_cd">Image Grooming</string>
-    <string name="image_others_cd">Image Others</string>
-    <string name="view_all">View all</string>
+    <string name="related_article">Artikel Terkait</string>
+    <string name="toolbar_article">Artikel</string>
+    <string name="latest_article">Artikel Terbaru</string>
+
+    <string name="view_all">Lihat semua</string>
     <string name="_0">0</string>
-    <string name="image_comment_cd">Image Comment</string>
-    <string name="enter_comment">Enter Comment</string>
-    <string name="product_name_already_exist">Product name already exist!</string>
-    <string name="image_product_cd">Image Product</string>
-    <string name="toolbar_reviews">Reviews</string>
-    <string name="image_reviews_cd">Image Reviews</string>
+
+    <string name="enter_comment">Masukkan Komentar</string>
+    <string name="product_name_already_exist">Nama produk sudah ada!</string>
+    <string name="toolbar_reviews">Ulasan</string>
     <string name="back_to_dasboard_page_button">back_to_dasboard_page_button</string>
-    <string name="image_add_review_cd">Image Add Review</string>
-    <string name="image_add_post_cd">Image Add Post</string>
-    <string name="image_add_product_cd">Image Add Product</string>
-    <string name="image_like_cd">Image Like</string>
-    <string name="image_unlike_cd">Image Unlike</string>
-    <string name="min_10_words">Min 10 words</string>
-    <string name="usage_product">Usage Product</string>
+
+    <string name="min_10_words">Min 10 Kata</string>
+    <string name="usage_product">Product Usage</string>
     <string name="space_bar"> - </string>
-    <string name="thankyou_for_review">Thank you for your review! We’ve recorded your feedback for this product already</string>
-    <string name="ok">Ok</string>
-    <string name="image_blank_cd">Image Blank</string>
+    <string name="thankyou_for_review">Terima kasih atas ulasan Anda! Kami telah mencatat masukan Anda untuk produk ini</string>
+    <string name="ok">OK</string>
+
     <string name="royal_canin">Royal Canin</string>
     <string name="adult_persian">Adult Persian</string>
     <string name="for_cat">For Cat</string>
     <string name="_4_6">4.6</string>
     <string name="_2k">2K</string>
     <string name="_34">34%</string>
-    <string name="textview">TextView</string>
-    <string name="be_the_first_to_review_this_product">Be the first to review this product</string>
-    <string name="image_edit_cd">Image Edit</string>
-    <string name="see_more_details">See More Details</string>
-    <string name="text_search_cd">Text Search</string>
-    <string name="please_complete_the_article_before_publish">Please Complete the Article before publish</string>
-    <string name="write_title">Write title…</string>
+    <string name="textview">Tampilan Teks</string>
+    <string name="be_the_first_to_review_this_product">Jadilah orang pertama yang mengulas produk ini</string>
+    <string name="see_more_details">Lihat Lebih Detail</string>
+
+    <string name="please_complete_the_article_before_publish">Harap Lengkapi Artikel sebelum dipublikasikan</string>
+    <string name="write_title">Tulis judul…</string>
     <string name="b">B</string>
     <string name="preview_article_button">preview article button</string>
-    <string name="publish">Publish</string>
-    <string name="please_complete_the_article_first">Please complete the article first!</string>
-    <string name="thank_you_for_your_feedback_you_have_already_submitted_a_review_for_this_product">Thank you for your feedback! You have already submitted a review for this product.</string>
-    <string name="otherss">Others</string>
+    <string name="publish">Terbitkan</string>
+    <string name="please_complete_the_article_first">Silakan lengkapi artikelnya terlebih dahulu!</string>
+    <string name="thank_you_for_your_feedback_you_have_already_submitted_a_review_for_this_product">Terima kasih atas tanggapan Anda! Anda telah mengirimkan ulasan untuk produk ini.</string>
+    <string name="otherss">Lainnya</string>
     <string name="redo_button">redo_button</string>
     <string name="undo_button">undo_button</string>
-    <string name="posts">Post</string>
-    <string name="pets">Pets</string>
-    <string name="account">Account</string>
-    <string name="help_support">Help &amp; Support</string>
-    <string name="description_must_be_at_least_30_characters_long">Desc must be at least 30 characters long</string>
-    <string name="contact_us">Contact Us</string>
+    <string name="posts">Postingan</string>
+    <string name="pets">Hewan Peliharaan</string>
+    <string name="account">Akun</string>
+    <string name="help_support">Bantuan &amp; Dukungan</string>
+    <string name="description_must_be_at_least_30_characters_long">Panjang deskripsi minimal harus 30 karakter</string>
+    <string name="contact_us">Hubungi Kami</string>
     <string name="email_pet_diary">akupetdiary@gmail.com</string>
-    <string name="open_email">Open Email</string>
+    <string name="open_email">Buka Email</string>
     <string name="faq">FAQ</string>
+    <string name="deletereview">Hapus Review</string>
 
 </resources>
