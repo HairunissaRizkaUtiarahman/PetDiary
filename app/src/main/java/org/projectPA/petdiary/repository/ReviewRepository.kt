@@ -1,15 +1,12 @@
 package org.projectPA.petdiary.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.snapshots
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
@@ -21,15 +18,10 @@ import org.projectPA.petdiary.model.User
 
 private const val LOG_TAG = "ReviewRepository"
 
-
 class ReviewRepository(
-    private val db: FirebaseFirestore,
-    private val auth: FirebaseAuth,
-    private val storageRef: FirebaseStorage
-
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance(),
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 ) {
-
-
     suspend fun getReview(reviewId: String): Review? {
         return try {
             val review = db.collection("reviews")
@@ -53,7 +45,6 @@ class ReviewRepository(
             null
         }
     }
-
 
     suspend fun getReviewsMyProfile(): Flow<List<Review>> {
         return try {
@@ -83,7 +74,6 @@ class ReviewRepository(
             emptyFlow()
         }
     }
-
 
     suspend fun getReviewUserProfile(userId: String): Flow<List<Review>> {
         return try {
@@ -159,4 +149,43 @@ class ReviewRepository(
             Log.e(LOG_TAG, "Failed to delete review", e)
         }
     }
+
+    suspend fun decrementReviewCountAndUpdateRating(productId: String, review: Review) {
+        repeat(3) { attempt ->
+            try {
+                val productRef = db.collection("products").document(productId)
+                Log.d(LOG_TAG, "Starting decrementReviewCountAndUpdateRating for productId: $productId and reviewId: ${review.id}")
+
+                val remainingReviewsSnapshot = db.collection("reviews").whereEqualTo("productId", productId).get().await()
+                val remainingReviews = remainingReviewsSnapshot.toObjects(Review::class.java).filter { it.id != review.id }
+
+                val newReviewCount = remainingReviews.size
+                val newTotalRating = remainingReviews.sumOf { it.rating.toDouble() }
+                val newAverageRating = if (newReviewCount > 0) newTotalRating / newReviewCount else 0.0
+                val recommendedCount = remainingReviews.count { it.recommend }
+                val newPercentageOfUsers = if (newReviewCount > 0) (recommendedCount * 100 / newReviewCount) else 0
+
+                Log.d(LOG_TAG, "New Review Count: $newReviewCount")
+                Log.d(LOG_TAG, "New Total Rating: $newTotalRating")
+                Log.d(LOG_TAG, "New Average Rating: $newAverageRating")
+                Log.d(LOG_TAG, "New Percentage Of Users: $newPercentageOfUsers")
+
+                db.runTransaction { transaction ->
+                    transaction.update(productRef, mapOf(
+                        "reviewCount" to newReviewCount,
+                        "totalRating" to newTotalRating,
+                        "averageRating" to newAverageRating,
+                        "percentageOfUsers" to newPercentageOfUsers
+                    ))
+                }.await()
+
+                Log.d(LOG_TAG, "Successfully updated product: $productId after deleting review: ${review.id}")
+                return // Exit if successful
+            } catch (e: FirebaseFirestoreException) {
+                Log.e(LOG_TAG, "Failed attempt ${attempt + 1} to decrement review count and update rating", e)
+                if (attempt == 2) throw e // Rethrow if the last attempt fails
+            }
+        }
+    }
+
 }

@@ -79,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:contentDescription="@string/image_unlike_cd"
+                        android:rotation="360"
                         app:srcCompat="@drawable/ic_thumbs_down_inactive" />
                 </LinearLayout>
 

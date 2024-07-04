@@ -5,8 +5,11 @@ import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
 import org.projectPA.petdiary.model.User
@@ -68,7 +71,7 @@ class GiveReviewViewModel : ViewModel() {
         review.recommend = recommend
     }
 
-    fun submitReview(context: Context, productId: String, sourceActivity: String) {
+    fun submitReview(context: Context, productId: String) {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val reviewRef = firestore.collection("reviews").document()
@@ -76,12 +79,13 @@ class GiveReviewViewModel : ViewModel() {
             reviewRef.set(review)
                 .addOnSuccessListener {
                     Log.d("GiveReviewViewModel", "Review successfully added to Firestore")
-                    updateProductStatistics(productId)
-                    val intent = Intent(context, ProductDetailActivity::class.java).apply {
-                        putExtra("productId", productId)
-                        putExtra("sourceActivity", sourceActivity)
+                    viewModelScope.launch {
+                        updateProductStatistics(productId)
+                        val intent = Intent(context, ProductDetailActivity::class.java).apply {
+                            putExtra("productId", productId)
+                        }
+                        context.startActivity(intent)
                     }
-                    context.startActivity(intent)
                 }
                 .addOnFailureListener { e ->
                     Log.e("GiveReviewViewModel", "Error adding review to Firestore", e)
@@ -91,31 +95,23 @@ class GiveReviewViewModel : ViewModel() {
         }
     }
 
-    fun updateProductStatistics(productId: String) {
-        val reviewsRef = firestore.collection("reviews").whereEqualTo("productId", productId)
-        reviewsRef.get().addOnSuccessListener { documents ->
-            val reviews = documents.toObjects(Review::class.java)
-            val averageRating = reviews.map { it.rating.toDouble() }.average()
-            val reviewCount = reviews.size
-            val recommendedCount = reviews.count { it.recommend }
-            val percentageOfUsers = if (reviewCount > 0) (recommendedCount * 100 / reviewCount) else 0
+    private suspend fun updateProductStatistics(productId: String) {
+        val reviews = firestore.collection("reviews").whereEqualTo("productId", productId).get().await()
+        val recommendedCount = reviews.documents.count { it.getBoolean("recommend") == true }
+        val totalRating = reviews.documents.sumOf { it.getDouble("rating") ?: 0.0 }
+        val reviewCount = reviews.size()
 
-            val productRef = firestore.collection("products").document(productId)
-            productRef.update(
-                mapOf(
-                    "averageRating" to averageRating,
-                    "reviewCount" to reviewCount,
-                    "percentageOfUsers" to percentageOfUsers
-                )
-            ).addOnSuccessListener {
-                Log.d("ProductRepository", "Product stats updated successfully.")
-            }.addOnFailureListener { e ->
-                Log.e("ProductRepository", "Error updating product stats: ", e)
-            }
-        }
+        val newAverageRating = if (reviewCount > 0) totalRating / reviewCount else 0.0
+        val newPercentageOfUsers = if (reviewCount > 0) (recommendedCount * 100 / reviewCount) else 0
+
+        val productRef = firestore.collection("products").document(productId)
+        firestore.runTransaction { transaction ->
+            transaction.update(productRef, mapOf(
+                "reviewCount" to reviewCount,
+                "totalRating" to totalRating,
+                "averageRating" to newAverageRating,
+                "percentageOfUsers" to newPercentageOfUsers
+            ))
+        }.await()
     }
 }
-
-
-
-

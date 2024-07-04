@@ -48,10 +48,9 @@ class RecommendProductFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             val productId = viewModel.product.value?.id ?: ""
-            val sourceActivity = "GiveReviewActivity"
             if (productId.isNotEmpty()) {
                 viewModel.updateRecommendation(recommend ?: false)
-                viewModel.submitReview(requireContext(), productId, sourceActivity)
+                viewModel.submitReview(requireContext(), productId)
                 Toast.makeText(requireContext(), "Review submitted successfully", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Product ID is missing", Toast.LENGTH_SHORT).show()

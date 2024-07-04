@@ -1,5 +1,6 @@
 package org.projectPA.petdiary.view.fragment.myprofile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,9 @@ class DetailReviewMyProfileFragment : Fragment() {
         return binding.root
     }
 
+
+
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.myReview.observe(viewLifecycleOwner) {
             with(binding) {
@@ -57,7 +61,7 @@ class DetailReviewMyProfileFragment : Fragment() {
 
         commentReviewMyProfileAdapter = CommentReviewMyProfileAdapter()
 
-        binding.commentsRV.adapter = commentReviewMyProfileAdapter
+        binding.listComment.adapter = commentReviewMyProfileAdapter
 
         viewModel.commentsReview.observe(viewLifecycleOwner) { comments ->
             commentReviewMyProfileAdapter.submitList(comments)
@@ -72,6 +76,22 @@ class DetailReviewMyProfileFragment : Fragment() {
                 viewModel.uploadComment(viewModel.myReview.value?.id ?: "", comment)
                 Toast.makeText(requireContext(), "Success send comment", Toast.LENGTH_SHORT).show()
                 binding.commentTIET.text?.clear()
+            }
+        }
+
+        binding.viewAllCommentsButton.setOnClickListener {
+            if (binding.listComment.visibility == View.VISIBLE) {
+                binding.listComment.visibility = View.GONE
+                binding.viewallTextview.text = "View"
+                binding.commentCount.visibility = View.VISIBLE
+                binding.commentTextview.text = "comment"
+                binding.layoutCommentRL.visibility = View.GONE
+            } else {
+                binding.listComment.visibility = View.VISIBLE
+                binding.viewallTextview.text = "Hide"
+                binding.commentCount.visibility = View.GONE
+                binding.commentTextview.text = "all comment"
+                binding.layoutCommentRL.visibility = View.VISIBLE
             }
         }
 

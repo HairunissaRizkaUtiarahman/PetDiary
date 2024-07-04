@@ -29,7 +29,7 @@ class PetDiaryApplication : Application() {
     val postRepository: PostRepository
         get() = PostRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val reviewRepository: ReviewRepository
-        get() = ReviewRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
+        get() = ReviewRepository(Firebase.firestore, FirebaseAuth.getInstance())
     val userRepository: UserRepository
         get() = UserRepository(Firebase.firestore, FirebaseAuth.getInstance())
 }

@@ -12,6 +12,7 @@ data class Product(
     var desc: String = "",
     var imageUrl: String? = null,
     var averageRating: Double = 0.0,
+    val totalRating: Double = 0.0,
     var reviewCount: Int = 0,
     var percentageOfUsers: Int = 0,
     var timeAdded: Timestamp? = Timestamp.now(),

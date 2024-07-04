@@ -132,6 +132,7 @@ class FillProductInformationViewModel : ViewModel() {
             imageUrl = imageUrl,
             averageRating = 0.0,
             reviewCount = 0,
+            totalRating = 0.0,
             percentageOfUsers = 0,
             timeAdded = Timestamp.now(),
             lowercaseProductName = productName.lowercase(),

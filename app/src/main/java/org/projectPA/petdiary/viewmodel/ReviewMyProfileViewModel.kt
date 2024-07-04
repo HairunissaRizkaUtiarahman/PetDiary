@@ -1,5 +1,8 @@
 package org.projectPA.petdiary.viewmodel
 
+import android.annotation.SuppressLint
+import android.util.Log
+import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,11 +36,9 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         get() = _CommentsReview
 
     private val _commentsCount = MutableLiveData<Int>()
-    val commentsCount: LiveData<Int> get() = _commentsCount
 
     private val firestore = FirebaseFirestore.getInstance()
     private val _commentAdded = MutableLiveData<Boolean>()
-    val commentAdded: LiveData<Boolean> get() = _commentAdded
 
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> get() = _errorMessage
@@ -67,12 +68,6 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         _myReview.value = review
     }
 
-    fun getReview(reviewId: String) = viewModelScope.launch(Dispatchers.IO) {
-        reviewRepository.getReview(reviewId)?.let {
-            _myReview.postValue(it)
-        }
-    }
-
     fun uploadComment(reviewId: String, text: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             reviewRepository.addCommentReview(reviewId, text)
@@ -90,12 +85,23 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
         }
     }
 
-    fun deleteReview(reviewId: String) = viewModelScope.launch {
+    @SuppressLint("RestrictedApi")
+    fun deleteReview(reviewId: String, productId: String) = viewModelScope.launch {
         withContext(Dispatchers.IO) {
-            reviewRepository.deleteReview(reviewId)
-            loadData()
+            Log.d(LOG_TAG, "Attempting to delete review with ID: $reviewId for product ID: $productId")
+            val review = reviewRepository.getReview(reviewId)
+            if (review != null) {
+                Log.d(LOG_TAG, "Review found. Deleting review with ID: $reviewId")
+                reviewRepository.deleteReview(reviewId)
+                Log.d(LOG_TAG, "Review deleted. Updating product stats for product ID: $productId")
+                reviewRepository.decrementReviewCountAndUpdateRating(productId, review)
+                loadData()
+            } else {
+                Log.e(LOG_TAG, "Review not found for ID: $reviewId")
+            }
         }
     }
+
 
     fun fetchCommentsCount(reviewId: String) = viewModelScope.launch {
         firestore.collection("commentReviews")

@@ -1,7 +1,10 @@
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -31,7 +34,24 @@ class ReviewMyProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment)
             },
             onDeleteClick = { review ->
-                review.id?.let { viewModel.deleteReview(it) }
+                review.id?.let { reviewId ->
+                    review.productId?.let { productId ->
+
+                        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+                        alertDialogBuilder.apply {
+                            setMessage("Are you sure you want to delete this review?")
+                            setPositiveButton("Yes") { _, _ ->
+                                viewModel.deleteReview(reviewId, productId)
+                                findNavController().popBackStack()
+                            }
+                            setNegativeButton("No") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                        }
+                        alertDialogBuilder.create().show()
+
+                    }
+                }
             }
         )
 
@@ -46,4 +66,3 @@ class ReviewMyProfileFragment : Fragment() {
         viewModel.loadData()
     }
 }
-
