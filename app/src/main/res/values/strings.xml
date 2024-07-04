@@ -390,6 +390,10 @@
     <string name="otherss">Others</string>
     <string name="redo_button">redo_button</string>
     <string name="undo_button">undo_button</string>
+    <string name="posts">Post</string>
+    <string name="pets">Pets</string>
+    <string name="account">Account</string>
+    <string name="help_support">Help &amp; Support</string>
 
 
 </resources>
