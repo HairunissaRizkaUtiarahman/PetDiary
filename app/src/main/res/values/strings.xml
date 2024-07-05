@@ -247,6 +247,7 @@
     <string name="image_edit_cd">Image Edit</string>
     <string name="text_search_cd">Text Search</string>
     <string name="image_post_cd">image_post_cd</string>
+    <string name="send_image_cd">send_image_cd</string>
 
 
     <!-- Fragment Change Password -->

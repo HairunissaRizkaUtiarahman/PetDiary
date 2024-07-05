@@ -223,6 +223,11 @@
                     android:text="@string/comment"
                     android:textStyle="bold" />
 
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_dark" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/comments_RV"
                     android:layout_width="match_parent"
@@ -234,7 +239,8 @@
                 <TextView
                     android:id="@+id/noComment_TV"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
                     android:gravity="center"
                     android:text="@string/no_comments_yet"
                     android:textStyle="bold"
@@ -276,6 +282,7 @@
             android:id="@+id/send_Btn"
             android:layout_width="65dp"
             android:layout_height="match_parent"
+            android:contentDescription="@string/send_image_cd"
             android:layout_alignParentEnd="true"
             android:src="@drawable/ic_send_background"
             app:shapeAppearanceOverlay="@style/circulas" />
