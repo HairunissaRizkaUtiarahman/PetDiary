@@ -248,7 +248,7 @@
     <string name="text_search_cd">Text Search</string>
     <string name="image_post_cd">image_post_cd</string>
     <string name="send_image_cd">send_image_cd</string>
-
+    <string name="delete_comment_cd">Delete Comment</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Old Password</string>
@@ -350,5 +350,6 @@
     <string name="open_email">Open Email</string>
     <string name="faq">FAQ</string>
     <string name="deletereview">Delete Review</string>
+
 
 </resources>

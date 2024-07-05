@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentPostCommentBinding
 import org.projectPA.petdiary.relativeTime
@@ -33,6 +34,8 @@ class CommentPostFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
         postViewModel.post.observe(viewLifecycleOwner) {
             with(binding) {
                 descTV.text = it.desc
@@ -77,7 +80,14 @@ class CommentPostFragment : Fragment() {
             }
         }
 
-        commentPostAdapter = CommentPostAdapter()
+        commentPostAdapter = CommentPostAdapter({ commentPost ->
+            commentPost.id?.let {
+                commentPostViewModel.deleteComment(postViewModel.post.value?.id ?: "",
+                    it
+                )
+            }
+            Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+        }, currentUserId)
 
         binding.commentsRV.adapter = commentPostAdapter
 
@@ -91,7 +101,6 @@ class CommentPostFragment : Fragment() {
                 binding.commentsRV.visibility = View.VISIBLE
             }
         }
-
 
         commentPostViewModel.loadData(postViewModel.post.value?.id ?: "")
 
