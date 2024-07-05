@@ -33,6 +33,10 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     val user = hashMapOf(
                         "name" to name,
                         "lowercaseName" to lowercaseName,
+                        "address" to "",
+                        "gender" to "",
+                        "birthdate" to "",
+                        "bio" to "",
                         "email" to email,
                         "postCount" to 0,
                         "reviewCount" to 0,
