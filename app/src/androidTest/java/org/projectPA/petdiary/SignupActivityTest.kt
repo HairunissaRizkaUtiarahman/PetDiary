@@ -34,11 +34,8 @@ class SignupActivityTest {
     @Test
     fun testSignupButtonOpensSigninActivity() {
 
-        onView(withId(R.id.name_TIET)).perform(typeText("Lenaica"), closeSoftKeyboard())
-        onView(withId(R.id.email_TIET)).perform(
-            typeText("lenaica@gmail.com"),
-            closeSoftKeyboard()
-        )
+        onView(withId(R.id.name_TIET)).perform(typeText("Pet Diary Admin"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
         onView(withId(R.id.confirmPassword_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
 
@@ -56,15 +53,6 @@ class SignupActivityTest {
         onView(withId(R.id.signUp_Btn)).perform(click())
     }
 
-
-    @Test
-    fun testSignupWithEmptyFieldsShowsError() {
-
-        onView(withId(R.id.signUp_Btn)).perform(click())
-
-        onView(withSnackbarText("All fields are required!")).check(matches(isDisplayed()))
-    }
-
     @Test
     fun testSignupWithInvalidEmailShowsError() {
 
@@ -73,9 +61,7 @@ class SignupActivityTest {
         onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
         onView(withId(R.id.confirmPassword_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
 
-
         onView(withId(R.id.signUp_Btn)).perform(click())
-
 
         onView(withSnackbarText("Invalid email address!")).check(matches(isDisplayed()))
     }
@@ -103,11 +89,47 @@ class SignupActivityTest {
         onView(withId(R.id.password_TIET)).perform(typeText("1"), closeSoftKeyboard())
         onView(withId(R.id.confirmPassword_TIET)).perform(typeText("1"), closeSoftKeyboard())
 
+        onView(withId(R.id.signUp_Btn)).perform(click())
+
+        onView(withSnackbarText("Password should be between 6 and 12 characters and contain letters, numbers, and optionally dots!")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testSignupEmptyNameShowsError() {
+        onView(withId(R.id.name_TIET)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("mangga@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("1"), closeSoftKeyboard())
+        onView(withId(R.id.confirmPassword_TIET)).perform(typeText("1"), closeSoftKeyboard())
 
         onView(withId(R.id.signUp_Btn)).perform(click())
 
+        onView(withSnackbarText("Name is required and must be less than 100 characters")).check(matches(isDisplayed()))
+    }
 
-        onView(withSnackbarText("Password should be between 6 and 12 characters and contain letters, numbers, and optionally dots!")).check(matches(isDisplayed()))
+    @Test
+    fun testSignupEmptyEmailShowsError() {
+        onView(withId(R.id.name_TIET)).perform(typeText("mangga"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText(""), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("abc123456"), closeSoftKeyboard())
+        onView(withId(R.id.confirmPassword_TIET)).perform(typeText("abc123456"), closeSoftKeyboard())
+
+        onView(withId(R.id.signUp_Btn)).perform(click())
+
+        onView(withSnackbarText("Email is required and must be less than 100 characters")).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun testSignupNameExistShowsError() {
+        onView(withId(R.id.name_TIET)).perform(typeText("kalica"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("sayur@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("abc123456"), closeSoftKeyboard())
+        onView(withId(R.id.confirmPassword_TIET)).perform(typeText("abc123456"), closeSoftKeyboard())
+
+        onView(withId(R.id.signUp_Btn)).perform(click())
+
+        Thread.sleep(1000)
+
+        onView(withSnackbarText("Name already taken")).check(matches(isDisplayed()))
     }
 }
 

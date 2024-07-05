@@ -3,6 +3,7 @@ package org.projectPA.petdiary.repository
 import android.util.Log
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
@@ -153,6 +154,7 @@ class ReviewRepository(
     suspend fun decrementReviewCountAndUpdateRating(productId: String, review: Review) {
         repeat(3) { attempt ->
             try {
+                val userId = auth.currentUser!!.uid
                 val productRef = db.collection("products").document(productId)
                 Log.d(LOG_TAG, "Starting decrementReviewCountAndUpdateRating for productId: $productId and reviewId: ${review.id}")
 
@@ -180,11 +182,24 @@ class ReviewRepository(
                 }.await()
 
                 Log.d(LOG_TAG, "Successfully updated product: $productId after deleting review: ${review.id}")
-                return // Exit if successful
+                updateUserReviewCount(userId)
+                return
             } catch (e: FirebaseFirestoreException) {
                 Log.e(LOG_TAG, "Failed attempt ${attempt + 1} to decrement review count and update rating", e)
-                if (attempt == 2) throw e // Rethrow if the last attempt fails
+                if (attempt == 2) throw e
             }
+        }
+    }
+
+    private suspend fun updateUserReviewCount(userId: String) {
+        try {
+            val userRef = db.collection("users").document(userId)
+            db.runTransaction { transaction ->
+                transaction.update(userRef, "reviewCount", FieldValue.increment(-1))
+            }.await()
+            Log.d("GiveReviewViewModel", "User review count updated successfully")
+        } catch (e: Exception) {
+            Log.e("GiveReviewViewModel", "Error updating user review count", e)
         }
     }
 

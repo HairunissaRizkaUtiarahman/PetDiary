@@ -2,48 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ActivityWriteArticleForAdminTest">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\anisa\.android\avd\Pixel_5_API_34.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-02T14:39:26.634685Z" />
-        </State>
-      </entry>
-      <entry key="AddReviewCommentTest">
-        <State />
-      </entry>
-      <entry key="AddReviewTest">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-RR8R103YHYV-HWme4i._adb-tls-connect._tcp" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-02T09:52:38.331309900Z" />
-        </State>
-      </entry>
-      <entry key="ProductEntryTest">
-        <State />
-      </entry>
-      <entry key="WriteArticleTest">
+      <entry key="SignupActivityTest">
         <State />
       </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="testSignupButtonOpensSigninActivity()">
+        <State />
+      </entry>
+      <entry key="testSignupEmptyEmailShowsError()">
+        <State />
+      </entry>
+      <entry key="testSignupEmptyNameShowsError()">
+        <State />
+      </entry>
+      <entry key="testSignupNameExistShowsError()">
         <State />
       </entry>
     </value>

@@ -32,49 +32,33 @@ class SignupActivity : AppCompatActivity() {
 
 
             if (name.isEmpty() || name.length > 100) {
-                Toast.makeText(
-                    this,
-                    "Name is required and must be less than 100 characters",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showSnackbar("Name is required and must be less than 100 characters")
                 return@setOnClickListener
             }
 
             if (email.isEmpty() || email.length > 100) {
-                Toast.makeText(
-                    this,
-                    "Email is required and must be less than 100 characters",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showSnackbar("Email is required and must be less than 100 characters")
                 return@setOnClickListener
             }
 
             if (!isValidEmail(email)) {
-                Toast.makeText(
-                    this,
-                    "Invalid email address!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showSnackbar("Invalid email address!")
                 return@setOnClickListener
             }
 
             if (password != confirmPassword) {
-                Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_SHORT).show()
+                showSnackbar("Passwords do not match!")
                 return@setOnClickListener
             }
 
             if (!isValidPassword(password)) {
-                Toast.makeText(
-                    this,
-                    "Password should be between 6 and 12 characters and contain letters, numbers, and optionally dots!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showSnackbar("Password should be between 6 and 12 characters and contain letters, numbers, and optionally dots!")
                 return@setOnClickListener
             }
 
             viewModel.checkIfNameExists(name) { nameExists ->
                 if (nameExists) {
-                    Toast.makeText(this, "Name already taken", Toast.LENGTH_SHORT).show()
+                    showSnackbar("Name already taken")
                 } else {
                     viewModel.uploadData(name, email, password)
                 }
@@ -83,7 +67,6 @@ class SignupActivity : AppCompatActivity() {
 
         viewModel.signupSuccess.observe(this, Observer { success ->
             if (success) {
-                showSnackbar("Registration successful! Please verify your email before logging in.")
                 startActivity(Intent(this, SigninActivity::class.java))
                 finish()
             }

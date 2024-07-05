@@ -103,6 +103,8 @@ class ReviewMyProfileViewModel(private val reviewRepository: ReviewRepository) :
     }
 
 
+
+
     fun fetchCommentsCount(reviewId: String) = viewModelScope.launch {
         firestore.collection("commentReviews")
             .whereEqualTo("reviewId", reviewId)

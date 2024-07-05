@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -75,12 +76,14 @@ class GiveReviewViewModel : ViewModel() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val reviewRef = firestore.collection("reviews").document()
+            val userId = auth.currentUser!!.uid
             review.id = reviewRef.id
             reviewRef.set(review)
                 .addOnSuccessListener {
                     Log.d("GiveReviewViewModel", "Review successfully added to Firestore")
                     viewModelScope.launch {
                         updateProductStatistics(productId)
+                        updateUserReviewCount(userId)
                         val intent = Intent(context, ProductDetailActivity::class.java).apply {
                             putExtra("productId", productId)
                         }
@@ -117,6 +120,18 @@ class GiveReviewViewModel : ViewModel() {
             Log.d("GiveReviewViewModel", "Product statistics updated successfully")
         } catch (e: Exception) {
             Log.e("GiveReviewViewModel", "Error updating product statistics", e)
+        }
+    }
+
+    private suspend fun updateUserReviewCount(userId: String) {
+        try {
+            val userRef = firestore.collection("users").document(userId)
+            firestore.runTransaction { transaction ->
+                transaction.update(userRef, "reviewCount", FieldValue.increment(1))
+            }.await()
+            Log.d("GiveReviewViewModel", "User review count updated successfully")
+        } catch (e: Exception) {
+            Log.e("GiveReviewViewModel", "Error updating user review count", e)
         }
     }
 }

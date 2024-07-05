@@ -47,6 +47,7 @@ class RecommendProductFragment : Fragment() {
         }
 
         binding.submitButton.setOnClickListener {
+            binding.submitButton.isEnabled = false
             val productId = viewModel.product.value?.id ?: ""
             if (productId.isNotEmpty()) {
                 viewModel.updateRecommendation(recommend ?: false)

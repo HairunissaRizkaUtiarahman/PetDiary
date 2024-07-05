@@ -135,6 +135,7 @@ class FillProductInformationActivity : AppCompatActivity() {
 
                 viewModel.uploadData(this, brandName, productName, description, petType, category)
             }
+            binding.submitButton.isEnabled = false
         }
 
     }
@@ -200,7 +201,6 @@ class FillProductInformationActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "FillProductInformationActivity"
-        private const val PICK_IMAGE_REQUEST = 1
     }
 
     private fun checkAndRequestCameraPermission() {
