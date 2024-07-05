@@ -226,12 +226,21 @@ class PostRepository(
 
     suspend fun deleteCommentPost(postId: String, commentId: String) {
         try {
-            db.collection("posts").document(postId).collection("comments").document(commentId).delete().await()
-            db.collection("posts").document(postId).update("commentCount", FieldValue.increment(-1)).await()
+            val currentUserID = auth.currentUser!!.uid
+            val comment = db.collection("posts").document(postId).collection("comments").document(commentId).get().await()
+            val commentUserId = comment.getString("userId")
+
+            if (commentUserId == currentUserID) {
+                db.collection("posts").document(postId).collection("comments").document(commentId).delete().await()
+                db.collection("posts").document(postId).update("commentCount", FieldValue.increment(-1)).await()
+            } else {
+                Log.e(LOG_TAG, "User does not have permission to delete this comment")
+            }
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to delete comment", e)
         }
     }
+
 
 
 

@@ -98,6 +98,7 @@ dependencies {
 
     implementation ("jp.wasabeef:richeditor-android:2.0.0")
     implementation ("org.jsoup:jsoup:1.13.1")
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
 }
 
 

@@ -16,33 +16,36 @@ class UserRepository(
 
     suspend fun getUsers(): List<User> {
         return try {
-            val userId = auth.currentUser!!.uid
+            val currentUserUid = auth.currentUser?.uid ?: ""
+
             db.collection("users")
-                .whereNotEqualTo("userId", userId)
-                .limit(10)
                 .get().await().let { querySnapshot ->
-                    querySnapshot.documents.mapNotNull {
-                        it.toObject(User::class.java)?.copy(id = it.id)
+                    querySnapshot.documents.mapNotNull { document ->
+                        document.toObject(User::class.java)?.copy(id = document.id)
+                    }.filter { user ->
+                        user.id != currentUserUid // Exclude current user
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get random user", e)
+            Log.e(LOG_TAG, "Failed to get users", e)
             emptyList()
         }
     }
 
     suspend fun searchUser(query: String): List<User> {
         return try {
+            val currentUserUid = auth.currentUser?.uid ?: ""
+
             db.collection("users")
                 .get().await().let { querySnapshot ->
-                    querySnapshot.documents.mapNotNull {
-                        it.toObject(User::class.java)?.copy(id = it.id)
-                    }.filter {
-                        it.name?.contains(query, ignoreCase = true) == true
+                    querySnapshot.documents.mapNotNull { document ->
+                        document.toObject(User::class.java)?.copy(id = document.id)
+                    }.filter { user ->
+                        user.name?.contains(query, ignoreCase = true) == true && user.id != currentUserUid
                     }
                 }
         } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Failed to search user", e)
+            Log.e(LOG_TAG, "Failed to search users", e)
             emptyList()
         }
     }
