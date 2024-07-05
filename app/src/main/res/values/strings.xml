@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_name">PetDiary</string>
     <!-- Activity Main -->
@@ -114,13 +114,16 @@
     <string name="hide_bottom_view_on_scroll" />
     <string name="title_activity_main">MainActivity</string>
     <string name="back_button">back_button</string>
-    <string-array name="usage_options">
+
+    <string-array name="usage_options" tools:ignore="InconsistentArrays">
+        <item>Select Usage Product</item>
         <item>Using this product for the first time</item>
         <item>1 week - 1 month</item>
         <item>2 – 6 months</item>
         <item>More than one year</item>
         <item>Less than a week</item>
     </string-array>
+
     <string-array name="article_category">
         <item>Select Article Category</item>
         <item>Care and Health</item>

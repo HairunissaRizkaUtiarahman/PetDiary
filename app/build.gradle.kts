@@ -17,7 +17,6 @@ android {
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -44,7 +43,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -90,7 +88,6 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx")
 
     implementation("com.google.protobuf:protobuf-javalite:4.27.0")
-
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
 

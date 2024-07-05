@@ -44,7 +44,7 @@ class AddReviewCommentTest {
     }
 
     @Test
-    fun testAddReviewFlowAndVerify() {
+    fun testAddReviewCommentFlow() {
 
         ActivityScenario.launch(SigninActivity::class.java)
 
@@ -52,13 +52,13 @@ class AddReviewCommentTest {
             typeText("akupetdiary@gmail.com"),
             closeSoftKeyboard()
         )
-        onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
         onView(withId(R.id.signIn_Btn)).perform(click())
 
         Thread.sleep(8000)
 
         onView(withId(R.id.list_most_review_product))
-            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
 
         Thread.sleep(8000)
 
@@ -80,8 +80,6 @@ class AddReviewCommentTest {
         Thread.sleep(5000)
 
         intended(hasComponent(DetailReviewActivity::class.java.name))
-
-        onView(withId(R.id.view_all_comments_button)).perform(click())
 
         onView(withId(R.id.comment_TIET)).perform(typeText("testing fungsionalitas add comment purpose"), closeSoftKeyboard(), closeSoftKeyboard())
         onView(withId(R.id.send_Btn)).perform(click())
