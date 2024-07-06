@@ -180,6 +180,10 @@
     <string name="toolbar_user_profile">User Profile</string>
     <string name="toolbar_search">Search</string>
     <string name="toolbar_add_post">Add Post</string>
+    <string name="toolbar_find_petshop">Find Petshop</string>
+    <string name="toolbar_find_veterinary">Find Veterinary Clinic</string>
+
+
     <!-- Auth -->
     <!-- Activity Sign In -->
     <string name="sign_in">SIGN IN</string>
@@ -289,9 +293,9 @@
     <string name="write_comment">Write Comment</string>
     <!-- Manage Pet -->
     <string name="petshop">Petshop</string>
-    <string name="clinic">Clinic Vet</string>
-    <string name="petshop_desc">Looking for the nearest pet shop around you</string>
-    <string name="clinic_desc">Look for the nearest veterinary clinic around you</string>
+    <string name="veterinary">Veterinary Clinic</string>
+    <string name="petshop_desc">Find the nearest pet shop around you</string>
+    <string name="clinic_desc">Find the nearest veterinary clinic around you</string>
 
     <!-- Find Petshop & Clinic -->
     <string name="user">User</string>
