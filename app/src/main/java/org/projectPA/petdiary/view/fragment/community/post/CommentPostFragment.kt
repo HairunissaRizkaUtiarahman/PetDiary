@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SwipeToDeleteCallback
 import org.projectPA.petdiary.databinding.FragmentPostCommentBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.CommentPostAdapter
@@ -82,7 +84,8 @@ class CommentPostFragment : Fragment() {
 
         commentPostAdapter = CommentPostAdapter({ commentPost ->
             commentPost.id?.let {
-                commentPostViewModel.deleteComment(postViewModel.post.value?.id ?: "",
+                commentPostViewModel.deleteComment(
+                    postViewModel.post.value?.id ?: "",
                     it
                 )
             }
@@ -90,6 +93,15 @@ class CommentPostFragment : Fragment() {
         }, currentUserId)
 
         binding.commentsRV.adapter = commentPostAdapter
+
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback { position ->
+            val commentPost = commentPostAdapter.currentList[position]
+            commentPost.id?.let {
+                commentPostViewModel.deleteComment(postViewModel.post.value?.id ?: "", it)
+                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(binding.commentsRV)
 
         commentPostViewModel.commentsPost.observe(viewLifecycleOwner) { comments ->
             commentPostAdapter.submitList(comments)

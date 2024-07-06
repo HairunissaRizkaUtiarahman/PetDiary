@@ -207,6 +207,8 @@
     <string name="toolbar_user_profile">Profil Pengguna</string>
     <string name="toolbar_search">Pencarian</string>
     <string name="toolbar_add_post">Tambah Postingan</string>
+    <string name="toolbar_find_petshop">Cari Petshop</string>
+    <string name="toolbar_find_veterinary">Cari Klinik Hewan</string>
 
     <!-- Auth -->
     <!-- Activity Sign In -->
@@ -332,9 +334,9 @@
 
     <!-- Manage Pet -->
     <string name="petshop">Petshop</string>
-    <string name="clinic">Klinik Hewan</string>
-    <string name="petshop_desc">Cari petshop terdekat disekitar anda</string>
-    <string name="clinic_desc">Carilah klinik hewan terdekat di sekitar Anda</string>
+    <string name="veterinary">Klinik Hewan</string>
+    <string name="petshop_desc">Temukan toko hewan terdekat di sekitar Anda</string>
+    <string name="clinic_desc">Temukan klinik hewan terdekat di sekitar Anda</string>
 
     <!-- Find Petshop & Clinic -->
     <string name="user">Pengguna</string>

@@ -127,7 +127,7 @@
                         android:id="@+id/clinic_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/clinic"
+                        android:text="@string/veterinary"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
