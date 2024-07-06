@@ -58,7 +58,7 @@ class AddReviewTest {
         ActivityScenario.launch(SigninActivity::class.java)
 
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
         onView(withId(R.id.signIn_Btn)).perform(click())
 
         Thread.sleep(2000)
@@ -73,7 +73,7 @@ class AddReviewTest {
 
         intended(hasComponent(ChooseProductActivity::class.java.name))
         onView(withId(R.id.list_product))
-            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(1, click()))
+            .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
 
         onView(withId(R.id.ratingBar)).perform(setRating(4.0f))
         onView(withId(R.id.next_button_to_usage_product)).perform(click())

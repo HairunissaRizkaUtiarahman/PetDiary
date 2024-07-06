@@ -46,10 +46,8 @@ class SigninActivityTest {
 
     @Test
     fun testSigninWithValidCredentials() {
-        Log.d(TAG, "Starting testSigninWithValidCredentials")
-
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
-        onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("lilykalica@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
 
         onView(withId(R.id.signIn_Btn)).perform(click())
@@ -65,8 +63,8 @@ class SigninActivityTest {
 
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
 
-        onView(withId(R.id.email_TIET)).perform(typeText("ragdoll@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("lontong@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("abc123"), closeSoftKeyboard())
 
         onView(withId(R.id.signIn_Btn)).perform(click())
 
@@ -87,6 +85,5 @@ class SigninActivityTest {
 
         onView(withSnackbarText("Authentication failed")).check(matches(isDisplayed()))
         scenario.close()
-
     }
 }
