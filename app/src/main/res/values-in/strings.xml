@@ -12,10 +12,10 @@
     <!-- Activity Review Homepage -->
     <string name="toolbar_Product_Reviews">Ulasan Produk Hewan Peliharaan</string>
     <string name="notification_icon_description">notifikasi</string>
-    <string name="Browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
-    <string name="most_reviews_products">5 Produk Dengan Ulasan Terbanyak</string>
+    <string name="Browse_product_by_pet_types">Cari produk berdasarkan jenis hewan</string>
+    <string name="most_reviews_products">5 Produk Terpopuler</string>
     <string name="scroll_horizontally_to_view_pet_options">Gulir secara horizontal untuk melihat opsi hewan peliharaan</string>
-    <string name="browse_product_by_pet_types">Jelajahi produk berdasarkan jenis hewan peliharaan</string>
+    <string name="browse_product_by_pet_types">Cari produk berdasarkan jenis hewan</string>
     <string name="scroll_horizontally_to_view_product">gulir secara horizontal untuk melihat produk</string>
 
     <!-- Activity Choose Pet Category -->
@@ -57,7 +57,7 @@
     <!-- Activity Give Rating Step One -->
     <string name="back_to_choose_product_button">kembali_ke_pilih_produk_tombol</string>
     <string name="give_review">Berikan Ulasan</string>
-    <string name="give_your_overall_rating_for_this_product">Berikan Penilaian Keseluruhan Anda untuk Produk Ini</string>
+    <string name="give_your_overall_rating_for_this_product">Berikan rating untuk Produk Ini</string>
     <string name="prev">Sebelumnya</string>
     <string name="next">Berikutnya</string>
 
@@ -69,22 +69,22 @@
     <string name="product_categories">Kategori Produk</string>
 
     <!-- Activity Product Detail -->
-    <string name="reviewed_this">Orang yang Memberi Ulasan untuk Produk Ini</string>
-    <string name="users_recommend_this">Pengguna Merekomendasikan Ini</string>
+    <string name="reviewed_this">Ulasan untuk Produk Ini</string>
+    <string name="users_recommend_this">Pengguna Merekomendasikan</string>
     <string name="product_description">Deskripsi Produk</string>
     <string name="overall_rating">Penilaian Keseluruhan</string>
     <string name="back_to_products_page_button">kembali_ke_halaman_produk_tombol</string>
     <string name="see_more_reviews"><![CDATA[Lihat lebih banyak Ulasan>>]]></string>
     <string name="back_to_product_page">kembali ke halaman produk</string>
     <string name="product_detail">Detail Produk</string>
-    <string name="add_a_review">Tambahkan Ulasan</string>
+    <string name="add_a_review">Tambah Ulasan</string>
 
     <!-- Activity Product Page -->
     <string name="back_to_product_categories_button">Kembali ke Kategori Produk Tombol</string>
     <string name="product">Produk</string>
 
     <!-- Activity Recommend Product Step Four -->
-    <string name="would_you_recommend_this_product">Apakah Anda akan merekomendasikan produk ini?</string>
+    <string name="would_you_recommend_this_product">Apakah Anda merekomendasikan produk ini?</string>
 
     <!-- Activity Review Detail -->
     <string name="review_detail">Detail Ulasan</string>
@@ -100,29 +100,29 @@
     <string name="write_you_review_here">tulis ulasan Anda di sini…</string>
 
     <!-- Fragment Add Button -->
-    <string name="add_a_post">Tambahkan Postingan</string>
-    <string name="add_a_product">Tambahkan Produk</string>
+    <string name="add_a_post">Tambah Postingan</string>
+    <string name="add_a_product">Tambah Produk</string>
 
     <!-- Fragment Home -->
-    <string name="find_pet_shop_vet">Toko &amp; Dokter</string>
+    <string name="find_pet_shop_vet">Cari Toko &amp; Klinik</string>
     <string name="community">Komunitas</string>
     <string name="article">Artikel</string>
-    <string name="manage_pet">Kelola Peliharaanku</string>
+    <string name="manage_pet">Lihat Peliharaanku</string>
     <string name="manage_pet_poster">Kelola Poster Hewan Peliharaan</string>
-    <string name="review_n">Ulasan</string>
-    <string name="community_n">Komunitas</string>
-    <string name="article_n">Artikel</string>
+    <string name="review_n">Ulasan\n</string>
+    <string name="community_n">Komunitas\n</string>
+    <string name="article_n">Artikel\n</string>
 
     <!-- Fragment Sort Button Product -->
     <string name="sort_by">Urutkan berdasarkan</string>
     <string name="popular">Populer</string>
-    <string name="highest_rating">Peringkat Tertinggi</string>
+    <string name="highest_rating">Rating Tertinggi</string>
     <string name="newest">Terbaru</string>
 
     <!-- Fragment Sort Button Review -->
     <string name="newest_review">Ulasan Terbaru</string>
     <string name="oldest_review">Ulasan Terlama</string>
-    <string name="lowest_rating">Peringkat Terendah</string>
+    <string name="lowest_rating">Rating Terendah</string>
 
     <!-- Fragment Menu -->
     <string name="title_home">Beranda</string>
@@ -138,7 +138,7 @@
     <string name="back_button">tombol_kembali</string>
 
     <string-array name="usage_options">
-        <item>Menggunakan produk ini untuk pertama kalinya</item>
+        <item>Baru pertama kali</item>
         <item>1 minggu - 1 bulan</item>
         <item>2 – 6 bulan</item>
         <item>Lebih dari satu tahun</item>
@@ -154,10 +154,10 @@
 
     <string name="home_name_user">Hai! %1$s</string>
 
-    <string name="care_and_health">Perawatan dan Kesehatan</string>
-    <string name="training">Pelatihan</string>
-    <string name="community_events">Acara</string>
-    <string name="all">Semua</string>
+    <string name="care_and_health">Care and Health</string>
+    <string name="training">Training</string>
+    <string name="community_events">Event</string>
+    <string name="all">All</string>
     <string name="back_to_article_homepage">kembali ke halaman utama artikel</string>
     <string name="share_via">Bagikan melalui</string>
     <string name="pentingnya_perawatan_kesehatan_rutin_untuk_kucing_kesayangan_anda">Pentingnya Perawatan Kesehatan Rutin untuk Kucing Kesayangan Anda</string>
@@ -190,7 +190,7 @@
     <string name="lorem_ipsum">Lorem Ipsum hanyalah teks contoh dari industri percetakan dan penataan huruf. Lorem Ipsum telah menjadi standar industri</string>
 
     <!-- Title Toolbar -->
-    <string name="toolbar_pet">Kelola Peliharaanku</string>
+    <string name="toolbar_pet">Hewan Peliharaanku</string>
     <string name="toolbar_pet_add">Tambah Hewan Peliharaan</string>
     <string name="toolbar_pet_edit">Edit Hewan Peliharaan</string>
     <string name="toolbar_pet_detail">Detail Hewan Peliharaan</string>
@@ -341,7 +341,7 @@
     <!-- Find Petshop & Clinic -->
     <string name="user">Pengguna</string>
     <string name="no_user_yet">Tidak Ada Pengguna</string>
-    <string name="post">Postingan</string>
+    <string name="post">Tambah Postingan</string>
 
     <string name="toolbar_support">Bantuan &amp; Dukungan</string>
     <string name="email_from">Dari : %1$s</string>

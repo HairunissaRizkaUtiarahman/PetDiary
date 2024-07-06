@@ -54,8 +54,7 @@ class CommentPostFragment : Fragment() {
                 }
 
                 likeCountTV.text = requireContext().getString(R.string.like_count, it.likeCount)
-                commentCountTV.text =
-                    requireContext().getString(R.string.comment_count, it.commentCount)
+                commentCountTV.text = requireContext().getString(R.string.comment_count, it.commentCount)
             }
             if (it.like != null) {
                 binding.likeBtn.visibility = View.VISIBLE

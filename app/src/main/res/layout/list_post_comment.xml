@@ -55,10 +55,10 @@
             android:id="@+id/comment_TV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/lorem_ipsum"
-            android:textColor="@color/black"
+            android:justificationMode="inter_word"
             android:padding="10dp"
-            android:justificationMode="inter_word"/>
+            android:text="@string/lorem_ipsum"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

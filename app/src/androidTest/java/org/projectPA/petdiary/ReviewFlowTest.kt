@@ -110,7 +110,6 @@ class ReviewFlowTest {
 
         Thread.sleep(8000)
 
-
         onView(withId(R.id.main_content)).perform(swipeUpSlightly())
 
         Thread.sleep(7000)
