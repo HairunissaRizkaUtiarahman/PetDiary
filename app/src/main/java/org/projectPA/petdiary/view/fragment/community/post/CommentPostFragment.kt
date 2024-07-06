@@ -111,6 +111,7 @@ class CommentPostFragment : Fragment() {
                 binding.noCommentTV.visibility = View.GONE
                 binding.commentsRV.visibility = View.VISIBLE
             }
+            postViewModel.updateCommentCount(comments.size)
         }
 
         commentPostViewModel.loadData(postViewModel.post.value?.id ?: "")

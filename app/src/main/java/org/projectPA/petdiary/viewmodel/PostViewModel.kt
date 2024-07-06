@@ -70,6 +70,10 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         postRepository.setLike(userId, postId)
     }
 
+    fun updateCommentCount(count: Int) {
+        _post.value = _post.value?.copy(commentCount = count)
+    }
+
     fun searchPost(query: String) = viewModelScope.launch(Dispatchers.IO) {
         postRepository.searchPost(query.lowercase()).let {
             _posts.postValue(it)
