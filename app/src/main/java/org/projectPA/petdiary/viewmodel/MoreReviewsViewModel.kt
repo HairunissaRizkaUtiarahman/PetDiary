@@ -23,11 +23,6 @@ class MoreReviewsViewModel : ViewModel() {
             .addOnSuccessListener { documents ->
                 try {
                     val reviews = documents.mapNotNull { it.toObject(Review::class.java) }
-                    reviews.forEach { review ->
-//                        if (review.userPhotoUrl.isNullOrEmpty()) {
-//                            review.userPhotoUrl = "default"
-//                        }
-                    }
                     allReviews = reviews
                     _reviews.value = reviews
                 } catch (e: Exception) {

@@ -11,10 +11,10 @@
       <entry key="DashboardActivityTest">
         <State />
       </entry>
-      <entry key="ResetPasswordActivityTest">
+      <entry key="EditProfileTest">
         <State />
       </entry>
-      <entry key="SigninActivityTest">
+      <entry key="ReviewFlowTest">
         <State />
       </entry>
       <entry key="app">
