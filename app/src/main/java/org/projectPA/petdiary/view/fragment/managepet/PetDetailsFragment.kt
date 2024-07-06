@@ -13,8 +13,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentPetDetailsBinding
 import org.projectPA.petdiary.viewmodel.PetViewModel
 
@@ -73,7 +75,9 @@ class PetDetailsFragment : Fragment() {
                 lifecycleScope.launch {
                     val result = viewModel.deletePet(petId, imageUrl)
                     if (result) {
-                        Toast.makeText(requireContext(), "Pet deleted successfully", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(requireContext(), "Pet deleted successfully", Toast.LENGTH_SHORT).show()
+                        showSnackbar("Pet deleted successfully")
+
                         findNavController().popBackStack()
                     } else {
                         Toast.makeText(requireContext(), "Failed to delete pet", Toast.LENGTH_SHORT).show()
@@ -85,5 +89,16 @@ class PetDetailsFragment : Fragment() {
             }
         }
         alertDialogBuilder.create().show()
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 }

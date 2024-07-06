@@ -1,17 +1,11 @@
 package org.projectPA.petdiary
 
-import android.app.Activity.RESULT_OK
-import android.app.Instrumentation
-import android.content.Intent
-import android.net.Uri
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
-import androidx.test.espresso.intent.Intents.intending
 import androidx.test.espresso.intent.matcher.IntentMatchers
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.GrantPermissionRule
@@ -21,11 +15,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
-import org.projectPA.petdiary.view.activities.myprofile.MyProfileActivity
+import org.projectPA.petdiary.view.activities.profile.ChangeLanguageProfileActivity
 
 @RunWith(AndroidJUnit4::class)
-class EditProfileTest {
+class ChangeLanguageTest {
 
     @get:Rule
     val permissionRule: GrantPermissionRule = GrantPermissionRule.grant(android.Manifest.permission.CAMERA)
@@ -45,10 +40,8 @@ class EditProfileTest {
     }
 
     @Test
-    fun editProfileProcces() {
-
+    fun editLanguageProcess() {
         ActivityScenario.launch(SigninActivity::class.java)
-
 
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
@@ -57,42 +50,28 @@ class EditProfileTest {
         Thread.sleep(2000)
 
         onView(withId(R.id.bottom_navigation_view)).check(matches(isDisplayed()))
-
         onView(withId(R.id.profile)).check(matches(isDisplayed()))
-
         onView(withId(R.id.profile)).perform(click())
 
         Thread.sleep(5000)
 
-        onView(withId(R.id.editProfile_Btn)).perform(click())
-
-        onView(withId(R.id.pick_Btn)).perform(click())
-        onView(withText("Choose from Gallery")).perform(click())
-
-
-        val imageUri = Uri.parse("android.resource:////org.projectPA.petdiary/drawable/test_image")
-        val intent = Intent().setData(imageUri)
-        intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(Instrumentation.ActivityResult(RESULT_OK, intent))
-
-        onView(withId(R.id.name_TIET)).perform(typeText(" Official"), closeSoftKeyboard())
-        onView(withId(R.id.address_TIET)).perform(typeText(" Sukapura"), closeSoftKeyboard())
-
-        onView(withId(R.id.main_content)).perform(swipeUpSlightly())
-        onView(withId(R.id.bio_TIET)).perform(typeText(" admin"), closeSoftKeyboard())
-
-        onView(withId(R.id.save_Btn)).perform(click())
+        onView(withId(R.id.changeLanguage_Btn)).perform(click())
 
         Thread.sleep(5000)
 
-        onView(withId(R.id.myProfile_Btn)).perform(click())
+        Intents.intended(IntentMatchers.hasComponent(ChangeLanguageProfileActivity::class.java.name))
 
         Thread.sleep(5000)
 
-        Intents.intended(IntentMatchers.hasComponent(MyProfileActivity::class.java.name))
+        onView(withId(R.id.indonesian_btn)).perform(click())
 
-        Thread.sleep(6000)
+        Thread.sleep(5000)
 
-        onView(withId(R.id.name_Tv)).check(matches(withText("Pet Diary Admin Official")))
-        onView(withId(R.id.bio_Tv)).check(matches(withText("Official akun PetDiary admin")))
+        // Verifikasi teks-teks dalam bahasa Indonesia
+        onView(withId(R.id.review_text)).check(matches(withText("Ulasan\n")))
+        onView(withId(R.id.petshop_clinic_button_text)).check(matches(withText("Cari Toko & Klinik")))
+        onView(withId(R.id.community_text)).check(matches(withText("Komunitas\n")))
+        onView(withId(R.id.Article_text)).check(matches(withText("Artikel\n")))
+        onView(withId(R.id.most_reviews_text)).check(matches(withText("5 Produk Terpopuler")))
     }
 }
