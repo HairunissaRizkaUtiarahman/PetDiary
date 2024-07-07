@@ -5,19 +5,19 @@
       <entry key="CommunityTest">
         <State />
       </entry>
+      <entry key="DeleteCommentReviewTest">
+        <State />
+      </entry>
+      <entry key="DeletePostTest">
+        <State />
+      </entry>
+      <entry key="DeleteReviewTest">
+        <State />
+      </entry>
       <entry key="ManagePetTest">
         <State />
       </entry>
       <entry key="app">
-        <State />
-      </entry>
-      <entry key="test02CommentAndLikePost()">
-        <State />
-      </entry>
-      <entry key="testEditPetAndDeletePet()">
-        <State />
-      </entry>
-      <entry key="testPetProductEntryProcess()">
         <State />
       </entry>
     </value>

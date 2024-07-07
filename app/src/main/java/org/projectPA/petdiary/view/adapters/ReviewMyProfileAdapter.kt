@@ -47,7 +47,7 @@ class ReviewMyProfileAdapter(
             Glide.with(productImageIV.context).load(review.product?.imageUrl)
                 .placeholder(R.drawable.image_blank).into(productImageIV)
 
-            seeDetailBtn.setOnClickListener {
+            root.setOnClickListener {
                 val intent = Intent(context, DetailReviewActivity::class.java).apply {
                     putExtra("productId", review.productId)
                     putExtra("reviewId", review.id)

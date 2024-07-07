@@ -8,7 +8,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.google.android.material.snackbar.Snackbar
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentPostMyProfileBinding
 import org.projectPA.petdiary.view.adapters.PostMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.PostMyProfileViewModel
@@ -41,6 +43,7 @@ class PostMyProfileFragment : Fragment() {
                 setPositiveButton("Yes") { _, _ ->
                     viewModel.deleteData(post.id ?: "")
                     findNavController().popBackStack()
+                    showSnackbar("Post deleted successfully")
                 }
                 setNegativeButton("No") { dialog, _ ->
                     dialog.dismiss()
@@ -60,6 +63,17 @@ class PostMyProfileFragment : Fragment() {
         }
 
         viewModel.loadData()
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 
 }

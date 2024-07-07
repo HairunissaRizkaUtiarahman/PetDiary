@@ -8,7 +8,9 @@ import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.google.android.material.snackbar.Snackbar
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentReviewMyProfileBinding
 import org.projectPA.petdiary.view.adapters.ReviewMyProfileAdapter
 import org.projectPA.petdiary.viewmodel.ReviewMyProfileViewModel
@@ -43,6 +45,7 @@ class ReviewMyProfileFragment : Fragment() {
                             setPositiveButton("Yes") { _, _ ->
                                 viewModel.deleteReview(reviewId, productId)
                                 findNavController().popBackStack()
+                                showSnackbar("Review deleted successfully")
                             }
                             setNegativeButton("No") { dialog, _ ->
                                 dialog.dismiss()
@@ -64,5 +67,18 @@ class ReviewMyProfileFragment : Fragment() {
         }
 
         viewModel.loadData()
+
+
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 }

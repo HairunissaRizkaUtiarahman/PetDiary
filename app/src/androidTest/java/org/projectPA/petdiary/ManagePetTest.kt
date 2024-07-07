@@ -141,8 +141,6 @@ class ManagePetTest {
 
         onView(withText("Yes")).perform(click())
 
-
-
         onView(withSnackbarText("Pet deleted successfully")).check(matches(isDisplayed()))
     }
 }

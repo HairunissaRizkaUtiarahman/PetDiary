@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.ActivityDetailReviewBinding
 import org.projectPA.petdiary.model.CommentReview
 import org.projectPA.petdiary.view.adapters.CommentReviewAdapter
@@ -60,6 +62,7 @@ class DetailReviewActivity : AppCompatActivity() {
         commentReviewAdapter = CommentReviewAdapter(emptyList(), viewModel.currentUserId) { comment ->
             Log.d("DetailReviewActivity", "Deleting comment: ${comment.id}")
             viewModel.deleteComment(comment)
+            showSnackbar("Comment deleted successfully")
         }
         binding.listComment.layoutManager = LinearLayoutManager(this)
         binding.listComment.adapter = commentReviewAdapter
@@ -240,6 +243,17 @@ class DetailReviewActivity : AppCompatActivity() {
                 viewModel.fetchCommentsCount(reviewId)
             }
         })
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 }
 

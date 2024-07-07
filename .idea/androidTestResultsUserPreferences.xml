@@ -68,6 +68,19 @@
             </AndroidTestResultsTableState>
           </value>
         </entry>
+        <entry key="-1726876061">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
         <entry key="-1618796942">
           <value>
             <AndroidTestResultsTableState>
@@ -82,6 +95,19 @@
           </value>
         </entry>
         <entry key="-1570147691">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="-1566599662">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
@@ -228,6 +254,20 @@
           </value>
         </entry>
         <entry key="42581120">
+          <value>
+            <AndroidTestResultsTableState>
+              <option name="preferredColumnWidths">
+                <map>
+                  <entry key="Duration" value="90" />
+                  <entry key="Pixel_5_API_34" value="120" />
+                  <entry key="Tests" value="360" />
+                  <entry key="samsung SM-M515F" value="120" />
+                </map>
+              </option>
+            </AndroidTestResultsTableState>
+          </value>
+        </entry>
+        <entry key="59453210">
           <value>
             <AndroidTestResultsTableState>
               <option name="preferredColumnWidths">
