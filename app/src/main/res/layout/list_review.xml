@@ -29,8 +29,10 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -61,6 +63,15 @@
                     android:fontFamily="@font/roboto"
                     android:text="@string/timestamp" />
             </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_delete"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/delete_comment_cd"/>
 
         </LinearLayout>
 
@@ -104,118 +115,18 @@
             android:text="@string/lorem_ipsum"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/deleteButton"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:contentDescription="@string/deletereview"
-            android:text="@string/delete"
-            app:icon="@drawable/ic_delete_outline" />
+<!--        <Button-->
+<!--            android:id="@+id/deleteButton"-->
+<!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:contentDescription="@string/deletereview"-->
+<!--            android:text="@string/delete"-->
+<!--            app:icon="@drawable/ic_delete_outline" />-->
 
     </LinearLayout>
-
-    <!--    <LinearLayout-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="vertical">-->
-
-    <!--        <ImageView-->
-    <!--            android:id="@+id/deleteButton"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="60dp"-->
-    <!--            android:layout_gravity="end"-->
-    <!--            android:clickable="true"-->
-    <!--            android:contentDescription="@string/deletereview"-->
-    <!--            android:focusable="true"-->
-    <!--            android:focusableInTouchMode="false"-->
-    <!--            android:padding="15dp"-->
-    <!--            app:srcCompat="@drawable/ic_delete" />-->
-
-    <!--        <LinearLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent"-->
-    <!--            android:gravity="center"-->
-    <!--            android:orientation="horizontal"-->
-    <!--            android:padding="10dp">-->
-
-    <!--            <com.google.android.material.imageview.ShapeableImageView-->
-    <!--                android:id="@+id/productImage_IV"-->
-    <!--                android:layout_width="100dp"-->
-    <!--                android:layout_height="100dp"-->
-    <!--                android:layout_margin="10dp"-->
-    <!--                android:scaleType="centerCrop"-->
-    <!--                android:src="@drawable/image_blank"-->
-    <!--                app:shapeAppearanceOverlay="@style/circulas" />-->
-
-
-    <!--            <LinearLayout-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:gravity="center"-->
-    <!--                android:orientation="vertical">-->
-
-    <!--                <TextView-->
-    <!--                    android:id="@+id/brandName_TV"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginBottom="10dp"-->
-    <!--                    android:fontFamily="@font/roboto"-->
-    <!--                    android:maxLines="1"-->
-    <!--                    android:text="@string/brand_name"-->
-    <!--                    android:textColor="@color/black"-->
-    <!--                    android:textSize="14sp"-->
-    <!--                    android:textStyle="bold" />-->
-
-    <!--                <TextView-->
-    <!--                    android:id="@+id/productName_TV"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:layout_marginBottom="10dp"-->
-    <!--                    android:fontFamily="@font/roboto_medium"-->
-    <!--                    android:text="@string/product_name" />-->
-
-    <!--                <TextView-->
-    <!--                    android:id="@+id/reviewDate_TV"-->
-    <!--                    android:layout_width="match_parent"-->
-    <!--                    android:layout_height="wrap_content"-->
-    <!--                    android:fontFamily="@font/roboto"-->
-    <!--                    android:text="@string/timestamp" />-->
-    <!--            </LinearLayout>-->
-
-    <!--        </LinearLayout>-->
-
-    <!--        <LinearLayout-->
-    <!--            android:id="@+id/click_for_more_information_button"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_gravity="center"-->
-    <!--            android:layout_margin="15dp"-->
-    <!--            android:gravity="center_vertical"-->
-    <!--            android:orientation="horizontal">-->
-
-    <!--            <RatingBar-->
-    <!--                android:id="@+id/ratingBar4"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_gravity="start"-->
-    <!--                android:isIndicator="true"-->
-    <!--                android:max="5" />-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/seeDetail_Btn"-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="25dp"-->
-    <!--                android:contentDescription="@string/image_see_detail_cd"-->
-    <!--                android:rotation="180"-->
-    <!--                android:src="@drawable/baseline_arrow_back_ios_24" />-->
-
-    <!--        </LinearLayout>-->
-
-
-    <!--    </LinearLayout>-->
 
 </androidx.cardview.widget.CardView>

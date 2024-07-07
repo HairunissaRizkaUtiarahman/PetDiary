@@ -1,65 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:gravity="center">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileImage_IV"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/image_profile"/>
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-                <TextView
-                    android:id="@+id/name_TV"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage_IV"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/image_profile" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/name_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/name"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/timestamp_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/timestamp" />
+
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/deleteBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/timestamp_TV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/timestamp"/>
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_delete"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/delete_comment_cd"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/comment_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:padding="10dp"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/black" />
+
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/comment_TV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:justificationMode="inter_word"
-            android:padding="10dp"
-            android:text="@string/lorem_ipsum"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

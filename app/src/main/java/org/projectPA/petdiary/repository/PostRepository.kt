@@ -27,9 +27,12 @@ class PostRepository(
     private val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
+
+    // Query Menambahkan Post ke Firestore
     suspend fun addPost(desc: String, uri: Uri?) {
         try {
             val userId = auth.currentUser!!.uid
+
             val postMap = hashMapOf(
                 "userId" to userId,
                 "desc" to desc,
@@ -45,8 +48,8 @@ class PostRepository(
                 postMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-            db.collection("users").document(userId).update("postCount", FieldValue.increment(1))
 
+            db.collection("users").document(userId).update("postCount", FieldValue.increment(1))
             db.collection("posts").add(postMap).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add post data", e)
@@ -55,7 +58,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mengambil daftar Post dari Firestore untuk di Community
     suspend fun getPosts(): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -85,7 +88,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mengambil data satu post berdasarkan ID
     suspend fun getPost(postId: String): Post? {
         return try {
             val post = db.collection("posts")
@@ -112,7 +115,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Menghapus Post dari Firestore berdasarkan ID
     suspend fun deletePost(postId: String) {
         try {
             val userId = auth.currentUser!!.uid
@@ -128,7 +131,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mengambil semua data Post dari Firestore untuk My Profile
     suspend fun getMyPosts(): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -157,7 +160,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mengambil semua data Post dari Firestore untuk User Profile
     suspend fun getPostsUserProfile(userId: String): Flow<List<Post>> {
         return try {
             val currentUserID = auth.currentUser!!.uid
@@ -185,7 +188,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Menambahkan Comment di Post
     suspend fun addCommentPost(commentText: String, postId: String) {
         try {
             val userId = auth.currentUser!!.uid
@@ -202,7 +205,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mengambil semua data Comment
     suspend fun getCommentPost(postId: String): Flow<List<CommentPost>> {
         return try {
             db.collection("posts").document(postId).collection("comments")
@@ -224,6 +227,7 @@ class PostRepository(
         }
     }
 
+    // Query Menghapus Comment di Post
     suspend fun deleteCommentPost(postId: String, commentId: String) {
         try {
             val currentUserID = auth.currentUser!!.uid
@@ -242,9 +246,7 @@ class PostRepository(
     }
 
 
-
-
-
+    // Query Mengatur Like di Post
     suspend fun setLike(currentUserID: String, postId: String) {
         try {
             val docId = "${currentUserID}_${postId}"
@@ -262,7 +264,7 @@ class PostRepository(
         }
     }
 
-
+    // Query Mencari Post berdasarkan Query
     suspend fun searchPost(query: String): List<Post> {
         return try {
             val currentUserID = auth.currentUser!!.uid
