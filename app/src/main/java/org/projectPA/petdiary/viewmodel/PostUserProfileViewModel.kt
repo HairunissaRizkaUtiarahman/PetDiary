@@ -61,4 +61,7 @@ class PostUserProfileViewModel(private val postRepository: PostRepository) : Vie
         val userId = FirebaseAuth.getInstance().currentUser!!.uid
         postRepository.setLike(userId, postId)
     }
+    fun updateCommentCount(count: Int) {
+        _post.value = _post.value?.copy(commentCount = count)
+    }
 }

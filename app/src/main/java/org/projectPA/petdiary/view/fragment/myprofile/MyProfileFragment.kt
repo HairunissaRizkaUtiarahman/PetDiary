@@ -17,6 +17,7 @@ class MyProfileFragment : Fragment() {
     private lateinit var binding: FragmentMyProfileBinding
     private lateinit var adapter: MyProfileTLAdapter
     private val viewModel: MyProfileViewModel by viewModels { MyProfileViewModel.Factory }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,21 +27,8 @@ class MyProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.loadMyProfile()
-
-        viewModel.myProfile.observe(viewLifecycleOwner) { user ->
-            user?.let {
-                binding.nameTv.text = it.name
-                binding.bioTv.text = it.bio
-                binding.postCountTV.text = it.postCount.toString()
-                binding.reviewCountTV.text = it.reviewCount.toString()
-                binding.petCountTV.text = it.petCount.toString()
-                Glide.with(binding.profileImageIV.context)
-                    .load(it.imageUrl)
-                    .placeholder(R.drawable.image_profile)
-                    .into(binding.profileImageIV)
-            }
-        }
+        super.onViewCreated(view, savedInstanceState)
+        loadUserProfile()
 
         adapter = MyProfileTLAdapter(requireActivity())
         binding.myProfileVP.adapter = adapter
@@ -56,6 +44,29 @@ class MyProfileFragment : Fragment() {
 
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        loadUserProfile()
+    }
+
+    private fun loadUserProfile() {
+        viewModel.loadMyProfile()
+
+        viewModel.myProfile.observe(viewLifecycleOwner) { user ->
+            user?.let {
+                binding.nameTv.text = it.name
+                binding.bioTv.text = it.bio
+                binding.postCountTV.text = it.postCount.toString()
+                binding.reviewCountTV.text = it.reviewCount.toString()
+                binding.petCountTV.text = it.petCount.toString()
+                Glide.with(binding.profileImageIV.context)
+                    .load(it.imageUrl)
+                    .placeholder(R.drawable.image_profile)
+                    .into(binding.profileImageIV)
+            }
         }
     }
 }

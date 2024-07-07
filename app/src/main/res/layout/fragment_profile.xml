@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_profile"
     android:orientation="vertical"
-    android:background="@drawable/background_profile2"
     tools:context=".view.fragment.dashboard.ProfileFragment">
 
     <LinearLayout
@@ -187,13 +187,14 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_user_cd"
                         android:src="@drawable/ic_profile2" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="15dp"
                         android:layout_weight="1"
+                        android:layout_marginHorizontal="15dp"
                         android:text="@string/my_profile"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
@@ -201,6 +202,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
@@ -216,6 +218,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_edit_cd"
                         android:src="@drawable/ic_edit" />
 
                     <TextView
@@ -230,6 +233,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
@@ -253,6 +257,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_security_cd"
                         android:src="@drawable/ic_lock" />
 
                     <TextView
@@ -267,6 +272,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
@@ -282,6 +288,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_language_cd"
                         android:src="@drawable/ic_flag" />
 
                     <TextView
@@ -296,6 +303,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
@@ -311,6 +319,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_support_cd"
                         android:src="@drawable/ic_support" />
 
                     <TextView
@@ -325,6 +334,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>
@@ -347,10 +357,11 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_logout_cd"
                         android:src="@drawable/ic_logout" />
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="15dp"
                         android:layout_weight="1"
@@ -361,6 +372,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:src="@drawable/ic_arrow_right" />
 
                 </LinearLayout>

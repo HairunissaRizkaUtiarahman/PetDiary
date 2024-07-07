@@ -7,7 +7,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageException
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
@@ -18,7 +20,7 @@ private const val LOG_TAG = "MyProfileRepository"
 
 class MyProfileRepository(
     private val db: FirebaseFirestore,
-    private val auth: FirebaseAuth,
+    val auth: FirebaseAuth,
     private val storageRef: FirebaseStorage
 ) {
 
@@ -94,5 +96,21 @@ class MyProfileRepository(
                 callback(false)
             }
     }
+
+    fun getMyProfileRealTime(userId: String): Flow<User?> {
+        return callbackFlow {
+            val listenerRegistration = db.collection("users").document(userId)
+                .addSnapshotListener { snapshot, e ->
+                    if (e != null) {
+                        close(e)
+                        return@addSnapshotListener
+                    }
+                    val user = snapshot?.toObject(User::class.java)?.copy(id = userId)
+                    trySend(user).isSuccess
+                }
+            awaitClose { listenerRegistration.remove() }
+        }
+    }
+
 
 }

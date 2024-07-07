@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.FragmentCommentPostMyProfileFragmentBinding
 import org.projectPA.petdiary.relativeTime
@@ -27,12 +28,14 @@ class CommentPostMyProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCommentPostMyProfileFragmentBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+
         postMyProfileViewModel.myPost.observe(viewLifecycleOwner) {
             with(binding) {
                 descTV.text = it.desc
@@ -76,10 +79,19 @@ class CommentPostMyProfileFragment : Fragment() {
         }
 
         binding.deleteBtn.setOnClickListener {
-            showDeleteConfirmationDialog()
+            showDeletePostConfirmationDialog()
         }
 
-        commentPostMyProfileAdapter = CommentPostMyProfileAdapter()
+        commentPostMyProfileAdapter = CommentPostMyProfileAdapter(onDelete = { commentPost ->
+            showDeleteCommentConfirmationDialog {
+                commentPost.id?.let {
+                    commentPostMyProfileViewModel.deleteComment(
+                        postMyProfileViewModel.myPost.value?.id ?: "",
+                        it
+                    )
+                }
+            }
+        }, currentUserId)
 
         binding.commentsRV.adapter = commentPostMyProfileAdapter
 
@@ -92,6 +104,7 @@ class CommentPostMyProfileFragment : Fragment() {
                 binding.noCommentTV.visibility = View.GONE
                 binding.commentsRV.visibility = View.VISIBLE
             }
+            postMyProfileViewModel.updateCommentCount(comments.size)
         }
 
         commentPostMyProfileViewModel.loadData(postMyProfileViewModel.myPost.value?.id ?: "")
@@ -111,7 +124,7 @@ class CommentPostMyProfileFragment : Fragment() {
         }
     }
 
-    private fun showDeleteConfirmationDialog() {
+    private fun showDeletePostConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         val postId = postMyProfileViewModel.myPost.value?.id ?: ""
 
@@ -120,6 +133,21 @@ class CommentPostMyProfileFragment : Fragment() {
             setPositiveButton("Yes") { _, _ ->
                 postMyProfileViewModel.deleteData(postId)
                 findNavController().popBackStack()
+            }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        alertDialogBuilder.create().show()
+    }
+
+    private fun showDeleteCommentConfirmationDialog(onConfirmedDelete: () -> Unit) {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.apply {
+            setMessage("Are you sure you want to delete this comment?")
+            setPositiveButton("Yes") { _, _ ->
+                onConfirmedDelete()
+                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
             }
             setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()

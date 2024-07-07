@@ -50,5 +50,4 @@ class CommentPostViewModel(private val postRepository: PostRepository) : ViewMod
             postRepository.deleteCommentPost(postId, commentId)
         }
     }
-
 }

@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import org.projectPA.petdiary.model.CommentPost
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
+import org.projectPA.petdiary.model.CommentPost
 import org.projectPA.petdiary.repository.PostRepository
 
 class CommentPostUserProfileViewModel(private val postRepository: PostRepository) : ViewModel() {
@@ -34,7 +34,7 @@ class CommentPostUserProfileViewModel(private val postRepository: PostRepository
 
     fun loadData(postId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
-            Log.d("CommentPostUserProfile", postId.toString())
+            Log.d("CommentPostUserProfile", postId)
             postRepository.getCommentPost(postId).collect {
                 _CommentsPost.value = it
             }
@@ -44,6 +44,12 @@ class CommentPostUserProfileViewModel(private val postRepository: PostRepository
     fun uploadData(comment: String, postId: String) = viewModelScope.launch {
         withContext(Dispatchers.Main) {
             postRepository.addCommentPost(comment, postId)
+        }
+    }
+
+    fun deleteComment(postId: String, commentId: String) = viewModelScope.launch {
+        withContext(Dispatchers.Main) {
+            postRepository.deleteCommentPost(postId, commentId)
         }
     }
 }

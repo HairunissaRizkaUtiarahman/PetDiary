@@ -61,6 +61,10 @@ class PostMyProfileViewModel(private val postRepository: PostRepository) : ViewM
         postRepository.setLike(userId, postId)
     }
 
+    fun updateCommentCount(count: Int) {
+        _myPost.value = _myPost.value?.copy(commentCount = count)
+    }
+
     fun deleteData(postId: String) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
         postRepository.deletePost(postId)

@@ -24,7 +24,7 @@ class PostUserProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPostUserProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

@@ -78,7 +78,7 @@
             android:id="@+id/seeDetail_Btn"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginStart="80dp"
             android:contentDescription="@string/image_see_detail_cd"
             android:rotation="180"
             android:src="@drawable/baseline_arrow_back_ios_24" />

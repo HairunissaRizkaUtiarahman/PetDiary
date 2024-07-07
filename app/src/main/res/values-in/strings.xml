@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="hello_blank_fragment">Halo fragmen kosong</string>
 
     <string name="app_name">PetDiary</string>
@@ -137,7 +137,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="back_button">tombol_kembali</string>
 
-    <string-array name="usage_options">
+    <string-array name="usage_options" tools:ignore="InconsistentArrays">
         <item>Baru pertama kali</item>
         <item>1 minggu - 1 bulan</item>
         <item>2 – 6 bulan</item>
@@ -146,7 +146,6 @@
     </string-array>
 
     <!-- Fragment My Pet -->
-
 
 
     <!-- Fragment My Profile -->
@@ -289,6 +288,16 @@
     <string name="image_post_cd">image_post_cd</string>
     <string name="send_image_cd">send_image_cd</string>
     <string name="delete_comment_cd">Delete Comment</string>
+    <string name="image_start_cd">Image Start</string>
+    <string name="image_next_cd">Image Next</string>
+    <string name="list_bullet_points_cd">list bullet points</string>
+    <string name="descrease_indent_cd">descrease indent</string>
+    <string name="image_user_cd">Image User</string>
+    <string name="image_security_cd">Image Secutiry</string>
+    <string name="image_language_cd">Image Language</string>
+    <string name="image_support_cd">Image Support</string>
+    <string name="image_logout_cd">Image Logout</string>
+    <string name="delete_button_cd">delete_button</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Kata Sandi Lama</string>
@@ -317,8 +326,8 @@
     <!-- List Pet -->
     <string name="pet_name">Nama Hewan Peliharaan</string>
     <string name="pet_type">Jenis atau Spesies</string>
-    <string name="male_pet">Jantan</string>
-    <string name="female_pet">Betina</string>
+    <string name="male_pet">Male</string>
+    <string name="female_pet">Female</string>
     <string name="pet_add">Tambah Peliharaan</string>
 
     <!-- List Review -->
@@ -399,5 +408,10 @@
     <string name="open_email">Buka Email</string>
     <string name="faq">FAQ</string>
     <string name="deletereview">Hapus Review</string>
+    <string name="heading">Heading</string>
+    <string name="subheading">Subheading</string>
+    <string name="italic">I</string>
+    <string name="underline">U</string>
+
 
 </resources>

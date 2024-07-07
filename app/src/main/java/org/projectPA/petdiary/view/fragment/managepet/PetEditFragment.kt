@@ -40,23 +40,28 @@ class PetEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var imageUri: Uri? = null
+        var imageUri: Uri? = null // URI untuk gambar hewan peliharaan
 
+        // Memilih gambar dari galeri
         val petImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
             imageUri = it
-            binding.petImageIV.setImageURI(it)
+            binding.petImageIV.setImageURI(it) // Menampilkan gambar yang dipilih
         }
 
+        // Mengambil gambar menggunakan kamera
         val takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
-                    binding.petImageIV.setImageURI(imageUri)
+                    binding.petImageIV.setImageURI(imageUri) // Menampilkan gambar yang diambil
                 }
             }
 
+        // Fungsi untuk mengambil gambar menggunakan kamera
         fun takePicture() {
+
+            // Memeriksa izin kamera
             if (ContextCompat.checkSelfPermission(
                     requireContext(),
                     Manifest.permission.CAMERA
@@ -68,6 +73,8 @@ class PetEditFragment : Fragment() {
                     CAMERA_PERMISSION_REQUEST_CODE
                 )
             } else {
+
+                // Membuat URI untuk gambar yang akan diambil
                 val contentValues = ContentValues().apply {
                     put(
                         MediaStore.Images.Media.DISPLAY_NAME,
@@ -79,10 +86,11 @@ class PetEditFragment : Fragment() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     contentValues
                 )
-                imageUri?.let { takePictureLauncher.launch(it) }
+                imageUri?.let { takePictureLauncher.launch(it) } // Membuka Kamera
             }
         }
 
+        // Tombol "Pilih Gambar"
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(requireContext())
@@ -96,6 +104,7 @@ class PetEditFragment : Fragment() {
             builder.show()
         }
 
+        // Tombol "Simpan"
         binding.saveBtn.setOnClickListener {
             val radioGroupCheck = binding.petGenderRG.checkedRadioButtonId
             val checkRadioBtn = view.findViewById<RadioButton>(radioGroupCheck)
@@ -105,6 +114,7 @@ class PetEditFragment : Fragment() {
             val age = binding.petAgeTIET.text.toString().trim()
             val desc = binding.petDescTIET.text.toString().trim()
 
+            // Validasi input name tidak boleh kosong & max 100 karakter
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     requireContext(),
@@ -114,6 +124,7 @@ class PetEditFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Validasi input type tidak boleh kosong & max 100 karakter
             if (type.isEmpty() || type.length > 100) {
                 Toast.makeText(
                     requireContext(),
@@ -123,11 +134,13 @@ class PetEditFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Validasi input gender tidak boleh kosong
             if (radioGroupCheck == -1) {
                 Toast.makeText(requireContext(), "Gender must be selected", Toast.LENGTH_SHORT)
                     .show()
             }
 
+            // Validasi input age tidak boleh kosong & max 5 karakter
             if (age.isEmpty() || age.length > 5) {
                 Toast.makeText(
                     requireContext(),
@@ -137,6 +150,7 @@ class PetEditFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Validasi input desc tidak boleh kosong & max 500 karakter
             if (desc.length > 500) {
                 Toast.makeText(
                     requireContext(),
@@ -146,40 +160,32 @@ class PetEditFragment : Fragment() {
                 return@setOnClickListener
             }
 
+            // Mengambil nilai gender dari radio button yang dipilih
             val gender = checkRadioBtn.text.toString()
             checkRadioBtn.isChecked = false
+
+            // Mengambil ID hewan peliharaan yang akan diupdate
             val myPetId = viewModel.pet.value?.id ?: ""
 
+            // Memperbarui data hewan peliharaan di ViewModel
             viewModel.updatePet(myPetId, name, type, gender, age.toInt(), desc, imageUri)
             Toast.makeText(requireContext(), "Success Update My Pet", Toast.LENGTH_SHORT).show()
 
+            // Membersihkan input setelah penambahan hewan peliharaan
             binding.petNameTIET.text?.clear()
             binding.petTypeTIET.text?.clear()
             binding.petAgeTIET.text?.clear()
             binding.petDescTIET.text?.clear()
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.saveBtn.visibility = View.GONE
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.saveBtn.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
-                // Navigate back to PetActivity
-                startActivity(Intent(requireActivity(), PetActivity::class.java))
-                requireActivity().finish()
-            }
-        }
-
+        // Mengisi tampilan dengan data hewan peliharaan
         viewModel.pet.observe(viewLifecycleOwner) { pet ->
             with(binding) {
-                if (pet.gender == "Male" || pet.gender == "Jantan") {
+                if (pet.gender == "Male") {
                     maleRB.isChecked = true
-                } else if (pet.gender == "Female" || pet.gender == "Betina") {
+                } else if (pet.gender == "Female") {
                     femaleRB.isChecked = true
                 }
-
                 petNameTIET.setText(pet.name)
                 petTypeTIET.setText(pet.type)
                 petAgeTIET.setText(pet.age.toString())
@@ -189,8 +195,23 @@ class PetEditFragment : Fragment() {
                     .placeholder(R.drawable.image_blank)
                     .into(petImageIV)
             }
+
+            // Mengamati perubahan status loading di ViewModel
+            viewModel.isLoading.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.saveBtn.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.saveBtn.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    // Navigate back to PetActivity
+                    startActivity(Intent(requireActivity(), PetActivity::class.java)) // Memuat Ulang PetActivity
+                    requireActivity().finish()
+                }
+            }
         }
 
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }

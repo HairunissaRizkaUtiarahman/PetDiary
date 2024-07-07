@@ -52,7 +52,7 @@
             android:layout_gravity="end"
             android:background="@color/white"
             android:contentDescription="@string/back_button"
-            android:src="@drawable/ic_search2" />
+            android:src="@drawable/ic_search" />
 
     </androidx.appcompat.widget.Toolbar>
 

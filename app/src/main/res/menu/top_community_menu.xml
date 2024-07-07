@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/ic_search2"
+        android:icon="@drawable/ic_search"
         android:title="@string/search"
         android:contentDescription="@string/text_search_cd"
         app:showAsAction="ifRoom" />

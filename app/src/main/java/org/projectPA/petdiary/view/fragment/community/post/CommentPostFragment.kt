@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import androidx.recyclerview.widget.ItemTouchHelper
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.SwipeToDeleteCallback
 import org.projectPA.petdiary.databinding.FragmentPostCommentBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.CommentPostAdapter
@@ -81,26 +80,18 @@ class CommentPostFragment : Fragment() {
             }
         }
 
-        commentPostAdapter = CommentPostAdapter({ commentPost ->
-            commentPost.id?.let {
-                commentPostViewModel.deleteComment(
-                    postViewModel.post.value?.id ?: "",
-                    it
-                )
+        commentPostAdapter = CommentPostAdapter(onDelete = { commentPost ->
+            showDeleteConfirmationDialog {
+                commentPost.id?.let {
+                    commentPostViewModel.deleteComment(
+                        postViewModel.post.value?.id ?: "",
+                        it
+                    )
+                }
             }
-            Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
         }, currentUserId)
 
         binding.commentsRV.adapter = commentPostAdapter
-
-        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback { position ->
-            val commentPost = commentPostAdapter.currentList[position]
-            commentPost.id?.let {
-                commentPostViewModel.deleteComment(postViewModel.post.value?.id ?: "", it)
-                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
-            }
-        })
-        itemTouchHelper.attachToRecyclerView(binding.commentsRV)
 
         commentPostViewModel.commentsPost.observe(viewLifecycleOwner) { comments ->
             commentPostAdapter.submitList(comments)
@@ -137,5 +128,20 @@ class CommentPostFragment : Fragment() {
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun showDeleteConfirmationDialog(onConfirmedDelete: () -> Unit) {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.apply {
+            setMessage("Are you sure you want to delete this comment?")
+            setPositiveButton("Yes") { _, _ ->
+                onConfirmedDelete()
+                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+            }
+            setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
+        }
+        alertDialogBuilder.create().show()
     }
 }

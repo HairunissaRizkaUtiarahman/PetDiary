@@ -31,7 +31,8 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
     }
 
     fun loadMyProfile() = viewModelScope.launch {
-        myProfileRepository.getMyProfile().collect { user ->
+        val userId = myProfileRepository.auth.currentUser?.uid ?: return@launch
+        myProfileRepository.getMyProfileRealTime(userId).collect { user ->
             _myProfile.postValue(user)
         }
     }

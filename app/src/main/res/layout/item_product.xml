@@ -22,7 +22,7 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:scaleType="fitXY"
-            android:src="@drawable/image_product_example"
+            android:src="@drawable/image_blank"
             app:shapeAppearanceOverlay="@style/circulas" />
 
         <!-- Rating & Reviews -->
