@@ -1,7 +1,6 @@
 package org.projectPA.petdiary.view.fragment.managepet
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,16 +12,14 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.projectPA.petdiary.R
-import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentPetDetailsBinding
 import org.projectPA.petdiary.viewmodel.PetViewModel
 
 class PetDetailsFragment : Fragment() {
     private lateinit var binding: FragmentPetDetailsBinding
-    private val viewModel: PetViewModel by navGraphViewModels(R.id.pet_nav)
+    private val petViewModel: PetViewModel by navGraphViewModels(R.id.pet_nav)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +32,11 @@ class PetDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.pet.observe(viewLifecycleOwner) { pet ->
+        // Mengamati perubahan data hewan peliharaan di ViewModel
+        petViewModel.pet.observe(viewLifecycleOwner) { pet ->
             with(binding) {
+
+                // Mengisi tampilan dengan data hewan peliharaan
                 petNameTV.text = pet.name
                 petTypeTV.text = pet.type
                 petGenderTV.text = pet.gender
@@ -50,37 +50,45 @@ class PetDetailsFragment : Fragment() {
             }
         }
 
+        // Tombol Edit Data Hewan Peliharaan
         binding.petEditProfileBtn.setOnClickListener {
-            Log.d("PetDetailsFragment", "Edit button clicked")
             it.findNavController().navigate(R.id.action_myPetDetailsFragment_to_myPetEditFragment)
         }
 
+        // Tombol Delete Data Hewan Peliharaan
         binding.deleteBtn.setOnClickListener {
             showDeleteConfirmationDialog()
         }
 
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }
 
+    // Fungsi untuk menampilkan dialog konfirmasi delete Hewan Peliharaan
     private fun showDeleteConfirmationDialog() {
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        val petId = viewModel.pet.value?.id ?: ""
-        val imageUrl = viewModel.pet.value?.imageUrl ?: ""
+        val petId = petViewModel.pet.value?.id ?: ""
+        val imageUrl = petViewModel.pet.value?.imageUrl ?: ""
 
         alertDialogBuilder.apply {
             setMessage("Are you sure you want to delete this pet?")
             setPositiveButton("Yes") { _, _ ->
                 lifecycleScope.launch {
-                    val result = viewModel.deletePet(petId, imageUrl)
+                    val result = petViewModel.deletePet(petId, imageUrl)
                     if (result) {
-//                        Toast.makeText(requireContext(), "Pet deleted successfully", Toast.LENGTH_SHORT).show()
-                        showSnackbar("Pet deleted successfully")
+                        Toast.makeText(
+                            requireContext(),
+                            "Pet deleted successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+//                        showSnackbar("Pet deleted successfully") //Keperluan Testing
 
                         findNavController().popBackStack()
                     } else {
-                        Toast.makeText(requireContext(), "Failed to delete pet", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Failed to delete pet", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
@@ -91,14 +99,15 @@ class PetDetailsFragment : Fragment() {
         alertDialogBuilder.create().show()
     }
 
-    private fun showSnackbar(message: String) {
-        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
-        snackbar.addCallback(object : Snackbar.Callback() {
-            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
-                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
-            }
-        })
-        snackbar.show()
-    }
+//    // Fungsi untuk menampilkan Snackbar dengan pesan (Testing)
+//    private fun showSnackbar(message: String) {
+//        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+//        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+//        snackbar.addCallback(object : Snackbar.Callback() {
+//            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+//                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+//            }
+//        })
+//        snackbar.show()
+//    }
 }

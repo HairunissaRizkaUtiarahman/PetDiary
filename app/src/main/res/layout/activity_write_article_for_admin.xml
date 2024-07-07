@@ -110,9 +110,8 @@
                     android:id="@+id/input_tittle_field"
                     android:layout_width="match_parent"
                     android:layout_height="51dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:layout_margin="10dp"
+                    android:autofillHints=""
                     android:background="@drawable/background_line"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/roboto_black"
@@ -170,7 +169,7 @@
                             android:background="@drawable/background_unselected_format_text"
                             android:fontFamily="@font/roboto_bold"
                             android:padding="6dp"
-                            android:text="Heading"
+                            android:text="@string/heading"
                             android:textColor="@color/black"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -184,7 +183,7 @@
                             android:background="@drawable/background_unselected_format_text"
                             android:fontFamily="@font/roboto_bold"
                             android:padding="6dp"
-                            android:text="Subheading"
+                            android:text="@string/subheading"
                             android:textColor="@color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
@@ -222,7 +221,7 @@
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="I"
+                            android:text="@string/italic"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="25sp"
@@ -232,10 +231,10 @@
                             android:id="@+id/underline_text_button"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
                             android:fontFamily="@font/roboto_medium"
-                            android:text="U"
+                            android:text="@string/underline"
                             android:textAlignment="center"
                             android:textAllCaps="false"
                             android:textColor="@color/black"
@@ -248,6 +247,7 @@
                             android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
+                            android:contentDescription="@string/list_bullet_points_cd"
                             android:padding="3dp"
                             app:srcCompat="@drawable/icon_list_bullet_points" />
 
@@ -257,6 +257,7 @@
                             android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
+                            android:contentDescription="@string/list_bullet_points_cd"
                             android:padding="3dp"
                             app:srcCompat="@drawable/icon_list_numbers" />
 
@@ -266,6 +267,7 @@
                             android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
+                            android:contentDescription="@string/descrease_indent_cd"
                             android:padding="4dp"
                             app:srcCompat="@drawable/icon_tab_back" />
 
@@ -275,6 +277,7 @@
                             android:layout_height="35dp"
                             android:layout_marginEnd="8dp"
                             android:background="@drawable/background_unselected_format_text"
+                            android:contentDescription="@string/descrease_indent_cd"
                             android:padding="4dp"
                             android:rotation="180"
                             app:srcCompat="@drawable/icon_tab_back" />

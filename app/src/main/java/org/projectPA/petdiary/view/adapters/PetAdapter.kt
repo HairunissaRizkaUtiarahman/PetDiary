@@ -27,6 +27,7 @@ class PetAdapter(val onClick: (Pet, View) -> Unit) :
     inner class ViewHolder(private val binding: ListPetBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        // Mengisi tampilan dengan data hewan peliharaan
         fun bind(pet: Pet) = with(binding) {
             val context = itemView.context // Get context from the itemView
             petNameTV.text = pet.name
@@ -37,6 +38,7 @@ class PetAdapter(val onClick: (Pet, View) -> Unit) :
             Glide.with(petImageIV.context).load(pet.imageUrl).placeholder(R.drawable.image_blank)
                 .into(petImageIV)
 
+            // Mengatur click listener pada tombol detail hewan peliharaan
             petDetailBtn.setOnClickListener {
                 onClick(pet, it)
             }

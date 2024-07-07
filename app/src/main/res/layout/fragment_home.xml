@@ -92,7 +92,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/review_icon"
@@ -118,7 +119,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/ipetshop_clinic_button_icon"
@@ -144,7 +146,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/community_icon"
@@ -170,7 +173,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/Article_icon"
@@ -200,11 +204,13 @@
                     android:foregroundGravity="center"
                     android:gravity="center|center_vertical"
                     android:orientation="horizontal"
-                    android:paddingStart="5dp">
+                    android:paddingStart="5dp"
+                    tools:ignore="RtlSymmetry">
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="70dp"
+                        android:contentDescription="@string/image_start_cd"
                         android:layout_height="70dp"
                         android:src="@drawable/contoh_icon_baru__12_" />
 
@@ -223,6 +229,7 @@
                         android:id="@+id/imageView3"
                         android:layout_width="70dp"
                         android:layout_height="70dp"
+                        android:contentDescription="@string/image_start_cd"
                         android:src="@drawable/contoh_icon_baru__12_" />
                 </LinearLayout>
 
@@ -253,6 +260,7 @@
                         android:id="@+id/imageView4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/image_next_cd"
                         android:rotationY="180"
                         android:src="@drawable/ic_back" />
 

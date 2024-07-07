@@ -25,6 +25,7 @@ class PetRepository(
     private val storageRef: FirebaseStorage
 ) {
 
+    // Query Menambahkan Hewan Peliharaan ke Firestore
     suspend fun addPet(
         name: String,
         type: String,
@@ -47,7 +48,6 @@ class PetRepository(
                 "imageUrl" to ""
             )
 
-            // Upload image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -55,8 +55,8 @@ class PetRepository(
                 petMap["imageUrl"] =
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
-            db.collection("pets").add(petMap).await()
 
+            db.collection("pets").add(petMap).await()
             db.collection("users").document(userId).update("petCount", FieldValue.increment(1))
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to add pet data", e)
@@ -65,53 +65,7 @@ class PetRepository(
         }
     }
 
-    // Function to get a list of pets for the current user
-    suspend fun getPets(): Flow<List<Pet>> {
-        return try {
-            val userId = auth.currentUser!!.uid
-            db.collection("pets").whereEqualTo("userId", userId)
-                .orderBy("timeAdded", Query.Direction.DESCENDING)
-                .snapshots().map { snapshot ->
-                    snapshot.map {
-                        it.toObject(Pet::class.java).copy(id = it.id)
-                    }
-                }
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get pets data", e)
-            emptyFlow()
-        }
-    }
-
-    // Function to get details of a specific pet by user ID
-    suspend fun getPet(petId: String): Pet? {
-        return try {
-            db.collection("pets")
-                .document(petId).get().await().let {
-                    it.toObject(Pet::class.java)?.copy(id = it.id)
-                }
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get pet data", e)
-            null
-        }
-    }
-
-    // Function to get a list of pets for a specific user by user ID (used for user profile)
-    suspend fun getPetsUserProfile(userId: String): Flow<List<Pet>> {
-        return try {
-            db.collection("pets").whereEqualTo("userId", userId)
-                .orderBy("timeAdded", Query.Direction.DESCENDING)
-                .snapshots().map { snapshot ->
-                    snapshot.map {
-                        it.toObject(Pet::class.java).copy(id = it.id)
-                    }
-                }
-        } catch (e: FirebaseFirestoreException) {
-            Log.e(LOG_TAG, "Fail to get pets data", e)
-            emptyFlow()
-        }
-    }
-
-    // Function to update pet details
+    // Query Memperbarui Data Hewan Peliharaan ke Firestore
     suspend fun updatePet(
         petId: String,
         name: String,
@@ -124,18 +78,15 @@ class PetRepository(
         try {
             val userId = auth.currentUser!!.uid
 
-            // Prepare updated data
             val petMap = mutableMapOf(
                 "userId" to userId,
                 "name" to name,
                 "type" to type,
                 "gender" to gender,
                 "age" to age,
-                "desc" to desc,
-                "timeAdded" to Timestamp.now()
+                "desc" to desc
             )
 
-            // Upload new image if URI is provided
             val imageStorageRef = storageRef.getReference("images").child("picturePet")
                 .child(System.currentTimeMillis().toString())
 
@@ -144,7 +95,6 @@ class PetRepository(
                     imageStorageRef.putFile(it).await().storage.downloadUrl.await().toString()
             }
 
-            // Update pet data in Firestore
             db.collection("pets").document(petId).update(petMap.toMap()).await()
         } catch (e: FirebaseFirestoreException) {
             Log.e(LOG_TAG, "Fail to update pet data", e)
@@ -153,13 +103,11 @@ class PetRepository(
         }
     }
 
-    // Function to mark a pet as deleted and delete associated image from Firebase Storage
+    // Query Menghapus Hewan Peliharaan dari Firestore
     suspend fun deletePet(petId: String, imageUrl: String?) {
         try {
             val userId = auth.currentUser!!.uid
-
             db.collection("pets").document(petId).delete().await()
-
             db.collection("users").document(userId).update("petCount", FieldValue.increment(-1))
 
             if (!imageUrl.isNullOrEmpty()) {
@@ -170,6 +118,39 @@ class PetRepository(
             Log.e(LOG_TAG, "Fail to delete pet", e)
         } catch (e: StorageException) {
             Log.e(LOG_TAG, "Fail to delete pet image from Firebase Storage", e)
+        }
+    }
+
+    // Query Mengambil Data Hewan Peliharaan dari Firestore untuk Manage Pet dan My Profile
+    fun getPets(): Flow<List<Pet>> {
+        return try {
+            val userId = auth.currentUser!!.uid
+            db.collection("pets").whereEqualTo("userId", userId)
+                .orderBy("timeAdded", Query.Direction.DESCENDING)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        it.toObject(Pet::class.java).copy(id = it.id)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get pets data", e)
+            emptyFlow()
+        }
+    }
+
+    // Query Mengambil Data Hewan Peliharaan dari Firestore untuk User Profile
+    fun getPetsUserProfile(userId: String): Flow<List<Pet>> {
+        return try {
+            db.collection("pets").whereEqualTo("userId", userId)
+                .orderBy("timeAdded", Query.Direction.DESCENDING)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        it.toObject(Pet::class.java).copy(id = it.id)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get pets data", e)
+            emptyFlow()
         }
     }
 }

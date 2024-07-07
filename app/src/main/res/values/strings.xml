@@ -256,6 +256,16 @@
     <string name="image_post_cd">image_post_cd</string>
     <string name="send_image_cd">send_image_cd</string>
     <string name="delete_comment_cd">Delete Comment</string>
+    <string name="image_start_cd">Image Start</string>
+    <string name="image_next_cd">Image Next</string>
+    <string name="list_bullet_points_cd">list bullet points</string>
+    <string name="descrease_indent_cd">descrease indent</string>
+    <string name="image_user_cd">Image User</string>
+    <string name="image_security_cd">Image Secutiry</string>
+    <string name="image_language_cd">Image Language</string>
+    <string name="image_support_cd">Image Support</string>
+    <string name="image_logout_cd">Image Logout</string>
+    <string name="delete_button_cd">delete_button</string>
 
     <!-- Fragment Change Password -->
     <string name="old_password">Old Password</string>
@@ -357,6 +367,11 @@
     <string name="open_email">Open Email</string>
     <string name="faq">FAQ</string>
     <string name="deletereview">Delete Review</string>
+    <string name="heading">Heading</string>
+    <string name="subheading">Subheading</string>
+    <string name="italic">I</string>
+    <string name="underline">U</string>
+
 
 
 </resources>
