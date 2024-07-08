@@ -107,7 +107,7 @@ class FindPetshopFragment : Fragment() {
 
     private fun loadMapWithCoordinates(latitude: Double, longitude: Double) {
         val webView: WebView = binding.petshopWV
-        val url = "https://www.google.com/maps/search/pet+shop+near+me/@$latitude,$longitude,15z"
+        val url = "https://www.google.com/maps/search/Petshop/@$latitude,$longitude,15z"
         webView.loadUrl(url)
     }
 }

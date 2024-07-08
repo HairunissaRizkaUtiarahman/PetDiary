@@ -107,7 +107,7 @@ class FindVetFragment : Fragment() {
 
     private fun loadMapWithCoordinates(latitude: Double, longitude: Double) {
         val webView: WebView = binding.vetWV
-        val url = "https://www.google.com/maps/search/veterinary+clinic+near+me/@$latitude,$longitude,15z"
+        val url = "https://www.google.com/maps/search/Klinik+Hewan/@$latitude,$longitude,15z"
         webView.loadUrl(url)
     }
 }
