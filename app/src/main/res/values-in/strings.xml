@@ -412,6 +412,14 @@
     <string name="subheading">Subheading</string>
     <string name="italic">I</string>
     <string name="underline">U</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="help_name_helper_text">Masukkan nama Anda</string>
+    <string name="help_email_helper_text">Masukkan alamat email yang valid</string>
+    <string name="help_password_helper_text">Masukkan kata sandi antara 6 dan 12 karakter, mengandung huruf, angka, dan opsional titik</string>
+    <string name="help_confirm_password">Masukan kata sandi yang sama</string>
+
+    <string name="help_email_helper_text_sign">Enter your email</string>
+    <string name="help_password_helper_text_sign">Enter your password</string>
 
 
 </resources>

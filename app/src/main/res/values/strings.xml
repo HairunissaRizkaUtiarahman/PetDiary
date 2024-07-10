@@ -371,6 +371,14 @@
     <string name="subheading">Subheading</string>
     <string name="italic">I</string>
     <string name="underline">U</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="help_name_helper_text">Enter your name</string>
+    <string name="help_email_helper_text">Enter a valid email address</string>
+    <string name="help_password_helper_text">Enter a password between 6 and 12 characters, containing letters, numbers, and optionally periods</string>
+    <string name="help_confirm_password">Enter the same password</string>
+
+    <string name="help_email_helper_text_sign">Enter your email</string>
+    <string name="help_password_helper_text_sign">Enter your password</string>
 
 
 

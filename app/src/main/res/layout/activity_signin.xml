@@ -53,7 +53,8 @@
             android:layout_marginHorizontal="25dp"
             android:layout_marginTop="25dp"
             app:counterEnabled="true"
-            app:counterMaxLength="100">
+            app:counterMaxLength="100"
+            app:helperText="@string/help_name_helper_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_TIET"
@@ -72,7 +73,8 @@
             android:layout_marginHorizontal="25dp"
             app:counterEnabled="true"
             app:counterMaxLength="12"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:helperText="@string/help_password_helper_text_sign">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password_TIET"
