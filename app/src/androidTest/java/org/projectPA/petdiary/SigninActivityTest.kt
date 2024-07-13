@@ -47,8 +47,8 @@ class SigninActivityTest {
     @Test
     fun testSigninWithValidCredentials() {
         val scenario = ActivityScenario.launch(SigninActivity::class.java)
-        onView(withId(R.id.email_TIET)).perform(typeText("lilykalica@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.password_TIET)).perform(typeText("Aku123456"), closeSoftKeyboard())
+        onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
 
         onView(withId(R.id.signIn_Btn)).perform(click())
 

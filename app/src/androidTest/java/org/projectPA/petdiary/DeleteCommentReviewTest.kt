@@ -48,7 +48,7 @@ class DeleteCommentReviewTest {
     }
 
     @Test
-    fun DeleteReviewProcces() {
+    fun DeleteCommentReviewProcces() {
 
         ActivityScenario.launch(SigninActivity::class.java)
 
@@ -74,11 +74,7 @@ class DeleteCommentReviewTest {
         Thread.sleep(2000)
 
         onView(withId(R.id.myReview_RV)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                0,
-                click()
-            )
-        )
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         Thread.sleep(5000)
 
 

@@ -46,7 +46,7 @@ class ArticleAdapter(
     override fun getItemCount() = articles.size
 
     fun updateData(newArticles: List<Article>) {
-        articles = newArticles
+        articles = newArticles.sortedByDescending { it.timeAdded }
         notifyDataSetChanged()
     }
 }

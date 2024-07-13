@@ -36,7 +36,7 @@ class SignupActivityTest {
 
         onView(withId(R.id.name_TIET)).perform(typeText("Pet Diary Admin"), closeSoftKeyboard())
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
-        onView(withId(R.id.password_TIET)).perform(typeText("Test1234Test1234"), closeSoftKeyboard())
+        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
         onView(withId(R.id.confirmPassword_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
 
         val latch = CountDownLatch(1)

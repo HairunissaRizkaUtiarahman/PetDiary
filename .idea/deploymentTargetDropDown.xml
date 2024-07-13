@@ -2,22 +2,22 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="CommunityTest">
+      <entry key="DeleteCommentPostTest">
         <State />
       </entry>
       <entry key="DeleteCommentReviewTest">
         <State />
       </entry>
-      <entry key="DeletePostTest">
-        <State />
-      </entry>
-      <entry key="DeleteReviewTest">
-        <State />
-      </entry>
-      <entry key="ManagePetTest">
+      <entry key="WriteArticleForAdminTest">
         <State />
       </entry>
       <entry key="app">
+        <State />
+      </entry>
+      <entry key="testArticleEntryProcess()">
+        <State />
+      </entry>
+      <entry key="testPetProductEntryProcess()">
         <State />
       </entry>
     </value>

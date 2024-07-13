@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentCommentPostMyProfileFragmentBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.CommentPostMyProfileAdapter
@@ -147,12 +149,24 @@ class CommentPostMyProfileFragment : Fragment() {
             setMessage("Are you sure you want to delete this comment?")
             setPositiveButton("Yes") { _, _ ->
                 onConfirmedDelete()
-                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+                showSnackbar("Comment deleted")
+//                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
             }
             setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
             }
         }
         alertDialogBuilder.create().show()
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 }

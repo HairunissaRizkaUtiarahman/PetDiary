@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.webkit.JavascriptInterface
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -16,6 +17,8 @@ import org.projectPA.petdiary.databinding.ActivityWriteArticleForAdminBinding
 import org.projectPA.petdiary.model.Article
 import org.projectPA.petdiary.viewmodel.ArticleViewModel
 import java.util.*
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.atomic.AtomicReference
 
 class ActivityWriteArticleForAdmin : AppCompatActivity() {
 
@@ -61,6 +64,8 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
 
         editor.settings.javaScriptEnabled = true
 
+        editor.addJavascriptInterface(JavaScriptInterface(this), "JSInterface")
+
         binding.boldTextButton.setOnClickListener { editor.setBold() }
         binding.italicTextButton.setOnClickListener { editor.setItalic() }
         binding.underlineTextButton.setOnClickListener { editor.setUnderline() }
@@ -73,6 +78,28 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
                         "window.JSInterface.scrollToCursor(rect.top, rect.height);" +
                         "})()"
             )
+        }
+    }
+
+    fun setRichEditorText(text: String) {
+        runOnUiThread {
+            editor.loadUrl("javascript:RE.setHtml('$text');")
+        }
+    }
+
+    fun getRichEditorText(callback: (String) -> Unit) {
+        editor.evaluateJavascript("javascript:RE.getHtml();") { value ->
+            callback(value)
+        }
+    }
+
+    // JavaScript interface for scrolling to cursor
+    class JavaScriptInterface(private val activity: ActivityWriteArticleForAdmin) {
+        @JavascriptInterface
+        fun scrollToCursor(top: Float, height: Float) {
+            activity.nestedScrollView.post {
+                activity.nestedScrollView.smoothScrollTo(0, (top - height).toInt())
+            }
         }
     }
 
