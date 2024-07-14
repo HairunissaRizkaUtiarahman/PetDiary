@@ -28,7 +28,6 @@ class MyProfileRepository(
         name: String,
         address: String,
         gender: String,
-        birthdate: String,
         bio: String,
         uri: Uri?
     ) {
@@ -42,7 +41,6 @@ class MyProfileRepository(
                 "lowercaseName" to lowercaseName,
                 "address" to address,
                 "gender" to gender,
-                "birthdate" to birthdate,
                 "bio" to bio
             )
 

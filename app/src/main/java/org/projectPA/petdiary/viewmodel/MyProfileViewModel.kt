@@ -41,7 +41,6 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
         name: String,
         address: String,
         gender: String,
-        birthdate: String,
         bio: String,
         uri: Uri?
     ) = viewModelScope.launch {
@@ -50,7 +49,6 @@ class MyProfileViewModel(private val myProfileRepository: MyProfileRepository) :
             name,
             address,
             gender,
-            birthdate,
             bio,
             uri
         )

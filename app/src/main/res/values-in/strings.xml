@@ -170,7 +170,6 @@
     <string name="send_comment">kirim komentar</string>
 
     <!-- Universal -->
-    <string name="birthdate">Tanggal lahir</string>
     <string name="name">Nama</string>
     <string name="address">Alamat</string>
     <string name="timestamp">Timestamp</string>

@@ -147,7 +147,6 @@
     <string name="back_to_review_detail_button">back_to_review_detail_button</string>
     <string name="send_comment">send comment</string>
     <!-- Universal -->
-    <string name="birthdate">Birthdate</string>
     <string name="name">Name</string>
     <string name="address">Address</string>
     <string name="timestamp">Timestamp</string>

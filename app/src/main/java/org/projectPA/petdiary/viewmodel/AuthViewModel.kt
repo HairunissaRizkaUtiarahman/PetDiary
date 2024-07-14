@@ -40,7 +40,6 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                         "lowercaseName" to lowercaseName,
                         "address" to "",
                         "gender" to "",
-                        "birthdate" to "",
                         "bio" to "",
                         "email" to email,
                         "postCount" to 0,
@@ -52,14 +51,17 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                     db.collection("users").document(userId).set(user)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                _signupSuccess.value = true // Set LiveData signupSuccess menjadi true jika berhasil
+                                _signupSuccess.value =
+                                    true // Set LiveData signupSuccess menjadi true jika berhasil
                             } else {
-                                _signupError.value = "Failed to save user data!" // Set pesan error jika gagal menyimpan data
+                                _signupError.value =
+                                    "Failed to save user data!" // Set pesan error jika gagal menyimpan data
                             }
                         }
                 }
             } else {
-                _signupError.value = "Registration failed: ${task.exception?.message}" // Set pesan error jika registrasi gagal
+                _signupError.value =
+                    "Registration failed: ${task.exception?.message}" // Set pesan error jika registrasi gagal
             }
         }
         _isLoading.postValue(false) // Set status loading menjadi false
@@ -75,7 +77,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                 callback(nameExists)
             }
             .addOnFailureListener { exception ->
-                _signupError.value = "Failed to check name: ${exception.message}" // Set pesan error jika pemeriksaan nama gagal
+                _signupError.value =
+                    "Failed to check name: ${exception.message}" // Set pesan error jika pemeriksaan nama gagal
                 callback(false)
             }
     }

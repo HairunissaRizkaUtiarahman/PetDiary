@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import com.google.android.material.datepicker.MaterialDatePicker
 import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityEditProfileBinding
 import org.projectPA.petdiary.viewmodel.MyProfileViewModel
@@ -92,7 +91,6 @@ class EditProfileActivity : AppCompatActivity() {
 
             val name = binding.nameTIET.text.toString().trim()
             val address = binding.addressTIET.text.toString().trim()
-            val birthdate = binding.birthdateTIET.text.toString().trim()
             val bio = binding.bioTIET.text.toString().trim()
 
             if (name.isEmpty() || name.length > 100) {
@@ -119,11 +117,6 @@ class EditProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (birthdate.isEmpty()) {
-                Toast.makeText(this, "Birthdate is required", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
             if (bio.length > 100) {
                 Toast.makeText(
                     this,
@@ -140,26 +133,13 @@ class EditProfileActivity : AppCompatActivity() {
                     Toast.makeText(this, "Name already taken", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    viewModel.updateMyProfile(name, address, gender, birthdate, bio, imageUri)
+                    viewModel.updateMyProfile(name, address, gender, bio, imageUri)
                     Toast.makeText(
                         this,
                         "Success Update My Profile",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            }
-        }
-
-        binding.birthdateTIL.setEndIconOnClickListener {
-            val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select birthdate")
-                .build()
-
-            datePicker.show(supportFragmentManager, "DATE_PICKER")
-
-            datePicker.addOnPositiveButtonClickListener {
-                val selectedDate = datePicker.headerText
-                binding.birthdateTIET.setText(selectedDate)
             }
         }
 
@@ -188,7 +168,6 @@ class EditProfileActivity : AppCompatActivity() {
                     binding.femaleRB.isChecked = true
                 }
 
-                binding.birthdateTIET.setText(it.birthdate)
                 binding.bioTIET.setText(it.bio)
 
                 Glide.with(binding.profileIV.context)

@@ -9,7 +9,6 @@ data class User(
     val address: String? = "",
     val email: String? = "",
     val gender: String? = "",
-    val birthdate: String? = "",
     val bio: String? = "",
     val imageUrl: String? = "",
     val postCount: Int? = 0,
