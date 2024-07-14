@@ -1,15 +1,20 @@
 package org.projectPA.petdiary.view.fragment.community.search.user
 
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
@@ -25,6 +30,7 @@ class CommentPostUserProfileFragment : Fragment() {
 
     private val postUserProfileViewModel: PostUserProfileViewModel by navGraphViewModels(R.id.community_nav)
     private val commentPostUserProfileViewModel: CommentPostUserProfileViewModel by viewModels { CommentPostUserProfileViewModel.Factory }
+    private val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +41,6 @@ class CommentPostUserProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         postUserProfileViewModel.post.observe(viewLifecycleOwner) {
             with(binding) {
@@ -55,6 +60,8 @@ class CommentPostUserProfileFragment : Fragment() {
                 commentCountTV.text =
                     requireContext().getString(R.string.comment_count, it.commentCount)
             }
+
+            // Status like
             if (it.like != null) {
                 binding.likeBtn.visibility = View.VISIBLE
                 binding.unlikeBtn.visibility = View.GONE
@@ -63,6 +70,8 @@ class CommentPostUserProfileFragment : Fragment() {
                 binding.likeBtn.visibility = View.GONE
             }
         }
+
+        // Tombol Like
         binding.likeBtn.setOnClickListener {
             postUserProfileViewModel.post.value.let { post ->
                 postUserProfileViewModel.setLike(post?.id ?: "").invokeOnCompletion {
@@ -71,6 +80,7 @@ class CommentPostUserProfileFragment : Fragment() {
             }
         }
 
+        // Tombol Unlike
         binding.unlikeBtn.setOnClickListener {
             postUserProfileViewModel.post.value.let { post ->
                 postUserProfileViewModel.setLike(post?.id ?: "").invokeOnCompletion {
@@ -79,16 +89,7 @@ class CommentPostUserProfileFragment : Fragment() {
             }
         }
 
-        commentPostUserProfileAdapter = CommentPostUserProfileAdapter(onDelete = { commentPost ->
-            showDeleteConfirmationDialog {
-                commentPost.id?.let {
-                    commentPostUserProfileViewModel.deleteComment(
-                        postUserProfileViewModel.post.value?.id ?: "",
-                        it
-                    )
-                }
-            }
-        }, currentUserId)
+        commentPostUserProfileAdapter = CommentPostUserProfileAdapter()
 
         binding.commentsRV.adapter = commentPostUserProfileAdapter
 
@@ -104,8 +105,10 @@ class CommentPostUserProfileFragment : Fragment() {
             postUserProfileViewModel.updateCommentCount(comments.size)
         }
 
+        // Load Komentar
         commentPostUserProfileViewModel.loadData(postUserProfileViewModel.post.value?.id ?: "")
 
+        // Tombol Kirim Komentar
         binding.sendBtn.setOnClickListener {
             val comment = binding.commentTIET.text.toString().trim()
 
@@ -119,23 +122,91 @@ class CommentPostUserProfileFragment : Fragment() {
             }
         }
 
+        // Tombol Back di Topbar
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-    }
 
-    private fun showDeleteConfirmationDialog(onConfirmedDelete: () -> Unit) {
-        val alertDialogBuilder = AlertDialog.Builder(requireContext())
-        alertDialogBuilder.apply {
-            setMessage("Are you sure you want to delete this comment?")
-            setPositiveButton("Yes") { _, _ ->
-                onConfirmedDelete()
-                Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+        // Setup ItemTouchHelper untuk swipe delete
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            0,
+            ItemTouchHelper.LEFT // Izinkan hanya swipe kiri
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
             }
-            setNegativeButton("No") { dialog, _ ->
-                dialog.dismiss()
+
+            override fun getSwipeDirs(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                val commentPost =
+                    commentPostUserProfileAdapter.currentList[viewHolder.adapterPosition]
+                return if (commentPost.userId == currentUserId) {
+                    super.getSwipeDirs(recyclerView, viewHolder)
+                } else {
+                    0
+                }
+            }
+
+            // Menangani swipe untuk menghapus komentar
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val commentPost = commentPostUserProfileAdapter.currentList[position]
+                commentPost.id?.let {
+                    commentPostUserProfileViewModel.deleteComment(
+                        postUserProfileViewModel.post.value?.id ?: "", it
+                    )
+                    Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            // Menggambar latar belakang dan ikon saat swipe
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    val itemView = viewHolder.itemView
+                    val paint = Paint().apply { color = Color.RED }
+                    val icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_delete)!!
+
+                    val iconMargin = (itemView.height - icon.intrinsicHeight) / 2
+                    val iconTop = itemView.top + (itemView.height - icon.intrinsicHeight) / 2
+                    val iconBottom = iconTop + icon.intrinsicHeight
+
+                    // Swipe ke kiri
+                    val iconLeft = itemView.right - iconMargin - icon.intrinsicWidth
+                    val iconRight = itemView.right - iconMargin
+                    icon.setBounds(iconLeft, iconTop, iconRight, iconBottom)
+
+                    c.drawRect(
+                        itemView.right.toFloat() + dX,
+                        itemView.top.toFloat(),
+                        itemView.right.toFloat(),
+                        itemView.bottom.toFloat(),
+                        paint
+                    )
+
+                    icon.draw(c)
+                }
+
+                super.onChildDraw(
+                    c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive
+                )
             }
         }
-        alertDialogBuilder.create().show()
+
+        val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
+        itemTouchHelper.attachToRecyclerView(binding.commentsRV)
     }
 }

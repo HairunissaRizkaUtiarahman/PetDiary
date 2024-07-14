@@ -1,7 +1,6 @@
 package org.projectPA.petdiary.view.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -13,8 +12,6 @@ import org.projectPA.petdiary.model.CommentPost
 import org.projectPA.petdiary.relativeTime
 
 class CommentPostAdapter(
-    private val onDelete: (CommentPost) -> Unit,
-    private val currentUserId: String
 ) : ListAdapter<CommentPost, CommentPostAdapter.ViewHolder>(Companion) {
 
     companion object : DiffUtil.ItemCallback<CommentPost>() {
@@ -37,15 +34,6 @@ class CommentPostAdapter(
 
             Glide.with(profileImageIV.context).load(commentPost.user?.imageUrl)
                 .placeholder(R.drawable.image_profile).into(profileImageIV)
-
-            if (commentPost.userId == currentUserId) {
-                deleteBtn.visibility = View.VISIBLE
-                deleteBtn.setOnClickListener {
-                    onDelete(commentPost)
-                }
-            } else {
-                deleteBtn.visibility = View.GONE
-            }
         }
     }
 
