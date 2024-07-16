@@ -39,7 +39,7 @@ class PetAddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var imageUri: Uri? = null // URI untuk gambar hewan peliharaan
+        var imageUri: Uri? = null
 
         // Memilih gambar dari galeri
         val petImage = registerForActivityResult(

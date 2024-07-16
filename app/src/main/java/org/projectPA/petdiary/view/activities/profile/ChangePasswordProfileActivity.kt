@@ -19,14 +19,19 @@ class ChangePasswordProfileActivity : AppCompatActivity() {
         binding = ActivityChangePasswordProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Menginisialisasi instance FirebaseAuth
         auth = FirebaseAuth.getInstance()
 
+        // tombol change password
         binding.changePasswordBtn.setOnClickListener {
             val oldPassword = binding.oldPasswordTIET.text.toString().trim()
             val newPassword = binding.newPasswordTIET.text.toString().trim()
             val confirmNewPassword = binding.confirmNewPasswordTIET.text.toString().trim()
 
+            // Regex untuk validasi kata sandi
             val passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d.]{6,12}$"
+
+            // Memeriksa apakah kata sandi baru sesuai dengan pola yang ditentukan
             if (!newPassword.matches(passwordRegex.toRegex())) {
                 Toast.makeText(
                     this,
@@ -36,20 +41,25 @@ class ChangePasswordProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Memeriksa apakah kata sandi baru dan konfirmasi kata sandi baru cocok
             if (newPassword != confirmNewPassword) {
                 Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
+            // Mendapatkan pengguna saat ini
             val user = auth.currentUser
             if (user != null && user.email != null) {
                 val credential = EmailAuthProvider.getCredential(user.email!!, oldPassword)
 
+                // Melakukan otentikasi ulang pengguna
                 user.reauthenticate(credential).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         user.updatePassword(newPassword).addOnCompleteListener { updateTask ->
                             if (updateTask.isSuccessful) {
+
+                                // Jika pembaruan kata sandi berhasil, keluar dari akun dan memulai SigninActivity
                                 auth.signOut()
                                 val intent = Intent(this, SigninActivity::class.java)
                                 startActivity(intent)
@@ -77,6 +87,7 @@ class ChangePasswordProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }

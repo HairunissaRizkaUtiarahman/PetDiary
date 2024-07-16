@@ -13,7 +13,7 @@ class MyProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_profile)
 
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.myProfileActivity) as NavHostFragment
-        navController =  navHostFragment.navController
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.myProfileActivity) as NavHostFragment // Mendapatkan NavHostFragment dari layout
+        navController =  navHostFragment.navController // Mendapatkan NavController dari NavHostFragment
     }
 }

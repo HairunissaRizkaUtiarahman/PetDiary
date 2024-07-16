@@ -26,15 +26,15 @@ class DetailReviewMyProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailReviewMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
-
-
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // Mengamati perubahan data pada ViewModel untuk ulasan pengguna
         viewModel.myReview.observe(viewLifecycleOwner) {
             with(binding) {
                 descReviewTV.text = it.reviewText
@@ -60,15 +60,17 @@ class DetailReviewMyProfileFragment : Fragment() {
         }
 
         commentReviewMyProfileAdapter = CommentReviewMyProfileAdapter()
-
         binding.listComment.adapter = commentReviewMyProfileAdapter
 
+        // Mengamati perubahan daftar komentar dari ViewModel
         viewModel.commentsReview.observe(viewLifecycleOwner) { comments ->
             commentReviewMyProfileAdapter.submitList(comments)
         }
 
+        // Memuat komentar dari ViewModel berdasarkan id ulasan yang sedang dilihat
         viewModel.loadComment(viewModel.myReview.value?.id ?: "")
 
+        // Tombol "Kirim" untuk mengirim komentar baru
         binding.sendBtn.setOnClickListener {
             val comment = binding.commentTIET.text.toString().trim()
 
@@ -79,6 +81,7 @@ class DetailReviewMyProfileFragment : Fragment() {
             }
         }
 
+        // Menangani aksi klik pada tombol "Lihat Semua Komentar" untuk menampilkan atau menyembunyikan daftar komentar
         binding.viewAllCommentsButton.setOnClickListener {
             if (binding.listComment.visibility == View.VISIBLE) {
                 binding.listComment.visibility = View.GONE
@@ -95,6 +98,7 @@ class DetailReviewMyProfileFragment : Fragment() {
             }
         }
 
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }

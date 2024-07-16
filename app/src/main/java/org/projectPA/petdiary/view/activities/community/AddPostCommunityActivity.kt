@@ -29,21 +29,26 @@ class AddPostCommunityActivity : AppCompatActivity() {
 
         var imageUri: Uri? = null
 
+        // Memilih gambar dari galeri
         val postImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
             imageUri = it
-            binding.postImageIV.setImageURI(it)
+            binding.postImageIV.setImageURI(it) // Menampilkan gambar yang dipilih
         }
 
+        // Mengambil gambar menggunakan kamera
         val takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
-                    binding.postImageIV.setImageURI(imageUri)
+                    binding.postImageIV.setImageURI(imageUri) // Menampilkan gambar yang diambil
                 }
             }
 
+        // Fungsi untuk mengambil gambar menggunakan kamera
         fun takePicture() {
+
+            // Memeriksa izin kamera
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.CAMERA
@@ -55,6 +60,8 @@ class AddPostCommunityActivity : AppCompatActivity() {
                     CAMERA_PERMISSION_REQUEST_CODE
                 )
             } else {
+
+                // Membuat URI untuk gambar yang akan diambil
                 val contentValues = ContentValues().apply {
                     put(
                         MediaStore.Images.Media.DISPLAY_NAME,
@@ -66,10 +73,11 @@ class AddPostCommunityActivity : AppCompatActivity() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     contentValues
                 )
-                imageUri?.let { takePictureLauncher.launch(it) }
+                imageUri?.let { takePictureLauncher.launch(it) } // Membuka Kamera
             }
         }
 
+        // Tombol "Pilih Gambar"
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
@@ -83,10 +91,11 @@ class AddPostCommunityActivity : AppCompatActivity() {
             builder.show()
         }
 
+        // Tombol "Post"
         binding.postBtn.setOnClickListener {
             val desc = binding.descTIET.text.toString().trim()
 
-
+            // Validasi input desc tidak boleh kosong & max 100 karakter
             if (desc.isEmpty() || desc.length > 1000) {
                 Toast.makeText(
                     this,
@@ -96,12 +105,14 @@ class AddPostCommunityActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Mengunggah data Post ke ViewModel
             viewModel.uploadData(desc, imageUri)
             Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
 
             binding.descTIET.text?.clear()
         }
 
+        // Mengamati perubahan status loading di ViewModel
         viewModel.isLoading.observe(this) {
             if (it) {
                 binding.postBtn.visibility = View.GONE
@@ -110,11 +121,12 @@ class AddPostCommunityActivity : AppCompatActivity() {
                 binding.postBtn.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.GONE
 
-                startActivity(Intent(this, CommunityHomePageActivity::class.java))
+                startActivity(Intent(this, CommunityHomePageActivity::class.java)) // Navigasi ke CommunityHomePageActivity
                 finish()
             }
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }

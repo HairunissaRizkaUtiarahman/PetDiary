@@ -32,22 +32,23 @@ class PostUserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = PostUserProfileAdapter(onClick = { post, _ ->
             postUserProfileViewModel.setPost(post)
-
-            findNavController().navigate(R.id.action_userProfileFragment_to_commentPostUserProfileFragment)
+            findNavController().navigate(R.id.action_userProfileFragment_to_commentPostUserProfileFragment) // Navigasi ke Fragment ComentarPostFragment
         }, onLike = { post ->
-            postUserProfileViewModel.setLike(post.id ?: "")
+            postUserProfileViewModel.setLike(post.id ?: "") // Memperbarui status like
         })
 
         binding.postRV.adapter = adapter
 
+        // Mengamati perubahan pada daftar post di viewModel
         postUserProfileViewModel.posts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
 
+            // Tampilkan jika tidak ada post atau semua post telah dihapus
             binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
-
             binding.postRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Memuat daftar post dari viewModel
         postUserProfileViewModel.loadData(userViewModel.user.value?.id ?: "")
     }
 }

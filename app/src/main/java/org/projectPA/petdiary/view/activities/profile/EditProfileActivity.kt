@@ -31,21 +31,26 @@ class EditProfileActivity : AppCompatActivity() {
 
         var imageUri: Uri? = null
 
+        // Memilih gambar dari galeri
         val profileImage = registerForActivityResult(
             ActivityResultContracts.GetContent()
         ) {
             imageUri = it
-            binding.profileIV.setImageURI(it)
+            binding.profileIV.setImageURI(it) // Menampilkan gambar yang dipilih
         }
 
+        // Mengambil gambar menggunakan kamera
         val takePictureLauncher =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
-                    binding.profileIV.setImageURI(imageUri)
+                    binding.profileIV.setImageURI(imageUri) // Menampilkan gambar yang diambil
                 }
             }
 
+        // Fungsi untuk mengambil gambar menggunakan kamera
         fun takePicture() {
+
+            // Memeriksa izin kamera
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.CAMERA
@@ -57,6 +62,8 @@ class EditProfileActivity : AppCompatActivity() {
                     CAMERA_PERMISSION_REQUEST_CODE
                 )
             } else {
+
+                // Membuat URI untuk gambar yang akan diambil
                 val contentValues = ContentValues().apply {
                     put(
                         MediaStore.Images.Media.DISPLAY_NAME,
@@ -68,10 +75,11 @@ class EditProfileActivity : AppCompatActivity() {
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     contentValues
                 )
-                imageUri?.let { takePictureLauncher.launch(it) }
+                imageUri?.let { takePictureLauncher.launch(it) } // Membuka Kamera
             }
         }
 
+        // Tombol "Pilih Gambar"
         binding.pickBtn.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
@@ -85,14 +93,18 @@ class EditProfileActivity : AppCompatActivity() {
             builder.show()
         }
 
+        // Tombol "Simpan"
         binding.saveBtn.setOnClickListener {
+            // Mendapatkan radio button yang dipilih
             val radioGroupCheck = binding.genderRG.checkedRadioButtonId
             val checkRadioBtn = findViewById<RadioButton>(radioGroupCheck)
 
+            // Mengambil input nama, alamat, dan bio
             val name = binding.nameTIET.text.toString().trim()
             val address = binding.addressTIET.text.toString().trim()
             val bio = binding.bioTIET.text.toString().trim()
 
+            // Validasi nama
             if (name.isEmpty() || name.length > 100) {
                 Toast.makeText(
                     this,
@@ -102,6 +114,7 @@ class EditProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Validasi alamat
             if (address.isEmpty() || address.length > 150) {
                 Toast.makeText(
                     this,
@@ -111,12 +124,14 @@ class EditProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Validasi gender
             if (radioGroupCheck == -1) {
                 Toast.makeText(this, "Gender must be selected", Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
 
+            // Validasi bio
             if (bio.length > 100) {
                 Toast.makeText(
                     this,
@@ -126,8 +141,10 @@ class EditProfileActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            // Mendapatkan teks dari radio button yang dipilih (gender)
             val gender = checkRadioBtn.text.toString()
 
+            // Memeriksa apakah nama sudah ada
             viewModel.checkIfNameExists(name) { nameExists ->
                 if (nameExists) {
                     Toast.makeText(this, "Name already taken", Toast.LENGTH_SHORT)
@@ -143,6 +160,7 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Mengamati perubahan status loading di ViewModel
         viewModel.isLoading.observe(this) {
             if (it) {
                 binding.saveBtn.visibility = View.GONE
@@ -154,8 +172,10 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Memuat data profil pengguna
         viewModel.loadMyProfile()
 
+        // Mengisi tampilan dengan data hewan peliharaan
         viewModel.myProfile.observe(this) { user ->
             user?.let {
                 binding.nameTIET.setText(it.name)
@@ -177,6 +197,7 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }

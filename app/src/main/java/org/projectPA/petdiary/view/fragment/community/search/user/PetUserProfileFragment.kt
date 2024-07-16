@@ -31,19 +31,21 @@ class PetUserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = PetUserProfileAdapter(onClick = { myPet, _ ->
             petUserProfileViewModel.setPet(myPet)
-            findNavController().navigate(R.id.action_userProfileFragment_to_detailPetUserProfileFragment)
+            findNavController().navigate(R.id.action_userProfileFragment_to_detailPetUserProfileFragment) // Navigasi ke Fragment Detail Pet
         })
 
         binding.petRV.adapter = adapter
 
+        // Mengamati perubahan pada daftar pet di viewModel
         petUserProfileViewModel.pets.observe(viewLifecycleOwner) { pets ->
             adapter.submitList(pets)
 
+            // Tampilkan jika tidak ada pet
             binding.noPetTV.visibility = if (pets.isEmpty()) View.VISIBLE else View.GONE
-
             binding.petRV.visibility = if (pets.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Memuat daftar pet dari viewModel
         userViewModel.user.observe(viewLifecycleOwner) { user ->
             user?.id?.let {
                 petUserProfileViewModel.loadData(it)

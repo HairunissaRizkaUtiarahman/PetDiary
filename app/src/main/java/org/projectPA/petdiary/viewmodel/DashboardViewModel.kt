@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel() {
 
+    // LiveData privat untuk menyimpan fragment yang dipilih
     private val _selectedFragment = MutableLiveData<Fragment>()
     val selectedFragment: LiveData<Fragment> get() = _selectedFragment
 
+    // Fungsi untuk memilih fragment yang akan ditampilkan
     fun selectFragment(fragment: Fragment) {
         _selectedFragment.value = fragment
     }

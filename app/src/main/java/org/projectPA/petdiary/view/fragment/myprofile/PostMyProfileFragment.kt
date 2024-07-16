@@ -32,16 +32,15 @@ class PostMyProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = PostMyProfileAdapter(onClick = { post, _ ->
             viewModel.setPost(post)
-
-            findNavController().navigate(R.id.action_myProfileFragment_to_commentPostMyFragmentFragment)
+            findNavController().navigate(R.id.action_myProfileFragment_to_commentPostMyFragmentFragment) // Navigasi ke Fragment Komentar Post
         }, onLike = { post ->
-            viewModel.setLike(post.id ?: "")
+            viewModel.setLike(post.id ?: "") // Memperbarui status like
         }, onDelete = { post ->
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
             alertDialogBuilder.apply {
                 setMessage("Are you sure you want to delete this post?")
                 setPositiveButton("Yes") { _, _ ->
-                    viewModel.deleteData(post.id ?: "")
+                    viewModel.deleteData(post.id ?: "") // Delete Post
                     findNavController().popBackStack()
                     showSnackbar("Post deleted successfully")
                 }
@@ -54,17 +53,20 @@ class PostMyProfileFragment : Fragment() {
 
         binding.myPostRV.adapter = adapter
 
+        // Mengamati perubahan pada daftar post di viewModel
         viewModel.myPosts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
 
+            // Tampilkan jika tidak ada post atau semua post telah dihapus
             binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
-
             binding.myPostRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Memuat daftar post dari viewModel
         viewModel.loadData()
     }
 
+    // Pesan Snackbar
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)

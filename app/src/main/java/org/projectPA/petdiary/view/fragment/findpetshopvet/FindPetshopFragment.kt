@@ -33,6 +33,7 @@ class FindPetshopFragment : Fragment() {
     ): View {
         binding = FragmentFindPetshopBinding.inflate(inflater, container, false)
 
+        // Konfigurasi WebView untuk menampilkan peta dan mengaktifkan geolocation
         val webView: WebView = binding.petshopWV
         webView.webViewClient = WebViewClient()
         webView.webChromeClient = object : WebChromeClient() {
@@ -46,8 +47,10 @@ class FindPetshopFragment : Fragment() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
+        // Memeriksa izin lokasi sebelum memuat peta
         checkLocationPermission()
 
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
         binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
@@ -55,6 +58,7 @@ class FindPetshopFragment : Fragment() {
         return binding.root
     }
 
+    // Fungsi untuk memeriksa izin lokasi dan memuat peta jika izin diberikan
     private fun checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -68,6 +72,7 @@ class FindPetshopFragment : Fragment() {
         }
     }
 
+    // Fungsi untuk menangani hasil izin lokasi
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -83,6 +88,7 @@ class FindPetshopFragment : Fragment() {
         }
     }
 
+    // Fungsi untuk mendapatkan lokasi dan memuat peta
     private fun getLocationAndLoadMap() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -105,6 +111,7 @@ class FindPetshopFragment : Fragment() {
         }
     }
 
+    // Fungsi untuk memuat peta dengan koordinat
     private fun loadMapWithCoordinates(latitude: Double, longitude: Double) {
         val webView: WebView = binding.petshopWV
         val url = "https://www.google.com/maps/search/Petshop/@$latitude,$longitude,15z"

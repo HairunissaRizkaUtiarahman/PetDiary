@@ -17,30 +17,36 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding = ActivityResetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Tombol Reset
         binding.resetBtn.setOnClickListener {
             val email = binding.emailTIET.text.toString()
             val edtEmail = binding.emailTIET
 
+            // Validasi email
             if (email.isEmpty()) {
                 edtEmail.error = "Email cannot be empty"
                 edtEmail.requestFocus()
                 return@setOnClickListener
             }
 
+            // Cek Email Valid
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 edtEmail.error = "Email not Valid"
                 edtEmail.requestFocus()
                 return@setOnClickListener
             }
 
+            // Mengirim Link Reset Password
             validateEmailAndSendResetLink(email)
         }
 
+        // Tombol Sign In
         binding.signInTextView.setOnClickListener {
             startActivity(Intent(this, SigninActivity::class.java))
         }
     }
 
+    // Fungsi validasi email dan mengirim tautan reset password
     private fun validateEmailAndSendResetLink(email: String) {
         val db = FirebaseFirestore.getInstance()
         db.collection("users").whereEqualTo("email", email).get()
@@ -56,6 +62,7 @@ class ResetPasswordActivity : AppCompatActivity() {
             }
     }
 
+    // Fungsi mengirim email reset password menggunakan Firebase Auth
     private fun sendResetPasswordEmail(email: String) {
         FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
@@ -68,6 +75,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         }
     }
 
+    // Pesan snackbar
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         snackbar.show()

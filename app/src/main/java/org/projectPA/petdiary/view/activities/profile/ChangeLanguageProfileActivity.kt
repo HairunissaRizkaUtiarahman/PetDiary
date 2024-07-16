@@ -19,34 +19,46 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
         binding = ActivityChangeLanguageProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Mendapatkan SharedPreferences dengan nama "settings" dan mode PRIVATE
         val sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
         val currentLanguage = sharedPreferences.getString("lang", "en") ?: "en"
+
+        // Mengatur locale sesuai bahasa saat ini
         setLocale(this, currentLanguage)
+
+        // Memperbarui tampilan Radio button sesuai bahasa saat ini
         updateCheckImage(currentLanguage)
 
+        // Tombol Bahasa Inggris
         binding.englishBtn.setOnClickListener {
-            setLocale(this, "en")
+            setLocale(this, "en") // Mengatur locale ke bahasa Inggris
             showLanguageSelected("English")
-            saveLanguageSelection("en")
-            updateCheckImage("en")
+            saveLanguageSelection("en") // Menyimpan pilihan bahasa ke SharedPreferences
+            updateCheckImage("en") // Memperbarui Radio button bahasa Inggris
+
+            // Navigasi ke DashboardActivity setelah pilihan bahasa disimpan
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
         }
 
         binding.indonesianBtn.setOnClickListener {
-            setLocale(this, "in")
+            setLocale(this, "in") // Mengatur locale ke bahasa Indonesia
             showLanguageSelected("Bahasa Indonesia")
-            saveLanguageSelection("in")
-            updateCheckImage("in")
+            saveLanguageSelection("in") // Menyimpan pilihan bahasa ke SharedPreferences
+            updateCheckImage("in") // Memperbarui Radio button bahasa Inggris
+
+            // Navigasi ke DashboardActivity setelah pilihan bahasa disimpan
             val intent = Intent(this, DashboardActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
     }
 
+    // Fungsi untuk mengatur locale berdasarkan bahasa yang dipilih
     private fun setLocale(context: Context, lang: String) {
         val locale = Locale(lang)
         Locale.setDefault(locale)
@@ -55,10 +67,12 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
     }
 
+    // Fungsi untuk menampilkan TOAST
     private fun showLanguageSelected(language: String) {
         Toast.makeText(this, "Language changed to $language", Toast.LENGTH_SHORT).show()
     }
 
+    // Fungsi untuk menyimpan pilihan bahasa ke SharedPreferences
     private fun saveLanguageSelection(lang: String) {
         val sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE)
         with(sharedPreferences.edit()) {
@@ -67,6 +81,7 @@ class ChangeLanguageProfileActivity : AppCompatActivity() {
         }
     }
 
+    // Fungsi untuk memperbarui Radio button cek berdasarkan bahasa yang dipilih
     private fun updateCheckImage(lang: String) {
         binding.checkEnglishIV.visibility = if (lang == "en") View.VISIBLE else View.GONE
         binding.uncheckEnglishIV.visibility = if (lang == "en") View.GONE else View.VISIBLE

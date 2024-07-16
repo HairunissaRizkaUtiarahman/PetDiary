@@ -417,8 +417,18 @@
     <string name="help_password_helper_text">Masukkan kata sandi antara 6 dan 12 karakter, mengandung huruf, angka, dan opsional titik</string>
     <string name="help_confirm_password">Masukan kata sandi yang sama</string>
 
-    <string name="help_email_helper_text_sign">Enter your email</string>
-    <string name="help_password_helper_text_sign">Enter your password</string>
+    <string name="help_email_helper_text_sign">Masukan email anda</string>
+    <string name="help_password_helper_text_sign">Masukan kata sandi anda</string>
+    <string name="faq_1">Apakah saya bisa menghapus komentar di post?</string>
+    <string name="faq_1_1">Anda bisa menghapus komentar di post dengan swipe komentar ke kiri</string>
+    <string name="faq_2">Bagaimana Jika Saya Melupakan Kata Sandi?</string>
+    <string name="faq_2_1">1. Gunakan opsi Lupa Kata Sandi di Sign In untuk meresetnya</string>
+    <string name="faq_2_2">2. Masukan Email untuk dikirim link reset kata sandi</string>
+    <string name="faq_2_3">3. Buka Email dan klik link reset kata sandi</string>
+    <string name="faq_2_4">4. Masukan kata sandi baru</string>
+    <string name="faq_3">Bagaimana Jika Saya Terjebak di Layar Loading?</string>
+    <string name="faq_3_1">1. Pastikan koneksi internet stabil</string>
+    <string name="faq_3_2">2. Tutup aplikasi dan buka kembali setelah beberapa saat</string>
 
 
 </resources>

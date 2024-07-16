@@ -18,21 +18,28 @@ class HelpAndSupportProfileActivity : AppCompatActivity() {
         binding = ActivityHelpAndSupportProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
-        firestore = FirebaseFirestore.getInstance()
-        val user = auth.currentUser
 
+        auth = FirebaseAuth.getInstance() // Menginisialisasi instance FirebaseAuth
+        firestore = FirebaseFirestore.getInstance() // Menginisialisasi instance FirebaseFirestore
+        val user = auth.currentUser // Mendapatkan pengguna saat ini
+
+        // Tombol "Open Email"
         binding.openEmailBtn.setOnClickListener {
             user?.let {
                 val userId = it.uid
                 getUserName(userId) { userName ->
                     if (userName != null) {
+                        // Membuat subjek email dengan nama pengguna
                         val subject = "Butuh bantuan dari akun $userName"
+
+                        // Membuat isi email
                         val body = """
                             Jenis bantuan :
                             
                             Deskripsi :
                         """.trimIndent()
+
+                        // Memanggil fungsi sendEmail untuk mengirim email
                         sendEmail("akupetdiary@gmail.com", subject, body)
                     } else {
                         Toast.makeText(this, "Failed to retrieve user name", Toast.LENGTH_SHORT)
@@ -44,12 +51,13 @@ class HelpAndSupportProfileActivity : AppCompatActivity() {
             }
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             finish()
         }
     }
 
-
+    // Fungsi untuk mendapatkan nama pengguna dari Firestore
     private fun getUserName(userId: String, callback: (String?) -> Unit) {
         firestore.collection("users").document(userId).get()
             .addOnSuccessListener { document ->
@@ -66,8 +74,9 @@ class HelpAndSupportProfileActivity : AppCompatActivity() {
 
     }
 
+    // Fungsi untuk mengirim email
     private fun sendEmail(email: String, subject: String, body: String) {
-        val intent = Intent(Intent.ACTION_SEND).apply {
+        val intent = Intent(Intent.ACTION_SEND).apply { // Membuat intent untuk mengirim email
             type = "message/rfc822"
             putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
             putExtra(Intent.EXTRA_SUBJECT, subject)

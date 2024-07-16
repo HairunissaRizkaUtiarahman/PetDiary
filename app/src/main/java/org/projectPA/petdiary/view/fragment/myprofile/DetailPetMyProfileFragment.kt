@@ -20,16 +20,13 @@ class DetailPetMyProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailPetMyProfileBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.topAppBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
+        // Mengamati perubahan data pada ViewModel untuk hewan peliharaan (pet)
         viewModel.pet.observe(viewLifecycleOwner) {
             with(binding) {
                 petNameTV.text = it.name
@@ -41,6 +38,11 @@ class DetailPetMyProfileFragment : Fragment() {
                 Glide.with(petImageIV.context).load(it.imageUrl).placeholder(R.drawable.image_blank)
                     .into(petImageIV)
             }
+        }
+
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 }

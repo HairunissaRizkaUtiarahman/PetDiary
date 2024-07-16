@@ -23,14 +23,15 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        // Mengamati LiveData dari ViewModel untuk fragment yang dipilih
         viewModel.selectedFragment.observe(this, Observer { fragment ->
             replaceFragment(fragment)
         })
 
+        // Mengatur fragment default yang akan ditampilkan
         viewModel.selectFragment(HomeFragment())
 
-
+        // Tombol Navigasi di Buttom Bar
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when(menuItem.itemId){
                 R.id.home -> viewModel.selectFragment(HomeFragment())
@@ -40,14 +41,15 @@ class DashboardActivity : AppCompatActivity() {
         }
 
 
+        // Tombol "Add Button"
         binding.addButton.setOnClickListener {
-
             val fragment = AddButtonFragment()
             fragment.show(supportFragmentManager, fragment.tag)
         }
     }
 
 
+    // Fungsi untuk mengganti fragment yang ditampilkan
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout, fragment)

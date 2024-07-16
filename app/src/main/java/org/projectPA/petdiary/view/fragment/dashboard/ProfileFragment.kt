@@ -33,31 +33,38 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // Tombol "My Profile"
         binding.myProfileBtn.setOnClickListener {
             val intent = Intent(activity, MyProfileActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol "Edit Profile"
         binding.editProfileBtn.setOnClickListener {
             val intent = Intent(activity, EditProfileActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol "Change Password"
         binding.changePasswordBtn.setOnClickListener {
             val intent = Intent(activity, ChangePasswordProfileActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol "Change Language"
         binding.changeLanguageBtn.setOnClickListener {
             val intent = Intent(activity, ChangeLanguageProfileActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol "Help and Support"
         binding.supportBtn.setOnClickListener {
             val intent = Intent(activity, HelpAndSupportProfileActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol "Logout"
         binding.logoutBtn.setOnClickListener {
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
 
@@ -74,14 +81,11 @@ class ProfileFragment : Fragment() {
             }
             alertDialogBuilder.create().show()
         }
+        // Memuat data profil pengguna
         fetchData()
     }
 
-    override fun onResume() {
-        super.onResume()
-        fetchData()
-    }
-
+    // Memuat data profil pengguna dari ViewModel
     private fun fetchData() {
         viewModel.loadMyProfile()
 
@@ -98,5 +102,11 @@ class ProfileFragment : Fragment() {
                     .into(binding.profileImageIV)
             }
         }
+    }
+
+    // Memuat kembali data profil pengguna saat fragment resumed
+    override fun onResume() {
+        super.onResume()
+        fetchData()
     }
 }

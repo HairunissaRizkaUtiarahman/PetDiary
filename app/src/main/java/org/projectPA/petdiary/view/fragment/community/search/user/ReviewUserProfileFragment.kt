@@ -32,8 +32,7 @@ class ReviewUserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapter = ReviewUserProfileAdapter(onClick = { review, _ ->
             reviewUserProfileViewModel.setReview(review)
-
-            findNavController().navigate(R.id.action_userProfileFragment_to_detailReviewUserProfileFragment)
+            findNavController().navigate(R.id.action_userProfileFragment_to_detailReviewUserProfileFragment) // Navigasi ke Fragment Detail Review
         })
 
         binding.reviewRV.adapter = adapter
@@ -41,19 +40,16 @@ class ReviewUserProfileFragment : Fragment() {
         reviewUserProfileViewModel.reviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
 
-
-            // Show or hide the "No Pets" TextView based on the list size
+            // Tampilkan jika tidak ada review
             binding.noReviewTV.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
-
-            // Show or hide the RecyclerView based on the list size
             binding.reviewRV.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Memuat daftar review dari viewModel
         userViewModel.user.observe(viewLifecycleOwner) { user ->
             user?.id?.let {
                 reviewUserProfileViewModel.loadData(it)
             }
         }
     }
-
 }

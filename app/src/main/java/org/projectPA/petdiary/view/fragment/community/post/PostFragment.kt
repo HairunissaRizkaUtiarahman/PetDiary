@@ -31,18 +31,21 @@ class PostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Inisialisasi adapter untuk RecyclerView
         adapter = PostAdapter(onClick = { post, _ ->
             viewModel.setPost(post)
-            findNavController().navigate(R.id.action_communityFragment_to_communityCommentFragment)
+            findNavController().navigate(R.id.action_communityFragment_to_communityCommentFragment) // Navigasi ke Fragment ComentarPostFragment
         }, onLike = { post ->
-            viewModel.setLike(post.id ?: "")
+            viewModel.setLike(post.id ?: "") // Memperbarui status like
         })
 
         binding.postRV.adapter = adapter
 
-
+        // Mengamati perubahan pada daftar post di viewModel
         viewModel.posts.observe(viewLifecycleOwner) { posts ->
             adapter.submitList(posts)
+
+            // Tampilkan jika tidak ada post atau semua post telah dihapus
             if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
                 binding.noPostTV.visibility = View.VISIBLE
                 binding.postRV.visibility = View.GONE
@@ -52,13 +55,16 @@ class PostFragment : Fragment() {
             }
         }
 
+        // Memuat daftar post dari viewModel
         viewModel.loadPosts()
 
+        // Tombol Add Post
         binding.addPostBtn.setOnClickListener {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)
             startActivity(intent)
         }
 
+        // Tombol Searching
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.search -> {
@@ -69,6 +75,7 @@ class PostFragment : Fragment() {
             }
         }
 
+        // Tombol Back di TopAppBar untuk mengakahiri activity
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }

@@ -28,11 +28,14 @@ class MyProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Memuat data profil pengguna
         loadUserProfile()
 
         adapter = MyProfileTLAdapter(requireActivity())
         binding.myProfileVP.adapter = adapter
 
+        // Menghubungkan TabLayout dengan ViewPager dan menetapkan judul tab
         TabLayoutMediator(binding.myProfileTL, binding.myProfileVP) { tab, position ->
             tab.text = when (position) {
                 0 -> "POST"
@@ -42,19 +45,17 @@ class MyProfileFragment : Fragment() {
             }
         }.attach()
 
+        // Tombol Back di TopAppBar untuk kembali ke stack sebelumnya
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        loadUserProfile()
-    }
-
+    // Fungsi untuk memuat data profil pengguna dari ViewModel
     private fun loadUserProfile() {
         viewModel.loadMyProfile()
 
+        // Memantau perubahan data profil pengguna dan mengupdate tampilan sesuai
         viewModel.myProfile.observe(viewLifecycleOwner) { user ->
             user?.let {
                 binding.nameTv.text = it.name
@@ -68,5 +69,11 @@ class MyProfileFragment : Fragment() {
                     .into(binding.profileImageIV)
             }
         }
+    }
+
+    // Memuat ulang data profil pengguna saat fragment dilanjutkan
+    override fun onResume() {
+        super.onResume()
+        loadUserProfile()
     }
 }

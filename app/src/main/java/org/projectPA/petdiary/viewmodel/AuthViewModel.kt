@@ -11,22 +11,21 @@ import kotlinx.coroutines.launch
 import java.util.Locale
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
-    // LiveData untuk mengindikasikan keberhasilan proses signup
+    // LiveData untuk keberhasilan proses signup
     private val _signupSuccess = MutableLiveData<Boolean>()
     val signupSuccess: LiveData<Boolean> = _signupSuccess
 
-    // LiveData untuk mengindikasikan pesan error pada proses signup
+    // LiveData untuk pesan error pada proses signup
     private val _signupError = MutableLiveData<String>()
     val signupError: LiveData<String> = _signupError
 
-    // LiveData untuk mengindikasikan status loading selama proses berlangsung
+    // LiveData untuk status loading
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    // Objek FirebaseAuth untuk autentikasi pengguna
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    // Query untuk mendaftarkan pengguna baru dan mengunggah data ke Firestore
+    // Query Mendaftarkan Pengguna Baru dan Menyimpan data ke Firestore
     fun uploadData(name: String, email: String, password: String) = viewModelScope.launch {
         _isLoading.postValue(true) // Set status loading menjadi true
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
@@ -52,22 +51,22 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 _signupSuccess.value =
-                                    true // Set LiveData signupSuccess menjadi true jika berhasil
+                                    true
                             } else {
                                 _signupError.value =
-                                    "Failed to save user data!" // Set pesan error jika gagal menyimpan data
+                                    "Failed to save user data!"
                             }
                         }
                 }
             } else {
                 _signupError.value =
-                    "Registration failed: ${task.exception?.message}" // Set pesan error jika registrasi gagal
+                    "Registration failed: ${task.exception?.message}"
             }
         }
-        _isLoading.postValue(false) // Set status loading menjadi false
+        _isLoading.postValue(false)
     }
 
-    // Fungsi untuk memeriksa apakah nama pengguna sudah ada di Firestore
+    // Fungsi cek nama pengguna sudah ada di Firestore
     fun checkIfNameExists(name: String, callback: (Boolean) -> Unit) {
         val lowercaseName = name.lowercase(Locale.ROOT)
         val db = FirebaseFirestore.getInstance()
@@ -78,7 +77,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
             }
             .addOnFailureListener { exception ->
                 _signupError.value =
-                    "Failed to check name: ${exception.message}" // Set pesan error jika pemeriksaan nama gagal
+                    "Failed to check name: ${exception.message}"
                 callback(false)
             }
     }

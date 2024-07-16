@@ -1,10 +1,8 @@
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.PackageManagerCompat.LOG_TAG
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -33,17 +31,17 @@ class ReviewMyProfileFragment : Fragment() {
         adapter = ReviewMyProfileAdapter(
             onClick = { review, _ ->
                 viewModel.setReview(review)
-                findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment)
+                findNavController().navigate(R.id.action_myProfileFragment_to_detailReviewMyProfileFragment) // Navigasi ke Fragment Detail Review
             },
             onDeleteClick = { review ->
                 review.id?.let { reviewId ->
-                    review.productId?.let { productId ->
+                    review.productId.let { productId ->
 
                         val alertDialogBuilder = AlertDialog.Builder(requireContext())
                         alertDialogBuilder.apply {
                             setMessage("Are you sure you want to delete this review?")
                             setPositiveButton("Yes") { _, _ ->
-                                viewModel.deleteReview(reviewId, productId)
+                                viewModel.deleteReview(reviewId, productId) // Delete Review
                                 findNavController().popBackStack()
                                 showSnackbar("Review deleted successfully")
                             }
@@ -60,17 +58,21 @@ class ReviewMyProfileFragment : Fragment() {
 
         binding.myReviewRV.adapter = adapter
 
+        // Mengamati perubahan pada daftar review di viewModel
         viewModel.myReviews.observe(viewLifecycleOwner) { reviews ->
             adapter.submitList(reviews)
+
+            // Tampilkan jika tidak ada review
             binding.noReviewTV.visibility = if (reviews.isEmpty()) View.VISIBLE else View.GONE
             binding.myReviewRV.visibility = if (reviews.isEmpty()) View.GONE else View.VISIBLE
         }
 
+        // Memuat daftar review dari viewModel
         viewModel.loadData()
-
 
     }
 
+    // Pesan Snackbar
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)

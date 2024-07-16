@@ -21,16 +21,20 @@ class FindPetShopVetFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // Tombol "Search Pet Shop"
         binding.searchPetShopBtn.setOnClickListener {
             it.findNavController()
                 .navigate(R.id.action_findPetShopVetFragment_to_findPetshopFragment)
         }
 
+        // Tombol "Search Vet"
         binding.searchClinicBtn.setOnClickListener {
             it.findNavController()
                 .navigate(R.id.action_findPetShopVetFragment_to_findVetFragment)
         }
 
+        // Tombol Back di TopAppBar untuk mengakhiri activity
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }

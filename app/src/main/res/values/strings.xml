@@ -378,7 +378,16 @@
 
     <string name="help_email_helper_text_sign">Enter your email</string>
     <string name="help_password_helper_text_sign">Enter your password</string>
-
+    <string name="faq_1">Can I delete comments on a post?</string>
+    <string name="faq_1_1">You can delete comments on a post by swiping the comment to the left</string>
+    <string name="faq_2">What If I Forget My Password?</string>
+    <string name="faq_2_1">1. Use the Forgot Password option in Sign In to reset it</string>
+    <string name="faq_2_2">2. Enter your email to send the password reset link</string>
+    <string name="faq_2_3">3. Open Email and click the reset password link</string>
+    <string name="faq_2_4">4. Enter a new password</string>
+    <string name="faq_3">What If Im Stuck at the Loading Screen?</string>
+    <string name="faq_3_1">1. Make sure your internet connection is stable</string>
+    <string name="faq_3_2">2. Close the application and reopen it after a few moments</string>
 
 
 </resources>

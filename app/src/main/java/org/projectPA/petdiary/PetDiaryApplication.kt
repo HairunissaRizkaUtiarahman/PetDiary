@@ -22,6 +22,7 @@ class PetDiaryApplication : Application() {
             .build()
     }
 
+    // Inisialisasi repository untuk berbagai entitas aplikasi dengan Firebase Firestore dan Auth
     val myProfileRepository: MyProfileRepository
         get() = MyProfileRepository(Firebase.firestore, FirebaseAuth.getInstance(), Firebase.storage)
     val petRepository: PetRepository

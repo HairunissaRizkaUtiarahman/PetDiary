@@ -13,7 +13,7 @@ class PetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet)
 
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.petAcivity) as NavHostFragment
-        navController =  navHostFragment.navController
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.petAcivity) as NavHostFragment // Mendapatkan NavHostFragment dari layout
+        navController =  navHostFragment.navController // Mendapatkan NavController dari NavHostFragment
     }
 }

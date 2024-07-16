@@ -12,7 +12,6 @@ import org.projectPA.petdiary.databinding.ActivitySignupBinding
 import org.projectPA.petdiary.viewmodel.AuthViewModel
 
 class SignupActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivitySignupBinding
     lateinit var viewModel: AuthViewModel
 
@@ -21,10 +20,10 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi ViewModel untuk aktivitas ini
+        // Inisialisasi ViewModel
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
-        // Listener untuk tombol signup
+        // Tombol Sign Up
         binding.signUpBtn.setOnClickListener {
             val name = binding.nameTIET.text.toString()
             val email = binding.emailTIET.text.toString()
@@ -61,7 +60,7 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Cek apakah nama sudah digunakan
+            // Fungsi untuk cek apakah nama sudah digunakan
             viewModel.checkIfNameExists(name) { nameExists ->
                 if (nameExists) {
                     showSnackbar("Name already taken")

@@ -86,7 +86,7 @@ class SigninActivity : AppCompatActivity() {
         }
     }
 
-    // Fungsi untuk menampilkan pesan Snackbar
+    // Pesan Snackbar
     private fun showSnackbar(message: String) {
         val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
