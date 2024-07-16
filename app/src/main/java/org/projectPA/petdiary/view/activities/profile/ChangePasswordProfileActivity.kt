@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityChangePasswordProfileBinding
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 

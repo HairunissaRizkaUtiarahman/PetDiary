@@ -15,7 +15,7 @@ class FindPetShopVetFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFindPetShopVetBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
