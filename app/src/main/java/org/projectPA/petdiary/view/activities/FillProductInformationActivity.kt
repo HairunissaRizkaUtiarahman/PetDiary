@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -31,25 +32,25 @@ class FillProductInformationActivity : AppCompatActivity() {
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
         if (success) {
             viewModel.imageUri.value?.let { uri ->
-                binding.productImage.setImageURI(uri)
+                binding.uploadProductImage.setImageURI(uri)
             }
         }
         viewModel.validateInputs(
-            binding.formInputBrandName.text.toString().trim(),
-            binding.formInputProductName.text.toString().trim(),
-            binding.formInputDescription.text.toString().trim()
+            binding.inputBrandName.text.toString().trim(),
+            binding.inputNameProduct.text.toString().trim(),
+            binding.inputDescriptionProduct.text.toString().trim()
         )
     }
 
     private val pickPhotoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             viewModel.setImageUri(it)
-            binding.productImage.setImageURI(it)
+            binding.uploadProductImage.setImageURI(it)
         }
         viewModel.validateInputs(
-            binding.formInputBrandName.text.toString().trim(),
-            binding.formInputProductName.text.toString().trim(),
-            binding.formInputDescription.text.toString().trim()
+            binding.inputBrandName.text.toString().trim(),
+            binding.inputNameProduct.text.toString().trim(),
+            binding.inputDescriptionProduct.text.toString().trim()
         )
     }
 
@@ -67,7 +68,7 @@ class FillProductInformationActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        binding.uploadPhotoButton.setOnClickListener {
+        binding.uploadProductImage.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Select Image")
@@ -80,35 +81,35 @@ class FillProductInformationActivity : AppCompatActivity() {
             builder.show()
         }
 
-        setupHintVisibility(binding.formInputBrandName, binding.brandNameLayout)
-        setupHintVisibility(binding.formInputProductName, binding.productNameLayout)
-        setupHintVisibility(binding.formInputDescription, binding.descriptionLayout)
+        setupHintVisibility(binding.inputBrandName, binding.formInputBrandName)
+        setupHintVisibility(binding.inputNameProduct, binding.formInputNameProduct)
+        setupHintVisibility(binding.inputDescriptionProduct, binding.formInputDescriptionProduct)
 
-        binding.formInputBrandName.addTextChangedListener { text ->
+        binding.inputBrandName.addTextChangedListener { text ->
             viewModel.validateInputs(
                 text.toString().trim(),
-                binding.formInputProductName.text.toString().trim(),
-                binding.formInputDescription.text.toString().trim()
+                binding.inputNameProduct.text.toString().trim(),
+                binding.inputDescriptionProduct.text.toString().trim()
             )
             viewModel.checkProductNameExists(
                 text.toString().trim(),
-                binding.formInputProductName.text.toString().trim()
+                binding.inputNameProduct.text.toString().trim()
             )
         }
-        binding.formInputProductName.addTextChangedListener { text ->
+        binding.inputNameProduct.addTextChangedListener { text ->
             val productName = text.toString().trim()
             viewModel.checkProductNameExists(
-                binding.formInputBrandName.text.toString().trim(),
+                binding.inputBrandName.text.toString().trim(),
                 productName
             )
             viewModel.validateInputs(
-                binding.formInputBrandName.text.toString().trim(),
+                binding.inputBrandName.text.toString().trim(),
                 productName,
-                binding.formInputDescription.text.toString().trim()
+                binding.inputDescriptionProduct.text.toString().trim()
             )
         }
 
-        binding.formInputDescription.addTextChangedListener { text ->
+        binding.inputDescriptionProduct.addTextChangedListener { text ->
             if (text != null) {
                 if (text.length < 30) {
                     binding.warningDescription.visibility = View.VISIBLE
@@ -117,32 +118,31 @@ class FillProductInformationActivity : AppCompatActivity() {
                 }
             }
             viewModel.validateInputs(
-                binding.formInputBrandName.text.toString().trim(),
-                binding.formInputProductName.text.toString().trim(),
+                binding.inputBrandName.text.toString().trim(),
+                binding.inputNameProduct.text.toString().trim(),
                 text.toString().trim()
             )
         }
 
-
-
         binding.submitButton.setOnClickListener {
             if (binding.submitButton.isEnabled) {
-                val brandName = binding.formInputBrandName.text.toString().trim()
-                val productName = binding.formInputProductName.text.toString().trim()
-                val description = binding.formInputDescription.text.toString().trim()
+                binding.progressBar.visibility = View.VISIBLE
+                val brandName = binding.inputBrandName.text.toString().trim()
+                val productName = binding.inputNameProduct.text.toString().trim()
+                val description = binding.inputDescriptionProduct.text.toString().trim()
                 val petType = intent.getStringExtra(PET_TYPE_KEY) ?: ""
                 val category = intent.getStringExtra(CATEGORY_KEY) ?: ""
 
+                Log.d("FillProductInformationActivity", "Submitting data...")
                 viewModel.uploadData(this, brandName, productName, description, petType, category)
             }
             binding.submitButton.isEnabled = false
         }
-
     }
 
     private fun setupObservers() {
         viewModel.imageUri.observe(this, Observer { uri ->
-            binding.productImage.setImageURI(uri)
+            binding.uploadProductImage.setImageURI(uri)
         })
 
         viewModel.isFormValid.observe(this, Observer { isValid ->
@@ -151,14 +151,15 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         viewModel.uploadStatus.observe(this, Observer { status ->
             Toast.makeText(this, status, Toast.LENGTH_SHORT).show()
+            binding.progressBar.visibility = View.GONE
         })
 
         viewModel.productNameError.observe(this, Observer { error ->
-            binding.warningProductNameAlreadyExist2.visibility = if (error == true) View.VISIBLE else View.GONE
+            binding.warningProductNameAlreadyExist.visibility = if (error == true) View.VISIBLE else View.GONE
             viewModel.validateInputs(
-                binding.formInputBrandName.text.toString().trim(),
-                binding.formInputProductName.text.toString().trim(),
-                binding.formInputDescription.text.toString().trim()
+                binding.inputBrandName.text.toString().trim(),
+                binding.inputNameProduct.text.toString().trim(),
+                binding.inputDescriptionProduct.text.toString().trim()
             )
         })
 
@@ -167,7 +168,9 @@ class FillProductInformationActivity : AppCompatActivity() {
                 val intent = Intent(this, ProductDetailActivity::class.java).apply {
                     putExtra("productId", it)
                 }
+                Log.d("FillProductInformationActivity", "Navigating to ProductDetailActivity with productId: $it")
                 startActivity(intent)
+                binding.progressBar.visibility = View.GONE  // Hide progress bar after navigation
             }
         })
     }
@@ -178,9 +181,9 @@ class FillProductInformationActivity : AppCompatActivity() {
                 textInputLayout.hint = null
             } else {
                 textInputLayout.hint = when (editText.id) {
-                    R.id.formInputBrandName -> "Brand Name"
-                    R.id.formInputProductName -> "Product Name"
-                    R.id.formInputDescription -> "Description"
+                    R.id.input_brand_name -> "Brand Name"
+                    R.id.input_name_product -> "Product Name"
+                    R.id.input_description_product -> "Description"
                     else -> null
                 }
             }

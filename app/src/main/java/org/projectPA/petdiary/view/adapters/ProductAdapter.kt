@@ -21,9 +21,9 @@ class ProductAdapter(
                 reviewCount.text = formatReviewCount(product.reviewCount)
                 ratingBar.rating = product.averageRating.toFloat()
 
-                Glide.with(productImage.context)
+                Glide.with(uploadProductImage.context)
                     .load(product.imageUrl)
-                    .into(productImage)
+                    .into(uploadProductImage)
 
                 root.setOnClickListener {
                     onProductClicked(product.id ?: "")

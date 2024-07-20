@@ -16,7 +16,7 @@
 
         <!-- Product Image -->
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/product_image"
+            android:id="@+id/upload_product_image"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:layout_margin="10dp"

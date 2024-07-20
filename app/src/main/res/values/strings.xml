@@ -388,6 +388,11 @@
     <string name="faq_3">What If Im Stuck at the Loading Screen?</string>
     <string name="faq_3_1">1. Make sure your internet connection is stable</string>
     <string name="faq_3_2">2. Close the application and reopen it after a few moments</string>
+    <string name="product_description_must_be_at_least_30_characters_long">Product Description must be at least 30 characters long</string>
+    <string name="product_name_already_existt">Product name already Exist</string>
+    <string name="brand_namee">Brand Name</string>
+    <string name="product_namee">Product Name</string>
+    <string name="product_descriptionn">Product Description</string>
 
 
 </resources>

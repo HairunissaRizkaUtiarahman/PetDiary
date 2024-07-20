@@ -15,7 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.projectPA.petdiary.view.activities.DashboardActivity
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 import org.projectPA.petdiary.view.activities.profile.ChangeLanguageProfileActivity
 

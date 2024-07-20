@@ -82,7 +82,6 @@ class FillProductInformationViewModel : ViewModel() {
             }
     }
 
-
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String) {
         val formattedProductName = capitalizeWords(productName)
         FirebaseFirestore.getInstance().collection("products")
@@ -143,6 +142,7 @@ class FillProductInformationViewModel : ViewModel() {
             .set(product)
             .addOnSuccessListener {
                 _uploadStatus.value = "Product added successfully"
+                Log.d("FillProductInformationViewModel", "Product added successfully with ID: $productId")
                 _navigateToProductDetail.value = productId
             }
             .addOnFailureListener { e ->

@@ -384,7 +384,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <ImageView
-        android:id="@+id/loading_ilustrassion"
+        android:id="@+id/loadingAnimation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:contentDescription="@string/image_blank_cd"

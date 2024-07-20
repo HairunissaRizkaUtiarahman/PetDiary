@@ -10,7 +10,6 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents
-import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.GrantPermissionRule
@@ -22,8 +21,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.projectPA.petdiary.view.activities.DetailReviewActivity
-import org.projectPA.petdiary.view.activities.ProductPageActivity
 import org.projectPA.petdiary.view.activities.auth.SigninActivity
 
 @RunWith(AndroidJUnit4::class)

@@ -48,6 +48,7 @@ class RecommendProductFragment : Fragment() {
 
         binding.submitButton.setOnClickListener {
             binding.submitButton.isEnabled = false
+            binding.progressBar.visibility = View.VISIBLE
             val productId = viewModel.product.value?.id ?: ""
             if (productId.isNotEmpty()) {
                 viewModel.updateRecommendation(recommend ?: false)

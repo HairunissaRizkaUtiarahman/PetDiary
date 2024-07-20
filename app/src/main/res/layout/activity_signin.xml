@@ -54,7 +54,7 @@
             android:layout_marginTop="25dp"
             app:counterEnabled="true"
             app:counterMaxLength="100"
-            app:helperText="@string/help_name_helper_text">
+            app:helperText="Enter your email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/email_TIET"

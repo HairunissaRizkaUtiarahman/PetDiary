@@ -139,15 +139,15 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun showLoading() {
-        binding.loadingIlustrassion.visibility = View.VISIBLE
-        (binding.loadingIlustrassion.drawable as? AnimationDrawable)?.start()
+        binding.loadingAnimation.visibility = View.VISIBLE
+        (binding.loadingAnimation.drawable as? AnimationDrawable)?.start()
         binding.toolbar.visibility = View.GONE
         binding.mainContent.visibility = View.GONE
     }
 
     private fun showContent() {
-        (binding.loadingIlustrassion.drawable as? AnimationDrawable)?.stop()
-        binding.loadingIlustrassion.visibility = View.GONE
+        (binding.loadingAnimation.drawable as? AnimationDrawable)?.stop()
+        binding.loadingAnimation.visibility = View.GONE
         binding.mainContent.visibility = View.VISIBLE
         binding.toolbar.visibility = View.VISIBLE
     }

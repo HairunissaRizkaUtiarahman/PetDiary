@@ -1,7 +1,5 @@
 package org.projectPA.petdiary
 
-import android.service.controls.ControlsProviderService.TAG
-import android.util.Log
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry

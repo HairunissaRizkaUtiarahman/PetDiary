@@ -1,9 +1,7 @@
 package org.projectPA.petdiary
 
-import android.view.View
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.GeneralLocation
 import androidx.test.espresso.action.GeneralSwipeAction
@@ -15,9 +13,7 @@ import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.GrantPermissionRule
-import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import org.hamcrest.Matcher
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
