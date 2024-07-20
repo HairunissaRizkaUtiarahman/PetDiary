@@ -394,5 +394,9 @@
     <string name="product_namee">Product Name</string>
     <string name="product_descriptionn">Product Description</string>
 
+    <string name="caption">Caption</string>
+    <string name="all_post">All Post</string>
+    <string name="see_more_posts">See More Posts</string>
+
 
 </resources>
