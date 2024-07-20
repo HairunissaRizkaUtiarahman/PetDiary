@@ -66,7 +66,7 @@ class EditProfileTest {
 
         onView(withId(R.id.editProfile_Btn)).perform(click())
 
-        onView(withId(R.id.pick_Btn)).perform(click())
+        onView(withId(R.id.profile_IV)).perform(click())
         onView(withText("Choose from Gallery")).perform(click())
 
 

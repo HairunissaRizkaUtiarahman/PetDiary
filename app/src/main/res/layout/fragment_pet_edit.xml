@@ -50,14 +50,6 @@
                         android:layout_height="150dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/image_profile" />
-
-                    <Button
-                        android:id="@+id/pick_Btn"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/select_image"
-                        android:textStyle="bold" />
                 </LinearLayout>
 
 

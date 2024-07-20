@@ -44,7 +44,7 @@ class CommentPostUserProfileFragment : Fragment() {
 
         postUserProfileViewModel.post.observe(viewLifecycleOwner) {
             with(binding) {
-                descTV.text = it.desc
+                descTV.text = it.caption
                 namePostTV.text = it.user?.name
                 timestampTV.text = it.timePosted?.relativeTime() ?: ""
 

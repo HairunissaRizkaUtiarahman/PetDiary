@@ -12,7 +12,6 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.projectPA.petdiary.PetDiaryApplication
 import org.projectPA.petdiary.model.Post
 import org.projectPA.petdiary.repository.PostRepository
@@ -41,17 +40,25 @@ class PostViewModel(private val postRepository: PostRepository) : ViewModel() {
         }
     }
 
-    fun uploadData(desc: String, uri: Uri?) = viewModelScope.launch(Dispatchers.IO) {
+    fun uploadData(caption: String, uri: Uri?) = viewModelScope.launch(Dispatchers.IO) {
         _isLoading.postValue(true)
-        postRepository.addPost(desc, uri)
+        postRepository.addPost(caption, uri)
         _isLoading.postValue(false)
     }
 
-    fun loadPosts() = viewModelScope.launch {
-        withContext(Dispatchers.Main) {
-            postRepository.getPosts().collect {
-                _posts.value = it
-            }
+    fun loadPosts() = viewModelScope.launch(Dispatchers.IO) {
+        _isLoading.postValue(true)
+        postRepository.getPosts().collect {
+            _posts.postValue(it)
+            _isLoading.postValue(false)
+        }
+    }
+
+    fun loadAllPosts() = viewModelScope.launch(Dispatchers.IO) {
+        _isLoading.postValue(true)
+        postRepository.getAllPosts().collect {
+            _posts.postValue(it)
+            _isLoading.postValue(false)
         }
     }
 

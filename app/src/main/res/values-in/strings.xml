@@ -429,6 +429,8 @@
     <string name="faq_3">Bagaimana Jika Saya Terjebak di Layar Loading?</string>
     <string name="faq_3_1">1. Pastikan koneksi internet stabil</string>
     <string name="faq_3_2">2. Tutup aplikasi dan buka kembali setelah beberapa saat</string>
-
+    <string name="caption">Keterangan</string>
+    <string name="all_post">Semua Postingan</string>
+    <string name="see_more_posts">Lihat Lebih Banyak Post</string>
 
 </resources>
