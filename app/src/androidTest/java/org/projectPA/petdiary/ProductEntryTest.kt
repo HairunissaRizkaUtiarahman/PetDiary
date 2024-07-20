@@ -78,7 +78,7 @@ class ProductEntryTest {
         val intent = Intent().setData(imageUri)
         intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(Instrumentation.ActivityResult(RESULT_OK, intent))
 
-        onView(withId(R.id.submit_button)).check(matches(isEnabled())).perform(click())
+        onView(withId(R.id.next_button)).check(matches(isEnabled())).perform(click())
 
         Thread.sleep(5000)
 

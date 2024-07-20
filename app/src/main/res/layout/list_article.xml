@@ -65,7 +65,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/line3"
+        android:id="@+id/line55"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:layout_marginStart="10dp"

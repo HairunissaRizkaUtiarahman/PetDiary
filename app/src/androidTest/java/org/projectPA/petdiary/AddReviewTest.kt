@@ -86,7 +86,7 @@ class AddReviewTest {
         onView(withId(R.id.next_button_to_recommend_product)).perform(click())
 
         onView(withId(R.id.ic_thumbs_up_inactive)).perform(click())
-        onView(withId(R.id.submit_button)).perform(click())
+        onView(withId(R.id.next_button)).perform(click())
 
         Thread.sleep(5000)
 

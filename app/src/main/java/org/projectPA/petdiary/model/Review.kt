@@ -4,7 +4,6 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
 import java.io.Serializable
 
-
 data class Review(
     var id: String? = "",
     var productId: String = "",

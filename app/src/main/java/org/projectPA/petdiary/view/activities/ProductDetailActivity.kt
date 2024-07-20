@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
@@ -118,6 +119,15 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.percentageOfUser.text = "${product.percentageOfUsers}%"
         Glide.with(this).load(product.imageUrl).into(binding.productPicture)
         binding.ratingBarProduct.rating = product.averageRating.toFloat()
+
+        // Update uploader review section
+        binding.uploaderUsername.text = product.uploaderName
+        binding.reviewDate.text = product.uploaderReviewDate.toString()
+        binding.usageProduct.text = product.usageUploader
+        binding.deskripsiReviewUploader.text = product.uploaderReview
+        binding.ratingBarUploader.rating = product.ratingUploader.toFloat()
+
+
     }
 
     private fun setupRecyclerView() {

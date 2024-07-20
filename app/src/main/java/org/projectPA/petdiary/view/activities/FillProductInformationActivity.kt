@@ -38,7 +38,11 @@ class FillProductInformationActivity : AppCompatActivity() {
         viewModel.validateInputs(
             binding.inputBrandName.text.toString().trim(),
             binding.inputNameProduct.text.toString().trim(),
-            binding.inputDescriptionProduct.text.toString().trim()
+            binding.inputDescriptionProduct.text.toString().trim(),
+            binding.inputReview.text.toString().trim(),
+            binding.ratingBar.rating,
+            binding.usageDropdown.selectedItem.toString(),
+            binding.icThumbsUpInactive.visibility == View.VISIBLE
         )
     }
 
@@ -50,7 +54,11 @@ class FillProductInformationActivity : AppCompatActivity() {
         viewModel.validateInputs(
             binding.inputBrandName.text.toString().trim(),
             binding.inputNameProduct.text.toString().trim(),
-            binding.inputDescriptionProduct.text.toString().trim()
+            binding.inputDescriptionProduct.text.toString().trim(),
+            binding.inputReview.text.toString().trim(),
+            binding.ratingBar.rating,
+            binding.usageDropdown.selectedItem.toString(),
+            binding.icThumbsUpInactive.visibility == View.VISIBLE
         )
     }
 
@@ -89,7 +97,11 @@ class FillProductInformationActivity : AppCompatActivity() {
             viewModel.validateInputs(
                 text.toString().trim(),
                 binding.inputNameProduct.text.toString().trim(),
-                binding.inputDescriptionProduct.text.toString().trim()
+                binding.inputDescriptionProduct.text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                binding.icThumbsUpInactive.visibility == View.VISIBLE
             )
             viewModel.checkProductNameExists(
                 text.toString().trim(),
@@ -105,7 +117,11 @@ class FillProductInformationActivity : AppCompatActivity() {
             viewModel.validateInputs(
                 binding.inputBrandName.text.toString().trim(),
                 productName,
-                binding.inputDescriptionProduct.text.toString().trim()
+                binding.inputDescriptionProduct.text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                binding.icThumbsUpInactive.visibility == View.VISIBLE
             )
         }
 
@@ -120,7 +136,11 @@ class FillProductInformationActivity : AppCompatActivity() {
             viewModel.validateInputs(
                 binding.inputBrandName.text.toString().trim(),
                 binding.inputNameProduct.text.toString().trim(),
-                text.toString().trim()
+                text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                binding.icThumbsUpInactive.visibility == View.VISIBLE
             )
         }
 
@@ -132,12 +152,17 @@ class FillProductInformationActivity : AppCompatActivity() {
                 val description = binding.inputDescriptionProduct.text.toString().trim()
                 val petType = intent.getStringExtra(PET_TYPE_KEY) ?: ""
                 val category = intent.getStringExtra(CATEGORY_KEY) ?: ""
+                val review = binding.inputReview.text.toString().trim()
+                val rating = binding.ratingBar.rating
+                val usage = binding.usageDropdown.selectedItem.toString()
+                val recommend = binding.icThumbsUpInactive.visibility == View.VISIBLE
 
                 Log.d("FillProductInformationActivity", "Submitting data...")
-                viewModel.uploadData(this, brandName, productName, description, petType, category)
+                viewModel.uploadData(this, brandName, productName, description, petType, category, review, rating, usage, recommend)
             }
             binding.submitButton.isEnabled = false
         }
+
     }
 
     private fun setupObservers() {
@@ -159,7 +184,11 @@ class FillProductInformationActivity : AppCompatActivity() {
             viewModel.validateInputs(
                 binding.inputBrandName.text.toString().trim(),
                 binding.inputNameProduct.text.toString().trim(),
-                binding.inputDescriptionProduct.text.toString().trim()
+                binding.inputDescriptionProduct.text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                binding.icThumbsUpInactive.visibility == View.VISIBLE
             )
         })
 

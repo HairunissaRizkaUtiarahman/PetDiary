@@ -12,10 +12,16 @@ data class Product(
     var desc: String = "",
     var imageUrl: String? = null,
     var averageRating: Double = 0.0,
-    val totalRating: Double = 0.0,
+    var totalRating: Double = 0.0,
     var reviewCount: Int = 0,
     var percentageOfUsers: Int = 0,
     var timeAdded: Timestamp? = Timestamp.now(),
     var lowercaseProductName: String = productName.lowercase(),
-    var lowercaseBrandName: String = brandName.lowercase()
+    var lowercaseBrandName: String = brandName.lowercase(),
+    var uploaderName: String = "",
+    var uploaderReviewDate: Timestamp? = Timestamp.now(),
+    var uploaderReview: String = "",
+    var usageUploader: String = "",
+    var ratingUploader: Double = 0.0,
+    var recommendUploader: Boolean = false
 ) : Serializable

@@ -393,6 +393,9 @@
     <string name="brand_namee">Brand Name</string>
     <string name="product_namee">Product Name</string>
     <string name="product_descriptionn">Product Description</string>
+    <string name="write_your_review">Write your review</string>
+    <string name="review_must_at_least_have_10_words">Review must at least have 10 words</string>
+    <string name="submitt">Submit</string>
 
 
 </resources>
