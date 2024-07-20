@@ -429,6 +429,12 @@
     <string name="faq_3">Bagaimana Jika Saya Terjebak di Layar Loading?</string>
     <string name="faq_3_1">1. Pastikan koneksi internet stabil</string>
     <string name="faq_3_2">2. Tutup aplikasi dan buka kembali setelah beberapa saat</string>
+    <string name="product_description_must_be_at_least_30_characters_long">Product Description must be at least 30 characters long</string>
+    <string name="product_name_already_existt">Product name already Exist</string>
+    <string name="brand_namee">Brand Name</string>
+    <string name="product_namee">Product Name</string>
+    <string name="product_descriptionn">Product Description</string>
+
     <string name="caption">Keterangan</string>
     <string name="all_post">Semua Postingan</string>
     <string name="see_more_posts">Lihat Lebih Banyak Post</string>

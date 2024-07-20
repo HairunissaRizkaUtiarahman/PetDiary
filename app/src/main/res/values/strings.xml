@@ -397,5 +397,9 @@
     <string name="review_must_at_least_have_10_words">Review must at least have 10 words</string>
     <string name="submitt">Submit</string>
 
+    <string name="caption">Caption</string>
+    <string name="all_post">All Post</string>
+    <string name="see_more_posts">See More Posts</string>
+
 
 </resources>
