@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -28,6 +30,7 @@ class FillProductInformationActivity : AppCompatActivity() {
     private val PET_TYPE_KEY = "pet_type"
     private val CATEGORY_KEY = "category"
     private val CAMERA_PERMISSION_REQUEST_CODE = 1001
+    private var recommend: Boolean = false
 
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
         if (success) {
@@ -42,7 +45,7 @@ class FillProductInformationActivity : AppCompatActivity() {
             binding.inputReview.text.toString().trim(),
             binding.ratingBar.rating,
             binding.usageDropdown.selectedItem.toString(),
-            binding.icThumbsUpInactive.visibility == View.VISIBLE
+            recommend
         )
     }
 
@@ -58,7 +61,7 @@ class FillProductInformationActivity : AppCompatActivity() {
             binding.inputReview.text.toString().trim(),
             binding.ratingBar.rating,
             binding.usageDropdown.selectedItem.toString(),
-            binding.icThumbsUpInactive.visibility == View.VISIBLE
+            recommend
         )
     }
 
@@ -73,6 +76,18 @@ class FillProductInformationActivity : AppCompatActivity() {
 
         setupListeners()
         setupObservers()
+        setupUsageSpinner(binding.usageDropdown)
+    }
+
+    private fun setupUsageSpinner(spinner: Spinner) {
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.usage_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
     }
 
     private fun setupListeners() {
@@ -101,7 +116,7 @@ class FillProductInformationActivity : AppCompatActivity() {
                 binding.inputReview.text.toString().trim(),
                 binding.ratingBar.rating,
                 binding.usageDropdown.selectedItem.toString(),
-                binding.icThumbsUpInactive.visibility == View.VISIBLE
+                recommend
             )
             viewModel.checkProductNameExists(
                 text.toString().trim(),
@@ -121,7 +136,7 @@ class FillProductInformationActivity : AppCompatActivity() {
                 binding.inputReview.text.toString().trim(),
                 binding.ratingBar.rating,
                 binding.usageDropdown.selectedItem.toString(),
-                binding.icThumbsUpInactive.visibility == View.VISIBLE
+                recommend
             )
         }
 
@@ -140,7 +155,26 @@ class FillProductInformationActivity : AppCompatActivity() {
                 binding.inputReview.text.toString().trim(),
                 binding.ratingBar.rating,
                 binding.usageDropdown.selectedItem.toString(),
-                binding.icThumbsUpInactive.visibility == View.VISIBLE
+                recommend
+            )
+        }
+
+        binding.inputReview.addTextChangedListener { text ->
+            if (text != null) {
+                if (text.split(" ").size < 10) {
+                    binding.warningReview.visibility = View.VISIBLE
+                } else {
+                    binding.warningReview.visibility = View.GONE
+                }
+            }
+            viewModel.validateInputs(
+                binding.inputBrandName.text.toString().trim(),
+                binding.inputNameProduct.text.toString().trim(),
+                binding.inputDescriptionProduct.text.toString().trim(),
+                text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                recommend
             )
         }
 
@@ -155,7 +189,6 @@ class FillProductInformationActivity : AppCompatActivity() {
                 val review = binding.inputReview.text.toString().trim()
                 val rating = binding.ratingBar.rating
                 val usage = binding.usageDropdown.selectedItem.toString()
-                val recommend = binding.icThumbsUpInactive.visibility == View.VISIBLE
 
                 Log.d("FillProductInformationActivity", "Submitting data...")
                 viewModel.uploadData(this, brandName, productName, description, petType, category, review, rating, usage, recommend)
@@ -163,6 +196,35 @@ class FillProductInformationActivity : AppCompatActivity() {
             binding.submitButton.isEnabled = false
         }
 
+        binding.icThumbsUpInactive.setOnClickListener {
+            recommend = true
+            binding.icThumbsUpInactive.setImageResource(R.drawable.ic_thumbs_up_active)
+            binding.icThumbsDownInactive.setImageResource(R.drawable.ic_thumbs_down_inactive)
+            viewModel.validateInputs(
+                binding.inputBrandName.text.toString().trim(),
+                binding.inputNameProduct.text.toString().trim(),
+                binding.inputDescriptionProduct.text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                recommend
+            )
+        }
+
+        binding.icThumbsDownInactive.setOnClickListener {
+            recommend = false
+            binding.icThumbsUpInactive.setImageResource(R.drawable.ic_thumbs_up_inactive)
+            binding.icThumbsDownInactive.setImageResource(R.drawable.ic_thumbs_down_active)
+            viewModel.validateInputs(
+                binding.inputBrandName.text.toString().trim(),
+                binding.inputNameProduct.text.toString().trim(),
+                binding.inputDescriptionProduct.text.toString().trim(),
+                binding.inputReview.text.toString().trim(),
+                binding.ratingBar.rating,
+                binding.usageDropdown.selectedItem.toString(),
+                recommend
+            )
+        }
     }
 
     private fun setupObservers() {
@@ -188,7 +250,7 @@ class FillProductInformationActivity : AppCompatActivity() {
                 binding.inputReview.text.toString().trim(),
                 binding.ratingBar.rating,
                 binding.usageDropdown.selectedItem.toString(),
-                binding.icThumbsUpInactive.visibility == View.VISIBLE
+                recommend
             )
         })
 

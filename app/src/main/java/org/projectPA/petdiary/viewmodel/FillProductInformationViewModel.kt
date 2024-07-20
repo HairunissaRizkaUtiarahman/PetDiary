@@ -110,8 +110,8 @@ class FillProductInformationViewModel : ViewModel() {
     fun uploadData(activity: Activity, brandName: String, productName: String, description: String, petType: String, category: String, review: String, rating: Float, usage: String, recommend: Boolean) {
         val formattedProductName = capitalizeWords(productName)
         FirebaseFirestore.getInstance().collection("products")
-            .whereEqualTo("productNameLower", formattedProductName.lowercase())
-            .whereEqualTo("brandNameLower", brandName.lowercase())
+            .whereEqualTo("lowercaseProductName", formattedProductName.lowercase())
+            .whereEqualTo("lowercaseBrandName", brandName.lowercase())
             .get()
             .addOnSuccessListener { documents ->
                 if (documents.isEmpty) {
