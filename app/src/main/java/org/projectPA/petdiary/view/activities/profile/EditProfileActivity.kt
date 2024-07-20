@@ -80,7 +80,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         // Tombol "Pilih Gambar"
-        binding.pickBtn.setOnClickListener {
+        binding.profileIV.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Select Image")

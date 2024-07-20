@@ -68,7 +68,7 @@ class ManagePetTest {
 
         onView(withId(R.id.addPet_Btn)).perform(click())
 
-        onView(withId(R.id.pick_Btn)).perform(click())
+        onView(withId(R.id.petImage_IV)).perform(click())
         onView(withText("Choose from Gallery")).perform(click())
 
         val imageUri = Uri.parse("android.resource:////org.projectPA.petdiary/drawable/test_image")

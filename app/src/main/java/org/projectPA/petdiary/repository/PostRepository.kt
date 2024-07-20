@@ -29,13 +29,13 @@ class PostRepository(
 ) {
 
     // Query Menambahkan Post ke Firestore
-    suspend fun addPost(desc: String, uri: Uri?) {
+    suspend fun addPost(caption: String, uri: Uri?) {
         try {
             val userId = auth.currentUser!!.uid
 
             val postMap = hashMapOf(
                 "userId" to userId,
-                "desc" to desc,
+                "caption" to caption,
                 "timePosted" to Timestamp.now(),
                 "isDeleted" to false,
                 "imageUrl" to ""
@@ -65,7 +65,36 @@ class PostRepository(
 
             db.collection("posts").whereEqualTo("isDeleted", false)
                 .orderBy("timePosted", Query.Direction.DESCENDING)
-                .limit(10)
+                .limit(5)
+                .snapshots().map { snapshot ->
+                    snapshot.map {
+                        val userId = it.data["userId"] as String? ?: ""
+                        val user = db
+                            .collection("users")
+                            .document(userId).get()
+                            .await().toObject(User::class.java)?.copy(id = userId)
+
+                        val like = db
+                            .collection("likes")
+                            .document("${currentUserID}_${it.id}").get().await()
+                            .toObject(Like::class.java)
+
+                        it.toObject(Post::class.java).copy(id = it.id, user = user, like = like)
+                    }
+                }
+        } catch (e: FirebaseFirestoreException) {
+            Log.e(LOG_TAG, "Fail to get random posts data", e)
+            emptyFlow()
+        }
+    }
+
+    // Query Mengambil daftar Post dari Firestore untuk di Community
+    suspend fun getAllPosts(): Flow<List<Post>> {
+        return try {
+            val currentUserID = auth.currentUser!!.uid
+
+            db.collection("posts").whereEqualTo("isDeleted", false)
+                .orderBy("timePosted", Query.Direction.DESCENDING)
                 .snapshots().map { snapshot ->
                     snapshot.map {
                         val userId = it.data["userId"] as String? ?: ""
@@ -285,7 +314,7 @@ class PostRepository(
 
                         it.toObject(Post::class.java)?.copy(id = it.id, user = user, like = like)
                     }.filter {
-                        it.desc?.contains(query, ignoreCase = true) == true
+                        it.caption?.contains(query, ignoreCase = true) == true
                     }
                 }
         } catch (e: FirebaseFirestoreException) {

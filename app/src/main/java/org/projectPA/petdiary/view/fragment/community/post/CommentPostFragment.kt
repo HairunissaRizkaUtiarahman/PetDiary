@@ -43,7 +43,7 @@ class CommentPostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         postViewModel.post.observe(viewLifecycleOwner) { post ->
             with(binding) {
-                descTV.text = post.desc
+                descTV.text = post.caption
                 namePostTV.text = post.user?.name
                 timestampTV.text = post.timePosted?.relativeTime() ?: ""
 

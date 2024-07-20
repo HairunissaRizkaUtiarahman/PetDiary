@@ -31,7 +31,7 @@ class PostAdapter(val onClick: (Post, View) -> Unit, val onLike: (Post) -> Unit)
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(post: Post) = with(binding) {
-            descTV.text = post.desc
+            descTV.text = post.caption
             nameTV.text = post.user?.name
             timestampTV.text = post.timePosted?.relativeTime() ?: ""
 

@@ -49,16 +49,6 @@
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/circulas" />
 
-                <Button
-                    android:id="@+id/pick_Btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/select_image"
-                    android:textStyle="bold" />
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/desc_TIL"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -75,7 +65,7 @@
                         android:layout_height="100dp"
                         android:layout_gravity="top"
                         android:gravity="top"
-                        android:hint="@string/description"
+                        android:hint="@string/caption"
                         android:inputType="textMultiLine|textCapSentences"
                         android:maxEms="30"
                         android:minEms="10"

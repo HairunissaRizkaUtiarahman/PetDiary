@@ -91,7 +91,7 @@ class PetEditFragment : Fragment() {
         }
 
         // Tombol "Pilih Gambar"
-        binding.pickBtn.setOnClickListener {
+        binding.petImageIV.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(requireContext())
             builder.setTitle("Select Image")

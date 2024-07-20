@@ -73,7 +73,7 @@ class CommunityTest {
 
         Thread.sleep(5000)
 
-        onView(withId(R.id.pick_Btn)).perform(click())
+        onView(withId(R.id.postImage_IV)).perform(click())
         onView(withText("Choose from Gallery")).perform(click())
 
         val imageUri = Uri.parse("android.resource:////org.projectPA.petdiary/drawable/test_image")

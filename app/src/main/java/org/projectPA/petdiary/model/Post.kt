@@ -6,7 +6,7 @@ import java.io.Serializable
 
 data class Post(
     @get:Exclude val id: String? = "",
-    val desc: String? = "",
+    val caption: String? = "",
     val imageUrl: String? = "",
     val timePosted: Timestamp? = Timestamp.now(),
     val isDeleted: Boolean? = false,

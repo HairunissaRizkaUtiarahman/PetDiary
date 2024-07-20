@@ -78,7 +78,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
         }
 
         // Tombol "Pilih Gambar"
-        binding.pickBtn.setOnClickListener {
+        binding.postImageIV.setOnClickListener {
             val options = arrayOf("Take Picture", "Choose from Gallery")
             val builder = android.app.AlertDialog.Builder(this)
             builder.setTitle("Select Image")
@@ -93,10 +93,10 @@ class AddPostCommunityActivity : AppCompatActivity() {
 
         // Tombol "Post"
         binding.postBtn.setOnClickListener {
-            val desc = binding.descTIET.text.toString().trim()
+            val caption = binding.descTIET.text.toString().trim()
 
             // Validasi input desc tidak boleh kosong & max 100 karakter
-            if (desc.isEmpty() || desc.length > 1000) {
+            if (caption.isEmpty() || caption.length > 1000) {
                 Toast.makeText(
                     this,
                     "Description is required and must be less than 1000 characters",
@@ -106,7 +106,7 @@ class AddPostCommunityActivity : AppCompatActivity() {
             }
 
             // Mengunggah data Post ke ViewModel
-            viewModel.uploadData(desc, imageUri)
+            viewModel.uploadData(caption, imageUri)
             Toast.makeText(this, "Success Upload Post", Toast.LENGTH_SHORT).show()
 
             binding.descTIET.text?.clear()

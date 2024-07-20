@@ -46,20 +46,29 @@ class PostFragment : Fragment() {
             adapter.submitList(posts)
 
             // Tampilkan jika tidak ada post atau semua post telah dihapus
-            if (posts.isEmpty() || posts.all { it.isDeleted == true }) {
-                binding.noPostTV.visibility = View.VISIBLE
-                binding.postRV.visibility = View.GONE
-            } else {
-                binding.noPostTV.visibility = View.GONE
-                binding.postRV.visibility = View.VISIBLE
-            }
+            binding.noPostTV.visibility = if (posts.isEmpty()) View.VISIBLE else View.GONE
+            binding.postRV.visibility = if (posts.isEmpty()) View.GONE else View.VISIBLE
+
+            // Tampilkan tombol See More jika jumlah postingan lebih dari 5
+            binding.seeMoreBtn.visibility = if (posts.size > 5) View.GONE else View.VISIBLE
         }
 
         // Memuat daftar post dari viewModel
         viewModel.loadPosts()
 
+        // Mengamati perubahan status loading di ViewModel
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.addPostFAB.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.addPostFAB.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
         // Tombol Add Post
-        binding.addPostBtn.setOnClickListener {
+        binding.addPostFAB.setOnClickListener {
             val intent = Intent(requireContext(), AddPostCommunityActivity::class.java)
             startActivity(intent)
         }
@@ -75,7 +84,12 @@ class PostFragment : Fragment() {
             }
         }
 
-        // Tombol Back di TopAppBar untuk mengakahiri activity
+        // Tombol See All Post
+        binding.seeMoreBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_communityFragment_to_allPostFragment)
+        }
+
+        // Tombol Back di TopAppBar untuk mengakhiri activity
         binding.topAppBar.setNavigationOnClickListener {
             requireActivity().finish()
         }
