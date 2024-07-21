@@ -103,8 +103,6 @@ class ReviewFlowTest {
 
         intended(hasComponent(ProductDetailActivity::class.java.name))
 
-        Thread.sleep(10000)
-
 
         onView(withId(R.id.main_content)).check(matches(isDisplayed()))
 

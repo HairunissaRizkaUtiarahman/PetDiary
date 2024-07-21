@@ -92,7 +92,7 @@ class ProductDetailActivity : AppCompatActivity() {
         })
 
         viewModel.reviews.observe(this, Observer { reviews ->
-            val filteredReviews = reviews.filter { it.userId != product.uploaderName }
+            val filteredReviews = reviews.filter { it.userId != product.uploaderUserid }
             val limitedReviews = filteredReviews.takeIf { it.size > 5 }?.take(5) ?: filteredReviews
             reviewAdapter.updateData(limitedReviews)
             updateReviewVisibility(filteredReviews)
@@ -123,13 +123,13 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.ratingBarProduct.rating = product.averageRating.toFloat()
 
         // Update uploader review section
-        product.uploaderName?.let { userId ->
+        product.uploaderUserid?.let { userId ->
             viewModel.fetchUploaderName(userId) { userName, userImageUrl ->
                 binding.uploaderUsername.text = userName
                 userImageUrl?.let { imageUrl ->
                     Glide.with(this).load(imageUrl).into(binding.uploaderPhotoProfile)
                 } ?: run {
-                    binding.uploaderPhotoProfile.setImageResource(R.drawable.ic_user) // Default image
+                    binding.uploaderPhotoProfile.setImageResource(R.drawable.image_profile) // Default image
                 }
             }
         }
@@ -141,7 +141,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.recomendedOrNotText.text = if (product.recommendUploader) "I Recommend This Product" else "Not Recommended"
 
         // Disable review button if the current user is the uploader
-        binding.reviewButton.isEnabled = product.uploaderName != currentUserId
+        binding.reviewButton.isEnabled = product.uploaderUserid != currentUserId
     }
 
     private fun setupRecyclerView() {

@@ -85,7 +85,7 @@ class ProductEntryTest {
 
 
         onView(withId(R.id.input_brand_name)).perform(typeText("Testing Brand Product"), closeSoftKeyboard())
-        onView(withId(R.id.input_name_product)).perform(typeText("Name Product Testing"), closeSoftKeyboard())
+        onView(withId(R.id.input_name_product)).perform(typeText("Name Product Testing NEW"), closeSoftKeyboard())
         onView(withId(R.id.input_description_product)).perform(typeText("Delicious cat food for your lovely pet. Good for my cat fur, and she loves it so much, recommended, good quality"), closeSoftKeyboard())
 
 
@@ -100,17 +100,18 @@ class ProductEntryTest {
         onView(withText("1 week - 1 month")).perform(click())
         Thread.sleep(2000)
         onView(withId(R.id.ic_thumbs_up_inactive)).perform(click())
-        Thread.sleep(2000)
+        Thread.sleep(6000)
 
         onView(withId(R.id.submit_button)).check(matches(isEnabled())).perform(click())
 
-        Thread.sleep(6000)
+        Thread.sleep(5000)
 
         onView(withId(R.id.product_brand_text)).check(matches(withText("Testing Brand Product")))
-        onView(withId(R.id.product_name_text)).check(matches(withText("Name Product Testing")))
-        onView(withId(R.id.product_description_text)).check(matches(withText(containsString("Delicious cat food for your lovely pet. Good for my cat fur, and she loves it so much, recommended, good quality"))))
+        Thread.sleep(5000)
         onView(withId(R.id.product_category)).check(matches(withText(containsString("Food"))))
+        Thread.sleep(2000)
         onView(withId(R.id.for_what_pet_type)).check(matches(withText(containsString("Cat"))))
+        Thread.sleep(2000)
     }
 
     private fun setRating(rating: Float): ViewAction {

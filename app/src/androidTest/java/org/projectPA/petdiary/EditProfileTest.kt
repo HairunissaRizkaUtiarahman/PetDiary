@@ -74,16 +74,17 @@ class EditProfileTest {
         val intent = Intent().setData(imageUri)
         intending(hasAction(Intent.ACTION_GET_CONTENT)).respondWith(Instrumentation.ActivityResult(RESULT_OK, intent))
 
-        onView(withId(R.id.name_TIET)).perform(typeText(" Official"), closeSoftKeyboard())
-        onView(withId(R.id.address_TIET)).perform(typeText(" Sukapura"), closeSoftKeyboard())
+        onView(withId(R.id.name_TIET)).perform(typeText(" Article Pet Diary Official"), closeSoftKeyboard())
+        onView(withId(R.id.address_TIET)).perform(typeText(" university"), closeSoftKeyboard())
 
         onView(withId(R.id.main_content)).perform(swipeUpSlightly())
-        onView(withId(R.id.bio_TIET)).perform(typeText(" admin"), closeSoftKeyboard())
+        onView(withId(R.id.bio_TIET)).perform(typeText(" article PetDiary"), closeSoftKeyboard())
 
         onView(withId(R.id.save_Btn)).perform(click())
 
-        Thread.sleep(5000)
 
+        Thread.sleep(10000)
+        onView(withId(R.id.myProfile_Btn)).check(matches(isDisplayed()))
         onView(withId(R.id.myProfile_Btn)).perform(click())
 
         Thread.sleep(5000)
@@ -92,7 +93,7 @@ class EditProfileTest {
 
         Thread.sleep(6000)
 
-        onView(withId(R.id.name_Tv)).check(matches(withText("Pet Diary Admin Official")))
-        onView(withId(R.id.bio_Tv)).check(matches(withText("Official akun PetDiary admin")))
+        onView(withId(R.id.name_Tv)).check(matches(withText("Editor Article Pet Diary Official")))
+        onView(withId(R.id.bio_Tv)).check(matches(withText("Editor article PetDiary")))
     }
 }

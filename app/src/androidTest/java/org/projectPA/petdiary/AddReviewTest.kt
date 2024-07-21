@@ -75,11 +75,14 @@ class AddReviewTest {
         onView(withId(R.id.list_product))
             .perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
 
-        onView(withId(R.id.ratingBar)).perform(setRating(4.0f))
+        onView(withId(R.id.ratingBar)).perform(setRating(3.0f))
         onView(withId(R.id.next_button_to_usage_product)).perform(click())
 
+        Thread.sleep(5000)
         onView(withId(R.id.usageDropdown)).perform(click())
+        Thread.sleep(2000)
         onView(withText("2 – 6 months")).perform(click())
+        Thread.sleep(2000)
         onView(withId(R.id.next_button_to_write_review)).perform(click())
 
         onView(withId(R.id.reviewEditText)).perform(typeText("This is a great product. I highly recommend it!, this for testing add product"), closeSoftKeyboard())

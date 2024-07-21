@@ -2,23 +2,52 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="ProductEntryTest">
+      <entry key="AddReviewCommentTest">
         <State />
       </entry>
-      <entry key="ResetPasswordActivityTest">
+      <entry key="AddReviewTest">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RR8R103YHYV-HWme4i._adb-tls-connect._tcp" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:20:36.298939400Z" />
+        </State>
+      </entry>
+      <entry key="ChangeLanguageTest">
         <State />
       </entry>
-      <entry key="SigninActivityTest">
-        <State />
+      <entry key="EditProfileTest">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="adb-RR8R103YHYV-HWme4i._adb-tls-connect._tcp" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:56:34.978508400Z" />
+        </State>
       </entry>
-      <entry key="SignupActivityTest">
+      <entry key="ReviewFlowTest">
         <State />
       </entry>
       <entry key="app">
         <State>
-          <targetSelectedWithDropDown>
+          <runningDeviceTargetSelectedWithDropDown>
             <Target>
-              <type value="QUICK_BOOT_TARGET" />
+              <type value="RUNNING_DEVICE_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
@@ -26,12 +55,9 @@
                 </Key>
               </deviceKey>
             </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-20T14:01:57.029101800Z" />
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:15:53.067135800Z" />
         </State>
-      </entry>
-      <entry key="testValidEmailOpenSignin()">
-        <State />
       </entry>
     </value>
   </component>

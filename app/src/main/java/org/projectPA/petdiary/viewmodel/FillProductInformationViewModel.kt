@@ -162,7 +162,7 @@ class FillProductInformationViewModel : ViewModel() {
             timeAdded = Timestamp.now(),
             lowercaseProductName = productName.lowercase(),
             lowercaseBrandName = brandName.lowercase(),
-            uploaderName = userId,
+            uploaderUserid = userId,
             uploaderReviewDate = Timestamp.now(),
             uploaderReview = review,
             usageUploader = usage,

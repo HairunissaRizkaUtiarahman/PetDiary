@@ -18,7 +18,7 @@ data class Product(
     var timeAdded: Timestamp? = Timestamp.now(),
     var lowercaseProductName: String = productName.lowercase(),
     var lowercaseBrandName: String = brandName.lowercase(),
-    var uploaderName: String = "",
+    var uploaderUserid: String = "",
     var uploaderReviewDate: Timestamp? = Timestamp.now(),
     var uploaderReview: String = "",
     var usageUploader: String = "",
