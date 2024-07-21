@@ -55,7 +55,7 @@
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_profile" />
+                        android:src="@drawable/background_upload_picture" />
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
