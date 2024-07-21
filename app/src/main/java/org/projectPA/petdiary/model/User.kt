@@ -14,5 +14,5 @@ data class User(
     val postCount: Int? = 0,
     val reviewCount: Int? = 0,
     val petCount: Int? = 0,
-    val isModerator: Boolean = false
+    val isArticleEditor: Boolean = false
 ) : Serializable

@@ -130,8 +130,8 @@ class ArticleActivity : AppCompatActivity() {
     }
 
     private fun observeUser() {
-        viewModel.isModerator.observe(this) { isModerator ->
-            if (isModerator) {
+        viewModel.isArticleEditor.observe(this) { isArticleEditor ->
+            if (isArticleEditor) {
                 binding.deleteButton.visibility = View.VISIBLE
             } else {
                 binding.deleteButton.visibility = View.GONE

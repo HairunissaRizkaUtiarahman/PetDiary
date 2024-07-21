@@ -44,7 +44,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
                         "postCount" to 0,
                         "reviewCount" to 0,
                         "petCount" to 0,
-                        "isModerator" to false
+                        "isArticleEditor" to false
                     )
                     val db = FirebaseFirestore.getInstance()
                     db.collection("users").document(userId).set(user)

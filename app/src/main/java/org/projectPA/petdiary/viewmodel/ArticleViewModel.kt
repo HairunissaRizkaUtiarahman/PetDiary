@@ -26,12 +26,12 @@ class ArticleViewModel : ViewModel() {
     private val _relatedArticles = MutableLiveData<List<Article>>()
     val relatedArticles: LiveData<List<Article>> get() = _relatedArticles
 
-    private val _isModerator = MutableLiveData<Boolean>()
-    val isModerator: LiveData<Boolean> get() = _isModerator
+    private val _isArticleEditor = MutableLiveData<Boolean>()
+    val isArticleEditor: LiveData<Boolean> get() = _isArticleEditor
 
     init {
         fetchArticles()
-        checkModeratorStatus()
+        checkArticleEditorStatus()
     }
 
     fun fetchArticles() {
@@ -153,18 +153,18 @@ class ArticleViewModel : ViewModel() {
         }
     }
 
-    private fun checkModeratorStatus() {
+    private fun checkArticleEditorStatus() {
         viewModelScope.launch {
             val currentUser = FirebaseAuth.getInstance().currentUser
             currentUser?.let { user ->
-                val isModerator = try {
+                val isArticleEditor = try {
                     val document = db.collection("users").document(user.uid).get().await()
-                    document.getBoolean("isModerator") ?: false
+                    document.getBoolean("isArticleEditor") ?: false
                 } catch (e: Exception) {
                     false
                 }
-                _isModerator.postValue(isModerator)
-            } ?: _isModerator.postValue(false)
+                _isArticleEditor.postValue(isArticleEditor)
+            } ?: _isArticleEditor.postValue(false)
         }
     }
 }
