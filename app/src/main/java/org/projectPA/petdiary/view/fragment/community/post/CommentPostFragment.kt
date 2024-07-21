@@ -16,8 +16,10 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentPostCommentBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.CommentPostAdapter
@@ -162,7 +164,7 @@ class CommentPostFragment : Fragment() {
                 val commentPost = commentPostAdapter.currentList[position]
                 commentPost.id?.let {
                     commentPostViewModel.deleteComment(postViewModel.post.value?.id ?: "", it)
-                    Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+                    showSnackbar("Comment deleted")
                 }
             }
 
@@ -209,5 +211,16 @@ class CommentPostFragment : Fragment() {
 
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(binding.commentsRV)
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 }

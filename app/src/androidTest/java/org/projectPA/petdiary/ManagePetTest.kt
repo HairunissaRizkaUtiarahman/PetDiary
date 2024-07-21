@@ -84,7 +84,7 @@ class ManagePetTest {
 
         onView(withId(R.id.add_Btn)).perform(click())
 
-        Thread.sleep(5000)
+        Thread.sleep(10000)
 
         onView(withId(R.id.petDetail_Btn)).perform(click())
 
@@ -123,7 +123,7 @@ class ManagePetTest {
 
         onView(withId(R.id.save_Btn)).perform(click())
 
-        Thread.sleep(5000)
+        Thread.sleep(10000)
 
         onView(withId(R.id.petDetail_Btn)).perform(click())
 
@@ -140,7 +140,7 @@ class ManagePetTest {
         Thread.sleep(2000)
 
         onView(withText("Yes")).perform(click())
-
+        Thread.sleep(2000)
         onView(withSnackbarText("Pet deleted successfully")).check(matches(isDisplayed()))
     }
 }

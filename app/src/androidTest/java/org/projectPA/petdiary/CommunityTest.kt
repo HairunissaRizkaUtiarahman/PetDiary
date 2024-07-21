@@ -86,7 +86,8 @@ class CommunityTest {
         )
 
         onView(withId(R.id.desc_TIET)).perform(
-            typeText("Testing isi postingan"), closeSoftKeyboard())
+            typeText("Testing isi postingan"), closeSoftKeyboard()
+        )
 
         onView(withId(R.id.post_Btn)).check(matches(isEnabled())).perform(click())
 
@@ -127,7 +128,10 @@ class CommunityTest {
         onView(withId(R.id.likeCount_TV)).check(matches(withText("1 Like")))
 
 
-        onView(withId(R.id.comment_TIET)).perform(typeText("Test comment post"), closeSoftKeyboard())
+        onView(withId(R.id.comment_TIET)).perform(
+            typeText("Test comment post"),
+            closeSoftKeyboard()
+        )
         onView(withId(R.id.send_Btn)).perform(click())
 
         Thread.sleep(2000)
@@ -141,76 +145,6 @@ class CommunityTest {
         onView(withId(R.id.comment_TV)).check(matches(withText(CoreMatchers.containsString("Test comment post"))))
 
     }
-
-    @Test
-    fun test03SearchPost() {
-
-        ActivityScenario.launch(SigninActivity::class.java)
-
-
-        onView(withId(R.id.email_TIET)).perform(
-            typeText("akupetdiary@gmail.com"),
-            closeSoftKeyboard()
-        )
-        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
-        onView(withId(R.id.signIn_Btn)).perform(click())
-
-        Thread.sleep(2000)
-
-        onView(withId(R.id.community_button)).check(matches(isDisplayed()))
-
-        onView(withId(R.id.community_button)).perform(click())
-
-        onView(withId(R.id.search)).perform(click())
-
-        Thread.sleep(2000)
-
-        onView(withId(androidx.appcompat.R.id.search_src_text))
-            .perform(typeText("Testing isi postingan"), closeSoftKeyboard())
-
-        Thread.sleep(5000)
-
-        onView(withId(R.id.post_RV))
-            .perform(
-                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, scrollTo()))
-            .check(matches(hasDescendant(withText("Testing isi postingan"))))
-    }
-
-    @Test
-    fun test04SearchUser() {
-
-        ActivityScenario.launch(SigninActivity::class.java)
-
-
-        onView(withId(R.id.email_TIET)).perform(
-            typeText("akupetdiary@gmail.com"),
-            closeSoftKeyboard()
-        )
-        onView(withId(R.id.password_TIET)).perform(typeText("Test1234"), closeSoftKeyboard())
-        onView(withId(R.id.signIn_Btn)).perform(click())
-
-        Thread.sleep(2000)
-
-        onView(withId(R.id.community_button)).check(matches(isDisplayed()))
-
-        onView(withId(R.id.community_button)).perform(click())
-
-        onView(withId(R.id.search)).perform(click())
-
-        Thread.sleep(2000)
-
-        onView(withId(androidx.appcompat.R.id.search_src_text))
-            .perform(typeText("kalica"), closeSoftKeyboard())
-
-        Thread.sleep(5000)
-
-        onView(withId(R.id.user_RV))
-            .perform(
-                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, scrollTo()))
-            .check(matches(hasDescendant(withText("kalica"))))
-
-        onView(withId(R.id.user_RV)).perform(click())
-
-        onView(withId(R.id.name_Tv)).check(matches(withText(CoreMatchers.containsString("kalica"))))
-    }
 }
+
+

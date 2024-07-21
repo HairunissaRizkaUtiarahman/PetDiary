@@ -2,10 +2,10 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AddReviewCommentTest">
+      <entry key="CommunityTest">
         <State />
       </entry>
-      <entry key="AddReviewTest">
+      <entry key="DeleteCommentPostTest">
         <State>
           <runningDeviceTargetSelectedWithDropDown>
             <Target>
@@ -18,36 +18,23 @@
               </deviceKey>
             </Target>
           </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:20:36.298939400Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-07-21T11:04:55.579766300Z" />
         </State>
       </entry>
-      <entry key="ChangeLanguageTest">
+      <entry key="DeleteCommentReviewTest">
         <State />
       </entry>
-      <entry key="EditProfileTest">
-        <State>
-          <runningDeviceTargetSelectedWithDropDown>
-            <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="SERIAL_NUMBER" />
-                  <value value="adb-RR8R103YHYV-HWme4i._adb-tls-connect._tcp" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:56:34.978508400Z" />
-        </State>
+      <entry key="DeletePostTest">
+        <State />
       </entry>
-      <entry key="ReviewFlowTest">
+      <entry key="DeleteReviewTest">
         <State />
       </entry>
       <entry key="app">
         <State>
-          <runningDeviceTargetSelectedWithDropDown>
+          <targetSelectedWithDropDown>
             <Target>
-              <type value="RUNNING_DEVICE_TARGET" />
+              <type value="QUICK_BOOT_TARGET" />
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
@@ -55,8 +42,8 @@
                 </Key>
               </deviceKey>
             </Target>
-          </runningDeviceTargetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-21T08:15:53.067135800Z" />
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-21T11:38:14.245682100Z" />
         </State>
       </entry>
     </value>

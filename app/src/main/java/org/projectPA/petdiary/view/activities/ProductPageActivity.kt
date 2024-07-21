@@ -3,6 +3,7 @@ package org.projectPA.petdiary.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -31,12 +32,9 @@ class ProductPageActivity : AppCompatActivity() {
         val petType = intent.getStringExtra("petType")
         val category = intent.getStringExtra("category")
 
-
         setupRecyclerView()
 
-
         observeViewModel()
-
 
         if (petType != null && category != null) {
             viewModel.loadProductsFromFirestore(petType, category)
@@ -84,6 +82,13 @@ class ProductPageActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel.products.observe(this, Observer { products ->
             productAdapter.updateData(products)
+            if (products.isEmpty()) {
+                binding.thereisnoproduct.visibility = View.VISIBLE
+                binding.product.visibility = View.GONE
+            } else {
+                binding.thereisnoproduct.visibility = View.GONE
+                binding.product.visibility = View.VISIBLE
+            }
         })
 
         viewModel.errorMessage.observe(this, Observer { message ->

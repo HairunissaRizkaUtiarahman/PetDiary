@@ -17,8 +17,10 @@ import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.projectPA.petdiary.R
+import org.projectPA.petdiary.SnackbarIdlingResource
 import org.projectPA.petdiary.databinding.FragmentCommentPostMyProfileFragmentBinding
 import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.CommentPostMyProfileAdapter
@@ -161,7 +163,7 @@ class CommentPostMyProfileFragment : Fragment() {
                 val commentPost = commentPostMyProfileAdapter.currentList[position]
                 commentPost.id?.let {
                     commentPostMyProfileViewModel.deleteComment(postMyProfileViewModel.myPost.value?.id ?: "", it)
-                    Toast.makeText(requireContext(), "Comment deleted", Toast.LENGTH_SHORT).show()
+                    showSnackbar("Comment deleted")
                 }
             }
 
@@ -225,6 +227,17 @@ class CommentPostMyProfileFragment : Fragment() {
             }
         }
         alertDialogBuilder.create().show()
+    }
+
+    private fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+        SnackbarIdlingResource.SnackbarManager.registerSnackbar(snackbar)
+        snackbar.addCallback(object : Snackbar.Callback() {
+            override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
+                SnackbarIdlingResource.SnackbarManager.unregisterSnackbar(snackbar)
+            }
+        })
+        snackbar.show()
     }
 
 

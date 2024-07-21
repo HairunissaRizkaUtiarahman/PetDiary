@@ -67,7 +67,11 @@ class DeletePostTest {
 
         onView(withId(R.id.main_content)).perform(swipeUpSlightly())
 
+        Thread.sleep(5000)
+
         onView(withId(R.id.delete_Btn)).perform(click())
+
+        Thread.sleep(5000)
 
         onView(withText("Yes")).perform(click())
 

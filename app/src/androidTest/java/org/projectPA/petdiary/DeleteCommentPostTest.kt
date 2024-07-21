@@ -1,5 +1,6 @@
 package org.projectPA.petdiary
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewAction
@@ -9,6 +10,7 @@ import androidx.test.espresso.action.Press
 import androidx.test.espresso.action.Swipe
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -66,6 +68,7 @@ class DeleteCommentPostTest {
         Thread.sleep(5000)
 
         onView(withId(R.id.main_content)).perform(swipeUpSlightly())
+        Thread.sleep(3000)
 
         onView(withId(R.id.comment_Btn)).perform(click())
 
@@ -73,10 +76,13 @@ class DeleteCommentPostTest {
 
         onView(withId(R.id.main_content)).perform(swipeUpSlightly())
 
-        onView(withId(R.id.deleteButton)).perform(click())
+        Thread.sleep(3000)
 
-        onView(withText("Yes")).perform(click())
+        onView(withId(R.id.comments_RV)).perform(
+            RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, swipeLeft())
+        )
 
+        Thread.sleep(2000)
         onView(withSnackbarText("Comment deleted")).check(matches(isDisplayed()))
 
         Thread.sleep(2000)
