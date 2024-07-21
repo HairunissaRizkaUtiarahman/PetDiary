@@ -16,6 +16,7 @@ import org.projectPA.petdiary.R
 import org.projectPA.petdiary.databinding.ActivityProductDetailBinding
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.relativeTime
 import org.projectPA.petdiary.view.adapters.ReviewAdapter
 import org.projectPA.petdiary.viewmodel.ProductDetailViewModel
 
@@ -91,21 +92,22 @@ class ProductDetailActivity : AppCompatActivity() {
         })
 
         viewModel.reviews.observe(this, Observer { reviews ->
-            val limitedReviews = reviews.takeIf { it.size > 5 }?.take(5) ?: reviews
+            val filteredReviews = reviews.filter { it.userId != product.uploaderName }
+            val limitedReviews = filteredReviews.takeIf { it.size > 5 }?.take(5) ?: filteredReviews
             reviewAdapter.updateData(limitedReviews)
-            updateReviewVisibility(reviews)
+            updateReviewVisibility(filteredReviews)
         })
 
         viewModel.errorMessage.observe(this, Observer { message ->
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         })
 
-        viewModel.checkIfUserReviewed(productId, currentUserId)
-
         viewModel.hasReviewed.observe(this, Observer { hasReviewed ->
             binding.reviewButton.isEnabled = !hasReviewed
             Log.d("ProductDetailActivity", "Review button enabled: ${!hasReviewed}")
         })
+
+        viewModel.checkIfUserReviewed(productId, currentUserId)
     }
 
     private fun displayProductDetails(product: Product) {
@@ -121,13 +123,25 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.ratingBarProduct.rating = product.averageRating.toFloat()
 
         // Update uploader review section
-        binding.uploaderUsername.text = product.uploaderName
-        binding.reviewDate.text = product.uploaderReviewDate.toString()
+        product.uploaderName?.let { userId ->
+            viewModel.fetchUploaderName(userId) { userName, userImageUrl ->
+                binding.uploaderUsername.text = userName
+                userImageUrl?.let { imageUrl ->
+                    Glide.with(this).load(imageUrl).into(binding.uploaderPhotoProfile)
+                } ?: run {
+                    binding.uploaderPhotoProfile.setImageResource(R.drawable.ic_user) // Default image
+                }
+            }
+        }
+
+        binding.reviewDate.text = product.uploaderReviewDate?.relativeTime() ?: ""
         binding.usageProduct.text = product.usageUploader
         binding.deskripsiReviewUploader.text = product.uploaderReview
         binding.ratingBarUploader.rating = product.ratingUploader.toFloat()
+        binding.recomendedOrNotText.text = if (product.recommendUploader) "I Recommend This Product" else "Not Recommended"
 
-
+        // Disable review button if the current user is the uploader
+        binding.reviewButton.isEnabled = product.uploaderName != currentUserId
     }
 
     private fun setupRecyclerView() {
@@ -162,3 +176,4 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.toolbar.visibility = View.VISIBLE
     }
 }
+

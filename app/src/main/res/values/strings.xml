@@ -400,6 +400,7 @@
     <string name="caption">Caption</string>
     <string name="all_post">All Post</string>
     <string name="see_more_posts">See More Posts</string>
+    <string name="add_new_product_for_review">Add New Product for Review</string>
 
 
 </resources>

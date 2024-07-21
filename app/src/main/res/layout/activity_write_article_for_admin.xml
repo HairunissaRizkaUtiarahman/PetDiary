@@ -87,24 +87,14 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/upload_image_article"
+                    android:id="@+id/upload_photo_button"
                     android:layout_width="match_parent"
                     android:layout_height="330dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/image_blank"
+                    android:background="@drawable/background_upload_picture"
                     android:contentDescription="@string/image_post_cd"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/circulas" />
-
-                <Button
-                    android:id="@+id/upload_photo_button"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="15dp"
-                    android:gravity="center"
-                    android:text="@string/select_image"
-                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/input_tittle_field"

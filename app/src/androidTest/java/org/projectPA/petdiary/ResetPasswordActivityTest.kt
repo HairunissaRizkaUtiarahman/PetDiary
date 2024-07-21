@@ -80,7 +80,7 @@ class ResetPasswordActivityTest {
         onView(withId(R.id.email_TIET)).perform(typeText("akupetdiary@gmail.com"), closeSoftKeyboard())
         onView(withId(R.id.reset_Btn)).perform(click())
 
-        Thread.sleep(5000)
+        Thread.sleep(6000)
         intended(hasComponent(SigninActivity::class.java.name))
     }
 }

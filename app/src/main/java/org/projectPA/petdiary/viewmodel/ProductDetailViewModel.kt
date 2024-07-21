@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import org.projectPA.petdiary.model.Product
 import org.projectPA.petdiary.model.Review
+import org.projectPA.petdiary.model.User
 
 class ProductDetailViewModel : ViewModel() {
     private val _product = MutableLiveData<Product>()
@@ -117,5 +118,28 @@ class ProductDetailViewModel : ViewModel() {
             .await()
         val endTime = System.currentTimeMillis()
         Log.d("ProductDetailViewModel", "checkIfUserReviewedAsync: Time taken: ${endTime - startTime} ms")
+    }
+
+    fun fetchUploaderName(userId: String, callback: (String, String?) -> Unit) {
+        if (userId.isEmpty()) {
+            callback("", null)
+            return
+        }
+
+        FirebaseFirestore.getInstance().collection("users").document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                val user = document.toObject(User::class.java)
+                if (user != null) {
+                    callback(user.name ?: "", user.imageUrl)
+                } else {
+                    Log.e("ProductDetailViewModel", "User not found for userId: $userId")
+                    callback("", null)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("ProductDetailViewModel", "Error fetching user details", e)
+                callback("", null)
+            }
     }
 }

@@ -2,22 +2,35 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="DeleteCommentPostTest">
+      <entry key="ProductEntryTest">
         <State />
       </entry>
-      <entry key="DeleteCommentReviewTest">
+      <entry key="ResetPasswordActivityTest">
         <State />
       </entry>
-      <entry key="WriteArticleForAdminTest">
+      <entry key="SigninActivityTest">
+        <State />
+      </entry>
+      <entry key="SignupActivityTest">
         <State />
       </entry>
       <entry key="app">
-        <State />
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\anisa\.android\avd\Pixel_5_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-07-20T14:01:57.029101800Z" />
+        </State>
       </entry>
-      <entry key="testArticleEntryProcess()">
-        <State />
-      </entry>
-      <entry key="testPetProductEntryProcess()">
+      <entry key="testValidEmailOpenSignin()">
         <State />
       </entry>
     </value>

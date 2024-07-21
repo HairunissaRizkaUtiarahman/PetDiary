@@ -96,7 +96,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/roboto_bold"
                 android:gravity="center_vertical"
-                android:text="@string/add_a_product"
+                android:text="@string/add_new_product_for_review"
                 android:textColor="@color/green_main"
                 android:textSize="20sp" />
         </LinearLayout>

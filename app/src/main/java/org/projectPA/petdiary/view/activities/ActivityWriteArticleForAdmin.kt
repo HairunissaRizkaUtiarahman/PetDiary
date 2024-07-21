@@ -31,7 +31,7 @@ class ActivityWriteArticleForAdmin : AppCompatActivity() {
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
             selectedImageUri = it
-            binding.uploadImageArticle.setImageURI(it)
+            binding.uploadPhotoButton.setImageURI(it)
         }
     }
 

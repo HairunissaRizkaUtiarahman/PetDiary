@@ -145,6 +145,7 @@ class FillProductInformationViewModel : ViewModel() {
 
     private fun saveProductToFirebase(activity: Activity, brandName: String, productName: String, desc: String, imageUrl: String, petType: String, category: String, review: String, rating: Float, usage: String, recommend: Boolean) {
         val productId = FirebaseFirestore.getInstance().collection("products").document().id
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         val product = Product(
             id = productId,
@@ -161,7 +162,7 @@ class FillProductInformationViewModel : ViewModel() {
             timeAdded = Timestamp.now(),
             lowercaseProductName = productName.lowercase(),
             lowercaseBrandName = brandName.lowercase(),
-            uploaderName = FirebaseAuth.getInstance().currentUser?.displayName ?: "",
+            uploaderName = userId,
             uploaderReviewDate = Timestamp.now(),
             uploaderReview = review,
             usageUploader = usage,
@@ -178,6 +179,7 @@ class FillProductInformationViewModel : ViewModel() {
                 _uploadStatus.value = "Failed to add product: ${e.message}"
             }
     }
+
 
     private fun saveReviewToFirebase(activity: Activity, productId: String, review: String, rating: Float, usage: String, recommend: Boolean) {
         val reviewId = FirebaseFirestore.getInstance().collection("reviews").document().id

@@ -1,311 +1,338 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/pet_category_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:elevation="8dp"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/black">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/back_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            android:contentDescription="@string/back_to_choose_product_category_page_button"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:id="@+id/Fill_product_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/fill_product_information"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <LinearLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/pet_category_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:background="@android:color/white"
+            android:elevation="8dp"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/black">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/upload_product_image"
-                android:layout_width="250dp"
-                android:layout_height="250dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="55dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="55dp"
-                android:layout_marginBottom="15dp"
-                android:background="@drawable/background_upload_picture"
-                android:contentDescription="@string/image_post_cd"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/circulas" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/form_input_brand_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="25dp"
-                app:counterMaxLength="100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_brand_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/brand_namee"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/form_input_name_product"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="25dp"
-                app:counterMaxLength="100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_name_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/product_namee"
-                    android:inputType="textEmailAddress" />
-
-                <TextView
-                    android:id="@+id/warning_productName_alreadyExist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/product_name_already_existt"
-                    android:textColor="@color/orange_main"
-                    android:visibility="gone" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/form_input_description_product"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="25dp"
-                app:counterMaxLength="100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_description_product"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:gravity="top"
-                    android:hint="@string/product_descriptionn"
-                    android:inputType="textEmailAddress"
-                    android:nestedScrollingEnabled="true" />
-
-                <TextView
-                    android:id="@+id/warning_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/product_description_must_be_at_least_30_characters_long"
-                    android:textColor="@color/orange_main"
-                    android:visibility="gone" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/form_input_review"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
-                android:layout_marginTop="25dp"
-                app:counterMaxLength="100">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/input_review"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:gravity="top"
-                    android:hint="@string/write_your_review"
-                    android:inputType="textEmailAddress"
-                    android:nestedScrollingEnabled="true" />
-
-                <TextView
-                    android:id="@+id/warning_review"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/review_must_at_least_have_10_words"
-                    android:textColor="@color/orange_main"
-                    android:visibility="gone" />
-
-                <ProgressBar
-                    android:id="@+id/progress_bar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:background="@color/white"
+                android:contentDescription="@string/back_to_choose_product_category_page_button"
+                android:src="@drawable/ic_back" />
 
             <TextView
-                android:id="@+id/usage_product_te4xt"
+                android:id="@+id/Fill_product_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="@string/give_your_overall_rating_for_this_product"
-                android:textAlignment="center"
-                android:textColor="@color/orange_main"
+                android:text="@string/fill_product_information"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:isIndicator="false"
-                android:max="5"
-                android:numStars="5"
-                android:progressTint="@color/green_main"
-                android:stepSize="1" />
+        </androidx.appcompat.widget.Toolbar>
 
-            <TextView
-                android:id="@+id/line62"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/background_line" />
-
-
-            <TextView
-                android:id="@+id/usage_product_text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/how_long_have_you_used_it"
-                android:textAlignment="center"
-                android:textColor="@color/orange_main"
-                android:textSize="20sp" />
-
-            <Spinner
-                android:id="@+id/usageDropdown"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/backgorund_dropdown"
-                android:backgroundTintMode="src_in"
-                android:hapticFeedbackEnabled="false"
-                android:visibility="visible" />
-            <TextView
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/background_line" />
-
-
-            <TextView
-                android:id="@+id/usage_product_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/would_you_recommend_this_product"
-                android:textAlignment="center"
-                android:textColor="@color/orange_main"
-                android:textSize="20sp" />
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ic_thumbs_up_inactive"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/upload_product_image"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="55dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="55dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/background_upload_picture"
+                    android:contentDescription="@string/image_post_cd"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/circulas" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/form_input_brand_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="25dp"
+                    app:counterMaxLength="100">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_brand_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/brand_namee"
+                        android:inputType="text" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/form_input_name_product"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="25dp"
+                    app:counterMaxLength="100">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_name_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_namee"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/warning_productName_alreadyExist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/product_name_already_existt"
+                        android:textColor="@color/orange_main"
+                        android:visibility="gone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/form_input_description_product"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="25dp"
+                    app:counterMaxLength="100">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_description_product"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:gravity="top"
+                        android:hint="@string/product_descriptionn"
+                        android:inputType="text|textMultiLine"
+                        android:nestedScrollingEnabled="true" />
+
+                    <TextView
+                        android:id="@+id/warning_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/product_description_must_be_at_least_30_characters_long"
+                        android:textColor="@color/orange_main"
+                        android:visibility="gone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/form_input_review"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="25dp"
+                    android:layout_marginTop="25dp"
+                    app:counterMaxLength="100">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:gravity="top"
+                        android:hint="@string/write_your_review"
+                        android:inputType="text|textMultiLine"
+                        android:nestedScrollingEnabled="true" />
+
+                    <TextView
+                        android:id="@+id/warning_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/review_must_at_least_have_10_words"
+                        android:textColor="@color/orange_main"
+                        android:visibility="gone" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/usage_product_te4xt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:contentDescription="@string/image_like_cd"
-                    app:srcCompat="@drawable/ic_thumbs_up_inactive" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/give_your_overall_rating_for_this_product"
+                    android:textAlignment="center"
+                    android:textColor="@color/orange_main"
+                    android:textSize="20sp" />
 
-                <ImageView
-                    android:id="@+id/ic_thumbs_down_inactive"
+                <RatingBar
+                    android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:contentDescription="@string/image_unlike_cd"
-                    android:rotation="360"
-                    app:srcCompat="@drawable/ic_thumbs_down_inactive" />
+                    android:layout_gravity="center_horizontal"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:isIndicator="false"
+                    android:max="5"
+                    android:numStars="5"
+                    android:progressTint="@color/green_main"
+                    android:stepSize="1" />
 
+                <TextView
+                    android:id="@+id/line62"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_line" />
+
+
+                <TextView
+                    android:id="@+id/usage_product_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/how_long_have_you_used_it"
+                    android:textAlignment="center"
+                    android:textColor="@color/orange_main"
+                    android:textSize="20sp" />
+
+                <Spinner
+                    android:id="@+id/usageDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/backgorund_dropdown"
+                    android:backgroundTintMode="src_in"
+                    android:hapticFeedbackEnabled="false"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/line2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_line" />
+
+
+                <TextView
+                    android:id="@+id/usage_product_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/would_you_recommend_this_product"
+                    android:textAlignment="center"
+                    android:textColor="@color/orange_main"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ic_thumbs_up_inactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="15dp"
+                        android:contentDescription="@string/image_like_cd"
+                        app:srcCompat="@drawable/ic_thumbs_up_inactive" />
+
+                    <ImageView
+                        android:id="@+id/ic_thumbs_down_inactive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:contentDescription="@string/image_unlike_cd"
+                        android:rotation="360"
+                        app:srcCompat="@drawable/ic_thumbs_down_inactive" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/line288"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_line" />
+
+
+                <Button
+                    android:id="@+id/submit_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="25dp"
+                    android:enabled="false"
+                    android:foregroundGravity="center_vertical|center_horizontal"
+                    android:text="@string/submitt"
+                    android:textAlignment="gravity"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="8dp"
+                    app:iconGravity="textStart" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/line288"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/background_line" />
+        </androidx.core.widget.NestedScrollView>
 
 
-            <Button
-                android:id="@+id/submit_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="25dp"
-                android:enabled="false"
-                android:foregroundGravity="center_vertical|center_horizontal"
-                android:text="@string/submitt"
-                android:textAlignment="gravity"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:cornerRadius="8dp"
-                app:iconGravity="textStart" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_grey"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:layout_editor_absoluteY="851dp">
 
-</LinearLayout>
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

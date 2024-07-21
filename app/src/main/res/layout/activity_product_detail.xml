@@ -358,12 +358,24 @@
                                 android:id="@+id/usage_product"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginStart="8dp"
                                 android:text="@string/usage_product" />
                         </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/recomended_or_not_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="@string/recomend_status"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/green_main"
+                    android:textSize="14sp" />
+
 
                 <LinearLayout
                     android:id="@+id/click_for_more_information_button"
@@ -382,15 +394,6 @@
                         android:isIndicator="true"
                         android:max="5" />
 
-                    <ImageView
-                        android:id="@+id/seeDetail_Btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:layout_marginStart="80dp"
-                        android:contentDescription="@string/image_see_detail_cd"
-                        android:rotation="180"
-                        android:src="@drawable/baseline_arrow_back_ios_24" />
-
                 </LinearLayout>
 
                 <TextView
@@ -400,9 +403,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="10dp"
-                    android:ellipsize="end"
                     android:fontFamily="@font/roboto"
-                    android:maxLines="5"
                     android:text="@string/lorem_ipsum"
                     android:textSize="16sp" />
 
