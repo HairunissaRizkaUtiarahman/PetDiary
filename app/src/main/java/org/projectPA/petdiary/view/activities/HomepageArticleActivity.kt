@@ -92,8 +92,8 @@ class HomepageArticleActivity : AppCompatActivity() {
     }
 
     private fun observeUser() {
-        viewModel.isModerator.observe(this) { isModerator ->
-            if (isModerator) {
+        viewModel.isArticleEditor.observe(this) { isArticleEditor ->
+            if (isArticleEditor) {
                 binding.addArticleOnlyForAdminButton.visibility = View.VISIBLE
                 binding.addArticleOnlyForAdminButton.setOnClickListener {
                     val intent = Intent(this, ActivityWriteArticleForAdmin::class.java)
